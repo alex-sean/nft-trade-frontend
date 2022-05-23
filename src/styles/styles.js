@@ -11,6 +11,11 @@ const styles = (theme) => {
     textRight: {textAlign: 'right'},
     my32: {marginTop: '32px', marginBottom: '32px'}, 
     mx32: {marginLeft: '32px', marginRight: '32px'}, 
+    mr32: {marginRight: '32px'},
+    my16: {marginTop: '16px', marginBottom: '16px'}, 
+    mx16: {marginLeft: '16px', marginRight: '16px'}, 
+    mr16: {marginRight: '16px'},
+    mt32: {marginTop: '32px'},
     
     toolBar: {
       display: 'flex',
@@ -43,6 +48,16 @@ const styles = (theme) => {
       marginTop: '-90px',
       paddingTop: '90px',
       backgroundImage: `url(images/gradient${isDark ? '_dark' : ''}.jpg)`
+    },
+    animateFly: {
+      position: 'absolute',
+      right: '-4%',
+      width: '100%',
+      animation: '$fly 6s cubic-bezier(.75,.02,.31,.87) infinite',
+    },
+    "@keyframes fly": {
+      '0%,to': {transform: 'translateY(5%)'},
+      '50%': {transform: 'translateY(0)'}
     },
     hotBids: {
       margin: '32px 0',
@@ -86,15 +101,36 @@ const styles = (theme) => {
       backgroundColor: '#8358ff',
       color: '#fff',
       borderRadius: '99px',
-      boxShadow: "4px 5px 10px rgba(108,106,213,.25),inset 2px 2px 6px #a78df0,inset -5px -5px 10px #6336e4"
+      boxShadow: "4px 5px 10px rgba(108,106,213,.25),inset 2px 2px 6px #a78df0,inset -5px -5px 10px #6336e4",
+      '&:hover': {
+        backgroundColor: '#8358ff',
+      },
     },
     secondaryButton: {
       padding: '8px 32px',
       backgroundColor: '#fff',
       color: '#8358ff',
       borderRadius: '99px',
-      boxShadow: "5px 5px 10px rgba(108,106,212,.25),inset 2px 2px 6px #eef1f9,inset -5px -5px 10px #dfe3ef;"
+      boxShadow: "5px 5px 10px rgba(108,106,212,.25),inset 2px 2px 6px #eef1f9,inset -5px -5px 10px #dfe3ef;",
+      '&:hover': {
+        backgroundColor: '#fff',
+      },
     },
+    footerContainer: {
+      display: 'flex',
+      alignItems: 'center',
+      miHeight: '10vh',
+      padding: '64px',
+      justifyContent: 'center',
+      flexDirection: 'column',
+    },
+    footerText: {
+      paddingBottom: '10px',
+    },
+    footerDate: {
+      opacity: '0.4',
+    },
+
 
     formContainer: {
       flexGrow: 1,
@@ -147,21 +183,6 @@ const styles = (theme) => {
       marginBottom: '20px',
       fontSize: '16px',
       padding: '10px',
-    },
-    footerContainer: {
-      display: 'flex',
-      alignItems: 'center',
-      miHeight: '10vh',
-      padding: '20px',
-      justifyContent: 'center',
-      backgroundColor: '#f2f0f1',
-      flexDirection: 'column',
-    },
-    footerText: {
-      paddingBottom: '10px',
-    },
-    footerDate: {
-      opacity: '0.4',
     },
     testimonialCard: {
       backgroundColor: '#fff',

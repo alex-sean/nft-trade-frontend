@@ -27,7 +27,7 @@ const Subscribe = () => {
       variant="contained"
       type="submit"
       color="primary"
-      sx={{ width: '200px', fontSize: '16px', borderRadius: '20px', background: '#8358ff' }}
+      sx={{ width: '200px', fontSize: '16px', borderRadius: '20px', background: '#8358ff', '&:hover': {backgroundColor: '#8358ff'}, }}
       onClick={submitForm}
     >
       Subscribe

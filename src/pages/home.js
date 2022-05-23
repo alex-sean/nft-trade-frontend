@@ -12,9 +12,10 @@ import '@fontsource/roboto/700.css';
 import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from "react"
+import { WindowSharp } from "@mui/icons-material"
 
 function Home(){
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(window.localStorage.getItem('darkMode') == 'true');
   const theme = createTheme({
     palette: {
       mode: darkMode ? "dark" : "light"
@@ -22,6 +23,7 @@ function Home(){
   })
 
   const toggleTheme = () => {
+    window.localStorage.setItem('darkMode', !darkMode)
     setDarkMode(!darkMode)
   }
   

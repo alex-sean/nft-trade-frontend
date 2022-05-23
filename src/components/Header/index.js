@@ -79,7 +79,7 @@ const Header = (props) => {
               <Link href="#" underline="none">
                 <Box component="img" className={classes.logo}
                   alt="Market Place"
-                  src={'images/logo.png'}
+                  src={`images/logo${theme.palette.mode == 'dark' ? '_white' : ''}.png`}
                 />
               </Link>
               {!matches ? (<Search>
@@ -142,7 +142,7 @@ const Header = (props) => {
                 <PersonIcon />
               </IconButton>
               <IconButton className={classes.menuIcon} onClick={() => props.setTheme()}>
-                {theme.palette.mode == 'dark' ? <BedtimeIcon /> : <LightModeIcon />}
+                {theme.palette.mode == 'dark' ? <LightModeIcon /> : <BedtimeIcon />}
               </IconButton>
             </Box>}
           </Toolbar>

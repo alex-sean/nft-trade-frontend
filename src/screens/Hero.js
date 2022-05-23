@@ -22,8 +22,9 @@ const Hero = () => {
           <PrimaryButton text='Upload'></PrimaryButton>
           <SecondaryButton text="Explore" />
         </Grid>
-        <Grid item xs={12} md={5}>
-          <img src={'images/hero/hero.jpg'} className={classes.largeImage} />
+        <Grid item xs={12} md={5} sx={{position:'relative'}}>
+          <img src={'images/hero/hero_deg.png'} className={`${classes.largeImage}`} />
+          <img src={'images/hero/3D_elements.png'} className={`${classes.animateFly}`} />
         </Grid>
       </Grid>
     </Box>
