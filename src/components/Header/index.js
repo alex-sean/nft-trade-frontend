@@ -24,6 +24,7 @@ import StyledInputBase from './Search/StyledInputBase';
 import Search from './Search';
 import SearchIconWrapper from './Search/SearchIconWrapper';
 import ElevationScroll from './ElevationScroll';
+import PagesMenu from './PagesMenu';
 
 const Header = (props) => {
   const classes = useStyles();
@@ -76,7 +77,7 @@ const Header = (props) => {
         <AppBar sx={{backgroundColor:'hsla(0,0%,100%,.5)'}}>
           <Toolbar className={classes.toolBar}>
             <Box sx={{display:'flex'}}>
-              <Link href="#" underline="none">
+              <Link href="/" underline="none">
                 <Box component="img" className={classes.logo}
                   alt="Market Place"
                   src={`images/logo${theme.palette.mode == 'dark' ? '_white' : ''}.png`}
@@ -130,11 +131,19 @@ const Header = (props) => {
                 flexGrow: '0.1',
               }}
             >
-              {links.map((link) => (
-                <Link href={link.url} target="_blank" underline="none" key={link.id}>
-                  <Typography className={classes.link}>{link.route}</Typography>
-                </Link>
-              ))}
+              <Link href="/" underline="none" key="1">
+                <Typography className={classes.link}>Home</Typography>
+              </Link>
+              <PagesMenu />
+              <Link href="/explore" underline="none" key="1">
+                <Typography className={classes.link}>Explore</Typography>
+              </Link>
+              <Link href="/resources" underline="none" key="1">
+                <Typography className={classes.link}>Resources</Typography>
+              </Link>
+              <Link href="/create" underline="none" key="1">
+                <Typography className={classes.link}>create</Typography>
+              </Link>
               <IconButton className={classes.menuIcon}>
                 <AccountBalanceWalletIcon />
               </IconButton>

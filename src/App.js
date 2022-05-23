@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './pages/home'
+import Item from './pages/item'
 import './App.css';
 import { StyledEngineProvider } from '@mui/material';
 
@@ -10,6 +11,9 @@ function App() {
         <Switch>
           <Route exact path='/'>
             <Home/>
+          </Route>
+          <Route exact path='/item'>
+            <Item />
           </Route>
         </Switch>
       </StyledEngineProvider>
