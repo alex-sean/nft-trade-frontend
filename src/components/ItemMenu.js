@@ -3,9 +3,11 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { Link, Typography } from '@mui/material';
-import useStyles from '../../styles/styles';
+import useStyles from '../styles/styles';
+import Divider from '@mui/material/Divider';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
-export default function PagesMenu() {
+export default function ItemMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -24,8 +26,9 @@ export default function PagesMenu() {
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
+        sx={{border:'solid 1px grey', borderRadius:'10px', padding:'8px', color:'#000', marginLeft:'8px'}}
       >
-        <Typography className={classes.link}>Page</Typography>
+        <MoreHorizIcon color="#000" />
       </Button>
       <Menu
         id="basic-menu"
@@ -37,29 +40,17 @@ export default function PagesMenu() {
         }}
       >
         <MenuItem onClick={handleClose}>
-          <Link href="/item" underline="none" key="1">
-            <Typography className={classes.link}>Item Details</Typography>
-          </Link>
+          <Typography className={classes.link}>New bid</Typography>
+        </MenuItem>
+        <Divider />
+        <MenuItem onClick={handleClose}>
+          <Typography className={classes.link}>Refresh Metadata</Typography>
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <Link href="/activity" underline="none" key="2">
-            <Typography className={classes.link}>Activity</Typography>
-          </Link>
+          <Typography className={classes.link}>Share</Typography>
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <Link href="/profile" underline="none" key="4">
-            <Typography className={classes.link}>Edit Profile</Typography>
-          </Link>
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <Link href="/contact" underline="none" key="5">
-            <Typography className={classes.link}>Contact</Typography>
-          </Link>
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <Link href="/login" underline="none" key="6">
-            <Typography className={classes.link}>Login</Typography>
-          </Link>
+          <Typography className={classes.link}>Report</Typography>
         </MenuItem>
       </Menu>
     </div>

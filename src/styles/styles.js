@@ -9,11 +9,12 @@ const styles = (theme) => {
     textCenter: {textAlign: 'center'},
     textLeft: {textAlign: 'left'},
     textRight: {textAlign: 'right'},
-    my32: {marginTop: '32px', marginBottom: '32px'}, 
-    mx32: {marginLeft: '32px', marginRight: '32px'}, 
-    mr32: {marginRight: '32px'},
-    my16: {marginTop: '16px', marginBottom: '16px'}, 
     mx16: {marginLeft: '16px', marginRight: '16px'}, 
+    mx32: {marginLeft: '32px', marginRight: '32px'}, 
+    my8: {marginTop: '8px', marginBottom: '8px'}, 
+    my16: {marginTop: '16px', marginBottom: '16px'}, 
+    my32: {marginTop: '32px', marginBottom: '32px'}, 
+    mr32: {marginRight: '32px'},
     mr16: {marginRight: '16px'},
     mt32: {marginTop: '32px'},
     
@@ -31,7 +32,7 @@ const styles = (theme) => {
       color: "#000",
       fontWeight: "700",
       fontSize: "1.2rem",
-      marginRight: "2rem"
+      marginRight: "1rem"
     },
     menuIcon: {
       border:'solid 1px #000', 
@@ -60,7 +61,7 @@ const styles = (theme) => {
       '50%': {transform: 'translateY(0)'}
     },
     hotBids: {
-      margin: '32px 0',
+      padding: '32px 0',
     },
     hotBidItem: {
       border:'solid 1px rgba(0, 0, 0, 0.2)', 
@@ -130,6 +131,20 @@ const styles = (theme) => {
     footerDate: {
       opacity: '0.4',
     },
+    itemHeroContainer: {
+      width: '100%',
+      display: 'flex',
+      minHeight: '400px',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '30px 0px 50px 0px',
+      backgroundImage:`url(images/gradient_${theme.palette.mode}.jpg)`,
+    },
+    itemHeroSubtitle: {
+      opacity: '0.7',
+      paddingBottom: '30px',
+      fontSize: '18px',
+    },
 
 
     formContainer: {
@@ -146,19 +161,6 @@ const styles = (theme) => {
     },
     formHeading: {
       textAlign: 'center',
-    },
-    aboutUsContainer: {
-      width: '100%',
-      display: 'flex',
-      minHeight: '400px',
-      alignItems: 'center',
-      justifyContent: 'center',
-      margin: '30px 0px 50px 0px',
-    },
-    aboutUsSubtitle: {
-      opacity: '0.7',
-      paddingBottom: '30px',
-      fontSize: '18px',
     },
     sectionGridContainer: {
       display: 'flex',
