@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid, Typography, Box, Container } from '@mui/material';
 import useStyles from '../styles/styles';
 import CategoryItem from '../components/CategoryItem'
+import HomeFilter from './HomeFilter';
 
 const Category = () => {
   const classes = useStyles();
@@ -71,6 +72,7 @@ const Category = () => {
         <Typography variant="h4">Trending categories</Typography>
       </Box>
       <Container maxWidth="lg">
+        <HomeFilter />
         <Grid container className={classes.sectionGridContainer} spacing={4}>
           {items.map((item) => (
             <Grid

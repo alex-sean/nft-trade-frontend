@@ -17,7 +17,7 @@ export default function HotbidItem(props) {
         <Typography variant="h6">{title}</Typography>
         <Box sx={{display:'flex', justifyContent: 'space-between', alignItems: 'center', border: "solid 1px rgba(0, 0, 0, 0.2)", borderRadius: '8px', padding: '4px'}}>
           <Icon icon="logos:ethereum" rotate={2} hFlip={true} vFlip={true} />
-          <Typography color="rgb(16 185 129)">{amount}</Typography>
+          <Typography color="rgb(16, 185, 129)">{amount}</Typography>
         </Box>
       </Box>
       <Typography>{subtitle}</Typography>

@@ -17,6 +17,12 @@ const styles = (theme) => {
     mr32: {marginRight: '32px'},
     mr16: {marginRight: '16px'},
     mt32: {marginTop: '32px'},
+    text: {
+      color: `${isDark ? '#fff' : 'rgb(19, 23, 64)'}`, 
+      '&:hover': {
+        color: 'rgb(131, 88, 255)'
+      }, 
+    },
     
     toolBar: {
       display: 'flex',
@@ -144,6 +150,10 @@ const styles = (theme) => {
       opacity: '0.7',
       paddingBottom: '30px',
       fontSize: '18px',
+    },
+    collectionsPage:{
+      backgroundImage:`url(images/gradient_${theme.palette.mode}.jpg)`,
+      backgroundSize: 'cover'
     },
 
 

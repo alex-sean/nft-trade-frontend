@@ -27,7 +27,7 @@ export default function ItemBid(props) {
                 <Grid item>
                   <Box sx={{display:'flex', justifyContent: 'space-between', alignItems: 'center'}}>
                     <Icon icon="logos:ethereum" rotate={2} hFlip={true} vFlip={true} />
-                    <Typography color="rgb(16 185 129)">4.7 ETH</Typography>
+                    <Typography color="rgb(16, 185, 129)">4.7 ETH</Typography>
                   </Box>
                   <Typography noWrap>~10,864.10</Typography>
                 </Grid>
