@@ -67,8 +67,8 @@ const Category = () => {
   return (
     <Box sx={{ flexGrow: 1, minHeight: '400px'}}>
       <Box sx={{display:'flex', justifyContent: 'center', alignItems: 'center', margin: '32px'}}>
-        <img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@7.0.2/img/apple/64/26a1.png" />
-        <Typography variant="h3">Trending categories</Typography>
+        <img style={{width: '32px'}} src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@7.0.2/img/apple/64/26a1.png" />
+        <Typography variant="h4">Trending categories</Typography>
       </Box>
       <Container maxWidth="lg">
         <Grid container className={classes.sectionGridContainer} spacing={4}>

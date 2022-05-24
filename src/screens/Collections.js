@@ -99,7 +99,7 @@ const Collections = (props) => {
     <Box className={classes.collections}>
       <Container maxWidth="lg">
         <Box sx={{display:'flex', justifyContent: 'center', alignItems: 'center', margin: '32px'}}>
-          <Typography variant="h3">Top collections over</Typography>
+          <Typography variant="h4">Top collections over</Typography>
           <CollectionMenu />
         </Box>
 

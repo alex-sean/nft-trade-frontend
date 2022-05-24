@@ -66,8 +66,8 @@ const Hotbids = () => {
   return (
     <Box className={classes.hotBids}>
       <Box className={`${classes.displayFlex} ${classes.justifyCenter} ${classes.my32}`}>
-        <img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@7.0.2/img/apple/64/1f525.png" />
-        <Typography variant="h3">Hot Bids</Typography>
+        <img style={{width:'32px'}} src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@7.0.2/img/apple/64/1f525.png" />
+        <Typography variant="h4">Hot Bids</Typography>
       </Box>
       <Container maxWidth="lg" spacing={4}>
         <Swiper slidesPerView={matches ? 1 : 4} >

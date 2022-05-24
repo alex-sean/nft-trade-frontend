@@ -34,7 +34,7 @@ export default function ItemHero(){
                 <ItemMenu />
               </Box>
             </Box>
-            <Typography variant="h3" fontWeight={700} className={classes.title}>
+            <Typography variant="h4" fontWeight={700} className={classes.title}>
               TSARÉVNA
             </Typography>
             <Box className={`${classes.displayFlex} ${classes.my8}`} >

@@ -14,7 +14,11 @@ function App() {
   const [darkMode, setDarkMode] = useState(window.localStorage.getItem('darkMode') == 'true');
   const theme = createTheme({
     typography: {
-      "fontFamily": `CalSans-SemiBold, sans-serif`,
+      fontFamily: `CalSans-SemiBold, sans-serif`,
+      h4: {
+        fontWeight: '700',
+        fontSize: '2.25rem',
+      },
       button: {
         textTransform: 'none'
       },

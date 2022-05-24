@@ -13,7 +13,7 @@ const Hero = () => {
     <Box className={classes.heroBox}>
       <Grid container spacing={6} className={classes.gridContainer}>
         <Grid item xs={12} md={7}>
-          <Typography variant="h3" fontWeight={700} className={classes.title}>
+          <Typography variant="h4" fontWeight={700} className={classes.title}>
             Buy, sell and <br />collect NFTs.
           </Typography>
           <Typography variant="h6" className={classes.subtitle}>

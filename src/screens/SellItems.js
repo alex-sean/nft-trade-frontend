@@ -37,7 +37,7 @@ const SellItems = () => {
   return (
     <Box className={classes.sellItems}>
       <Box sx={{display:'flex', justifyContent: 'center', alignItems: 'center', margin: '32px'}}>
-        <Typography variant="h3">Create and sell your NFTs</Typography>
+        <Typography variant="h4">Create and sell your NFTs</Typography>
       </Box>
       <Container maxWidth="lg">
         <Grid container className={classes.sectionGridContainer}>
