@@ -1,4 +1,3 @@
-
 import Hero from "../screens/Hero"
 import Hotbids from "../screens/Hotbids"
 import Collections from "../screens/Collections"

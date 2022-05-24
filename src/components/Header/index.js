@@ -25,6 +25,7 @@ import Search from './Search';
 import SearchIconWrapper from './Search/SearchIconWrapper';
 import ElevationScroll from './ElevationScroll';
 import PagesMenu from './PagesMenu';
+import ExploreMenu from './ExploreMenu';
 
 const Header = (props) => {
   const classes = useStyles();
@@ -135,9 +136,7 @@ const Header = (props) => {
                 <Typography className={classes.link}>Home</Typography>
               </Link>
               <PagesMenu />
-              <Link href="/explore" underline="none" key="1">
-                <Typography className={classes.link}>Explore</Typography>
-              </Link>
+              <ExploreMenu />
               <Link href="/resources" underline="none" key="1">
                 <Typography className={classes.link}>Resources</Typography>
               </Link>

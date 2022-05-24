@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Typography, Box, Container } from '@mui/material';
+import { Typography, Box, Container } from '@mui/material';
 import useStyles from '../styles/styles';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
