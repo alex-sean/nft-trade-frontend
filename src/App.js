@@ -11,7 +11,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from "react"
 
 function App() {
-  const [darkMode, setDarkMode] = useState(window.localStorage.getItem('darkMode') == 'true');
+  const [darkMode, setDarkMode] = useState(window.localStorage.getItem('darkMode') === 'true');
   const theme = createTheme({
     typography: {
       fontFamily: `CalSans-SemiBold, sans-serif`,

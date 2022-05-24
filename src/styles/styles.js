@@ -1,7 +1,7 @@
 import { makeStyles } from '@mui/styles';
 
 const styles = (theme) => {
-  const isDark = theme.palette.mode == 'dark'
+  const isDark = theme.palette.mode === 'dark'
   return {
     displayFlex: {display: 'flex', alignItems: 'center'},
     justifyBetween: {justifyContent: 'space-between'},
