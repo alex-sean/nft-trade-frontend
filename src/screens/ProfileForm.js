@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import useStyles from '../styles/styles';
 
-const ContactUs = () => {
+const ProfileForm = () => {
   const [email, setEmail] = useState('');
   const [firstName, setFirstName] = useState('');
   const [subject, setSubject] = useState('');
@@ -82,4 +82,4 @@ const ContactUs = () => {
   );
 };
 
-export default ContactUs;
+export default ProfileForm;

@@ -1,16 +1,17 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { StyledEngineProvider } from '@mui/material';
+import CssBaseline from '@mui/material/CssBaseline';
+import { useState } from "react"
+import './App.css';
+import Header from "./components/Header"
+import Footer from "./components/Footer"
 import Home from './pages/home'
 import Item from './pages/item'
 import CollectionsPage from './pages/collectionspage'
 import CollectionPage from './pages/collectionpage'
 import ActivityPage from './pages/activitypage'
-import './App.css';
-import { StyledEngineProvider } from '@mui/material';
-import Header from "./components/Header"
-import Footer from "./components/Footer"
-import CssBaseline from '@mui/material/CssBaseline';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useState } from "react"
+import ProfilePage from './pages/profilepage';
 
 function App() {
   const [darkMode, setDarkMode] = useState(window.localStorage.getItem('darkMode') === 'true');
@@ -63,6 +64,9 @@ function App() {
             </Route>
             <Route exact path='/activity'>
               <ActivityPage />
+            </Route>
+            <Route exact path='/profile'>
+              <ProfilePage />
             </Route>
           </Switch>
         <Footer />
