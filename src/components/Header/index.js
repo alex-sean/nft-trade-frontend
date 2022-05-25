@@ -73,7 +73,7 @@ const Header = (props) => {
   const matches = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
-    <Box sx={{ marginBottom: '70px' }}>
+    <Box sx={{ marginBottom: '90px' }}>
       <ElevationScroll {...props}>
         <AppBar sx={{backgroundColor:'hsla(0,0%,100%,.5)'}}>
           <Toolbar className={classes.toolBar}>

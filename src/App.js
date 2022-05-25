@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './pages/home'
 import Item from './pages/item'
 import CollectionsPage from './pages/collectionspage'
+import CollectionPage from './pages/collectionpage'
 import './App.css';
 import { StyledEngineProvider } from '@mui/material';
 import Header from "./components/Header"
@@ -18,6 +19,13 @@ function App() {
       h4: {
         fontWeight: '700',
         fontSize: '2.25rem',
+      },
+      h6: {
+        fontWeight: '700',
+        fontSize: '1rem',
+      },
+      body2: {
+        color: 'rgb(90, 93, 121)'
       },
       button: {
         textTransform: 'none'
@@ -48,6 +56,9 @@ function App() {
             </Route>
             <Route exact path='/collections'>
               <CollectionsPage />
+            </Route>
+            <Route exact path='/collection'>
+              <CollectionPage />
             </Route>
           </Switch>
         <Footer />

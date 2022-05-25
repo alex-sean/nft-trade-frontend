@@ -64,7 +64,7 @@ export default function ItemCollection(){
   ];
 
   return (
-    <Box className={classes.hotBids} sx={{backgroundColor: `rgb(${theme.palette.mode === 'dark' ? '16, 20, 54' : '245, 248, 250'})`}}>
+    <Box className={`${classes.hotBids} ${classes.commonBackgroundColor}`}>
       <Typography py={4} align="center" variant="h4">More from this collection</Typography>
       <Container maxWidth="lg" spacing={4}>
         <Swiper slidesPerView={matches ? 1 : 4} >

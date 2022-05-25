@@ -23,6 +23,7 @@ const styles = (theme) => {
         color: 'rgb(131, 88, 255)'
       }, 
     },
+    commonBackgroundColor: {backgroundColor: `rgb(${isDark ? '16, 20, 54' : '245, 248, 250'})`},
     
     toolBar: {
       display: 'flex',
