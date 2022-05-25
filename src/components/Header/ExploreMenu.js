@@ -39,18 +39,18 @@ export default function ExploreMenu() {
         }}
       >
         <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <AppsIcon fontSize="small" />
-          </ListItemIcon>
-          <Link href="/collections" underline="none" key="1">
+          <Link href="/collections" underline="none" key="1" display='flex'>
+            <ListItemIcon>
+              <AppsIcon fontSize="small" />
+            </ListItemIcon>
             <Typography className={classes.link}>All NFTs</Typography>
           </Link>
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <LibraryMusicIcon sx={{fill:'#10b981'}} fontSize="small" />
-          </ListItemIcon>
-          <Link href="/collection" underline="none" key="2">
+          <Link href="/collection" underline="none" key="2" display='flex'>
+            <ListItemIcon>
+              <LibraryMusicIcon sx={{fill:'#10b981'}} fontSize="small" />
+            </ListItemIcon>
             <Typography className={classes.link}>Art</Typography>
           </Link>
         </MenuItem>

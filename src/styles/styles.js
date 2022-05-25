@@ -25,6 +25,16 @@ const styles = (theme) => {
     },
     commonBackgroundColor: {backgroundColor: `rgb(${isDark ? '16, 20, 54' : '245, 248, 250'})`},
     gradientBackground: {backgroundImage: `url(images/gradient${isDark ? '_dark' : ''}.jpg)`},
+    commonButton: {
+      padding: '8px',
+      borderRadius: '8px',
+      backgroundColor: "#fff",
+      color: '#5a5d79',
+      '&:hover': {
+        backgroundColor: 'rgb(131, 88, 255)',
+        color: '#fff',
+      },
+    },
     
     toolBar: {
       display: 'flex',

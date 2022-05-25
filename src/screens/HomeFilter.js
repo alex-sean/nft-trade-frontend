@@ -6,8 +6,10 @@ import LanguageIcon from '@mui/icons-material/Language';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import FormatShapesIcon from '@mui/icons-material/FormatShapes';
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
+import useStyles from '../styles/styles';
 
 export default function HomeFilter(){
+  const classes = useStyles();
   const [age, setAge] = React.useState('');
 
   const handleChange = (event) => {
@@ -15,28 +17,28 @@ export default function HomeFilter(){
   };
 
   return (
-    <Grid container direction="row" justifyContent="space-between" alignItems="flex-start">
+    <Grid container direction="row" justifyContent="space-between" alignItems="flex-start" mb={3}>
       <Grid xs spacing={2} item container direction="row" justifyContent="flex-start">
         <Grid item>
-          <Button variant="contained">All</Button>
+          <Button variant="contained" className={classes.commonButton}>All</Button>
         </Grid>
         <Grid item>
-          <Button variant="outlined" startIcon={<PaletteIcon />}>Art</Button>
+          <Button variant="contained" className={classes.commonButton} startIcon={<PaletteIcon />}>Art</Button>
         </Grid>
         <Grid item>
-          <Button variant="outlined" startIcon={<CardGiftcardIcon />}>Collectibles</Button>
+          <Button variant="contained" className={classes.commonButton} startIcon={<CardGiftcardIcon />}>Collectibles</Button>
         </Grid>
         <Grid item>
-          <Button variant="outlined" startIcon={<FormatShapesIcon />}>Domain</Button>
+          <Button variant="contained" className={classes.commonButton} startIcon={<FormatShapesIcon />}>Domain</Button>
         </Grid>
         <Grid item>
-          <Button variant="outlined" startIcon={<MusicNoteIcon />}>Music</Button>
+          <Button variant="contained" className={classes.commonButton} startIcon={<MusicNoteIcon />}>Music</Button>
         </Grid>
         <Grid item>
-          <Button variant="outlined" startIcon={<LinkedCameraIcon />}>Photography</Button>
+          <Button variant="contained" className={classes.commonButton} startIcon={<LinkedCameraIcon />}>Photography</Button>
         </Grid>
         <Grid item>
-          <Button variant="outlined" startIcon={<LanguageIcon />}>VirtualWorld</Button>
+          <Button variant="contained" className={classes.commonButton} startIcon={<LanguageIcon />}>VirtualWorld</Button>
         </Grid>
       </Grid>
       <Grid item>

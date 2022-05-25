@@ -33,19 +33,19 @@ export default function ActivityPage(){
             <Typography my={2} variant="h6">Filters</Typography>
             <Grid xs spacing={2} container direction="row" justifyContent="flex-start">
               <Grid item>
-                <Button variant="contained" startIcon={<DiscountIcon />}>Listing</Button>
+                <Button variant="contained" className={classes.commonButton} startIcon={<DiscountIcon />}>Listing</Button>
               </Grid>
               <Grid item>
-                <Button variant="outlined" startIcon={<GavelIcon />}>Bids</Button>
+                <Button variant="contained" className={classes.commonButton} startIcon={<GavelIcon />}>Bids</Button>
               </Grid>
               <Grid item>
-                <Button variant="outlined" startIcon={<ImportExportIcon />}>Transfer</Button>
+                <Button variant="contained" className={classes.commonButton} startIcon={<ImportExportIcon />}>Transfer</Button>
               </Grid>
               <Grid item>
-                <Button variant="outlined" startIcon={<FavoriteBorderIcon />}>Likes</Button>
+                <Button variant="contained" className={classes.commonButton} startIcon={<FavoriteBorderIcon />}>Likes</Button>
               </Grid>
               <Grid item>
-                <Button variant="outlined" startIcon={<InventoryIcon />}>Purchases</Button>
+                <Button variant="contained" className={classes.commonButton} startIcon={<InventoryIcon />}>Purchases</Button>
               </Grid>
             </Grid>
           </Grid>
