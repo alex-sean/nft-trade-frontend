@@ -1,14 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Typography, Box, Container, Tabs, Tab } from '@mui/material';
+import { Typography, Box, Container, Tabs, Tab, Button, Select, MenuItem, Grid } from '@mui/material';
 import useStyles from '../styles/styles';
-import { Icon } from '@iconify/react';
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
-import EarbudsIcon from '@mui/icons-material/Earbuds';
-import ListAltIcon from '@mui/icons-material/ListAlt';
 import StackedLineChartIcon from '@mui/icons-material/StackedLineChart';
-import AutoGraphIcon from '@mui/icons-material/AutoGraph';
-import Paper from '@mui/material/Paper';
+import QrCodeIcon from '@mui/icons-material/QrCode';
+import PaletteIcon from '@mui/icons-material/Palette';
+import LinkedCameraIcon from '@mui/icons-material/LinkedCamera';
+import LanguageIcon from '@mui/icons-material/Language';
+import MusicNoteIcon from '@mui/icons-material/MusicNote';
+import FormatShapesIcon from '@mui/icons-material/FormatShapes';
+import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
+import CategoryItem from '../components/CategoryItem';
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -62,19 +65,132 @@ export default function CollectionTab(props) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  const [age, setAge] = React.useState('');
+
+  const handleAgeChange = (event) => {
+    setAge(event.target.value);
+  };
+  const items = [
+    {
+      id: 1,
+      src: 'images/products/item_5.jpg',
+      title: 'Flourishing Cat #180',
+      subtitle: 'From 8.49 ETH 2/8',
+      like: '15',
+    },
+    {
+      id: 2,
+      src: 'images/products/item_4.jpg',
+      title: 'Amazing NFT art',
+      subtitle: 'From 5.9 ETH 1/7',
+      like: '188',
+    },
+    {
+      id: 3,
+      src: 'images/products/item_7.jpg',
+      title: 'SwagFox#133',
+      subtitle: '0.078 ETH 1/3',
+      like: '160',
+    },
+    {
+      id: 4,
+      src: 'images/products/item_6.jpg',
+      title: 'Splendid Girl',
+      subtitle: '10 ETH 2/3',
+      like: '159',
+    },
+    {
+      id: 5,
+      src: 'images/products/item_8.jpg',
+      title: 'Monkeyme#155',
+      subtitle: 'From 5 FLOW 1/1',
+      like: '32',
+    },
+    {
+      id: 6,
+      src: 'images/products/item_9.jpg',
+      title: 'Jedidia#149',
+      subtitle: '0.16 ETH 1/1',
+      like: '25',
+    },
+    {
+      id: 7,
+      src: 'images/products/item_10.jpg',
+      title: 'Artof Eve',
+      subtitle: '0.13 FLOW 1/1',
+      like: '55',
+    },
+    {
+      id: 8,
+      src: 'images/products/item_11.gif',
+      title: 'Asuna #1649',
+      subtitle: '0.8 ETH 1/1',
+      like: '70',
+    },
+  ];
 
   return (
     <Container maxWidth="lg">
-      <Tabs
-      value={value}
-      onChange={handleChange}
-      aria-label="icon position tabs example"
-      >
-        <Tab {...a11yProps(0)} icon={<FormatListBulletedIcon />} iconPosition="start" label="Items" />
+      <Tabs centered
+        value={value}
+        onChange={handleChange}
+        aria-label="icon position tabs example"
+        >
+        <Tab {...a11yProps(0)} icon={<QrCodeIcon />} iconPosition="start" label="Items" />
         <Tab {...a11yProps(1)} icon={<StackedLineChartIcon />} iconPosition="start" label="Activity" />
       </Tabs>
       <TabPanel value={value} index={0}>
-        
+        <Grid container direction="row" justifyContent="space-between" alignItems="flex-start">
+          <Grid xs spacing={2} item container direction="row" justifyContent="flex-start">
+            <Grid item>
+              <Button variant="contained">All</Button>
+            </Grid>
+            <Grid item>
+              <Button variant="outlined" startIcon={<PaletteIcon />}>Blockchain</Button>
+            </Grid>
+            <Grid item>
+              <Button variant="outlined" startIcon={<CardGiftcardIcon />}>Category</Button>
+            </Grid>
+            <Grid item>
+              <Button variant="outlined" startIcon={<FormatShapesIcon />}>Properties</Button>
+            </Grid>
+            <Grid item>
+              <Button variant="outlined" startIcon={<MusicNoteIcon />}>Sale Type</Button>
+            </Grid>
+            <Grid item>
+              <Button variant="outlined" startIcon={<LinkedCameraIcon />}>Price Range</Button>
+            </Grid>
+          </Grid>
+          <Grid item>
+            <Select
+              value={age}
+              onChange={handleAgeChange}
+              displayEmpty
+              inputProps={{ 'aria-label': 'Without label' }}
+              sx={{width: '180px', padding: "0"}}
+            >
+              <MenuItem value="">
+                <em>Recently Added</em>
+              </MenuItem>
+              <MenuItem value={10}>Top</MenuItem>
+              <MenuItem value={20}>Recent</MenuItem>
+            </Select>
+          </Grid>
+        </Grid>
+
+        <Grid container className={classes.sectionGridContainer} spacing={4}>
+          {items.map((item) => (
+            <Grid
+              item
+              xs={12}
+              md={2.5}
+              minHeight={100}
+              key={item.id}
+            >
+              <CategoryItem {...item} />
+            </Grid>
+          ))}
+        </Grid>
       </TabPanel>
     </Container>
   );
