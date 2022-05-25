@@ -1,7 +1,6 @@
 import { styled, alpha } from '@mui/material/styles';
 
 const Search = styled('div')(({ theme }) => ({
-    marginLeft: '8rem !important',
     border: 'solid 1px #000',
     borderRadius: '15px',
     position: 'relative',

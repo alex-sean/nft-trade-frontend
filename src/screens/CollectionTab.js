@@ -6,7 +6,6 @@ import StackedLineChartIcon from '@mui/icons-material/StackedLineChart';
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import PaletteIcon from '@mui/icons-material/Palette';
 import LinkedCameraIcon from '@mui/icons-material/LinkedCamera';
-import LanguageIcon from '@mui/icons-material/Language';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import FormatShapesIcon from '@mui/icons-material/FormatShapes';
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';

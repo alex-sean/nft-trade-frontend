@@ -78,7 +78,7 @@ const Header = (props) => {
         <AppBar sx={{backgroundColor:'hsla(0,0%,100%,.5)'}}>
           <Toolbar className={classes.toolBar}>
             <Box sx={{display:'flex'}}>
-              <Link href="/" underline="none">
+              <Link href="/" underline="none" mr={8}>
                 <Box component="img" className={classes.logo}
                   alt="Market Place"
                   src={`images/logo${theme.palette.mode === 'dark' ? '_white' : ''}.png`}

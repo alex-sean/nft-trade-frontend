@@ -24,6 +24,7 @@ const styles = (theme) => {
       }, 
     },
     commonBackgroundColor: {backgroundColor: `rgb(${isDark ? '16, 20, 54' : '245, 248, 250'})`},
+    gradientBackground: {backgroundImage: `url(images/gradient${isDark ? '_dark' : ''}.jpg)`},
     
     toolBar: {
       display: 'flex',
