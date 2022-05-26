@@ -12,6 +12,7 @@ import CollectionsPage from './pages/collectionspage'
 import CollectionPage from './pages/collectionpage'
 import ActivityPage from './pages/activitypage'
 import ProfilePage from './pages/profilepage';
+import ContactPage from './pages/contactpage';
 
 function App() {
   const [darkMode, setDarkMode] = useState(window.localStorage.getItem('darkMode') === 'true');
@@ -34,7 +35,10 @@ function App() {
       },
      },
     palette: {
-      mode: darkMode ? "dark" : "light"
+      mode: darkMode ? "dark" : "light",
+      primary: {
+        main: '#8258ff'
+      }
     }
   })
 
@@ -67,6 +71,9 @@ function App() {
             </Route>
             <Route exact path='/profile'>
               <ProfilePage />
+            </Route>
+            <Route exact path='/contact'>
+              <ContactPage />
             </Route>
           </Switch>
           <Footer />
