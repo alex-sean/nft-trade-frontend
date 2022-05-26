@@ -25,6 +25,7 @@ import Search from './Search';
 import SearchIconWrapper from './Search/SearchIconWrapper';
 import ElevationScroll from './ElevationScroll';
 import PagesMenu from './PagesMenu';
+import ResourceMenu from './ResourceMenu';
 import ExploreMenu from './ExploreMenu';
 
 const Header = (props) => {
@@ -137,15 +138,15 @@ const Header = (props) => {
               </Link>
               <PagesMenu />
               <ExploreMenu />
-              <Link href="/resources" underline="none" key="1">
-                <Typography className={classes.link}>Resources</Typography>
-              </Link>
+              <ResourceMenu />
               <Link href="/create" underline="none" key="1">
-                <Typography className={classes.link}>create</Typography>
+                <Typography className={classes.link}>Create</Typography>
               </Link>
-              <IconButton className={classes.menuIcon}>
-                <AccountBalanceWalletIcon />
-              </IconButton>
+              <Link href="/wallet" underline="none" key="1">
+                <IconButton className={classes.menuIcon}>
+                  <AccountBalanceWalletIcon />
+                </IconButton>
+              </Link>
               <IconButton className={classes.menuIcon}>
                 <PersonIcon />
               </IconButton>
