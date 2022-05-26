@@ -69,8 +69,8 @@ function App() {
               <ProfilePage />
             </Route>
           </Switch>
-        <Footer />
-      </ThemeProvider>
+          <Footer />
+        </ThemeProvider>
       </StyledEngineProvider>
     </Router>
   );
