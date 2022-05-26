@@ -53,7 +53,7 @@ const styles = (theme) => {
       marginRight: "1rem"
     },
     menuIcon: {
-      border:'solid 1px #000', 
+      border:'solid 1px darkgray', 
       backgroundColor: `${isDark ? 'rgba(0, 0, 0, 0.1)' : '#fff'}`,
       color: `${isDark ? '#fff' : '#000'}`,
       width: '40px',
