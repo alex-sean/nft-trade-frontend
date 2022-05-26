@@ -1,13 +1,7 @@
 import React, { useRef } from 'react';
-import { Grid, Typography, Container, Box, Link, Button } from '@mui/material';
+import { Container, Box, Button } from '@mui/material';
 import useStyles from '../styles/styles';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { Icon } from '@iconify/react';
-import CollectionPopup1 from '../components/CollectionPopup1';
-import CollectionPopup2 from '../components/CollectionPopup2';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-import { ClassNames } from '@emotion/react';
 
 export default function ProfileHero(){
   const classes = useStyles();

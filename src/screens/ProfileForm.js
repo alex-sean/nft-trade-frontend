@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   Box,
   Typography,
-  TextField,
   TextareaAutosize,
   Button,
   Grid,
   Avatar,
-  FormControl,
-  Input, InputLabel, InputAdornment, OutlinedInput
+  InputLabel, InputAdornment, OutlinedInput
 } from '@mui/material';
 import useStyles from '../styles/styles';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
@@ -23,6 +21,12 @@ const ProfileForm = () => {
   const [message, setMessage] = useState('');
   const classes = useStyles();
 
+  const inputFile = useRef(null) 
+  const onButtonClick = () => {
+    // `current` points to the mounted file input element
+   inputFile.current.click();
+  };
+  
   const submitForm = (e) => {
     e.preventDefault();
     console.log({ email, firstName, subject, message });
@@ -110,10 +114,11 @@ const ProfileForm = () => {
           </Box>
         </Grid>
         <Grid item md>
+          <input type='file' id='file' ref={inputFile} style={{display: 'none'}}/>
           <Box display='flex' justifyContent="flex-start" alignItems="center">
             <Box sx={{position: 'relative'}}>
               <img src='images/user/user_avatar.gif' style={{margin: 'auto', borderRadius: '10px'}}></img>
-              <Avatar sx={{position: 'absolute', right: '-10px', bottom: '-10px', background:'#fff', border: 'solid 1px gray', color: 'gray'}}>
+              <Avatar sx={{position: 'absolute', right: '-10px', bottom: '-10px', background:'#fff', border: 'solid 1px gray', color: 'gray'}} onClick={onButtonClick}>
                 <EditOutlinedIcon />
               </Avatar>
             </Box>
