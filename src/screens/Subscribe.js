@@ -8,9 +8,6 @@ import {
 } from '@mui/material';
 import useStyles from '../styles/styles';
 
-import {IconButton} from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
-
 const Subscribe = () => {
   const [email, setEmail] = useState('');
   const [firstName, setFirstName] = useState('');

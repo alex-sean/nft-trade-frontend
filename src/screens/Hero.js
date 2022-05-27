@@ -12,7 +12,7 @@ const Hero = () => {
   return (
     <Box className={classes.heroBox}>
       <Grid container spacing={6} className={classes.gridContainer}>
-        <Grid item xs={12} md={7}>
+        <Grid item xs={12} md={5}>
           <Typography variant="h4" fontWeight={700} className={classes.title}>
             Buy, sell and <br />collect NFTs.
           </Typography>
@@ -22,7 +22,7 @@ const Hero = () => {
           <PrimaryButton text='Upload'></PrimaryButton>
           <SecondaryButton text="Explore" />
         </Grid>
-        <Grid item xs={12} md={5} sx={{position:'relative'}}>
+        <Grid item xs={12} md={7} sx={{position:'relative'}}>
           <img src={'images/hero/hero_deg.png'} className={`${classes.largeImage}`} />
           <img src={'images/hero/3D_elements.png'} className={`${classes.animateFly}`} />
         </Grid>

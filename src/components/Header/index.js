@@ -147,9 +147,11 @@ const Header = (props) => {
                   <AccountBalanceWalletIcon />
                 </IconButton>
               </Link>
-              <IconButton className={classes.menuIcon}>
-                <PersonIcon />
-              </IconButton>
+              <Link href="/profile" underline="none" key="1">
+                <IconButton className={classes.menuIcon}>
+                  <PersonIcon />
+                </IconButton>
+              </Link>
               <IconButton className={classes.menuIcon} onClick={() => props.setTheme()}>
                 {theme.palette.mode === 'dark' ? <LightModeIcon /> : <BedtimeIcon />}
               </IconButton>
