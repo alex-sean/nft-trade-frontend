@@ -1,20 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Typography, Box, Container, Tabs, Tab } from '@mui/material';
+import { Typography, Box, Container, Tabs, Tab, Grid, Paper, Button,
+         Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import useStyles from '../styles/styles';
-import { Icon } from '@iconify/react';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import EarbudsIcon from '@mui/icons-material/Earbuds';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import StackedLineChartIcon from '@mui/icons-material/StackedLineChart';
 import AutoGraphIcon from '@mui/icons-material/AutoGraph';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import Graph from '../components/Graph'
+import DiscountIcon from '@mui/icons-material/Discount';
+import GavelIcon from '@mui/icons-material/Gavel';
+import ImportExportIcon from '@mui/icons-material/ImportExport';
+import InventoryIcon from '@mui/icons-material/Inventory';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -112,6 +110,130 @@ export default function ItemTabs(props) {
             </TableBody>
           </Table>
         </TableContainer>
+      </TabPanel>
+      <TabPanel value={value} index={1} style={{border: 'solid 1px gainsboro', borderRadius: '8px'}}>
+        <Grid container spacing={5}>
+          <Grid item xs={6} md={3}>
+            <Paper sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
+              <Typography align='center' color="primary" variant='body1'>ACCESSORY</Typography>
+              <Typography align='center' variant='h6'>Metal headband</Typography>
+              <Typography align='center' variant='body2'>3% have this trait</Typography>
+            </Paper>
+          </Grid>
+          <Grid item xs={6} md={3}>
+            <Paper sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
+              <Typography align='center' color="primary" variant='body1'>SKIN</Typography>
+              <Typography align='center' variant='h6'>Dark Brown</Typography>
+              <Typography align='center' variant='body2'>8% have this trait</Typography>
+            </Paper>
+          </Grid>
+          <Grid item xs={6} md={3}>
+            <Paper sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
+              <Typography align='center' color="primary" variant='body1'>EYES</Typography>
+              <Typography align='center' variant='h6'>Cyborg</Typography>
+              <Typography align='center' variant='body2'>2% have this trait</Typography>
+            </Paper>
+          </Grid>
+          <Grid item xs={6} md={3}>
+            <Paper sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
+              <Typography align='center' color="primary" variant='body1'>CLOTH</Typography>
+              <Typography align='center' variant='h6'>Adidas</Typography>
+              <Typography align='center' variant='body2'>7% have this trait</Typography>
+            </Paper>
+          </Grid>
+          <Grid item xs={6} md={3}>
+            <Paper sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
+              <Typography align='center' color="primary" variant='body1'>HAIR</Typography>
+              <Typography align='center' variant='h6'>White Ash</Typography>
+              <Typography align='center' variant='body2'>7% have this trait</Typography>
+            </Paper>
+          </Grid>
+          <Grid item xs={6} md={3}>
+            <Paper sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
+              <Typography align='center' color="primary" variant='body1'>CHARACTER</Typography>
+              <Typography align='center' variant='h6'>TSAREVNA</Typography>
+              <Typography align='center' variant='body2'>1% have this trait</Typography>
+            </Paper>
+          </Grid>
+          <Grid item xs={6} md={3}>
+            <Paper sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
+              <Typography align='center' color="primary" variant='body1'>BACKGROUND</Typography>
+              <Typography align='center' variant='h6'>CyberPunk</Typography>
+              <Typography align='center' variant='body2'>9% have this trait</Typography>
+            </Paper>
+          </Grid>
+          <Grid item xs={6} md={3}>
+            <Paper sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
+              <Typography align='center' color="primary" variant='body1'>MOUTH</Typography>
+              <Typography align='center' variant='h6'>Flower</Typography>
+              <Typography align='center' variant='body2'>9% have this trait</Typography>
+            </Paper>
+          </Grid>
+        </Grid>
+      </TabPanel>
+      <TabPanel value={value} index={2} style={{border: 'solid 1px gainsboro', borderRadius: '8px', padding: '32px'}}>
+        <Grid container spacing={4}>
+          <Grid sx>
+            <Typography p={1} variant='body2'>Contract Address:</Typography>
+            <Typography p={1} variant='body2'>Token ID:</Typography>
+            <Typography p={1} variant='body2'>Token Standard:</Typography>
+            <Typography p={1} variant='body2'>Blockchain:</Typography>
+          </Grid>
+          <Grid sx>
+            <Typography p={1} color="primary" variant='body2'>0x1cBB182322Aee8ce9F4F1f98d7460173ee30Af1F</Typography>
+            <Typography p={1} variant='body2'>7714</Typography>
+            <Typography p={1} variant='body2'>ERC-721</Typography>
+            <Typography p={1} variant='body2'>Ethereum</Typography>
+          </Grid>
+        </Grid>
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        <TableContainer component={Paper}>
+        <Grid p={2} xs spacing={2} container direction="row" justifyContent="flex-start">
+          <Grid item>
+            <Button variant="contained" className={classes.commonButton} startIcon={<DiscountIcon />}>Listing</Button>
+          </Grid>
+          <Grid item>
+            <Button variant="contained" className={classes.commonButton} startIcon={<GavelIcon />}>Bids</Button>
+          </Grid>
+          <Grid item>
+            <Button variant="contained" className={classes.commonButton} startIcon={<ImportExportIcon />}>Transfer</Button>
+          </Grid>
+          <Grid item>
+            <Button variant="contained" className={classes.commonButton} startIcon={<InventoryIcon />}>Purchases</Button>
+          </Grid>
+        </Grid>
+          <Table sx={{ minWidth: 650, width:'100%', marginTop: '32px' }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Dessert (100g serving)</TableCell>
+                <TableCell align="right">Calories</TableCell>
+                <TableCell align="right">Fat&nbsp;(g)</TableCell>
+                <TableCell align="right">Carbs&nbsp;(g)</TableCell>
+                <TableCell align="right">Protein&nbsp;(g)</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows.map((row) => (
+                <TableRow
+                  key={row.name}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">
+                    {row.name}
+                  </TableCell>
+                  <TableCell align="right">{row.calories}</TableCell>
+                  <TableCell align="right">{row.fat}</TableCell>
+                  <TableCell align="right">{row.carbs}</TableCell>
+                  <TableCell align="right">{row.protein}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </TabPanel>
+      <TabPanel value={value} index={4}>
+        <Graph />
       </TabPanel>
     </Container>
   );

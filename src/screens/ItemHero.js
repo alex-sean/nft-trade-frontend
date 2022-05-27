@@ -7,6 +7,7 @@ import ItemMenu from '../components/ItemMenu';
 import { Icon } from '@iconify/react';
 import ItemCreator from '../components/ItemCreator';
 import ItemBid from '../screens/ItemBid';
+import ItemTabs from '../components/ItemTabs';
 
 export default function ItemHero(){
   const classes = useStyles();
@@ -53,6 +54,7 @@ export default function ItemHero(){
             <ItemBid />
           </Grid>
         </Grid>
+        <ItemTabs />
       </Container>
     </Box>
   );
