@@ -10,7 +10,17 @@ import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import FormatShapesIcon from '@mui/icons-material/FormatShapes';
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import CategoryItem from '../components/CategoryItem';
-
+import ActivityItemList from '../components/ActivityItemList'
+import Search from '../components/Header/Search';
+import SearchIconWrapper from '../components/Header/Search/SearchIconWrapper';
+import StyledInputBase from '../components/Header/Search/StyledInputBase';
+import SearchIcon from '@mui/icons-material/Search';
+import DiscountIcon from '@mui/icons-material/Discount';
+import ImportExportIcon from '@mui/icons-material/ImportExport';
+import GavelIcon from '@mui/icons-material/Gavel';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import InventoryIcon from '@mui/icons-material/Inventory';
+import Graph from '../components/Graph';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -189,6 +199,40 @@ export default function CollectionTab(props) {
               <CategoryItem {...item} />
             </Grid>
           ))}
+        </Grid>
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <Graph />
+        <Grid mt={3} container spacing={8}>
+          <Grid item xs={12} lg>
+            <ActivityItemList />
+          </Grid>
+          <Grid item xs>
+            <Search>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase placeholder="Search" inputProps={{ 'aria-label': 'search' }}/>
+            </Search>
+            <Typography my={2} variant="h6">Filters</Typography>
+            <Grid xs spacing={2} container direction="row" justifyContent="flex-start">
+              <Grid item>
+                <Button variant="contained" className={classes.commonButton} startIcon={<DiscountIcon />}>Listing</Button>
+              </Grid>
+              <Grid item>
+                <Button variant="contained" className={classes.commonButton} startIcon={<GavelIcon />}>Bids</Button>
+              </Grid>
+              <Grid item>
+                <Button variant="contained" className={classes.commonButton} startIcon={<ImportExportIcon />}>Transfer</Button>
+              </Grid>
+              <Grid item>
+                <Button variant="contained" className={classes.commonButton} startIcon={<FavoriteBorderIcon />}>Likes</Button>
+              </Grid>
+              <Grid item>
+                <Button variant="contained" className={classes.commonButton} startIcon={<InventoryIcon />}>Purchases</Button>
+              </Grid>
+            </Grid>
+          </Grid>
         </Grid>
       </TabPanel>
     </Container>
