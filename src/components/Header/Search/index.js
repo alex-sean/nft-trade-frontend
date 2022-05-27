@@ -4,9 +4,9 @@ const Search = styled('div')(({ theme }) => ({
     border: 'solid 1px darkgray',
     borderRadius: '15px',
     position: 'relative',
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    backgroundColor: alpha(theme.palette.common.white, 1),
     '&:hover': {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
+      backgroundColor: alpha(theme.palette.common.white, 1),
     },
     marginRight: theme.spacing(2),
     width: '100%',

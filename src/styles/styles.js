@@ -23,8 +23,8 @@ const styles = (theme) => {
         color: 'rgb(131, 88, 255)'
       }, 
     },
-    commonBackgroundColor: {backgroundColor: `rgb(${isDark ? '16, 20, 54' : '245, 248, 250'})`},
-    gradientBackground: {backgroundImage: `url(images/gradient${isDark ? '_dark' : ''}.jpg)`},
+    commonBackgroundColor: {backgroundColor: `rgb(${isDark ? '16, 20, 54' : '245, 248, 250'})`, backgroundSize: 'cover'},
+    gradientBackground: {backgroundImage: `url(images/gradient${isDark ? '_dark' : ''}.jpg)`, backgroundSize: 'cover'},
     commonButton: {
       padding: '8px',
       borderRadius: '8px',
