@@ -16,6 +16,7 @@ import ContactPage from './pages/contactpage';
 import WalletPage from './pages/walletpage';
 import NewsletterPage from './pages/newsletterpage';
 import BlogPage from './pages/blogpage';
+import SinglepostPage from './pages/singlepostpage';
 
 function App() {
   const [darkMode, setDarkMode] = useState(window.localStorage.getItem('darkMode') === 'true');
@@ -86,6 +87,9 @@ function App() {
             </Route>
             <Route exact path='/blog'>
               <BlogPage />
+            </Route>
+            <Route exact path='/singlepost'>
+              <SinglepostPage />
             </Route>
           </Switch>
           <Footer />

@@ -82,7 +82,7 @@ export default function ActivityItemList(props) {
             </Grid>
           </Grid>
         </Grid>
-      </Paper>     
+      </Paper>   
       <Paper elevation={3} sx={{p: 2, mb: 3,maxWidth: 740, borderRadius: '20px'}}>
         <Grid container spacing={2} alignItems="center">
           <Grid item>
