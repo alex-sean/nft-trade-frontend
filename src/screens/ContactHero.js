@@ -1,9 +1,6 @@
-import React, { useRef } from 'react';
 import { Typography, Box } from '@mui/material';
 
 export default function ContactHero(){
-  const inputFile = useRef(null)
-
   return (
     <>
       <Box sx={{height:'300px', backgroundImage:'url(images/page-title/knowledge_base_banner.jpg)', justifyContent: 'center', display: 'flex', alignItems: 'center'}}>

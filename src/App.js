@@ -13,6 +13,7 @@ import CollectionPage from './pages/collectionpage'
 import ActivityPage from './pages/activitypage'
 import ProfilePage from './pages/profilepage';
 import ContactPage from './pages/contactpage';
+import WalletPage from './pages/walletpage';
 
 function App() {
   const [darkMode, setDarkMode] = useState(window.localStorage.getItem('darkMode') === 'true');
@@ -74,6 +75,9 @@ function App() {
             </Route>
             <Route exact path='/contact'>
               <ContactPage />
+            </Route>
+            <Route exact path='/wallet'>
+              <WalletPage />
             </Route>
           </Switch>
           <Footer />
