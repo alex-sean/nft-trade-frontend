@@ -68,19 +68,19 @@ const ContactForm = () => {
 
               <InputLabel htmlFor="type" sx={{marginTop: '20px', fontWeight: '700'}}>
                 Email</InputLabel>
-                <Select
-                    fullWidth
-                    id="type"
-                    displayEmpty
-                    inputProps={{ 'aria-label': 'Without label' }}
-                  >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  <MenuItem value={10}>Type A</MenuItem>
-                  <MenuItem value={20}>Type B</MenuItem>
-                  <MenuItem value={30}>Type C</MenuItem>
-                </Select>
+              <Select
+                  fullWidth
+                  id="type"
+                  displayEmpty
+                  inputProps={{ 'aria-label': 'Without label' }}
+                >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value={10}>Type A</MenuItem>
+                <MenuItem value={20}>Type B</MenuItem>
+                <MenuItem value={30}>Type C</MenuItem>
+              </Select>
 
               <InputLabel htmlFor="message" sx={{marginTop: '20px', fontWeight: '700'}}>
                 Message<span style={{color:'red'}}>*</span></InputLabel>
