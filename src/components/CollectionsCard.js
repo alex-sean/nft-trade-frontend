@@ -10,36 +10,38 @@ export default function CollectionsCard(props) {
   return (
     <>
       <Card container sx={{borderRadius: '15px'}}>
-        <CardContent>
-          <Grid pr={2} container spacing={1} direction="row" justifyContent="center" alignItems="stretch">
-            <Grid item xs={9}>
-              <img src={img1} />
+        <Link underline='none' href='/collection'>
+          <CardContent>
+            <Grid pr={2} container spacing={1} direction="row" justifyContent="center" alignItems="stretch">
+              <Grid item xs={9}>
+                <img src={img1} />
+              </Grid>
+              <Grid item xs={3} container direction='column'>
+                <Grid xs>
+                  <img src={img2} />
+                </Grid>
+                <Grid xs>
+                  <img src={img3} />
+                </Grid>
+                <Grid xs>
+                  <img src={img4} />
+                </Grid>
+              </Grid>
             </Grid>
-            <Grid item xs={3} container direction='column'>
-              <Grid xs>
-                <img src={img2} />
-              </Grid>
-              <Grid xs>
-                <img src={img3} />
-              </Grid>
-              <Grid xs>
-                <img src={img4} />
-              </Grid>
-            </Grid>
-          </Grid>
-        </CardContent>
-        <CardActions>
-          <Link px={1} underline="none" className={classes.text}>
-            <Typography variant='body1'>{title}</Typography>
-          </Link>
-        </CardActions>
-        <Box pb={3} px={2} display="flex" justifyContent="space-between" alignItems="center">
-          <Box display="flex" alignItems="center">
-            <CircleIcon color="primary" />
-            <Typography variant="body1"> by {owner}</Typography>
+          </CardContent>
+          <CardActions>
+            <Link px={1} underline="none" className={classes.text}>
+              <Typography variant='body1'>{title}</Typography>
+            </Link>
+          </CardActions>
+          <Box pb={3} px={2} display="flex" justifyContent="space-between" alignItems="center">
+            <Box display="flex" alignItems="center">
+              <CircleIcon color="primary" />
+              <Typography variant="body1"> by {owner}</Typography>
+            </Box>
+            <Typography variant='body1'>{count} Items</Typography>
           </Box>
-          <Typography variant='body1'>{count} Items</Typography>
-        </Box>
+        </Link>
       </Card>
     </>
   );

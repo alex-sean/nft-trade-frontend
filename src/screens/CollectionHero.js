@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Typography, Container, Box, Link, Button } from '@mui/material';
+import { Grid, Typography, Box, Button } from '@mui/material';
 import useStyles from '../styles/styles';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';

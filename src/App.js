@@ -18,6 +18,7 @@ import NewsletterPage from './pages/newsletterpage';
 import BlogPage from './pages/blogpage';
 import SinglepostPage from './pages/singlepostpage';
 import CreatePage from './pages/createpage';
+import AccountPage from './pages/AccountPage';
 
 function App() {
   const [darkMode, setDarkMode] = useState(window.localStorage.getItem('darkMode') === 'true');
@@ -94,6 +95,9 @@ function App() {
             </Route>
             <Route exact path='/create'>
               <CreatePage />
+            </Route>
+            <Route exact path='/account'>
+              <AccountPage />
             </Route>
           </Switch>
           <Footer />
