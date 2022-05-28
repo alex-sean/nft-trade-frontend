@@ -67,7 +67,7 @@ const ContactForm = () => {
               </Grid>
 
               <InputLabel htmlFor="type" sx={{marginTop: '20px', fontWeight: '700'}}>
-                Email</InputLabel>
+                Type</InputLabel>
               <Select
                   fullWidth
                   id="type"

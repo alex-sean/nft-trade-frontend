@@ -27,6 +27,7 @@ import ElevationScroll from './ElevationScroll';
 import PagesMenu from './PagesMenu';
 import ResourceMenu from './ResourceMenu';
 import ExploreMenu from './ExploreMenu';
+import AccountMenu from './AccountMenu';
 
 const Header = (props) => {
   const classes = useStyles();
@@ -147,11 +148,7 @@ const Header = (props) => {
                   <AccountBalanceWalletIcon />
                 </IconButton>
               </Link>
-              <Link href="/profile" underline="none" key="1">
-                <IconButton className={classes.menuIcon}>
-                  <PersonIcon />
-                </IconButton>
-              </Link>
+              <AccountMenu />
               <IconButton className={classes.menuIcon} onClick={() => props.setTheme()}>
                 {theme.palette.mode === 'dark' ? <LightModeIcon /> : <BedtimeIcon />}
               </IconButton>
