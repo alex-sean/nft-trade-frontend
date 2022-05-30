@@ -1,11 +1,13 @@
 import React from 'react';
 import { Typography, Box, Container } from '@mui/material';
 import useStyles from '../styles/styles';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
 import HotbidItem from '../components/HotbidItem'
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from "swiper";
+import "swiper/css/navigation";
+import 'swiper/css';
 
 export default function ItemCollection(){
   const classes = useStyles();
@@ -67,7 +69,7 @@ export default function ItemCollection(){
     <Box className={`${classes.hotBids} ${classes.commonBackgroundColor}`}>
       <Typography py={4} align="center" variant="h4">More from this collection</Typography>
       <Container maxWidth="lg" spacing={4}>
-        <Swiper slidesPerView={matches ? 1 : 4} >
+        <Swiper navigation={true} modules={[Navigation]} slidesPerView={matches ? 1 : 4} >
           {sectionItems.map((item) => (
             <SwiperSlide key={item.id}>
               <HotbidItem {...item} />

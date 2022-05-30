@@ -1,11 +1,13 @@
 import React from 'react';
 import { Typography, Box, Container } from '@mui/material';
 import useStyles from '../styles/styles';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
 import HotbidItem from '../components/HotbidItem'
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from "swiper";
+import "swiper/css/navigation";
+import 'swiper/css';
 
 const Hotbids = () => {
   const classes = useStyles();
@@ -70,7 +72,7 @@ const Hotbids = () => {
         <Typography variant="h4" className={classes.hotbidTitle}>Hot Bids</Typography>
       </Box>
       <Container maxWidth="lg" spacing={4}>
-        <Swiper slidesPerView={matches ? 1 : 4} >
+        <Swiper navigation={true} modules={[Navigation]} slidesPerView={matches ? 1 : 4} >
           {sectionItems.map((item) => (
             <SwiperSlide key={item.id}>
               <HotbidItem {...item} />

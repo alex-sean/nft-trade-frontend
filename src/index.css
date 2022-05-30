@@ -33,3 +33,24 @@ code {
   padding: 0.5rem 1rem 0.5rem 1rem !important;
   border-width: 1px;
 }
+
+.swiper-button-next, .swiper-button-prev{
+  background-color: #fff;
+  border-radius: 99px;
+  box-shadow: 0 0 transparent, 0 0 transparent, 5px 5px 10px rgb(108 106 212 / 25%), inset 2px 2px 6px #eef1f9, inset -5px -5px 10px #dfe3ef;
+  padding: 20px;
+}
+
+.swiper-button-next:after, .swiper-button-prev:after{
+  font-size: 1rem !important;
+  font-weight: 900;
+  color: black;
+}
+
+.swiper-button-next{
+  right: 0 !important;
+}
+
+.swiper-button-prev{
+  left: 0 !important;
+}
