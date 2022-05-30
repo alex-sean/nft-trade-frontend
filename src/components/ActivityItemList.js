@@ -14,7 +14,7 @@ export default function ActivityItemList(props) {
 
   return (
     <>
-      <Paper elevation={3} sx={{p: 2, mb: 3, maxWidth: 740, borderRadius: '20px'}}>
+      <Paper className={classes.hoverShadow} elevation={1} sx={{p: 2, mb: 3, maxWidth: 740, borderRadius: '20px'}}>
         <Grid container spacing={2} alignItems="center">
           <Grid item>
             <ButtonBase sx={{ width: 128, height: 128 }}>
@@ -37,7 +37,7 @@ export default function ActivityItemList(props) {
           </Grid>
         </Grid>
       </Paper>
-      <Paper elevation={3} sx={{p: 2, mb: 3,maxWidth: 740, borderRadius: '20px'}}>
+      <Paper className={classes.hoverShadow} elevation={1} sx={{p: 2, mb: 3,maxWidth: 740, borderRadius: '20px'}}>
         <Grid container spacing={2} alignItems="center">
           <Grid item>
             <ButtonBase sx={{ width: 128, height: 128 }}>
@@ -60,7 +60,7 @@ export default function ActivityItemList(props) {
           </Grid>
         </Grid>
       </Paper>      
-      <Paper elevation={3} sx={{p: 2, mb: 3,maxWidth: 740, borderRadius: '20px'}}>
+      <Paper className={classes.hoverShadow} elevation={1} sx={{p: 2, mb: 3,maxWidth: 740, borderRadius: '20px'}}>
         <Grid container spacing={2} alignItems="center">
           <Grid item>
             <ButtonBase sx={{ width: 128, height: 128 }}>
@@ -83,7 +83,7 @@ export default function ActivityItemList(props) {
           </Grid>
         </Grid>
       </Paper>   
-      <Paper elevation={3} sx={{p: 2, mb: 3,maxWidth: 740, borderRadius: '20px'}}>
+      <Paper className={classes.hoverShadow} elevation={1} sx={{p: 2, mb: 3,maxWidth: 740, borderRadius: '20px'}}>
         <Grid container spacing={2} alignItems="center">
           <Grid item>
             <ButtonBase sx={{ width: 128, height: 128 }}>
@@ -106,7 +106,7 @@ export default function ActivityItemList(props) {
           </Grid>
         </Grid>
       </Paper>     
-      <Paper elevation={3} sx={{p: 2, mb: 3,maxWidth: 740, borderRadius: '20px'}}>
+      <Paper className={classes.hoverShadow} elevation={1} sx={{p: 2, mb: 3,maxWidth: 740, borderRadius: '20px'}}>
         <Grid container spacing={2} alignItems="center">
           <Grid item>
             <ButtonBase sx={{ width: 128, height: 128 }}>

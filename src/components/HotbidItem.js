@@ -11,7 +11,7 @@ export default function HotbidItem(props) {
   const classes = useStyles();
   
   return (
-    <Box className={classes.hotBidItem}>
+    <Box className={`${classes.hotBidItem} ${classes.hoverShadow}`}>
       <img src={src} className={classes.rounded}/>
       <Box sx={{display:'flex', justifyContent: 'space-between', alignItems: 'center',}}>
         <Typography variant="h6">{title}</Typography>

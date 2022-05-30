@@ -111,7 +111,7 @@ const ContactForm = () => {
             <Box pl={3}>
               <Typography variant='h6'>Information</Typography>
               <Typography variant='body1'>Don't hesitaste, drop us a line Collaboratively administrate channels whereas virtual. Objectively seize scalable metrics whereas proactive e-services.</Typography>
-              <Paper elevation={3} sx={{p: 2, mt: 3,maxWidth: 740, borderRadius: '20px'}}>
+              <Paper elevation={1} sx={{p: 2, mt: 3,maxWidth: 740, borderRadius: '20px'}}>
                 <Box className={`${classes.displayFlex}`}>
                   <Avatar>
                     <LocalPhoneTwoToneIcon /> 

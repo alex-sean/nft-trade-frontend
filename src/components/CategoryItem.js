@@ -10,7 +10,7 @@ function CategoryItem(props) {
   const classes = useStyles();
   
   return (
-    <Box sx={{border:'solid 1px rgba(0, 0, 0, 0.1)', borderRadius:'1.25rem', padding: '1.1875rem', marginBottom: '16px'}}>
+    <Box className={classes.hoverShadow} sx={{border:'solid 1px rgba(0, 0, 0, 0.1)', borderRadius:'1.25rem', padding: '1.1875rem', marginBottom: '16px'}}>
       <img style={{width: '100%'}} src={src} className={classes.rounded}/>
       <Box sx={{display:'flex', justifyContent: 'space-between', alignItems: 'center',}}>
         <Typography variant="h6" className={classes.collectionItemTitle}>{title}</Typography>

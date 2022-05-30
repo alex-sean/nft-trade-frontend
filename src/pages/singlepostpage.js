@@ -77,7 +77,7 @@ export default function SinglepostPage(){
             </Avatar>
           </Box>
 
-          <Paper elevation={3} sx={{p: 2, mb: 3, borderRadius: '20px'}}>
+          <Paper elevation={1} sx={{p: 2, mb: 3, borderRadius: '20px'}}>
             <Grid container spacing={2} alignItems="center">
               <Grid item>
                 <ButtonBase sx={{ width: 144, height: 144 }}>

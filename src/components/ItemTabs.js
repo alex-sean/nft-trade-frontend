@@ -114,56 +114,56 @@ export default function ItemTabs(props) {
       <TabPanel value={value} index={1} style={{border: 'solid 1px gainsboro', borderRadius: '8px'}}>
         <Grid container spacing={5}>
           <Grid item xs={6} md={3}>
-            <Paper sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
+            <Paper className={classes.hoverShadow} sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
               <Typography align='center' color="primary" variant='body1'>ACCESSORY</Typography>
               <Typography align='center' variant='h6'>Metal headband</Typography>
               <Typography align='center' variant='body2'>3% have this trait</Typography>
             </Paper>
           </Grid>
           <Grid item xs={6} md={3}>
-            <Paper sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
+            <Paper className={classes.hoverShadow} sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
               <Typography align='center' color="primary" variant='body1'>SKIN</Typography>
               <Typography align='center' variant='h6'>Dark Brown</Typography>
               <Typography align='center' variant='body2'>8% have this trait</Typography>
             </Paper>
           </Grid>
           <Grid item xs={6} md={3}>
-            <Paper sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
+            <Paper className={classes.hoverShadow} sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
               <Typography align='center' color="primary" variant='body1'>EYES</Typography>
               <Typography align='center' variant='h6'>Cyborg</Typography>
               <Typography align='center' variant='body2'>2% have this trait</Typography>
             </Paper>
           </Grid>
           <Grid item xs={6} md={3}>
-            <Paper sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
+            <Paper className={classes.hoverShadow} sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
               <Typography align='center' color="primary" variant='body1'>CLOTH</Typography>
               <Typography align='center' variant='h6'>Adidas</Typography>
               <Typography align='center' variant='body2'>7% have this trait</Typography>
             </Paper>
           </Grid>
           <Grid item xs={6} md={3}>
-            <Paper sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
+            <Paper className={classes.hoverShadow} sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
               <Typography align='center' color="primary" variant='body1'>HAIR</Typography>
               <Typography align='center' variant='h6'>White Ash</Typography>
               <Typography align='center' variant='body2'>7% have this trait</Typography>
             </Paper>
           </Grid>
           <Grid item xs={6} md={3}>
-            <Paper sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
+            <Paper className={classes.hoverShadow} sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
               <Typography align='center' color="primary" variant='body1'>CHARACTER</Typography>
               <Typography align='center' variant='h6'>TSAREVNA</Typography>
               <Typography align='center' variant='body2'>1% have this trait</Typography>
             </Paper>
           </Grid>
           <Grid item xs={6} md={3}>
-            <Paper sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
+            <Paper className={classes.hoverShadow} sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
               <Typography align='center' color="primary" variant='body1'>BACKGROUND</Typography>
               <Typography align='center' variant='h6'>CyberPunk</Typography>
               <Typography align='center' variant='body2'>9% have this trait</Typography>
             </Paper>
           </Grid>
           <Grid item xs={6} md={3}>
-            <Paper sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
+            <Paper className={classes.hoverShadow} sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
               <Typography align='center' color="primary" variant='body1'>MOUTH</Typography>
               <Typography align='center' variant='h6'>Flower</Typography>
               <Typography align='center' variant='body2'>9% have this trait</Typography>

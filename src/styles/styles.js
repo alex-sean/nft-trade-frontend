@@ -36,6 +36,11 @@ const styles = (theme) => {
         color: '#fff',
       },
     },
+    hoverShadow: {
+      '&:hover': {
+        boxShadow: "0 0 transparent,0 0 transparent,0px 4px 6px -4px rgba(13,16,45,.1),0px 10px 15px -3px rgba(13,16,45,.1)",
+      }
+    },
     
     toolBar: {
       display: 'flex',
@@ -87,6 +92,7 @@ const styles = (theme) => {
       borderRadius:'1.25rem', 
       maxWidth: '230px', 
       padding: '1.1875rem',
+      margin: '8px'
     },
     hotBidPrice: {
       fontSize: '.875rem',

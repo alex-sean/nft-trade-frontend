@@ -14,7 +14,7 @@ export default function WalletPage(){
         <Container maxWidth='lg'>
           <Grid py={5} container spacing={3}>
             <Grid item xs={12} md={4}>
-              <Paper elevation={2} sx={{textAlign: 'center', borderRadius: '15px', position: 'relative', minHeight: '200px'}}>
+              <Paper className={classes.hoverShadow} elevation={1} sx={{textAlign: 'center', borderRadius: '15px', position: 'relative', minHeight: '200px'}}>
                 <Avatar src="images/wallets/metamask.svg" 
                         sx={{width: '72px', height: 'auto', position: 'absolute', top: '-36px', right: 'calc(50% - 36px)', border: 'solid 1px lightgray', background: '#fff'}}></Avatar>
                 <Typography pt={5} variant='h6'>Metamask</Typography>
@@ -22,7 +22,7 @@ export default function WalletPage(){
               </Paper>
             </Grid>
             <Grid item xs={12} md={4}>
-              <Paper elevation={2} sx={{textAlign: 'center', borderRadius: '15px', position: 'relative', minHeight: '200px'}}>
+              <Paper className={classes.hoverShadow} elevation={1} sx={{textAlign: 'center', borderRadius: '15px', position: 'relative', minHeight: '200px'}}>
                 <Avatar src="images/wallets/coinbase.svg" 
                         sx={{width: '72px', height: 'auto', position: 'absolute', top: '-36px', right: 'calc(50% - 36px)', border: 'solid 1px lightgray', background: '#fff'}}></Avatar>
                 <Typography pt={5} variant='h6'>Coinbase</Typography>
@@ -30,7 +30,7 @@ export default function WalletPage(){
               </Paper>
             </Grid>
             <Grid item xs={12} md={4}>
-              <Paper elevation={2} sx={{textAlign: 'center', borderRadius: '15px', position: 'relative', minHeight: '200px'}}>
+              <Paper className={classes.hoverShadow} elevation={1} sx={{textAlign: 'center', borderRadius: '15px', position: 'relative', minHeight: '200px'}}>
                 <Avatar src="images/wallets/wallet_connect.svg" 
                         sx={{width: '72px', height: 'auto', position: 'absolute', top: '-36px', right: 'calc(50% - 36px)', border: 'solid 1px lightgray', background: '#fff'}}></Avatar>
                 <Typography pt={5} variant='h6'>Wallet Connect</Typography>
