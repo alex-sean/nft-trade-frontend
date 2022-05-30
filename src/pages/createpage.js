@@ -40,30 +40,44 @@ export default function CreatePage(){
   };
 
   return (
-    <Box className={classes.commonBackgroundColor} py={10}>
+    <Box py={10} paddingTop='4rem'>
       <Container maxWidth="md">
-        <Typography py={1} align="center" variant="h4">Create</Typography>
-        <InputLabel htmlFor="username" sx={{fontWeight: '700'}}>
-          Name<span style={{color:'red'}}>*</span></InputLabel>
-        <Typography mb={1} variant="body2">Drag or choose your file to upload</Typography>
+        <Typography py={1} align="center" variant="h4" paddingBottom='4rem'>Create</Typography>
+        <InputLabel htmlFor="username" className={classes.createItemTitle} marginTop="0px">
+          Image, Video, Audio, or 3D Model<span style={{color:'red'}}>*</span></InputLabel>
+        <Typography mb={1} variant="body2" className={classes.createItemDetail}>Drag or choose your file to upload</Typography>
         <FileUploader
           handleChange={handleFileChange}
           name="file"
           types={fileTypes}
           style={{color: 'red'}}
+          className={classes.fileUpload}
         />
 
-        <InputLabel htmlFor="username" sx={{marginTop: '20px', fontWeight: '700'}}>
+        <InputLabel htmlFor="username" className={classes.createItemTitle}>
           Name<span style={{color:'red'}}>*</span></InputLabel>
         <OutlinedInput placeholder="Item name"
           id="username"
           fullWidth
           value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}/>
+          onChange={(e) => setFirstName(e.target.value)}
+          sx={{borderColor: '#E7E8EC', borderRadius: '0.5rem', padding: '0.5rem, 0.75rem, 0.5rem, 0.75rem'}}
+        />
 
-        <InputLabel htmlFor="desc" sx={{marginTop: '20px', fontWeight: '700'}}>
+        <InputLabel htmlFor="link" className={classes.createItemTitle}>
+          External Link<span style={{color:'red'}}>*</span></InputLabel>
+        <Typography paragraph variant="body2" className={classes.createItemDetail}>We will include a link to this URL on this item's detail page, so that users can click to learn more about it. You are welcome to link to your own webpage with more details.</Typography>
+        <OutlinedInput placeholder="https://yoursite.io/item/24"
+          id="link"
+          fullWidth
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+          sx={{borderColor: '#E7E8EC', borderRadius: '0.5rem', padding: '0.5rem, 0.75rem, 0.5rem, 0.75rem'}}
+        />
+        
+        <InputLabel htmlFor="desc" className={classes.createItemTitle}>
           Description</InputLabel>
-        <Typography paragraph variant="body2">We will include a link to this URL on this item's detail page, so that users can click to learn more about it. You are welcome to link to your own webpage with more details.</Typography>
+        <Typography paragraph variant="body2" className={classes.createItemDetail}>We will include a link to this URL on this item's detail page, so that users can click to learn more about it. You are welcome to link to your own webpage with more details.</Typography>
         <TextareaAutosize
           id="desc"
           aria-label="minimum height"
@@ -74,12 +88,13 @@ export default function CreatePage(){
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           style={{width: '100%', borderColor: 'darkgray'}}
+          className={classes.inputBorder}
         />
 
-        <InputLabel htmlFor="collection" sx={{marginTop: '20px', fontWeight: '700'}}>
+        <InputLabel htmlFor="collection" className={classes.createItemTitle}>
           Collection</InputLabel>
         <Box py={1} display="flex" alignItems="center">
-          <Typography mr={1} variant="body2">This is the collection where your item will appear.</Typography>
+          <Typography mr={1} variant="body2" className={classes.createItemDetail}>This is the collection where your item will appear.</Typography>
           <InfoOutlinedIcon sx={{color: 'gray'}}/>
         </Box>
         <Select

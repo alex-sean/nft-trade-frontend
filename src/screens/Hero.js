@@ -13,10 +13,10 @@ const Hero = () => {
     <Box className={classes.heroBox}>
       <Grid container spacing={6} className={classes.gridContainer}>
         <Grid item xs={12} md={5}>
-          <Typography variant="h4" fontWeight={700} className={classes.title}>
+          <Typography variant="h2" fontWeight={700} className={classes.title}>
             Buy, sell and <br />collect NFTs.
           </Typography>
-          <Typography variant="h6" className={classes.subtitle}>
+          <Typography className={classes.subtitle}>
           The world's largest digital marketplace <br />for crypto collectibles and non-fungible <br />tokens
           </Typography>
           <PrimaryButton text='Upload'></PrimaryButton>

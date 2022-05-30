@@ -18,7 +18,7 @@ const Hotbids = () => {
       src: 'images/products/item_1.jpg',
       title: 'ETH Me Outside',
       subtitle: 'Current Bid 1.3ETH',
-      amount: '1.55ETH',
+      amount: '1.55 ETH',
       like: '159',
     },
     {
@@ -26,7 +26,7 @@ const Hotbids = () => {
       src: 'images/products/item_2.jpg',
       title: 'Lazyone Panda',
       subtitle: 'Current Bid 2ETH',
-      amount: '1.55ETH',
+      amount: '1.55 ETH',
       like: '75',
     },
     {
@@ -34,7 +34,7 @@ const Hotbids = () => {
       src: 'images/products/item_3.jpg',
       title: 'Splendid Girl',
       subtitle: 'Current Bid 4.7ETH',
-      amount: '5.1ETH',
+      amount: '5.1 ETH',
       like: '253',
     },
     {
@@ -42,7 +42,7 @@ const Hotbids = () => {
       src: 'images/products/item_4.jpg',
       title: 'Amazing NFT Art',
       subtitle: 'Current Bid 1.2ETH',
-      amount: '7ETH',
+      amount: '7 ETH',
       like: '324',
     },
     {
@@ -50,7 +50,7 @@ const Hotbids = () => {
       src: 'images/products/item_3.gif',
       title: 'Portrait Gallery',
       subtitle: 'Current Bid 0.05ETH',
-      amount: '0.7ETH',
+      amount: '0.7 ETH',
       like: '54',
     },
     {
@@ -58,7 +58,7 @@ const Hotbids = () => {
       src: 'images/products/item_5.jpg',
       title: 'Flourishing Cat #180',
       subtitle: 'Current Bid 0.25ETH',
-      amount: '3ETH',
+      amount: '3 ETH',
       like: '125',
     },
   ];
@@ -67,7 +67,7 @@ const Hotbids = () => {
     <Box className={classes.hotBids}>
       <Box className={`${classes.displayFlex} ${classes.justifyCenter} ${classes.my32}`}>
         <img style={{width:'32px'}} src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@7.0.2/img/apple/64/1f525.png" />
-        <Typography variant="h4">Hot Bids</Typography>
+        <Typography variant="h4" className={classes.hotbidTitle}>Hot Bids</Typography>
       </Box>
       <Container maxWidth="lg" spacing={4}>
         <Swiper slidesPerView={matches ? 1 : 4} >

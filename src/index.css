@@ -18,10 +18,18 @@ code {
 
 .inputRounded .MuiOutlinedInput-root{
   border-radius: 50px;
-  border: solid 1px rgb(131 88 255);
+  border: solid 1px #E7E8EC;
 }
 
 .kiHXWb{
-  border-color: darkgray !important;
+  border-radius: 0.5rem;
+  border-color: #E7E8EC !important;
   height: 200px !important;
+}
+
+.MuiOutlinedInput-input {
+  border-color: #E7E8EC;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem 0.5rem 1rem !important;
+  border-width: 1px;
 }

@@ -69,18 +69,17 @@ const Category = () => {
     <Box sx={{ flexGrow: 1, minHeight: '400px'}}>
       <Box sx={{display:'flex', justifyContent: 'center', alignItems: 'center', margin: '32px'}}>
         <img style={{width: '32px'}} src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@7.0.2/img/apple/64/26a1.png" />
-        <Typography variant="h4">Trending categories</Typography>
+        <Typography variant="h4" className={classes.trendingTitle}>Featured Collections</Typography>
       </Box>
       <Container maxWidth="lg">
         <HomeFilter />
         <Grid container className={classes.sectionGridContainer} spacing={4}>
           {items.map((item) => (
             <Grid
-              item
-              xs={12}
-              md={2.5}
+              xs={3}
               minHeight={100}
               key={item.id}
+              sx={{padding: '5px'}}
             >
               <CategoryItem {...item} />
             </Grid>

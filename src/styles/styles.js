@@ -1,4 +1,5 @@
 import { makeStyles } from '@mui/styles';
+import { fontWeight } from '@mui/system';
 
 const styles = (theme) => {
   const isDark = theme.palette.mode === 'dark'
@@ -82,16 +83,48 @@ const styles = (theme) => {
       padding: '32px 0',
     },
     hotBidItem: {
-      border:'solid 1px rgba(0, 0, 0, 0.2)', 
-      borderRadius:'10px', 
+      border:'solid 1px rgba(0, 0, 0, 0.1)', 
+      borderRadius:'1.25rem', 
       maxWidth: '230px', 
-      padding: '16px',
+      padding: '1.1875rem',
+    },
+    hotBidPrice: {
+      fontSize: '.875rem',
+      fontWeight: '550',
+      lineHeight: 'normal',
+      marginLeft: '2px'
+    },
+    hotBidSubtitle: {
+      fontSize: '.875rem',
+      marginTop: '1rem',
+      color: '#5A5D79'
+    },
+    hotBidPlaceBid: {
+      fontWeight: '600',
+      fontSize: '.875rem',
+      color: '#8358ff'
+    },
+    hotBidLike: {
+      fontSize: '.875rem',
+      color: '#5A5D79',
+      marginLeft: '2px'
     },
     collections: {
       flexGrow: 1, 
       minHeight: '400px', 
       textAlign:'center', 
       backgroundImage:`url(images/gradient_${theme.palette.mode}.jpg)`,
+    },
+    collectionTitle: {
+      color: '#131740',
+      marginLeft: '0.25rem'
+    },
+    collectionMenuItem: {
+      fontWeight: '700'
+    },
+    trendingTitle: {
+      color: '#131740',
+      marginLeft: '0.25rem'
     },
     gridContainer: {
       display: 'flex',
@@ -106,17 +139,19 @@ const styles = (theme) => {
     },
     title: {
       paddingBottom: '15px',
+      color: '#131740'
     },
     subtitle: {
-      opacity: '0.4',
       paddingBottom: '30px',
+      color: '#6A6C86',
+      fontSize: '1.25rem'
     },
     largeImage: {
       width: '100%',
     },
     primaryButton: {
-      margin: '16px',
-      padding: '8px 32px',
+      margin: '16px 16px 16px 0px',
+      padding: '0.75rem 3rem 0.75rem 3rem',
       backgroundColor: '#8358ff',
       color: '#fff',
       borderRadius: '99px',
@@ -124,9 +159,10 @@ const styles = (theme) => {
       '&:hover': {
         backgroundColor: '#8358ff',
       },
+      fontWeight: '700'
     },
     secondaryButton: {
-      padding: '8px 32px',
+      padding: '0.75rem 3rem 0.75rem 3rem',
       backgroundColor: '#fff',
       color: '#8358ff',
       borderRadius: '99px',
@@ -134,6 +170,7 @@ const styles = (theme) => {
       '&:hover': {
         backgroundColor: '#fff',
       },
+      fontWeight: '700'
     },
     footerContainer: {
       display: 'flex',
@@ -167,8 +204,34 @@ const styles = (theme) => {
       backgroundImage:`url(images/gradient_${theme.palette.mode}.jpg)`,
       backgroundSize: 'cover'
     },
-
-
+    collectionItemTitle: {
+      fontSize: '1rem',
+      marginTop: '1.75rem',
+      color: '#131740'
+    },
+    collectionItemMore: {
+      fontSize: '1rem',
+      marginTop: '1.75rem',
+      color: '#131740',
+      fontWeight: '1000',
+      cursor: 'pointer'
+    },
+    collectionSubtitle: {
+      fontSize: '.875rem',
+      marginTop: '1rem',
+      color: '#5A5D79'
+    },
+    collectionBuy: {
+      fontWeight: '600',
+      fontSize: '.875rem',
+      color: '#8358ff'
+    },
+    collectionHistory: {
+      fontSize: '.875rem',
+      fontWeight: '600',
+      color: '#5A5D79',
+      marginLeft: '2px'
+    },
     formContainer: {
       flexGrow: 1,
       padding: '10px',
@@ -183,13 +246,17 @@ const styles = (theme) => {
     },
     formHeading: {
       textAlign: 'center',
+      color: '#131740',
+      fontSize: '1.25rem'
     },
     sectionGridContainer: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       width: '100%',
-      minHeight: '500px',
+      // minHeight: '500px',
+      marginTop: '0px',
+      marginLeft: '0px',
     },
     sectionGridItem: {
       backgroundColor: '#f2f0f1',
@@ -225,6 +292,53 @@ const styles = (theme) => {
       fontSize: '14px',
       opacity: '0.6',
     },
+    hotbidTitle: {
+      color: '#131740',
+      marginLeft: '0.25rem'
+    },
+    SellTitle: {
+      color: '#131740',
+    },
+    rounded: {
+      borderRadius: '0.625rem'
+    },
+    footerIcons: {
+      color: '#5A5D79'
+    },
+    footerTitle: {
+      fontSize: '.875rem',
+      color: '#131740',
+      marginBottom: '1.5rem',
+      fontWeight: 'bold'
+    },
+    footerItem: {
+      marginBottom: '5px',
+      color: '#505379',
+      cursor: 'pointer',
+      fontSize: '0.8rem',
+      '&:hover': {
+        color: '#8358ff'
+      }, 
+    },
+    createItemTitle: {
+      fontWeight: '700',
+      color: '#131740',
+      marginBottom: '0.5rem',
+      marginTop: '0.5rem'
+    },
+    createItemDetail: {
+      fontSize:'0.8125rem'
+    },
+    fileUpload: {
+      borderRadius: '0.5rem',
+      border: 'solid 2px #E7E8EC'
+    },
+    inputBorder: {
+      borderColor: '#E7E8EC',
+      borderRadius: '0.5rem',
+      padding: '0.5rem 1rem 0.5rem 1rem',
+      font: 'inherit'
+    }
   };
 };
 

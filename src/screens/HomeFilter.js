@@ -43,6 +43,7 @@ export default function HomeFilter(){
       </Grid>
       <Grid item>
         <Select
+          size="small"
           value={age}
           onChange={handleChange}
           displayEmpty

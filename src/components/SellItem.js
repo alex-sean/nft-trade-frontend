@@ -10,8 +10,8 @@ function SellItem(props) {
   return (
     <Box sx={{padding: '16px', textAlign: 'center'}}>
       <img src={src} />
-      <Typography variant="h6">{title}</Typography>
-      <Typography>{subtitle}</Typography>
+      <Typography variant="h6" color="#131740">{title}</Typography>
+      <Typography color="#5A5D79">{subtitle}</Typography>
      </Box>
   );
 }

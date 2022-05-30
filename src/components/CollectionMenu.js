@@ -72,7 +72,7 @@ function CollectionMenu(props) {
         onClick={handleClick}
         endIcon={<KeyboardArrowDownIcon />}
       >
-        last7 days
+        last 7 days
       </Button>
       <StyledMenu
         id="demo-customized-menu"
@@ -83,13 +83,13 @@ function CollectionMenu(props) {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem onClick={handleClose} disableRipple className={classes.collectionMenuItem}>
           Last 24 hours
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem onClick={handleClose} disableRipple className={classes.collectionMenuItem}>
           Last 7 days
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem onClick={handleClose} disableRipple className={classes.collectionMenuItem}>
           Last 30 days
         </MenuItem>
       </StyledMenu>

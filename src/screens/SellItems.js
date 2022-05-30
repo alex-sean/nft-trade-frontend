@@ -37,15 +37,14 @@ const SellItems = () => {
   return (
     <Box className={classes.sellItems}>
       <Box sx={{display:'flex', justifyContent: 'center', alignItems: 'center', margin: '32px'}}>
-        <Typography variant="h4">Create and sell your NFTs</Typography>
+        <Typography variant="h4" className={classes.SellTitle}>Create and sell your NFTs</Typography>
       </Box>
       <Container maxWidth="lg">
         <Grid container className={classes.sectionGridContainer}>
           {sectionItems.map((item) => (
             <Grid
               item
-              xs={12}
-              md={2.5}
+              xs={3}
               key={item.id}
             >
               <SellItem {...item} />

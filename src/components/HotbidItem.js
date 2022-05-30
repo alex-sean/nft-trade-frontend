@@ -12,20 +12,20 @@ export default function HotbidItem(props) {
   
   return (
     <Box className={classes.hotBidItem}>
-      <img src={src} />
+      <img src={src} className={classes.rounded}/>
       <Box sx={{display:'flex', justifyContent: 'space-between', alignItems: 'center',}}>
         <Typography variant="h6">{title}</Typography>
-        <Box sx={{display:'flex', justifyContent: 'space-between', alignItems: 'center', border: "solid 1px rgba(0, 0, 0, 0.2)", borderRadius: '8px', padding: '4px'}}>
-          <Icon icon="logos:ethereum" rotate={2} hFlip={true} vFlip={true} />
-          <Typography color="rgb(16, 185, 129)">{amount}</Typography>
+        <Box sx={{display:'flex', justifyContent: 'space-between', alignItems: 'center', border: "solid 1px rgba(0, 0, 0, 0.1)", borderRadius: '8px', padding: '4px 8px 4px 8px'}}>
+          <Icon icon="logos:ethereum" rotate={2} hFlip={true} vFlip={true} sx={{margin: '2px'}}/>
+          <Typography color="rgb(16, 185, 129)" className={classes.hotBidPrice}>{amount}</Typography>
         </Box>
       </Box>
-      <Typography>{subtitle}</Typography>
+      <Typography class={classes.hotBidSubtitle}>{subtitle}</Typography>
       <Box sx={{display:'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px'}}>
-        <Typography color="#8358ff">PlaceBid</Typography>
-        <Box sx={{display:'flex', }}>
+        <Typography className={classes.hotBidPlaceBid}>Place Bid</Typography>
+        <Box sx={{display:'flex'}} className={classes.hotBidLike}>
           <FavoriteBorderIcon />
-          <Typography>{like}</Typography>
+          <Typography className={classes.hotBidLike}>{like}</Typography>
         </Box>
       </Box>
     </Box>

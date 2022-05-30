@@ -24,7 +24,7 @@ const Subscribe = () => {
       variant="contained"
       type="submit"
       color="primary"
-      sx={{ width: '200px', fontSize: '16px', borderRadius: '20px', background: '#8358ff', '&:hover': {backgroundColor: '#8358ff'}, }}
+      sx={{ width: '180px', fontSize: '.875rem', borderRadius: '20px', background: '#8358ff', '&:hover': {backgroundColor: '#8358ff'}, fontWeight: 'bold'}}
       onClick={submitForm}
     >
       Subscribe
@@ -32,7 +32,7 @@ const Subscribe = () => {
   )
   return (
     <Box className={classes.formContainer}>
-      <Typography variant="h6" className={classes.formHeading}>
+      <Typography className={classes.formHeading}>
         Join our mailing list to stay in the loop with our newest feature releases, NFT drops, and tips and tricks for navigating Xhibiter
       </Typography>
 
