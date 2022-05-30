@@ -65,6 +65,11 @@ function createData(name, calories, fat, carbs, protein) {
 export default function CollectionHero(){
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const [age, setAge] = React.useState('');
+
+  const handleFilterChange = (event) => {
+    setAge(event.target.value);
+  };
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -215,18 +220,20 @@ export default function CollectionHero(){
         <Grid container direction="row" justifyContent="space-between" alignItems="flex-start">
           <Grid xs spacing={2} item container direction="row" justifyContent="flex-start">
             <Grid item>
-              <Button variant="outlined" startIcon={<PaletteIcon />}>Collections</Button>
+              <Button variant="outlined" className={classes.commonButton} startIcon={<PaletteIcon />}>Collections</Button>
             </Grid>
             <Grid item>
-              <Button variant="outlined" startIcon={<CardGiftcardIcon />}>Category</Button>
+              <Button variant="outlined" className={classes.commonButton} startIcon={<CardGiftcardIcon />}>Category</Button>
             </Grid>
             <Grid item>
-              <Button variant="outlined" startIcon={<LinkedCameraIcon />}>Price Range</Button>
+              <Button variant="outlined" className={classes.commonButton} startIcon={<LinkedCameraIcon />}>Price Range</Button>
             </Grid>
           </Grid>
           <Grid item>
             <Select
               displayEmpty
+              value={age}
+              onChange={handleFilterChange}
               inputProps={{ 'aria-label': 'Without label' }}
               sx={{width: '180px', padding: "0"}}
             >
@@ -244,7 +251,7 @@ export default function CollectionHero(){
             <Grid
               item
               xs={12}
-              md={2.5}
+              md={3}
               minHeight={100}
               key={item.id}
             >
@@ -257,18 +264,20 @@ export default function CollectionHero(){
         <Grid container direction="row" justifyContent="space-between" alignItems="flex-start">
           <Grid xs spacing={2} item container direction="row" justifyContent="flex-start">
             <Grid item>
-              <Button variant="outlined" startIcon={<PaletteIcon />}>Collections</Button>
+              <Button variant="outlined" className={classes.commonButton} startIcon={<PaletteIcon />}>Collections</Button>
             </Grid>
             <Grid item>
-              <Button variant="outlined" startIcon={<CardGiftcardIcon />}>Category</Button>
+              <Button variant="outlined" className={classes.commonButton} startIcon={<CardGiftcardIcon />}>Category</Button>
             </Grid>
             <Grid item>
-              <Button variant="outlined" startIcon={<LinkedCameraIcon />}>Price Range</Button>
+              <Button variant="outlined" className={classes.commonButton} startIcon={<LinkedCameraIcon />}>Price Range</Button>
             </Grid>
           </Grid>
           <Grid item>
             <Select
               displayEmpty
+              value={age}
+              onChange={handleFilterChange}
               inputProps={{ 'aria-label': 'Without label' }}
               sx={{width: '180px', padding: "0"}}
             >
@@ -286,7 +295,7 @@ export default function CollectionHero(){
             <Grid
               item
               xs={12}
-              md={2.5}
+              md={3}
               minHeight={100}
               key={item.id}
             >
@@ -299,18 +308,20 @@ export default function CollectionHero(){
         <Grid container direction="row" justifyContent="space-between" alignItems="flex-start">
           <Grid xs spacing={2} item container direction="row" justifyContent="flex-start">
             <Grid item>
-              <Button variant="outlined" startIcon={<PaletteIcon />}>Collections</Button>
+              <Button variant="outlined" className={classes.commonButton} startIcon={<PaletteIcon />}>Collections</Button>
             </Grid>
             <Grid item>
-              <Button variant="outlined" startIcon={<CardGiftcardIcon />}>Category</Button>
+              <Button variant="outlined" className={classes.commonButton} startIcon={<CardGiftcardIcon />}>Category</Button>
             </Grid>
             <Grid item>
-              <Button variant="outlined" startIcon={<LinkedCameraIcon />}>Price Range</Button>
+              <Button variant="outlined" className={classes.commonButton} startIcon={<LinkedCameraIcon />}>Price Range</Button>
             </Grid>
           </Grid>
           <Grid item>
             <Select
               displayEmpty
+              value={age}
+              onChange={handleFilterChange}
               inputProps={{ 'aria-label': 'Without label' }}
               sx={{width: '180px', padding: "0"}}
             >
@@ -328,7 +339,7 @@ export default function CollectionHero(){
             <Grid
               item
               xs={12}
-              md={2.5}
+              md={3}
               minHeight={100}
               key={item.id}
             >
