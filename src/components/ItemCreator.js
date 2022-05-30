@@ -13,7 +13,7 @@ export default function ItemCreator(props) {
   return (
     <Grid item xs={12} md={6}>
       <Grid container spacing={1}>
-        <Grid xs='auto'>
+        <Grid item xs='auto'>
           <img src={src} style={{borderRadius: '12px'}}/>
         </Grid>
         <Grid item>

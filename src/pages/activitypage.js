@@ -31,7 +31,7 @@ export default function ActivityPage(){
               <StyledInputBase placeholder="Search" inputProps={{ 'aria-label': 'search' }}/>
             </Search>
             <Typography my={2} variant="h6">Filters</Typography>
-            <Grid xs spacing={2} container direction="row" justifyContent="flex-start">
+            <Grid spacing={2} container direction="row" justifyContent="flex-start">
               <Grid item>
                 <Button variant="contained" className={classes.commonButton} startIcon={<DiscountIcon />}>Listing</Button>
               </Grid>

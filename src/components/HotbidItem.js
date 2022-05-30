@@ -20,7 +20,7 @@ export default function HotbidItem(props) {
           <Typography color="rgb(16, 185, 129)" className={classes.hotBidPrice}>{amount}</Typography>
         </Box>
       </Box>
-      <Typography class={classes.hotBidSubtitle}>{subtitle}</Typography>
+      <Typography className={classes.hotBidSubtitle}>{subtitle}</Typography>
       <Box sx={{display:'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px'}}>
         <Typography className={classes.hotBidPlaceBid}>Place Bid</Typography>
         <Box sx={{display:'flex'}} className={classes.hotBidLike}>

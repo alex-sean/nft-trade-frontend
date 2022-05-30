@@ -17,13 +17,13 @@ export default function CollectionsCard(props) {
                 <img src={img1} />
               </Grid>
               <Grid item xs={3} container direction='column'>
-                <Grid xs>
+                <Grid item xs>
                   <img src={img2} />
                 </Grid>
-                <Grid xs>
+                <Grid item xs>
                   <img src={img3} />
                 </Grid>
-                <Grid xs>
+                <Grid item xs>
                   <img src={img4} />
                 </Grid>
               </Grid>

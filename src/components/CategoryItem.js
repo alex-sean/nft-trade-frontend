@@ -16,7 +16,7 @@ function CategoryItem(props) {
         <Typography variant="h6" className={classes.collectionItemTitle}>{title}</Typography>
         <Typography variant="h6" className={classes.collectionItemMore}>...</Typography>
       </Box>
-      <Typography class={classes.collectionSubtitle}>{subtitle}</Typography>
+      <Typography className={classes.collectionSubtitle}>{subtitle}</Typography>
       <Box sx={{display:'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px'}}>
         <Typography className={classes.collectionBuy}>Buy now</Typography>
         <Box sx={{display:'flex', color: '#5A5D79'}}>

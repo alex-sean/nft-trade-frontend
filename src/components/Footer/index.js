@@ -27,7 +27,7 @@ const Footer = () => {
               <Typography className={classes.my32} color="#5A5D79" fontSize={'0.9rem'}>
                 Create, sell and collect truly rare digital artworks. Powered by blockchain technology.
               </Typography>
-              <Box className={classes.displayFlex, classes.footerIcons}>
+              <Box className={`${classes.displayFlex} ${classes.footerIcons}`}>
                 <FacebookIcon className={classes.mr16}/>
                 <TwitterIcon className={classes.mr16} />
                 <RedditIcon className={classes.mr16} />
