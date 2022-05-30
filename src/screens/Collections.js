@@ -108,7 +108,7 @@ const Collections = (props) => {
             <Grid
               item
               xs={12}
-              md={2.5}
+              md={3}
               minHeight={100}
               key={item.id}
             >

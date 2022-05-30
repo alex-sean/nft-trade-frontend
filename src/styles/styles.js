@@ -344,6 +344,22 @@ const styles = (theme) => {
       borderRadius: '0.5rem',
       padding: '0.5rem 1rem 0.5rem 1rem',
       font: 'inherit'
+    },
+    checkIconStyle: {
+      position: 'absolute',
+      left: '-10px',
+      bottom: 0,
+      background: '#fff',
+      borderRadius: '99px',
+    },
+    darkCircleNumber: {
+      position: 'absolute',
+      left: '-10px',
+      top: '14px',
+      width: '24px',
+      background: '#000',
+      color: '#fff',
+      borderRadius: '99px',
     }
   };
 };
