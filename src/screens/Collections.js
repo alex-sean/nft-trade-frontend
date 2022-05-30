@@ -46,7 +46,7 @@ const Collections = (props) => {
     },
     {
       id: 6,
-      src: 'images/avatars/avatar_6.jpg',
+      src: 'images/avatars/avatar_6.gif',
       title: 'NFT Funny Cat',
       amount: '7.080.95ETH',
       checked: true,

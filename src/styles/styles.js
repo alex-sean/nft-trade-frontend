@@ -70,7 +70,7 @@ const styles = (theme) => {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      marginTop: '-90px',
+      marginTop: '-99px',
       paddingTop: '90px',
       backgroundImage: `url(images/gradient${isDark ? '_dark' : ''}.jpg)`
     },

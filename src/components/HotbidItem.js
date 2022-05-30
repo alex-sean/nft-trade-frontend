@@ -1,7 +1,5 @@
 import React from 'react';
-import useScrollTrigger from '@mui/material/useScrollTrigger';
-import PropTypes from 'prop-types';
-import { Grid, Typography, Box } from '@mui/material';
+import { Typography, Box } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import useStyles from '../styles/styles';
 import { Icon } from '@iconify/react';
