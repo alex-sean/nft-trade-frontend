@@ -126,10 +126,14 @@ const Collections = (props) => {
   return (
     <Box className={classes.collections}>
       <Container maxWidth="lg">
-        <Box sx={{display:'flex', justifyContent: 'center', alignItems: 'center', margin: '32px'}}>
-          <Typography variant="h4" className={classes.collectionTitle}>Top collections over</Typography>
-          <CollectionMenu />
-        </Box>
+        <Grid container spacing={0} direction="row" alignItems='center' justifyContent='center'>
+          <Grid item xs={12} md>
+            <Typography variant="h4" className={classes.collectionTitle}>Top collections over</Typography>
+          </Grid>
+          <Grid item md>
+            <CollectionMenu />
+          </Grid>
+        </Grid>
 
         <Grid container className={classes.sectionGridContainer} spacing={4}>
           {items.map((item) => (

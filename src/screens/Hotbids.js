@@ -12,7 +12,9 @@ import 'swiper/css';
 const Hotbids = () => {
   const classes = useStyles();
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.down('sm'));
+  const matchLg = useMediaQuery(theme.breakpoints.up('lg'))
+  const matctMd = useMediaQuery(theme.breakpoints.only('md'))
+  const matctSm = useMediaQuery(theme.breakpoints.only('sm'))
 
   const sectionItems = [
     {
@@ -72,7 +74,7 @@ const Hotbids = () => {
         <Typography variant="h4" className={classes.hotbidTitle}>Hot Bids</Typography>
       </Box>
       <Container maxWidth="lg" spacing={4}>
-        <Swiper navigation={true} modules={[Navigation]} slidesPerView={matches ? 1 : 4} >
+        <Swiper navigation={true} modules={[Navigation]} slidesPerView={matchLg ? '4' : (matctMd ? '3' : (matctSm ? '2' : '1'))} >
           {sectionItems.map((item) => (
             <SwiperSlide key={item.id}>
               <HotbidItem {...item} />

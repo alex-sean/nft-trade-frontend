@@ -98,7 +98,7 @@ const styles = (theme) => {
       borderRadius:'1.25rem', 
       maxWidth: '230px', 
       padding: '1.1875rem',
-      margin: '8px'
+      margin: 'auto'
     },
     hotBidPrice: {
       fontSize: '.875rem',
