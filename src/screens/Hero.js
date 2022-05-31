@@ -19,8 +19,10 @@ const Hero = () => {
           <Typography className={classes.subtitle}>
           The world's largest digital marketplace <br />for crypto collectibles and non-fungible <br />tokens
           </Typography>
-          <PrimaryButton text='Upload'></PrimaryButton>
-          <SecondaryButton text="Explore" />
+          <Box display='flex' alignItems='center'>
+            <PrimaryButton text='Upload'></PrimaryButton>
+            <SecondaryButton text="Explore" />
+          </Box>
         </Grid>
         <Grid item xs={12} md={7} sx={{position:'relative'}}>
           <img src={'images/hero/hero_deg.png'} className={`${classes.largeImage}`} />

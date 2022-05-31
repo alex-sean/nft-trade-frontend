@@ -58,6 +58,12 @@ const styles = (theme) => {
       fontSize: "1.2rem",
       marginRight: "1rem"
     },
+    mobileLink: {
+      color: `${isDark ? '#fff' : '#000'}`,
+      fontWeight: "700",
+      fontSize: "0.875rem",
+      lineHeight: '32px',
+    },
     menuIcon: {
       border:'solid 1px darkgray', 
       backgroundColor: `${isDark ? 'rgba(0, 0, 0, 0.1)' : '#fff'}`,
