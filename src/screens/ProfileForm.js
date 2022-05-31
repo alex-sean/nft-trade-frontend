@@ -59,7 +59,7 @@ const ProfileForm = () => {
               spellCheck
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              sx={{width: '100%'}}
+              style={{width: '100%'}}
             />
 
             <InputLabel htmlFor="email" sx={{marginTop: '20px', fontWeight: '700'}}>

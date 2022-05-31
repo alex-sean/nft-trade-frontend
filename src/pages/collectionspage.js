@@ -93,9 +93,9 @@ export default function CollectionsPage(){
       <Container maxWidth="lg">
         <Typography py={3} align="center" variant="h4">Explore Collections</Typography>
         <CollectionsFilter />
-        <Grid container spacing={3} justifyContent="space-around" alignItems="flex-start">
+        <Grid mt={3} container spacing={3} justifyContent="space-around" alignItems="flex-start">
           {items.map((item) => (
-            <Grid item xs={12} lg={4} xl={3}>
+            <Grid item xs={12} sm={6} md={4} xl={3}>
               <CollectionsCard {...item} />
             </Grid>
           ))}

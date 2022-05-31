@@ -9,7 +9,7 @@ export default function CollectionsCard(props) {
 
   return (
     <>
-      <Card container sx={{borderRadius: '15px'}}>
+      <Card container sx={{borderRadius: '15px', width: '270px', margin: 'auto'}}>
         <Link underline='none' href='/collection'>
           <CardContent>
             <Grid pr={2} container spacing={1} direction="row" justifyContent="center" alignItems="stretch">

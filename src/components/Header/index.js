@@ -161,7 +161,7 @@ const Header = (props) => {
   );
 
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.down('sm'));
+  const matches = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
     <Box sx={{ marginBottom: '99px' }}>

@@ -12,7 +12,7 @@ export default function WalletPage(){
       </Box>
       <Box className={classes.gradientBackground}>
         <Container maxWidth='lg'>
-          <Grid py={5} container spacing={3}>
+          <Grid py={5} container spacing={8}>
             <Grid item xs={12} md={4}>
               <Paper className={classes.hoverShadow} elevation={1} sx={{textAlign: 'center', borderRadius: '15px', position: 'relative', minHeight: '200px'}}>
                 <Avatar src="images/wallets/metamask.svg" 

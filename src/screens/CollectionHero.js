@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Typography, Box, Button } from '@mui/material';
+import { Divider, Typography, Box, Button, Stack } from '@mui/material';
 import useStyles from '../styles/styles';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -23,31 +23,35 @@ export default function CollectionHero(){
          Created by <span style={{color: 'rgb(131, 88, 255)'}}>051_Hart</span>
 
         <Box className={`${classes.displayFlex} ${classes.justifyCenter}`}>
-          <Grid mt={3} px={1} pr={2} py={3} container columnSpacing={1} borderRadius={2}
-                sx={{background: '#fff', maxWidth: '440px'}}>
-            <Grid item xs={6} md={3}>
-              <Typography variant="h6">7.2K</Typography>
-              <Typography variant="body2">Items</Typography>
-            </Grid>
-            <Grid item xs={6} md={3}>
-              <Typography variant="h6">5.3K</Typography>
-              <Typography variant="body2">Owners</Typography>
-            </Grid>
-            <Grid item xs={6} md={3}>
-              <Box className={`${classes.displayFlex} ${classes.justifyCenter}`}>
-                <Icon icon="logos:ethereum" rotate={2} hFlip={true} vFlip={true} />
-                <Typography ml={1} variant="h6">2.55</Typography>
+          <Stack mt={2} p={2} divider={<Divider orientation="vertical" flexItem />} direction={{ xs: 'column', sm: 'row' }} spacing={{xs: 1, sm: 2, md: 4 }}
+                  sx={{background: '#fff', borderRadius: '15px'}}>
+            <Stack divider={<Divider orientation="vertical" flexItem />} direction='row' spacing={{ xs: 1, sm: 2, md: 4 }}>
+              <Box sx={{width: '95px'}}>
+                <Typography variant="h6">7.2K</Typography>
+                <Typography variant="body2">Items</Typography>
               </Box>
-              <Typography variant="body2">Floor Price</Typography>
-            </Grid>
-            <Grid item xs={6} md={3}>
-              <Box className={`${classes.displayFlex} ${classes.justifyCenter}`}>
-                <Icon icon="logos:ethereum" rotate={2} hFlip={true} vFlip={true} />
-                <Typography ml={1} variant="h6">17.2</Typography>
+              <Box sx={{width: '95px'}}>
+                <Typography variant="h6">5.3K</Typography>
+                <Typography variant="body2">Owners</Typography>
               </Box>
-              <Typography variant="body2">Volume Traded</Typography>
-            </Grid>
-          </Grid>
+            </Stack>
+            <Stack divider={<Divider orientation="vertical" flexItem />} direction='row' spacing={{ xs: 1, sm: 2, md: 4 }}>
+              <Box sx={{width: '95px'}}>
+                <Box className={`${classes.displayFlex} ${classes.justifyCenter}`}>
+                  <Icon icon="logos:ethereum" rotate={2} hFlip={true} vFlip={true} />
+                  <Typography ml={1} variant="h6">2.55</Typography>
+                </Box>
+                <Typography variant="body2">Floor Price</Typography>
+              </Box>
+              <Box sx={{width: '95px'}}>
+                <Box className={`${classes.displayFlex} ${classes.justifyCenter}`}>
+                  <Icon icon="logos:ethereum" rotate={2} hFlip={true} vFlip={true} />
+                  <Typography ml={1} variant="h6">17.2</Typography>
+                </Box>
+                <Typography variant="body2">Volume Traded</Typography>
+              </Box>
+            </Stack>
+          </Stack>
         </Box>
 
         <Typography mt={3} variant="body2">Unique, fully 3D and built to unite the design multiverse.</Typography>

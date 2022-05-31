@@ -218,7 +218,7 @@ export default function CollectionHero(){
       </Tabs>
       <TabPanel value={value} index={0}>
         <Grid container direction="row" justifyContent="space-between" alignItems="flex-start">
-          <Grid xs spacing={2} item container direction="row" justifyContent="flex-start">
+          <Grid xs={12} md spacing={2} mb={2} item container direction="row" justifyContent="flex-start">
             <Grid item>
               <Button variant="outlined" className={classes.commonButton} startIcon={<PaletteIcon />}>Collections</Button>
             </Grid>
@@ -229,7 +229,7 @@ export default function CollectionHero(){
               <Button variant="outlined" className={classes.commonButton} startIcon={<LinkedCameraIcon />}>Price Range</Button>
             </Grid>
           </Grid>
-          <Grid item>
+          <Grid item mb={2}>
             <Select
               displayEmpty
               value={age}
@@ -251,6 +251,7 @@ export default function CollectionHero(){
             <Grid
               item
               xs={12}
+              sm={6}
               md={3}
               minHeight={100}
               key={item.id}
@@ -349,9 +350,9 @@ export default function CollectionHero(){
         </Grid>
       </TabPanel>
       <TabPanel value={value} index={3}>
-        <Grid container spacing={3} justifyContent="space-around" alignItems="flex-start">
+        <Grid mt={3} container spacing={3} justifyContent="center" alignItems="flex-start">
           {cardItems.map((item) => (
-            <Grid item xs={12} lg={4} xl={3}>
+            <Grid item xs={12} sm={6} md={4} xl={3}>
               <CollectionsCard {...item} />
             </Grid>
           ))}

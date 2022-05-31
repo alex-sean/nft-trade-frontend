@@ -150,27 +150,27 @@ export default function CollectionTab(props) {
       </Tabs>
       <TabPanel value={value} index={0}>
         <Grid container direction="row" justifyContent="space-between" alignItems="flex-start">
-          <Grid xs spacing={2} item container direction="row" justifyContent="flex-start">
+          <Grid xs={12} lg spacing={2} mb={2} item container direction="row" justifyContent="flex-start">
             <Grid item>
-              <Button variant="contained">All</Button>
+              <Button variant="contained" className={classes.commonButton}>All</Button>
             </Grid>
             <Grid item>
-              <Button variant="outlined" startIcon={<PaletteIcon />}>Blockchain</Button>
+              <Button variant="outlined" className={classes.commonButton} startIcon={<PaletteIcon />}>Blockchain</Button>
             </Grid>
             <Grid item>
-              <Button variant="outlined" startIcon={<CardGiftcardIcon />}>Category</Button>
+              <Button variant="outlined" className={classes.commonButton} startIcon={<CardGiftcardIcon />}>Category</Button>
             </Grid>
             <Grid item>
-              <Button variant="outlined" startIcon={<FormatShapesIcon />}>Properties</Button>
+              <Button variant="outlined" className={classes.commonButton} startIcon={<FormatShapesIcon />}>Properties</Button>
             </Grid>
             <Grid item>
-              <Button variant="outlined" startIcon={<MusicNoteIcon />}>Sale Type</Button>
+              <Button variant="outlined" className={classes.commonButton} startIcon={<MusicNoteIcon />}>Sale Type</Button>
             </Grid>
             <Grid item>
-              <Button variant="outlined" startIcon={<LinkedCameraIcon />}>Price Range</Button>
+              <Button variant="outlined" className={classes.commonButton} startIcon={<LinkedCameraIcon />}>Price Range</Button>
             </Grid>
           </Grid>
-          <Grid item>
+          <Grid item mb={2}>
             <Select
               value={age}
               onChange={handleAgeChange}
@@ -192,6 +192,7 @@ export default function CollectionTab(props) {
             <Grid
               item
               xs={12}
+              sm={6}
               md={3}
               minHeight={100}
               key={item.id}
