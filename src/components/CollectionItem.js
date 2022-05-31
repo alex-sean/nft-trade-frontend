@@ -15,7 +15,7 @@ function CollectionItem(props) {
       <Box sx={{position: 'relative'}}>
         <img src={src} style={{borderRadius: '10px'}} />
         <Typography className={classes.darkCircleNumber}>{id}</Typography>
-        <CheckCircleIcon className={classes.checkIconStyle} sx={{position: 'absolute', color: 'limegreen'}} />
+        {checked ? (<CheckCircleIcon className={classes.checkIconStyle} sx={{position: 'absolute', color: 'limegreen'}} />) : ('')}
       </Box>
       <Box sx={{textAlign:'start', marginLeft:'16px'}}>
         <Typography sx={{fontWeight:'500', fontSize:'1.2rem'}}>{title}</Typography>
