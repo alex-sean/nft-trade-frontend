@@ -19,6 +19,7 @@ code {
 .inputRounded .MuiOutlinedInput-root{
   border-radius: 50px;
   border: solid 1px #E7E8EC;
+  padding: 8px;
 }
 
 .kiHXWb{
