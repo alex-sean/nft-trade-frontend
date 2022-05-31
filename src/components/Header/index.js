@@ -76,7 +76,7 @@ const Header = (props) => {
   return (
     <Box sx={{ marginBottom: '99px' }}>
       <ElevationScroll {...props}>
-        <AppBar sx={{backgroundColor:'hsla(0,0%,100%,.5)'}}>
+        <AppBar sx={{backgroundColor:'hsla(0,0%,100%,.5)', backdropFilter: 'blur(8px)'}}>
           <Toolbar className={classes.toolBar}>
             <Box sx={{display:'flex'}}>
               <Link href="/" underline="none" mr={8}>
