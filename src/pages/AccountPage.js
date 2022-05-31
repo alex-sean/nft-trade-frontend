@@ -24,6 +24,9 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import SystemUpdateAltIcon from '@mui/icons-material/SystemUpdateAlt';
 import CollectionsCard from '../components/CollectionsCard';
+import Checkbox from '@mui/material/Checkbox';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import Favorite from '@mui/icons-material/Favorite';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -197,8 +200,8 @@ export default function CollectionHero(){
         <Typography mb={3} variant="body2">Joined December 2019</Typography>
 
         <Box mb={2} className={`${classes.displayFlex} ${classes.justifyCenter}`} >
-          <Button className={`${classes.displayFlex}`} sx={{border:'solid 1px grey', borderRadius:'10px', padding:'8px', color: '#000'}}>
-            <FavoriteBorderIcon />
+          <Button className={`${classes.displayFlex}`} sx={{border:'solid 1px grey', borderRadius:'10px',  color: '#000'}}>
+            <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{color: 'red'}} />} />
           </Button>
           <CollectionPopup1 />
           <CollectionPopup2 />

@@ -2,10 +2,12 @@ import React from 'react';
 import { Divider, Typography, Box, Button, Stack } from '@mui/material';
 import useStyles from '../styles/styles';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { Icon } from '@iconify/react';
 import CollectionPopup1 from '../components/CollectionPopup1';
 import CollectionPopup2 from '../components/CollectionPopup2';
+import Checkbox from '@mui/material/Checkbox';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import Favorite from '@mui/icons-material/Favorite';
 
 export default function CollectionHero(){
   const classes = useStyles();
@@ -59,7 +61,7 @@ export default function CollectionHero(){
 
         <Box mb={2} className={`${classes.displayFlex} ${classes.justifyCenter}`} >
           <Button className={`${classes.displayFlex}`} sx={{border:'solid 1px grey', borderRadius:'10px', padding:'8px', color: '#000'}}>
-            <FavoriteBorderIcon />
+            <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{color: 'red'}} />} />
           </Button>
           <CollectionPopup1 />
           <CollectionPopup2 />

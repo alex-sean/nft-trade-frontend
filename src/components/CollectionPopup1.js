@@ -30,7 +30,7 @@ export default function CollectionPopup1() {
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
-        sx={{border:'solid 1px grey', borderRadius:'10px', padding:'8px 0px', color:'#000', marginLeft:'8px'}}
+        sx={{border:'solid 1px grey', borderRadius:'10px', padding:'16px', color:'#000', marginLeft:'8px'}}
       >
         <ShareIcon color="#000" />
       </Button>
