@@ -44,7 +44,9 @@ const SellItems = () => {
           {sectionItems.map((item) => (
             <Grid
               item
-              xs={3}
+              xs={12}
+              sm={6}
+              lg={3}
               key={item.id}
             >
               <SellItem {...item} />

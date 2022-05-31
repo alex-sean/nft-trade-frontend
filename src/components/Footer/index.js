@@ -15,8 +15,8 @@ const Footer = () => {
   return (
     <Box sx={{ flexGrow: 1 }} className={classes.footerContainer}>
       <Container maxWidth="lg">
-        <Grid container >
-          <Grid container item xs="12" md="6">
+        <Grid container spacing={5}>
+          <Grid container item xs={12} sm={6}>
             <Grid item xs="12" md="8">
               <Link href="#" underline="none">
                 <Box component="img" className={classes.logo}
@@ -36,37 +36,39 @@ const Footer = () => {
               </Box>
             </Grid>
           </Grid>
-          <Grid container item xs="12" md="6">
-            <Grid item xs="12" md="4">
-              <Typography className={classes.footerTitle}>Marketplace</Typography>
-              <Typography className={classes.footerItem}>All NFTs</Typography>
-              <Typography className={classes.footerItem}>Art</Typography>
-              <Typography className={classes.footerItem}>Music</Typography>
-              <Typography className={classes.footerItem}>Domain Names</Typography>
-              <Typography className={classes.footerItem}>Collectibles</Typography>
-              <Typography className={classes.footerItem}>Virtual World</Typography>
-            </Grid>
-            <Grid item xs="12" md="4">
-              <Typography className={classes.footerTitle}>Company</Typography>
-              <Typography className={classes.footerItem}>Explore</Typography>
-              <Typography className={classes.footerItem}>About</Typography>
-              <Typography className={classes.footerItem}>Contact Us</Typography>
-              <Typography className={classes.footerItem}>Our Blog</Typography>
-              <Typography className={classes.footerItem}>FAQ</Typography>
-            </Grid>
-            <Grid item xs="12" md="4">
-              <Typography className={classes.footerTitle}>My Account</Typography>
-              <Typography className={classes.footerItem}>Authors</Typography>
-              <Typography className={classes.footerItem}>Collection</Typography>
-              <Typography className={classes.footerItem}>Author Profile</Typography>
-              <Typography className={classes.footerItem}>Create Item</Typography>
-            </Grid>
+          <Grid item xs={12} sm={6} md={2}>
+            <Typography className={classes.footerTitle}>Marketplace</Typography>
+            <Typography className={classes.footerItem}>All NFTs</Typography>
+            <Typography className={classes.footerItem}>Art</Typography>
+            <Typography className={classes.footerItem}>Music</Typography>
+            <Typography className={classes.footerItem}>Domain Names</Typography>
+            <Typography className={classes.footerItem}>Collectibles</Typography>
+            <Typography className={classes.footerItem}>Virtual World</Typography>
+          </Grid>
+          <Grid item xs={12} sm={6} md={2}>
+            <Typography className={classes.footerTitle}>Company</Typography>
+            <Typography className={classes.footerItem}>Explore</Typography>
+            <Typography className={classes.footerItem}>About</Typography>
+            <Typography className={classes.footerItem}>Contact Us</Typography>
+            <Typography className={classes.footerItem}>Our Blog</Typography>
+            <Typography className={classes.footerItem}>FAQ</Typography>
+          </Grid>
+          <Grid item xs={12} sm={6} md={2}>
+            <Typography className={classes.footerTitle}>My Account</Typography>
+            <Typography className={classes.footerItem}>Authors</Typography>
+            <Typography className={classes.footerItem}>Collection</Typography>
+            <Typography className={classes.footerItem}>Author Profile</Typography>
+            <Typography className={classes.footerItem}>Create Item</Typography>
           </Grid>
         </Grid>
-        <Box className={`${classes.mt32} ${classes.displayFlex} ${classes.justifyBetween}`}>
-          <Typography className={classes.footerItem}>© 2022 Xhibiter — Made by DeoThemes</Typography>
-          <Typography className={classes.footerItem}>Terms and conditions Privacy policy</Typography>
-        </Box>
+        <Grid mt={3} container spacing={1} justifyContent="space-between" alignItems='center'>
+          <Grid item xs={12} md={6}>
+            <Typography className={classes.footerItem}>© 2022 Xhibiter — Made by DeoThemes</Typography>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Typography className={classes.footerItem}>Terms and conditions Privacy policy</Typography>
+          </Grid>
+        </Grid>
       </Container>
     </Box>
   );

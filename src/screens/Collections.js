@@ -1,9 +1,10 @@
 import React from 'react';
-import { Grid, Typography, Box, Container } from '@mui/material';
+import { Grid, Typography, Box, Container, useMediaQuery } from '@mui/material';
 import useStyles from '../styles/styles';
 import CollectionItem from '../components/CollectionItem';
 import PrimaryButton from '../components/Button/PrimaryButton';
 import CollectionMenu from '../components/CollectionMenu';
+import { useTheme } from '@mui/material/styles';
 
 const Collections = (props) => {
   const classes = useStyles();
@@ -122,25 +123,24 @@ const Collections = (props) => {
       checked: false,
     },
   ];
+  const theme = useTheme();
+  const matctMd = useMediaQuery(theme.breakpoints.up('md'))
 
   return (
     <Box className={classes.collections}>
       <Container maxWidth="lg">
-        <Grid container spacing={0} direction="row" alignItems='center' justifyContent='center'>
-          <Grid item xs={12} md>
-            <Typography variant="h4" className={classes.collectionTitle}>Top collections over</Typography>
-          </Grid>
-          <Grid item md>
-            <CollectionMenu />
-          </Grid>
-        </Grid>
+        <Box sx={{display:`${matctMd ? 'flex' : 'block'}`, justifyContent: 'center', alignItems: 'center', margin: '32px'}}>
+          <Typography variant="h4" className={classes.collectionTitle}>Top collections over</Typography>
+          <CollectionMenu />
+        </Box>
 
         <Grid container className={classes.sectionGridContainer} spacing={4}>
           {items.map((item) => (
             <Grid
               item
               xs={12}
-              md={3}
+              sm={6}
+              lg={3}
               minHeight={100}
               key={item.id}
             >

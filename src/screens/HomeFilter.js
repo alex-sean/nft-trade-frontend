@@ -18,7 +18,7 @@ export default function HomeFilter(){
 
   return (
     <Grid container direction="row" justifyContent="space-between" alignItems="flex-start" mb={3}>
-      <Grid xs spacing={2} item container direction="row" justifyContent="flex-start">
+      <Grid xs={12} lg spacing={2} mb={2} item container direction="row" justifyContent="flex-start">
         <Grid item>
           <Button variant="contained" className={classes.commonButton}>All</Button>
         </Grid>
@@ -41,7 +41,7 @@ export default function HomeFilter(){
           <Button variant="contained" className={classes.commonButton} startIcon={<LanguageIcon />}>VirtualWorld</Button>
         </Grid>
       </Grid>
-      <Grid item>
+      <Grid item mb={2}>
         <Select
           size="small"
           value={age}

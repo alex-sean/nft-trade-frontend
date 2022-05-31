@@ -76,7 +76,9 @@ const Category = () => {
         <Grid container className={classes.sectionGridContainer} spacing={4}>
           {items.map((item) => (
             <Grid
-              xs={3}
+              xs={12}
+              sm={6}
+              md={3}
               minHeight={100}
               key={item.id}
               sx={{padding: '5px'}}
