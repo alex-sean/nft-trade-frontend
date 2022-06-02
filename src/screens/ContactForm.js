@@ -11,7 +11,7 @@ import {
   FormControlLabel,
   Paper,
   Avatar,
-  FormControl,
+  TextareaAutosize,
   Select,
   MenuItem
 } from '@mui/material';
@@ -19,17 +19,63 @@ import useStyles from '../styles/styles';
 import DraftsOutlinedIcon from '@mui/icons-material/DraftsOutlined';
 import LocalPhoneTwoToneIcon from '@mui/icons-material/LocalPhoneTwoTone';
 import RoomTwoToneIcon from '@mui/icons-material/RoomTwoTone';
+import validator from 'validator';
+import Alert from '@mui/material/Alert';
+import Collapse from '@mui/material/Collapse';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 
 const ContactForm = () => {
-  const [email, setEmail] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [subject, setSubject] = useState('');
-  const [message, setMessage] = useState('');
   const classes = useStyles();
+  const [firstName, setFirstName] = useState('');
+  const [email, setEmail] = useState('');
+  const [type, setType] = useState('');
+  const [message, setMessage] = useState('');
+  const [isInit, setIsInit] = useState(true);
+  const [errMsg, setErrMsg] = useState('')
+  const [checked, setChecked] = useState(false);
+
+  const handleChecked = (event) => {
+    setChecked(event.target.checked);
+  };
 
   const submitForm = (e) => {
-    e.preventDefault();
-    console.log({ email, firstName, subject, message });
+    setIsInit(false)
+    let isValidEmail = validator.isEmail(email)
+
+    if (!checked){
+      setErrMsg('Please check Term of service.')
+      e.preventDefault();
+      return
+    }
+    if (!firstName){
+      setErrMsg('Please enter your name.')
+      e.preventDefault();
+      return
+    }
+    if (!message){
+      setErrMsg('Please enter your message.')
+      e.preventDefault();
+      return
+    }
+    if (!isValidEmail){
+      setErrMsg('Please enter valid e-mail.')
+      e.preventDefault();
+      return
+    }
+    setErrMsg('')
+
+    fetch(`${process.env.REACT_APP_SERVER_URL}/contact/add`, {
+      method: "POST",
+      headers : {'Content-Type' : 'application/x-www-form-urlencoded'},
+      body: `name=${firstName}&email=${email}&type=${type}&content=${message}`,
+    }).then((response) => (response.json())).then((response)=> {
+      setFirstName('')
+      setEmail('')
+      setType('')
+      setMessage('')
+      setErrMsg('Success sent.')
+    }, err => {setErrMsg('Network error. Please try again later.')})
   };
 
   return (
@@ -51,6 +97,7 @@ const ContactForm = () => {
                     Name<span style={{color:'red'}}>*</span></InputLabel>
                   <OutlinedInput
                     id="username"
+                    error={!isInit && !firstName}
                     fullWidth
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}/>
@@ -60,6 +107,7 @@ const ContactForm = () => {
                     Email<span style={{color:'red'}}>*</span></InputLabel>
                   <OutlinedInput
                     id="email"
+                    error={!isInit && !validator.isEmail(email)}
                     fullWidth
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}/>
@@ -71,40 +119,61 @@ const ContactForm = () => {
               <Select
                   fullWidth
                   id="type"
+                  value={type}
                   displayEmpty
+                  onChange={e => setType(e.target.value)}
                   inputProps={{ 'aria-label': 'Without label' }}
                 >
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                <MenuItem value={10}>Type A</MenuItem>
-                <MenuItem value={20}>Type B</MenuItem>
-                <MenuItem value={30}>Type C</MenuItem>
+                <MenuItem value={1}>1</MenuItem>
+                <MenuItem value={2}>2</MenuItem>
+                <MenuItem value={3}>3</MenuItem>
               </Select>
 
               <InputLabel htmlFor="message" sx={{marginTop: '20px', fontWeight: '700'}}>
                 Message<span style={{color:'red'}}>*</span></InputLabel>
-              <textarea
+              <TextareaAutosize
                 id="message"
+                error={!isInit && !message}
                 aria-label="minimum height"
-                rows={6}
+                minRows={6}
                 spellCheck
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 style={{width: '100%'}}
               />
 
-              <FormControlLabel control={<Checkbox defaultChecked />} sx={{width: '100%'}}
+              <FormControlLabel control={<Checkbox checked={checked} onChange={handleChecked} />} sx={{width: '100%'}}
                 label={<span>I agree to the <span style={{color: '#8258ff'}}>Terms of Service</span></span>} />
               <Button
                 variant="contained"
-                type="submit"
                 color="primary"
                 className={classes.primaryButton}
                 onClick={submitForm}
               >
                 Submit
               </Button>
+              <Collapse in={errMsg}>
+                <Alert severity={`${errMsg==='Success sent.' ? 'success' : "error"}`}
+                  action={
+                    <IconButton
+                      aria-label="close"
+                      color="inherit"
+                      size="small"
+                      onClick={() => {
+                        setErrMsg('');
+                      }}
+                    >
+                      <CloseIcon fontSize="inherit" />
+                    </IconButton>
+                  }
+                  sx={{ mb: 2 }}
+                >
+                  {errMsg}
+                </Alert>
+              </Collapse>
             </Box>
           </Grid>
           <Grid item md>
