@@ -19,6 +19,7 @@ import BlogPage from './pages/blogpage';
 import SinglepostPage from './pages/singlepostpage';
 import CreatePage from './pages/createpage';
 import AccountPage from './pages/AccountPage';
+import { WalletProvider } from './providers/WalletProvider';
 
 function App() {
   const [darkMode, setDarkMode] = useState(window.localStorage.getItem('darkMode') === 'true');
@@ -58,48 +59,50 @@ function App() {
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Header setTheme={toggleTheme} />
-          <Switch>
-            <Route exact path='/'>
-              <Home/>
-            </Route>
-            <Route exact path='/item'>
-              <Item />
-            </Route>
-            <Route exact path='/collections'>
-              <CollectionsPage />
-            </Route>
-            <Route exact path='/collection'>
-              <CollectionPage />
-            </Route>
-            <Route exact path='/activity'>
-              <ActivityPage />
-            </Route>
-            <Route exact path='/profile'>
-              <ProfilePage />
-            </Route>
-            <Route exact path='/contact'>
-              <ContactPage />
-            </Route>
-            <Route exact path='/wallet'>
-              <WalletPage />
-            </Route>
-            <Route exact path='/newsletter'>
-              <NewsletterPage />
-            </Route>
-            <Route exact path='/blog'>
-              <BlogPage />
-            </Route>
-            <Route exact path='/singlepost'>
-              <SinglepostPage />
-            </Route>
-            <Route exact path='/create'>
-              <CreatePage />
-            </Route>
-            <Route exact path='/account'>
-              <AccountPage />
-            </Route>
-          </Switch>
+          <WalletProvider>
+            <Header setTheme={toggleTheme} />
+            <Switch>
+              <Route exact path='/'>
+                <Home/>
+              </Route>
+              <Route exact path='/item'>
+                <Item />
+              </Route>
+              <Route exact path='/collections'>
+                <CollectionsPage />
+              </Route>
+              <Route exact path='/collection'>
+                <CollectionPage />
+              </Route>
+              <Route exact path='/activity'>
+                <ActivityPage />
+              </Route>
+              <Route exact path='/profile'>
+                <ProfilePage />
+              </Route>
+              <Route exact path='/contact'>
+                <ContactPage />
+              </Route>
+              <Route exact path='/wallet'>
+                <WalletPage />
+              </Route>
+              <Route exact path='/newsletter'>
+                <NewsletterPage />
+              </Route>
+              <Route exact path='/blog'>
+                <BlogPage />
+              </Route>
+              <Route exact path='/singlepost'>
+                <SinglepostPage />
+              </Route>
+              <Route exact path='/create'>
+                <CreatePage />
+              </Route>
+              <Route exact path='/account'>
+                <AccountPage />
+              </Route>
+            </Switch>
+          </WalletProvider>
           <Footer />
         </ThemeProvider>
       </StyledEngineProvider>

@@ -42,12 +42,14 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import RedditIcon from '@mui/icons-material/Reddit';
 import YouTubeIcon from '@mui/icons-material/YouTube';
+import { useWalletContext } from '../../hooks/useWalletContext';
 
 const Header = (props) => {
   const classes = useStyles();
   const [state, setState] = React.useState({
     right: false,
   });
+  const { account } = useWalletContext();
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -240,12 +242,18 @@ const Header = (props) => {
               <Link href="/create" underline="none" key="1">
                 <Typography className={classes.link}>Create</Typography>
               </Link>
-              <Link href="/wallet" underline="none" key="1">
-                <IconButton className={classes.menuIcon}>
-                  <AccountBalanceWalletIcon />
-                </IconButton>
-              </Link>
-              <AccountMenu />
+              {
+                account === '' &&
+                <Link href="/wallet" underline="none" key="1">
+                  <IconButton className={classes.menuIcon}>
+                    <AccountBalanceWalletIcon />
+                  </IconButton>
+                </Link>
+              }
+              {
+                account !== '' &&
+                <AccountMenu />
+              }
               <IconButton className={classes.menuIcon} onClick={() => props.setTheme()}>
                 {theme.palette.mode === 'dark' ? <LightModeIcon /> : <BedtimeIcon />}
               </IconButton>

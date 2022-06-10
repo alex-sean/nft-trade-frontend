@@ -1,9 +1,13 @@
 import React, { useRef } from 'react';
 import { Typography, Box, Grid, Container, Paper, Avatar } from '@mui/material';
 import useStyles from '../styles/styles';
+import { useWalletContext } from '../hooks/useWalletContext';
+import { WALLET_TYPE } from '../common/const';
 
 export default function WalletPage(){
   const classes = useStyles();
+
+  const { handleConnect } = useWalletContext();
 
   return (
     <>
@@ -14,7 +18,9 @@ export default function WalletPage(){
         <Container maxWidth='lg'>
           <Grid py={5} container spacing={8}>
             <Grid item xs={12} md={4}>
-              <Paper className={classes.hoverShadow} elevation={1} sx={{textAlign: 'center', borderRadius: '15px', position: 'relative', minHeight: '200px'}}>
+              <Paper className={classes.hoverShadow} elevation={1} sx={{textAlign: 'center', borderRadius: '15px', position: 'relative', minHeight: '200px'}}
+                onClick={() => handleConnect(WALLET_TYPE.METAMASK)}
+              >
                 <Avatar src="images/wallets/metamask.svg" 
                         sx={{width: '72px', height: 'auto', position: 'absolute', top: '-36px', right: 'calc(50% - 36px)', border: 'solid 1px lightgray', background: '#fff'}}></Avatar>
                 <Typography pt={5} variant='h6'>Metamask</Typography>
