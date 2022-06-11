@@ -366,6 +366,30 @@ const styles = (theme) => {
       background: '#000',
       color: '#fff',
       borderRadius: '99px',
+    },
+    modalTitle: {
+      display: 'flex'
+    },
+    modalCloseButton: {
+      marginLeft: 'auto',
+      marginRight: '0px'
+    },
+    modalProgressContent: {
+      marginTop: 'auto',
+      marginBottom: 'auto'
+    },
+    modalProgressBtn: {
+      display: 'block',
+      margin: '5px auto 15px auto',
+      padding: '0.75rem 3rem 0.75rem 3rem',
+      backgroundColor: '#8358ff',
+      color: '#fff',
+      borderRadius: '99px',
+      boxShadow: "4px 5px 10px rgba(108,106,213,.25),inset 2px 2px 6px #a78df0,inset -5px -5px 10px #6336e4",
+      '&:hover': {
+        backgroundColor: '#8358ff',
+      },
+      fontWeight: '700'
     }
   };
 };

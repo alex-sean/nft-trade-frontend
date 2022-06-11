@@ -19,6 +19,7 @@ import EqualizerIcon from '@mui/icons-material/Equalizer';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import WarningIcon from '@mui/icons-material/Warning';
 import AddIcon from '@mui/icons-material/Add';
+import CreateProgressDlg from '../components/Dialog/CreateProgressDlg';
 
 export default function CreatePage(){
   const [email, setEmail] = useState('');
@@ -214,6 +215,10 @@ export default function CreatePage(){
         >
           Create
         </Button>
+
+        <CreateProgressDlg
+          open={true}
+        />
       </Container>      
     </Box>
   );

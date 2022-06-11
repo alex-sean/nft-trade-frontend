@@ -20,6 +20,8 @@ import SinglepostPage from './pages/singlepostpage';
 import CreatePage from './pages/createpage';
 import AccountPage from './pages/AccountPage';
 import { WalletProvider } from './providers/WalletProvider';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [darkMode, setDarkMode] = useState(window.localStorage.getItem('darkMode') === 'true');
@@ -104,6 +106,7 @@ function App() {
             </Switch>
           </WalletProvider>
           <Footer />
+          <ToastContainer position="top-center" autoClose={5000} />
         </ThemeProvider>
       </StyledEngineProvider>
     </Router>
