@@ -390,6 +390,19 @@ const styles = (theme) => {
         backgroundColor: '#8358ff',
       },
       fontWeight: '700'
+    },
+    modalProgressProcessedBtn: {
+      display: 'block',
+      margin: '5px auto 15px auto',
+      padding: '0.75rem 3rem 0.75rem 3rem',
+      backgroundColor: '#fff',
+      color: '#8358ff',
+      borderRadius: '99px',
+      boxShadow: "5px 5px 10px rgba(108,106,212,.25),inset 2px 2px 6px #eef1f9,inset -5px -5px 10px #dfe3ef;",
+      '&:hover': {
+        backgroundColor: '#fff',
+      },
+      fontWeight: '700'
     }
   };
 };

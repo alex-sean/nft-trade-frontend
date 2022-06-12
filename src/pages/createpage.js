@@ -217,7 +217,7 @@ export default function CreatePage(){
         </Button>
 
         <CreateProgressDlg
-          open={true}
+          open={false}
         />
       </Container>      
     </Box>

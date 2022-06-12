@@ -13,6 +13,7 @@ import useStyles from '../../styles/styles';
 import { Divider, Grid } from '@mui/material';
 import { Avatar } from '@mui/material';
 import ProgressButton from '../Button/ProgressButton';
+import { PROGRESS_BTN_STATUS } from '../../common/const';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -30,7 +31,14 @@ const BootstrapDialogTitle = (props) => {
 
     return (
         <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
-            {children}
+        {children}
+        <IconButton
+            aria-label="close"
+            onClick={onClose}
+            className={classes.modalCloseButton}
+            >
+            <CloseIcon />
+        </IconButton>
         </DialogTitle>
     );
 };
@@ -95,6 +103,7 @@ export default function CreateProgressDlg({ open, handleClose }) {
                     </Grid>
                     <ProgressButton
                         text="Upload"
+                        status={PROGRESS_BTN_STATUS.PROCESSED}
                     />
                     <Divider/>
                 </div>
@@ -117,6 +126,7 @@ export default function CreateProgressDlg({ open, handleClose }) {
                     </Grid>
                     <ProgressButton
                         text="Upload"
+                        status={PROGRESS_BTN_STATUS.PROCESSING}
                     />
                     <Divider/>
                 </div>
@@ -139,6 +149,7 @@ export default function CreateProgressDlg({ open, handleClose }) {
                     </Grid>
                     <ProgressButton
                         text="Upload"
+                        status={PROGRESS_BTN_STATUS.NOT_PROCESSED}
                     />
                 </div>
             </DialogContent>

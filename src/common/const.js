@@ -8,3 +8,9 @@ export const LOCAL_STORAGE_KEY = {
     WALLET_TYPE: "Wallet_Type",
     WALLET_CONNECT: "walletconnect"
 }
+
+export const PROGRESS_BTN_STATUS = {
+    PROCESSED: 0,
+    PROCESSING: 1,
+    NOT_PROCESSED: 2
+}
