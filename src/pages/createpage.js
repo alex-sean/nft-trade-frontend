@@ -51,7 +51,7 @@ export default function CreatePage(){
           name="file"
           types={fileTypes}
           style={{color: 'red'}}
-          className={classes.fileUpload}
+          className={`${classes.fileUpload} ${classes.paperBackground}`}
         />
 
         <InputLabel htmlFor="username" className={classes.createItemTitle}>
@@ -60,6 +60,7 @@ export default function CreatePage(){
           id="username"
           fullWidth
           value={firstName}
+          className={classes.paperBackground}
           onChange={(e) => setFirstName(e.target.value)}
           sx={{borderColor: '#E7E8EC', borderRadius: '0.5rem', padding: '0.5rem, 0.75rem, 0.5rem, 0.75rem'}}
         />
@@ -71,6 +72,7 @@ export default function CreatePage(){
           id="link"
           fullWidth
           value={firstName}
+          className={classes.paperBackground}
           onChange={(e) => setFirstName(e.target.value)}
           sx={{borderColor: '#E7E8EC', borderRadius: '0.5rem', padding: '0.5rem, 0.75rem, 0.5rem, 0.75rem'}}
         />
@@ -88,7 +90,7 @@ export default function CreatePage(){
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           style={{width: '100%', borderColor: 'darkgray'}}
-          className={classes.inputBorder}
+          className={`${classes.inputBorder} ${classes.paperBackground}`}
         />
 
         <InputLabel htmlFor="collection" className={classes.createItemTitle}>
@@ -101,6 +103,7 @@ export default function CreatePage(){
             fullWidth
             id="collection"
             inputProps={{ 'aria-label': 'Without label' }}
+            className={classes.paperBackground}
           >
           <MenuItem value="">
             <em>Cryptokities</em>
@@ -150,6 +153,7 @@ export default function CreatePage(){
         <OutlinedInput
           placeholder="1" 
           id="supply"
+          className={classes.paperBackground}
           fullWidth />
 
         <InputLabel htmlFor="blockchain" sx={{marginTop: '20px', fontWeight: '700'}}>
@@ -158,6 +162,7 @@ export default function CreatePage(){
             fullWidth
             id="blockchain"
             displayEmpty
+            className={classes.paperBackground}
             inputProps={{ 'aria-label': 'Without label' }}
           >
           <MenuItem value="">
@@ -175,6 +180,7 @@ export default function CreatePage(){
         <OutlinedInput value="To freeze your metadata, you must create your item first."
           id="metadata"
           fullWidth
+          className={classes.paperBackground}
           disabled
            />
 

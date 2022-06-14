@@ -9,7 +9,7 @@ export default function BlogPage(){
     <Box py={4} className={classes.gradientBackground}>
       <Container maxWidth="lg">
         <Link href="/singlepost" underline="none">
-          <Card sx={{display: 'flex', borderRadius: '15px'}}>
+          <Card sx={{display: 'flex', borderRadius: '15px'}} className={classes.paperBackground}>
             <CardMedia>
               <img src='images/blog/post_1.jpg' style={{width: '100%', height: '100%'}}></img>
             </CardMedia>
@@ -27,7 +27,7 @@ export default function BlogPage(){
         <Grid py={8} container spacing={3}>
           <Grid item xs={12} sm={6} md={4}>
             <Link href="/singlepost" underline="none">
-              <Card sx={{borderRadius: '15px'}}>
+              <Card sx={{borderRadius: '15px'}} className={classes.paperBackground}>
                 <CardMedia>
                   <img src='images/blog/post_2.jpg' style={{width: '100%', height: '100%'}}></img>
                 </CardMedia>
@@ -44,7 +44,7 @@ export default function BlogPage(){
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
             <Link href="/singlepost" underline="none">
-              <Card sx={{borderRadius: '15px'}}>
+              <Card sx={{borderRadius: '15px'}} className={classes.paperBackground}>
                 <CardMedia>
                   <img src='images/blog/post_3.jpg' style={{width: '100%', height: '100%'}}></img>
                 </CardMedia>
@@ -61,7 +61,7 @@ export default function BlogPage(){
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
             <Link href="/singlepost" underline="none">
-              <Card sx={{borderRadius: '15px'}}>
+              <Card sx={{borderRadius: '15px'}} className={classes.paperBackground}>
                 <CardMedia>
                   <img src='images/blog/post_4.jpg' style={{width: '100%', height: '100%'}}></img>
                 </CardMedia>
@@ -78,7 +78,7 @@ export default function BlogPage(){
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
             <Link href="/singlepost" underline="none">
-              <Card sx={{borderRadius: '15px'}}>
+              <Card sx={{borderRadius: '15px'}} className={classes.paperBackground}>
                 <CardMedia>
                   <img src='images/blog/post_5.jpg' style={{width: '100%', height: '100%'}}></img>
                 </CardMedia>
@@ -95,7 +95,7 @@ export default function BlogPage(){
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
             <Link href="/singlepost" underline="none">
-              <Card sx={{borderRadius: '15px'}}>
+              <Card sx={{borderRadius: '15px'}} className={classes.paperBackground}>
                 <CardMedia>
                   <img src='images/blog/post_6.jpg' style={{width: '100%', height: '100%'}}></img>
                 </CardMedia>
@@ -112,7 +112,7 @@ export default function BlogPage(){
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
             <Link href="/singlepost" underline="none">
-              <Card sx={{borderRadius: '15px'}}>
+              <Card sx={{borderRadius: '15px'}} className={classes.paperBackground}>
                 <CardMedia>
                   <img src='images/blog/post_7.jpg' style={{width: '100%', height: '100%'}}></img>
                 </CardMedia>

@@ -26,7 +26,8 @@ export default function CollectionPopup2() {
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
-        sx={{border:'solid 1px grey', borderRadius:'10px', padding:'16px', color:'#000', marginLeft:'8px'}}
+        className={classes.text}
+        sx={{border:'solid 1px grey', borderRadius:'10px', padding:'16px', marginLeft:'8px'}}
       >
         <MoreHorizIcon color="#000" />
       </Button>

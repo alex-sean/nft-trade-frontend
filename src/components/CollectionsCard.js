@@ -9,7 +9,7 @@ export default function CollectionsCard(props) {
 
   return (
     <>
-      <Card container sx={{borderRadius: '15px', width: '270px', margin: 'auto'}}>
+      <Card container sx={{borderRadius: '15px', width: '270px', margin: 'auto'}} className={classes.paperBackground}>
         <Link underline='none' href='/collection'>
           <CardContent>
             <Grid pr={2} container spacing={1} direction="row" justifyContent="center" alignItems="stretch">
@@ -36,7 +36,7 @@ export default function CollectionsCard(props) {
           </CardActions>
           <Box pb={3} px={2} display="flex" justifyContent="space-between" alignItems="center">
             <Box display="flex" alignItems="center">
-              <CircleIcon color="primary" />
+              <CircleIcon sx={{color:'gray'}} />
               <Typography variant="body1"> by {owner}</Typography>
             </Box>
             <Typography variant='body1'>{count} Items</Typography>

@@ -31,11 +31,15 @@ const styles = (theme) => {
       color: `${isDark ? 'rgb(161, 162, 179)' : 'rgb(90, 93, 121)'}`,
       fontFamily: 'DM Sans,sans-serif'
     },
+    whiteText: {
+      color: `${!isDark ? '#fff' : 'rgb(19, 23, 64)'}`,
+    },
 
     commonButton: {
       padding: '8px',
       borderRadius: '8px',
-      backgroundColor: "#fff",
+      border: 'solid 1px rgb(231, 232, 236)',
+      backgroundColor: `${isDark ? 'transparent' : '#fff'}`,
       color: `${isDark ? '#a1a2b3' : '#5A5D79'}`,
       '&:hover': {
         backgroundColor: 'rgb(131, 88, 255)',
@@ -294,7 +298,7 @@ const styles = (theme) => {
       fontSize: '18px',
     },
     collectionsPage:{
-      backgroundImage:`url(images/gradient_${theme.palette.mode}.jpg)`,
+      background:`${isDark ? 'rgb(16, 20, 54)' : 'url(images/gradient_light.jpg)'}`,
       backgroundSize: 'cover'
     },
     
@@ -347,7 +351,7 @@ const styles = (theme) => {
     
     createItemTitle: {
       fontWeight: '700',
-      color: '#131740',
+      color: `${isDark ? '#fff' : '#131740'}`,
       marginBottom: '0.5rem',
       marginTop: '0.5rem'
     },
@@ -356,7 +360,7 @@ const styles = (theme) => {
     },
     fileUpload: {
       borderRadius: '0.5rem',
-      border: 'solid 2px #E7E8EC'
+      border: 'solid 2px #E7E8EC',
     },
     inputBorder: {
       borderColor: '#E7E8EC',

@@ -1,6 +1,7 @@
 import React from 'react';
-import { Grid, Typography, Box, Button, TextField } from '@mui/material';
+import { Grid, Typography, Box, Button, TextField, useThemeProps } from '@mui/material';
 import useStyles from '../styles/styles';
+import { useTheme } from '@mui/material/styles';
 
 export default function NewsletterPage(){
   const classes = useStyles();
@@ -14,9 +15,11 @@ export default function NewsletterPage(){
       Subscribe
     </Button>
   )
+  const theme = useTheme()
+  const isDark = theme.palette.mode === 'dark'
 
   return (
-    <Box className={classes.heroBox}>
+    <Box className={classes.heroBox} sx={{background: `rgb(${isDark ? '16, 20, 54' : '245, 248, 250'}) !important`}}>
       <Grid container spacing={6} className={classes.gridContainer}>
         <Grid item xs={12} md={5}>
           <Typography variant="h4" fontWeight={700} className={classes.title}>

@@ -77,7 +77,7 @@ export default function SinglepostPage(){
             </Avatar>
           </Box>
 
-          <Paper elevation={1} sx={{p: 2, mb: 3, borderRadius: '20px'}}>
+          <Paper elevation={1} sx={{p: 2, mb: 3, borderRadius: '20px'}} className={classes.paperBackground}>
             <Grid container spacing={2} alignItems="center">
               <Grid item>
                 <ButtonBase sx={{ width: 144, height: 144 }}>
@@ -101,7 +101,7 @@ export default function SinglepostPage(){
           <Typography mt={10} gutterBottom variant="h4" component="div">Related Posts</Typography>
           <Grid py={5} container spacing={3}>
             <Grid item xs={12} sm={6}>
-              <Card sx={{borderRadius: '15px'}}>
+              <Card sx={{borderRadius: '15px'}} className={classes.paperBackground}>
                 <CardMedia>
                   <img src='images/blog/post_2.jpg' style={{width: '100%', height: '100%'}}></img>
                 </CardMedia>
@@ -116,7 +116,7 @@ export default function SinglepostPage(){
               </Card>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Card sx={{borderRadius: '15px'}}>
+              <Card sx={{borderRadius: '15px'}} className={classes.paperBackground}>
                 <CardMedia>
                   <img src='images/blog/post_3.jpg' style={{width: '100%', height: '100%'}}></img>
                 </CardMedia>

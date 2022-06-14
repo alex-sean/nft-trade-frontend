@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Typography, Box, Container, Tabs, Tab, Button, Select, MenuItem, Grid } from '@mui/material';
+import { Typography, Box, Container, Tabs, Tab, Button, Select, MenuItem, Grid, Divider } from '@mui/material';
 import useStyles from '../styles/styles';
 import StackedLineChartIcon from '@mui/icons-material/StackedLineChart';
 import QrCodeIcon from '@mui/icons-material/QrCode';
@@ -148,6 +148,7 @@ export default function CollectionTab(props) {
         <Tab {...a11yProps(0)} icon={<QrCodeIcon />} iconPosition="start" label="Items" />
         <Tab {...a11yProps(1)} icon={<StackedLineChartIcon />} iconPosition="start" label="Activity" />
       </Tabs>
+      <Divider />
       <TabPanel value={value} index={0}>
         <Grid container direction="row" justifyContent="space-between" alignItems="flex-start">
           <Grid xs={12} lg spacing={2} mb={2} item container direction="row" justifyContent="flex-start">
