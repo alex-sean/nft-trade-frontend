@@ -80,8 +80,8 @@ export default function ItemTabs(props) {
         <Tab {...a11yProps(3)} icon={<StackedLineChartIcon />} iconPosition="start" label="Activity" />
         <Tab {...a11yProps(4)} icon={<AutoGraphIcon />} iconPosition="start" label="Price History" />
       </Tabs>
-      <TabPanel value={value} index={0}>
-        <TableContainer component={Paper}>
+      <TabPanel value={value} index={0} className={classes.paperBackground}>
+        <TableContainer className={classes.paperBackground} component={Paper}>
           <Table sx={{ minWidth: 650, width:'100%' }} aria-label="simple table">
             <TableHead>
               <TableRow>
@@ -111,7 +111,7 @@ export default function ItemTabs(props) {
           </Table>
         </TableContainer>
       </TabPanel>
-      <TabPanel value={value} index={1} style={{border: 'solid 1px gainsboro', borderRadius: '8px'}}>
+      <TabPanel className={classes.paperBackground} value={value} index={1} style={{border: 'solid 1px gainsboro', borderRadius: '8px'}}>
         <Grid container spacing={5}>
           <Grid item xs={6} md={3}>
             <Paper className={classes.hoverShadow} sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
@@ -171,7 +171,7 @@ export default function ItemTabs(props) {
           </Grid>
         </Grid>
       </TabPanel>
-      <TabPanel value={value} index={2} style={{border: 'solid 1px gainsboro', borderRadius: '8px', padding: '32px'}}>
+      <TabPanel className={classes.paperBackground} value={value} index={2} style={{border: 'solid 1px gainsboro', borderRadius: '8px', padding: '32px'}}>
         <Grid container spacing={4}>
           <Grid sx>
             <Typography p={1} variant='body2'>Contract Address:</Typography>
@@ -187,8 +187,8 @@ export default function ItemTabs(props) {
           </Grid>
         </Grid>
       </TabPanel>
-      <TabPanel value={value} index={3}>
-        <TableContainer component={Paper}>
+      <TabPanel className={classes.paperBackground} value={value} index={3}>
+        <TableContainer className={classes.paperBackground} component={Paper}>
         <Grid p={2} xs spacing={2} container direction="row" justifyContent="flex-start">
           <Grid item>
             <Button variant="contained" className={classes.commonButton} startIcon={<DiscountIcon />}>Listing</Button>
@@ -232,7 +232,7 @@ export default function ItemTabs(props) {
           </Table>
         </TableContainer>
       </TabPanel>
-      <TabPanel value={value} index={4}>
+      <TabPanel className={classes.paperBackground} value={value} index={4}>
         <Graph />
       </TabPanel>
     </Container>

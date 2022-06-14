@@ -11,7 +11,7 @@ export default function ItemBid(props) {
   
   return (
     <>
-      <Card container>
+      <Card container className={classes.paperBackground}>
         <CardContent>
           <Grid container spacing={2} p={2}>
             <Grid item xs={12} md={6}>

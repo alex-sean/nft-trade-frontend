@@ -55,7 +55,7 @@ const styles = (theme) => {
       maxHeight: '1.75rem',
     },
     link: {
-      color: "#000",
+      color: `${isDark ? '#fff' : '#000'}`,
       fontWeight: "700",
       fontSize: "1.2rem",
       marginRight: "1rem"
@@ -248,6 +248,9 @@ const styles = (theme) => {
         color: '#8358ff'
       }, 
     },
+    footerText: {
+      paddingBottom: '10px',
+    },
 
     gridContainer: {
       display: 'flex',
@@ -267,12 +270,10 @@ const styles = (theme) => {
     largeImage: {
       width: '100%',
     },
-    footerText: {
-      paddingBottom: '10px',
-    },
     footerDate: {
       opacity: '0.4',
     },
+
     itemHeroContainer: {
       width: '100%',
       display: 'flex',
@@ -280,7 +281,7 @@ const styles = (theme) => {
       alignItems: 'center',
       justifyContent: 'center',
       padding: '30px 0px 50px 0px',
-      backgroundImage:`url(images/gradient_${theme.palette.mode}.jpg)`,
+      background:`${isDark ? 'rgb(16, 20, 54)' : 'url(images/gradient_light.jpg)'}`,
       backgroundSize: 'cover',
     },
     itemHeroSubtitle: {
