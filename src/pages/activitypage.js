@@ -17,7 +17,7 @@ export default function ActivityPage(){
   return (
     <Box ClassName={classes.gradientBackground}>
       <Container maxWidth="lg">
-        <Typography py={3} align="center" variant="h4">Activity</Typography>
+        <Typography py={10} align="center" variant="h4">Activity</Typography>
 
         <Grid container spacing={8}>
           <Grid item xs={12} lg>

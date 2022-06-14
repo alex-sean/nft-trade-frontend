@@ -14,11 +14,11 @@ export default function ActivityItemList(props) {
 
   return (
     <>
-      <Paper className={classes.hoverShadow} elevation={1} sx={{p: 2, mb: 3, maxWidth: 740, borderRadius: '20px'}}>
+      <Paper className={`${`${classes.hoverShadow} ${classes.paperBackground}`} ${classes.paperBackground}`} elevation={1} sx={{p: 2, mb: 3, maxWidth: 740, borderRadius: '20px'}}>
         <Grid container spacing={2} alignItems="center">
           <Grid item>
             <ButtonBase sx={{ width: 128, height: 128 }}>
-              <img src="images/products/item_21_sm.jpg" />
+              <img style={{borderRadius: '10px'}} src="images/products/item_21_sm.jpg" />
             </ButtonBase>
           </Grid>
           <Grid item sm container>
@@ -37,11 +37,11 @@ export default function ActivityItemList(props) {
           </Grid>
         </Grid>
       </Paper>
-      <Paper className={classes.hoverShadow} elevation={1} sx={{p: 2, mb: 3,maxWidth: 740, borderRadius: '20px'}}>
+      <Paper className={`${classes.hoverShadow} ${classes.paperBackground}`} elevation={1} sx={{p: 2, mb: 3,maxWidth: 740, borderRadius: '20px'}}>
         <Grid container spacing={2} alignItems="center">
           <Grid item>
             <ButtonBase sx={{ width: 128, height: 128 }}>
-              <img src="images/products/item_21_sm.jpg" />
+              <img style={{borderRadius: '10px'}} src="images/products/item_21_sm.jpg" />
             </ButtonBase>
           </Grid>
           <Grid item sm container>
@@ -60,11 +60,11 @@ export default function ActivityItemList(props) {
           </Grid>
         </Grid>
       </Paper>      
-      <Paper className={classes.hoverShadow} elevation={1} sx={{p: 2, mb: 3,maxWidth: 740, borderRadius: '20px'}}>
+      <Paper className={`${classes.hoverShadow} ${classes.paperBackground}`} elevation={1} sx={{p: 2, mb: 3,maxWidth: 740, borderRadius: '20px'}}>
         <Grid container spacing={2} alignItems="center">
           <Grid item>
             <ButtonBase sx={{ width: 128, height: 128 }}>
-              <img src="images/products/item_22_sm.jpg" />
+              <img style={{borderRadius: '10px'}} src="images/products/item_22_sm.jpg" />
             </ButtonBase>
           </Grid>
           <Grid item sm container>
@@ -83,11 +83,11 @@ export default function ActivityItemList(props) {
           </Grid>
         </Grid>
       </Paper>   
-      <Paper className={classes.hoverShadow} elevation={1} sx={{p: 2, mb: 3,maxWidth: 740, borderRadius: '20px'}}>
+      <Paper className={`${classes.hoverShadow} ${classes.paperBackground}`} elevation={1} sx={{p: 2, mb: 3,maxWidth: 740, borderRadius: '20px'}}>
         <Grid container spacing={2} alignItems="center">
           <Grid item>
             <ButtonBase sx={{ width: 128, height: 128 }}>
-              <img src="images/products/item_23_sm.jpg" />
+              <img style={{borderRadius: '10px'}} src="images/products/item_23_sm.jpg" />
             </ButtonBase>
           </Grid>
           <Grid item sm container>
@@ -106,11 +106,11 @@ export default function ActivityItemList(props) {
           </Grid>
         </Grid>
       </Paper>     
-      <Paper className={classes.hoverShadow} elevation={1} sx={{p: 2, mb: 3,maxWidth: 740, borderRadius: '20px'}}>
+      <Paper className={`${classes.hoverShadow} ${classes.paperBackground}`} elevation={1} sx={{p: 2, mb: 3,maxWidth: 740, borderRadius: '20px'}}>
         <Grid container spacing={2} alignItems="center">
           <Grid item>
             <ButtonBase sx={{ width: 128, height: 128 }}>
-              <img src="images/products/item_24_sm.jpg" />
+              <img style={{borderRadius: '10px'}} src="images/products/item_24_sm.jpg" />
             </ButtonBase>
           </Grid>
           <Grid item sm container>
