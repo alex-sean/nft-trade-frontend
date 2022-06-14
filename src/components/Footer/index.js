@@ -24,7 +24,7 @@ const Footer = () => {
                   src={`images/logo${theme.palette.mode === 'dark' ? '_white' : ''}.png`}
                 />
               </Link>
-              <Typography className={classes.my32} color="#5A5D79" fontSize={'0.9rem'}>
+              <Typography className={`${classes.my32} ${classes.footerIcons}`} fontSize={'0.9rem'}>
                 Create, sell and collect truly rare digital artworks. Powered by blockchain technology.
               </Typography>
               <Box className={`${classes.displayFlex} ${classes.footerIcons}`}>

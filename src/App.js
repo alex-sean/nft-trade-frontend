@@ -47,6 +47,9 @@ function App() {
       mode: darkMode ? "dark" : "light",
       primary: {
         main: '#8258ff'
+      },
+      background: {
+        default: darkMode ? "rgb(13, 16, 45)" : '#fff'
       }
     }
   })

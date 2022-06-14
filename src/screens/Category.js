@@ -66,7 +66,7 @@ const Category = () => {
     },
   ];
   return (
-    <Box sx={{ flexGrow: 1, minHeight: '400px'}}>
+    <Box py={5} sx={{ flexGrow: 1, minHeight: '400px'}}>
       <Box sx={{display:'flex', justifyContent: 'center', alignItems: 'center', margin: '32px'}}>
         <img style={{width: '32px'}} src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@7.0.2/img/apple/64/26a1.png" />
         <Typography variant="h4" className={classes.trendingTitle}>Featured Collections</Typography>

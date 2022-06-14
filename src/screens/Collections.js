@@ -127,7 +127,7 @@ const Collections = (props) => {
   const matctMd = useMediaQuery(theme.breakpoints.up('md'))
 
   return (
-    <Box className={classes.collections}>
+    <Box py={5} className={classes.collections}>
       <Container maxWidth="lg">
         <Box sx={{display:`${matctMd ? 'flex' : 'block'}`, justifyContent: 'center', alignItems: 'center', margin: '32px'}}>
           <Typography variant="h4" className={classes.collectionTitle}>Top collections over</Typography>

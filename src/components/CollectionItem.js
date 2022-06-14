@@ -11,7 +11,7 @@ function CollectionItem(props) {
   const classes = useStyles();
   
   return (
-    <Box className={classes.hoverShadow} sx={{display:'flex', justifyContent:'flex-start', alignItems:'center', border:'solid 1px rgba(0, 0, 0, 0.2)', borderRadius:'20px', height:'85px', padding:'8px'}}>
+    <Box className={`${classes.hoverShadow} ${classes.paperBackground}`} sx={{display:'flex', justifyContent:'flex-start', alignItems:'center', border:'solid 1px rgba(0, 0, 0, 0.2)', borderRadius:'20px', height:'85px', padding:'8px'}}>
       <Box ml={2} sx={{position: 'relative'}}>
         <img src={src} style={{borderRadius: '10px'}} />
         <Typography className={classes.darkCircleNumber}>{id}</Typography>

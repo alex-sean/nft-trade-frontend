@@ -3,13 +3,14 @@ import { Typography, Box } from '@mui/material';
 import HistoryIcon from '@mui/icons-material/History';
 import useStyles from '../styles/styles';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 function CategoryItem(props) {
   const { src, title, subtitle, amount, like } = props;
   const classes = useStyles();
   
   return (
-    <Box className={classes.hoverShadow} sx={{border:'solid 1px rgba(0, 0, 0, 0.1)', borderRadius:'1.25rem', padding: '1.1875rem', marginBottom: '16px'}}>
+    <Box className={`${classes.hoverShadow} ${classes.paperBackground}`} sx={{border:'solid 1px rgba(0, 0, 0, 0.1)', borderRadius:'1.25rem', padding: '1.1875rem', marginBottom: '16px'}}>
       <Box sx={{position: 'relative'}}>
         <img style={{width: '100%'}} src={src} className={classes.rounded}/>
         <Box sx={{display:'flex', position: 'absolute', top: '16px', right: '16px', padding: '8px', background: '#fff', borderRadius: '8px'}} className={classes.hotBidLike}>
@@ -17,9 +18,9 @@ function CategoryItem(props) {
           <Typography className={classes.hotBidLike}>{like}</Typography>
         </Box>
       </Box>
-      <Box sx={{display:'flex', justifyContent: 'space-between', alignItems: 'center',}}>
+      <Box mt={2} sx={{display:'flex', justifyContent: 'space-between', alignItems: 'center'}}>
         <Typography variant="h6" className={classes.collectionItemTitle}>{title}</Typography>
-        <Typography variant="h6" className={classes.collectionItemMore}>...</Typography>
+        <MoreHorizIcon />
       </Box>
       <Typography className={classes.collectionSubtitle}>{subtitle}</Typography>
       <Box sx={{display:'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px'}}>

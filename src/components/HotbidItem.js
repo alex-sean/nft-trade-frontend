@@ -13,7 +13,7 @@ export default function HotbidItem(props) {
       <img src={src} className={classes.rounded}/>
       <Box sx={{display:'flex', justifyContent: 'space-between', alignItems: 'center',}}>
         <Typography variant="h6">{title}</Typography>
-        <Box sx={{display:'flex', justifyContent: 'space-between', alignItems: 'center', border: "solid 1px rgba(0, 0, 0, 0.1)", borderRadius: '8px', padding: '4px 8px 4px 8px'}}>
+        <Box sx={{display:'flex', justifyContent: 'space-between', alignItems: 'center', border: "solid 1px rgb(54, 58, 93)", borderRadius: '8px', padding: '4px 8px 4px 8px'}}>
           <Icon icon="logos:ethereum" rotate={2} hFlip={true} vFlip={true} sx={{margin: '2px'}}/>
           <Typography color="rgb(16, 185, 129)" className={classes.hotBidPrice}>{amount}</Typography>
         </Box>
