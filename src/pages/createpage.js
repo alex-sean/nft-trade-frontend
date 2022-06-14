@@ -7,19 +7,18 @@ import {
   Select,
   Switch,
   MenuItem,
-  InputLabel, InputAdornment, OutlinedInput, Divider
+  InputLabel, OutlinedInput, Divider
 } from '@mui/material';
 import useStyles from '../styles/styles';
 import { Container } from '@mui/system';
 import { FileUploader } from "react-drag-drop-files";
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
-import StarIcon from '@mui/icons-material/Star';
-import EqualizerIcon from '@mui/icons-material/Equalizer';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import WarningIcon from '@mui/icons-material/Warning';
-import AddIcon from '@mui/icons-material/Add';
 import CreateProgressDlg from '../components/Dialog/CreateProgressDlg';
+import CreateProperty from '../screens/CreateProperty'
+import CreateLabel from '../screens/CreateLabel'
+import CreateStar from '../screens/CreateStar'
 
 export default function CreatePage(){
   const [email, setEmail] = useState('');
@@ -110,38 +109,11 @@ export default function CreatePage(){
           <MenuItem value={30}>Cozy penguin</MenuItem>
         </Select>
 
-        <Box py={2} sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-          <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
-            <FormatListBulletedIcon />
-            <Box pl={1}>
-              <Typography variant="h6">Properties</Typography>
-              <Typography variant='body2'>Textual traits that show up as rectangles.</Typography>
-            </Box>
-          </Box>
-          <Button variant="outlined" sx={{color: "#8358ff", fontSize: '25px', borderRadius: '10px'}}>+</Button>
-        </Box>
+        <CreateProperty />
         <Divider />
-        <Box py={2} sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-          <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
-            <StarIcon />
-            <Box pl={1}>
-              <Typography variant="h6">Levels</Typography>
-              <Typography variant='body2'>Numerical traits that show as a progress bar.</Typography>
-            </Box>
-          </Box>
-          <Button variant="outlined" sx={{color: "#8358ff", fontSize: '25px', borderRadius: '10px'}}>+</Button>
-        </Box>
+        <CreateLabel />
         <Divider />
-        <Box py={2} sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-          <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
-            <EqualizerIcon />
-            <Box pl={1}>
-              <Typography variant="h6">Stars</Typography>
-              <Typography variant='body2'>Numerical traits that just show as numbers.</Typography>
-            </Box>
-          </Box>
-          <Button variant="outlined" sx={{color: "#8358ff", fontSize: '25px', borderRadius: '10px'}}>+</Button>
-        </Box>
+        <CreateStar />
         <Divider />
         <Box py={2} sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
           <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
