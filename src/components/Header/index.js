@@ -166,7 +166,7 @@ const Header = (props) => {
   const matches = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
-    <Box sx={{ marginBottom: '99px' }}>
+    <Box sx={{ marginBottom: '90px' }}>
       <ElevationScroll {...props}>
         <AppBar sx={{backgroundColor:'hsla(0,0%,100%,.5)', backdropFilter: 'blur(8px)'}}>
           <Toolbar className={classes.toolBar} sx={{padding: `${matches ? '1rem !important' : ''}`}}>

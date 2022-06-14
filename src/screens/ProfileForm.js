@@ -47,6 +47,7 @@ const ProfileForm = () => {
               id="username"
               fullWidth
               value={firstName}
+              className={classes.paperBackground}
               onChange={(e) => setFirstName(e.target.value)}/>
 
             <InputLabel htmlFor="bio" sx={{marginTop: '20px', fontWeight: '700'}}>
@@ -58,6 +59,7 @@ const ProfileForm = () => {
               placeholder="Tell the world your story!"
               spellCheck
               value={message}
+              className={classes.paperBackground}
               onChange={(e) => setMessage(e.target.value)}
               style={{width: '100%'}}
             />
@@ -68,6 +70,7 @@ const ProfileForm = () => {
               id="email"
               fullWidth
               value={email}
+              className={classes.paperBackground}
               onChange={(e) => setEmail(e.target.value)}/>
 
             <InputLabel htmlFor="link" sx={{marginTop: '20px', fontWeight: '700'}}>
@@ -75,6 +78,7 @@ const ProfileForm = () => {
             <OutlinedInput
               id="link"
               placeholder="@twittername"
+              className={classes.paperBackground}
               startAdornment={
                 <InputAdornment position="start">
                   <TwitterIcon />
@@ -82,6 +86,7 @@ const ProfileForm = () => {
               }/>
             <OutlinedInput
               placeholder="instagramname"
+              className={classes.paperBackground}
               startAdornment={
                 <InputAdornment position="start">
                   <InstagramIcon />
@@ -89,6 +94,7 @@ const ProfileForm = () => {
               }/>
             <OutlinedInput
               placeholder="yoursitename.com"
+              className={classes.paperBackground}
               startAdornment={
                 <InputAdornment position="start">
                   <LanguageIcon />
@@ -100,13 +106,14 @@ const ProfileForm = () => {
             <OutlinedInput placeholder="Enter wallet address"
               id="wallet"
               fullWidth
+              className={classes.paperBackground}
               value='0x7a9fe22691c811ea339401bbb2leb' />
 
             <Button
               variant="contained"
               type="submit"
               color="primary"
-              className={classes.primaryButton}
+              className={`${classes.primaryButton} ${classes.paperBackground}`}
               onClick={submitForm}
             >
               Update Profile
