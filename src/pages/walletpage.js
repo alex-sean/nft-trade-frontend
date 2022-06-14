@@ -18,29 +18,29 @@ export default function WalletPage(){
         <Container maxWidth='lg'>
           <Grid py={5} container spacing={8}>
             <Grid item xs={12} md={4}>
-              <Paper className={classes.hoverShadow} elevation={1} sx={{textAlign: 'center', borderRadius: '15px', position: 'relative', minHeight: '200px'}}
+              <Paper className={`${classes.hoverShadow} ${classes.paperBackground}`} elevation={1} sx={{textAlign: 'center', borderRadius: '15px', position: 'relative', minHeight: '200px'}}
                 onClick={() => handleConnect(WALLET_TYPE.METAMASK)}
               >
-                <Avatar src="images/wallets/metamask.svg" 
-                        sx={{width: '72px', height: 'auto', position: 'absolute', top: '-36px', right: 'calc(50% - 36px)', border: 'solid 1px lightgray', background: '#fff'}}></Avatar>
+                <Avatar src="images/wallets/metamask.svg" className={classes.paperBackground}
+                        sx={{width: '72px', height: 'auto', position: 'absolute', top: '-36px', right: 'calc(50% - 36px)', border: 'solid 1px lightgray'}}></Avatar>
                 <Typography pt={5} variant='h6'>Metamask</Typography>
-                <Typography p={2} variant='body1' paragraph>Start exploring blockchain applications in seconds. Trusted by over 1 million users worldwide.</Typography>
+                <Typography className={classes.para} p={2} variant='body1' paragraph>Start exploring blockchain applications in seconds. Trusted by over 1 million users worldwide.</Typography>
               </Paper>
             </Grid>
             <Grid item xs={12} md={4}>
-              <Paper className={classes.hoverShadow} elevation={1} sx={{textAlign: 'center', borderRadius: '15px', position: 'relative', minHeight: '200px'}}>
-                <Avatar src="images/wallets/coinbase.svg" 
-                        sx={{width: '72px', height: 'auto', position: 'absolute', top: '-36px', right: 'calc(50% - 36px)', border: 'solid 1px lightgray', background: '#fff'}}></Avatar>
+              <Paper className={`${classes.hoverShadow} ${classes.paperBackground}`} elevation={1} sx={{textAlign: 'center', borderRadius: '15px', position: 'relative', minHeight: '200px'}}>
+                <Avatar src="images/wallets/coinbase.svg" className={classes.paperBackground}
+                        sx={{width: '72px', height: 'auto', position: 'absolute', top: '-36px', right: 'calc(50% - 36px)', border: 'solid 1px lightgray'}}></Avatar>
                 <Typography pt={5} variant='h6'>Coinbase</Typography>
-                <Typography p={2} variant='body1' paragraph>The easiest and most secure crypto wallet. ... No Coinbase account required.</Typography>
+                <Typography className={classes.para} p={2} variant='body1' paragraph>The easiest and most secure crypto wallet. ... No Coinbase account required.</Typography>
               </Paper>
             </Grid>
             <Grid item xs={12} md={4}>
-              <Paper className={classes.hoverShadow} elevation={1} sx={{textAlign: 'center', borderRadius: '15px', position: 'relative', minHeight: '200px'}}>
-                <Avatar src="images/wallets/wallet_connect.svg" 
-                        sx={{width: '72px', height: 'auto', position: 'absolute', top: '-36px', right: 'calc(50% - 36px)', border: 'solid 1px lightgray', background: '#fff'}}></Avatar>
+              <Paper className={`${classes.hoverShadow} ${classes.paperBackground}`} elevation={1} sx={{textAlign: 'center', borderRadius: '15px', position: 'relative', minHeight: '200px'}}>
+                <Avatar src="images/wallets/wallet_connect.svg" className={classes.paperBackground}
+                        sx={{width: '72px', height: 'auto', position: 'absolute', top: '-36px', right: 'calc(50% - 36px)', border: 'solid 1px lightgray'}}></Avatar>
                 <Typography pt={5} variant='h6'>Wallet Connect</Typography>
-                <Typography p={2} variant='body1' paragraph>Open source protocol for connecting decentralised applications to mobile wallets.</Typography>
+                <Typography className={classes.para} p={2} variant='body1' paragraph>Open source protocol for connecting decentralised applications to mobile wallets.</Typography>
               </Paper>
             </Grid>
           </Grid>

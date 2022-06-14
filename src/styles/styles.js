@@ -25,8 +25,12 @@ const styles = (theme) => {
       }, 
     },
     commonBackgroundColor: {backgroundColor: `rgb(${isDark ? '16, 20, 54' : '245, 248, 250'})`, backgroundSize: 'cover'},
-    gradientBackground: {backgroundImage: `url(images/gradient${isDark ? '_dark' : ''}.jpg)`, backgroundSize: 'cover'},
+    gradientBackground: {background:`${isDark ? 'rgb(16, 20, 54)' : 'url(images/gradient_light.jpg)'}`, backgroundSize: 'cover'},
     paperBackground: {backgroundColor:`${isDark? 'rgb(19, 23, 64)' : '#fff'}`},
+    para: {
+      color: `${isDark ? 'rgb(161, 162, 179)' : 'rgb(90, 93, 121)'}`,
+      fontFamily: 'DM Sans,sans-serif'
+    },
 
     commonButton: {
       padding: '8px',

@@ -89,7 +89,7 @@ const ContactForm = () => {
               autoComplete="off"
             >
               <Typography variant='h6'>Contact Us</Typography>
-              <Typography variant='body1'>Have a question? Need help? Don't hesitate, drop us a line</Typography>
+              <Typography className={classes.para} variant='body1'>Have a question? Need help? Don't hesitate, drop us a line</Typography>
 
               <Grid container spacing={2}>
                 <Grid item xs={6}>
@@ -100,6 +100,7 @@ const ContactForm = () => {
                     error={!isInit && !firstName}
                     fullWidth
                     value={firstName}
+                    className={classes.paperBackground}
                     onChange={(e) => setFirstName(e.target.value)}/>
                 </Grid>
                 <Grid item xs={6}>
@@ -110,6 +111,7 @@ const ContactForm = () => {
                     error={!isInit && !validator.isEmail(email)}
                     fullWidth
                     value={email}
+                    className={classes.paperBackground}
                     onChange={(e) => setEmail(e.target.value)}/>
                 </Grid>
               </Grid>
@@ -121,6 +123,7 @@ const ContactForm = () => {
                   id="type"
                   value={type}
                   displayEmpty
+                  className={classes.paperBackground}
                   onChange={e => setType(e.target.value)}
                   inputProps={{ 'aria-label': 'Without label' }}
                 >
@@ -141,6 +144,7 @@ const ContactForm = () => {
                 minRows={6}
                 spellCheck
                 value={message}
+                className={classes.paperBackground}
                 onChange={(e) => setMessage(e.target.value)}
                 style={{width: '100%'}}
               />
@@ -179,8 +183,8 @@ const ContactForm = () => {
           <Grid item md>
             <Box pl={3}>
               <Typography variant='h6'>Information</Typography>
-              <Typography variant='body1'>Don't hesitaste, drop us a line Collaboratively administrate channels whereas virtual. Objectively seize scalable metrics whereas proactive e-services.</Typography>
-              <Paper elevation={1} sx={{p: 2, mt: 3,maxWidth: 740, borderRadius: '20px'}}>
+              <Typography className={classes.para} variant='body1'>Don't hesitaste, drop us a line Collaboratively administrate channels whereas virtual. Objectively seize scalable metrics whereas proactive e-services.</Typography>
+              <Paper className={classes.paperBackground} elevation={1} sx={{p: 2, mt: 3,maxWidth: 740, borderRadius: '20px'}}>
                 <Box className={`${classes.displayFlex}`}>
                   <Avatar>
                     <LocalPhoneTwoToneIcon /> 
