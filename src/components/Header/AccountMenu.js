@@ -74,7 +74,7 @@ export default function AccountMenu() {
           </Link>
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <Link href="/collection" underline="none" key="2" display='flex'>
+          <Link href="/profile" underline="none" key="2" display='flex'>
             <ListItemIcon>
               <SettingsIcon fontSize="small" />
             </ListItemIcon>
