@@ -4,7 +4,7 @@ import ProfileForm from '../screens/ProfileForm';
 export default function ProfilePage(){
   return (
     <>
-      <ProfileHero />
+      {/* <ProfileHero /> */}
       <ProfileForm />
     </>
   );

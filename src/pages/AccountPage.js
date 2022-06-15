@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import { Grid, Typography, Container, Box, Button, Select, MenuItem, Tabs, Tab } from '@mui/material';
 import useStyles from '../styles/styles';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
@@ -65,10 +66,12 @@ function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
 }
 
-export default function CollectionHero(){
+export default function AccountPage(){
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const [age, setAge] = React.useState('');
+
+  const { address } = useParams();
 
   const handleFilterChange = (event) => {
     setAge(event.target.value);
@@ -77,6 +80,7 @@ export default function CollectionHero(){
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  
   const items = [
     {
       id: 1,
