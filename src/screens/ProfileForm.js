@@ -18,6 +18,7 @@ import { useWalletContext } from '../hooks/useWalletContext';
 import { useLoadingContext } from '../hooks/useLoadingContext';
 import { getUserInfo, addUserInfo, updateUserInfo } from '../adapters/backend';
 import { toast } from 'react-toastify';
+import { validate } from 'email-validator';
 
 const ProfileForm = () => {
   const [email, setEmail] = useState('');
@@ -144,6 +145,31 @@ const ProfileForm = () => {
   }
 
   const handleProcessProfile = () => {
+    if (!name) {
+      toast('Please input the name!');
+      return;
+    }
+
+    if (!message) {
+      toast('Please input the message!');
+      return;
+    }
+
+    if (!email) {
+      toast('Please input the email address!');
+      return;
+    }
+
+    if (!validate(email)) {
+      toast('Please input correct email address!');
+      return;
+    }
+
+    if (!twitterAccount && instagramAccount && !ownUrl) {
+      toast('Please input a social account!');
+      return;
+    }
+
     if (registered) {
       handleUpdate();
     } else {
