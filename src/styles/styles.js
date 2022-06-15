@@ -356,7 +356,8 @@ const styles = (theme) => {
       marginTop: '0.5rem'
     },
     createItemDetail: {
-      fontSize:'0.8125rem'
+      fontSize:'0.8125rem',
+      color: `${isDark ? 'rgb(161 162 179)' : 'rgb(90 93 121)'}`,
     },
     fileUpload: {
       borderRadius: '0.5rem',
