@@ -19,7 +19,7 @@ import useStyles from '../styles/styles';
 import DraftsOutlinedIcon from '@mui/icons-material/DraftsOutlined';
 import LocalPhoneTwoToneIcon from '@mui/icons-material/LocalPhoneTwoTone';
 import RoomTwoToneIcon from '@mui/icons-material/RoomTwoTone';
-import validator from 'validator';
+import { validate } from 'email-validator';
 import Alert from '@mui/material/Alert';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
@@ -41,7 +41,6 @@ const ContactForm = () => {
 
   const submitForm = (e) => {
     setIsInit(false)
-    let isValidEmail = validator.isEmail(email)
 
     if (!checked){
       setErrMsg('Please check Term of service.')
@@ -58,7 +57,7 @@ const ContactForm = () => {
       e.preventDefault();
       return
     }
-    if (!isValidEmail){
+    if (!validate(email)){
       setErrMsg('Please enter valid e-mail.')
       e.preventDefault();
       return
@@ -108,7 +107,7 @@ const ContactForm = () => {
                     Email<span style={{color:'red'}}>*</span></InputLabel>
                   <OutlinedInput
                     id="email"
-                    error={!isInit && !validator.isEmail(email)}
+                    error={!isInit && !validate(email)}
                     fullWidth
                     value={email}
                     className={classes.paperBackground}
