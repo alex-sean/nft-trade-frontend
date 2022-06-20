@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -14,6 +14,13 @@ import { Divider, Grid } from '@mui/material';
 import { Avatar } from '@mui/material';
 import ProgressButton from '../components/Button/ProgressButton';
 import { PROGRESS_BTN_STATUS } from '../common/const';
+import { uploadToken, checkMintSyncStatus } from '../adapters/backend';
+import { useLoadingContext } from '../hooks/useLoadingContext';
+import { toast } from 'react-toastify';
+import { useWalletContext } from '../hooks/useWalletContext';
+import ERC721 from '../contracts/NFT.json';
+import { getGas } from '../common/Web3Utils';
+import { snooze } from '../common/CommonUtils';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -66,8 +73,164 @@ const items = [
     },
 ]
 
-export default function CreateProgressDlg({ open, handleOpenDialog }) {
+export default function CreateProgressDlg({
+    open,
+    handleOpenDialog,
+    token,
+    name,
+    externalLink,
+    supply,
+    properties,
+    levels,
+    stars,
+    collection,
+    description,
+    unlock,
+    isExplicit
+}) {
     const classes = useStyles();
+
+    const [uploadButtonStatus, setUploadButtonStatus] = useState(PROGRESS_BTN_STATUS.PROCESSING);
+    const [deployButtonStatus, setDeployButtonStatus] = useState(PROGRESS_BTN_STATUS.NOT_PROCESSED);
+    const [mintButtonStatus, setMintButtonStatus] = useState(PROGRESS_BTN_STATUS.NOT_PROCESSED);
+    const [tokenURL, setTokenURL] = useState('');
+    const [contractAddress, setContractAddress] = useState('');
+
+    const { setLoading } = useLoadingContext();
+    const { web3, account } = useWalletContext();
+
+    const handleUpload = async () => {
+        setLoading(true);
+
+        try {
+            let tokenInfo = await uploadToken(token);
+            if (!tokenInfo) {
+                throw new Error('Uploading token failed.');
+            }
+            setTokenURL(tokenInfo.tokenURL);
+            toast('Uploading token successed.');
+        } catch (err) {
+            console.log(err);
+            setLoading(false);
+            toast('Uploading token failed.');
+            return;
+        }
+
+        setLoading(false);
+
+        setUploadButtonStatus(PROGRESS_BTN_STATUS.PROCESSED);
+        setDeployButtonStatus(PROGRESS_BTN_STATUS.PROCESSING);
+    }
+
+    const composeMetaData = () => {
+        let tmpProperties = [];
+        properties.forEach((property) => {
+            if (!(property.name === '' && property.value === '')) {
+                tmpProperties.push(property);
+            }
+        })
+
+        let tmpLevels = [];
+        levels.forEach((level) => {
+            if (!(level.name === '' || level.totalValue === 0)) {
+                tmpLevels.push(level);
+            }
+        })
+
+        let tmpStars = [];
+        stars.forEach((star) => {
+            if (!(star.name === '' || star.totalValue === 0)) {
+                tmpStars.push(star);
+            }
+        })
+
+        let metadata = {
+            name: name,
+            symbol: name.toUpperCase(),
+            imgURL: tokenURL,
+            description: description,
+            category: collection,
+            properties: tmpProperties,
+            levels: tmpLevels,
+            stars: tmpStars,
+            unlock: unlock,
+            isExplicit: isExplicit
+        };
+
+        if (externalLink) {
+            metadata.externalLink = externalLink;
+        }
+
+        return metadata;
+    }
+
+    const handleDeploy = async () => {
+        setLoading(true);
+
+        const NFT = new web3.eth.Contract(ERC721.abi);
+
+        const metadata = composeMetaData();
+
+        let NFTTx = NFT.deploy({
+            data: '0x' + ERC721.bytecode,
+            arguments: [name, name.toUpperCase(), process.env.REACT_APP_CONTRACT_EXCHANGE, metadata],
+        });
+
+        const gas = await getGas(NFTTx, {from: account});
+        const gasPrice = await web3.eth.getGasPrice();
+
+        try {
+            const txHash = await NFTTx.send({
+                from: account,
+                gas: gas,
+                gasPrice: web3.utils.toWei(gasPrice + '', 'gwei')
+            });
+
+            setContractAddress(txHash);
+
+            toast('Deploying token successed.');
+        } catch (err) {
+            console.log(err);
+            toast('Deploying token failed.');
+            setLoading(false);
+            return;
+        }
+
+        setLoading(false);
+
+        setDeployButtonStatus(PROGRESS_BTN_STATUS.PROCESSED);
+        setMintButtonStatus(PROGRESS_BTN_STATUS.PROCESSING);
+    }
+
+    const handleMint = async () => {
+        setLoading(true);
+
+        const NFT = new web3.eth.Contract(ERC721.abi, contractAddress);
+
+        try {
+            await NFT.methods.mintAll(supply).send();
+
+            while (true) {
+                let result = await checkMintSyncStatus(contractAddress, supply);
+                if (!result) {
+                    throw new Error('Minting failed.');
+                }
+
+                if (result.status) {
+                    break;
+                }
+
+                await snooze(100);
+            }
+        } catch (err) {
+            console.log(err);
+            toast('Minting failed.');
+            setLoading(false);
+            return;
+        }
+
+        document.location.href="/account"
+    }
 
     return (
         <BootstrapDialog
@@ -103,7 +266,8 @@ export default function CreateProgressDlg({ open, handleOpenDialog }) {
                     </Grid>
                     <ProgressButton
                         text="Upload"
-                        status={PROGRESS_BTN_STATUS.PROCESSED}
+                        status={uploadButtonStatus}
+                        onClick={handleUpload}
                     />
                     <Divider/>
                 </div>
@@ -126,7 +290,8 @@ export default function CreateProgressDlg({ open, handleOpenDialog }) {
                     </Grid>
                     <ProgressButton
                         text="Upload"
-                        status={PROGRESS_BTN_STATUS.PROCESSING}
+                        status={deployButtonStatus}
+                        onClick={handleDeploy}
                     />
                     <Divider/>
                 </div>
@@ -149,7 +314,8 @@ export default function CreateProgressDlg({ open, handleOpenDialog }) {
                     </Grid>
                     <ProgressButton
                         text="Upload"
-                        status={PROGRESS_BTN_STATUS.NOT_PROCESSED}
+                        status={mintButtonStatus}
+                        onClick={handleMint}
                     />
                 </div>
             </DialogContent>

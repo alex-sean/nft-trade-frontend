@@ -5,7 +5,7 @@ import { PROGRESS_BTN_STATUS } from '../../common/const';
 
 function ProgressButton(props) {
   const classes = useStyles();
-  const { text, status } = props;
+  const { text, status, onClick } = props;
 
   const getClassName = (status) => {
     switch (status) {
@@ -22,6 +22,7 @@ function ProgressButton(props) {
     <Button 
       className={getClassName(status)}
       disabled={status === PROGRESS_BTN_STATUS.PROCESSING? false: true}
+      onClick={onClick}
     >
       {text}
     </Button>

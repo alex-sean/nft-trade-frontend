@@ -343,6 +343,7 @@ export default function CreatePage(){
         <CreateProgressDlg
           open={openProgressDlg}
           handleOpenDialog={setOpenProgressDlg}
+          token={file}
         />
       </Container>      
     </Box>
