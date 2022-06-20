@@ -243,16 +243,13 @@ const Header = (props) => {
                 <Typography className={classes.link}>Create</Typography>
               </Link>
               {
-                account === '' &&
-                <Link href="/wallet" underline="none" key="1">
-                  <IconButton className={classes.menuIcon}>
-                    <AccountBalanceWalletIcon />
-                  </IconButton>
-                </Link>
-              }
-              {
-                account !== '' &&
-                <AccountMenu />
+                account === '' ?
+                  <Link href="/wallet" underline="none" key="1">
+                    <IconButton className={classes.menuIcon}>
+                      <AccountBalanceWalletIcon />
+                    </IconButton>
+                  </Link>:
+                  <AccountMenu />
               }
               <IconButton className={classes.menuIcon} onClick={() => props.setTheme()}>
                 {theme.palette.mode === 'dark' ? <LightModeIcon /> : <BedtimeIcon />}

@@ -17,14 +17,18 @@ import LockOpenIcon from '@mui/icons-material/LockOpen';
 import WarningIcon from '@mui/icons-material/Warning';
 import CreateProgressDlg from '../components/Dialog/CreateProgressDlg';
 import CreateProperty from '../screens/CreateProperty'
-import CreateLabel from '../screens/CreateLabel'
-import CreateStar from '../screens/CreateStar'
+import CreateLevel from '../screens/CreateLevel'
+import CreateStar from '../screens/CreateStar';
+import { CATEGORIES, CATEGORY_NAMES } from '../common/const';
 
 export default function CreatePage(){
   const [email, setEmail] = useState('');
   const [firstName, setFirstName] = useState('');
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
+  const [properties, setProperties] = useState([]);
+  const [levels, setLevels] = useState([]);
+  const [stars, setStars] = useState([]);
   const classes = useStyles();
 
   const [file, setFile] = useState(null);
@@ -38,6 +42,90 @@ export default function CreatePage(){
     e.preventDefault();
     console.log({ email, firstName, subject, message });
   };
+
+  const handleAddProperty = () => {
+    let tmpProperties = [...properties];
+    tmpProperties.push({name: '', value: ''});
+    setProperties(tmpProperties);
+  }
+
+  const handleRemoveProperty = (index) => {
+    let tmpProperties = [...properties];
+    tmpProperties.splice(index, 1);
+    setProperties(tmpProperties);
+  }
+
+  const handleEditPropertyName = (index, value) => {
+    let tmpProperties = [...properties];
+    tmpProperties[index].name = value;
+    setProperties(tmpProperties);
+  }
+
+  const handleEditPropertyValue = (index, value) => {
+    let tmpProperties = [...properties];
+    tmpProperties[index].value = value;
+    setProperties(tmpProperties);
+  }
+
+  const handleAddLevel = () => {
+    let tmpLevels = [...levels];
+    tmpLevels.push({name: '', value: 0, total: 0});
+    setLevels(tmpLevels);
+  }
+
+  const handleRemoveLevel = (index) => {
+    let tmpLevels = [...levels];
+    tmpLevels.splice(index, 1);
+    setLevels(tmpLevels);
+  }
+
+  const handleEditLevelName = (index, value) => {
+    let tmpLevels = [...levels];
+    tmpLevels[index].name = value;
+    setLevels(tmpLevels);
+  }
+
+  const handleEditLevelValue = (index, value) => {
+    let tmpLevels = [...levels];
+    tmpLevels[index].value = value;
+    setLevels(tmpLevels);
+  }
+
+  const handleEditLevelTotalValue = (index, value) => {
+    let tmpLevels = [...levels];
+    tmpLevels[index].total = value;
+    setLevels(tmpLevels);
+  }
+
+  const handleAddStar = () => {
+    let tmpStars = [...stars];
+    tmpStars.push({name: '', value: 0, total: 0});
+    setStars(tmpStars);
+  }
+
+  const handleRemoveStar = (index) => {
+    let tmpStars = [...stars];
+    tmpStars.splice(index, 1);
+    setStars(tmpStars);
+  }
+
+  const handleEditStarName = (index, value) => {
+    let tmpStars = [...stars];
+    tmpStars[index].name = value;
+    setStars(tmpStars);
+  }
+
+  const handleEditStarValue = (index, value) => {
+    let tmpStars = [...stars];
+    tmpStars[index].value = value;
+    setStars(tmpStars);
+  }
+
+  const handleEditStarTotalValue = (index, value) => {
+    let tmpStars = [...stars];
+    tmpStars[index].total = value;
+    setStars(tmpStars);
+  }
 
   return (
     <Box py={10} paddingTop='4rem'>
@@ -100,23 +188,43 @@ export default function CreatePage(){
           <InfoOutlinedIcon sx={{color: 'gray'}}/>
         </Box>
         <Select
-            fullWidth
-            id="collection"
-            inputProps={{ 'aria-label': 'Without label' }}
-            className={classes.paperBackground}
-          >
-          <MenuItem value="">
-            <em>Cryptokities</em>
-          </MenuItem>
-          <MenuItem value={20}>KaijuKings</MenuItem>
-          <MenuItem value={30}>Cozy penguin</MenuItem>
+          fullWidth
+          id="collection"
+          inputProps={{ 'aria-label': 'Without label' }}
+          className={classes.paperBackground}
+        >
+          {
+            Object.keys(CATEGORIES).map((key, index) => {
+              return <MenuItem value={CATEGORIES[key]} key={index}>{CATEGORY_NAMES[key]}</MenuItem>
+            })
+          }
         </Select>
 
-        <CreateProperty />
+        <CreateProperty
+          properties={properties}
+          handleAddProperty={handleAddProperty}
+          handleRemoveProperty={handleRemoveProperty}
+          handleEditPropertyName={handleEditPropertyName}
+          handleEditPropertyValue={handleEditPropertyValue}
+        />
         <Divider />
-        <CreateLabel />
+        <CreateLevel
+          levels={levels}
+          handleAddLevel={handleAddLevel}
+          handleRemoveLevel={handleRemoveLevel}
+          handleEditLevelName={handleEditLevelName}
+          handleEditLevelValue={handleEditLevelValue}
+          handleEditLevelTotalValue={handleEditLevelTotalValue}
+        />
         <Divider />
-        <CreateStar />
+        <CreateStar
+          stars={stars}
+          handleAddStar={handleAddStar}
+          handleRemoveStar={handleRemoveStar}
+          handleEditStarName={handleEditStarName}
+          handleEditStarValue={handleEditStarValue}
+          handleEditStarTotalValue={handleEditStarTotalValue}
+        />
         <Divider />
         <Box py={2} sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
           <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
@@ -156,7 +264,7 @@ export default function CreatePage(){
           className={classes.paperBackground}
           fullWidth />
 
-        <InputLabel htmlFor="blockchain" sx={{marginTop: '20px', fontWeight: '700'}}>
+        {/* <InputLabel htmlFor="blockchain" sx={{marginTop: '20px', fontWeight: '700'}}>
           Blockchain</InputLabel>
         <Select
             fullWidth
@@ -182,7 +290,7 @@ export default function CreatePage(){
           fullWidth
           className={classes.paperBackground}
           disabled
-           />
+           /> */}
 
         <Button
           variant="contained"

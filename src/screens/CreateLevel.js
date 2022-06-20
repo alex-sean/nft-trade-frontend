@@ -16,7 +16,15 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 	return <Slide direction="down" ref={ref} {...props} />;
 });
 
-export default function CreateLabel(){
+export default function CreateLevel({
+	levels,
+	setLevels,
+	handleAddLevel,
+	handleRemoveLevel,
+	handleEditLevelName,
+	handleEditLevelValue,
+	handleEditLevelTotalValue
+}){
 	const [open, setOpen] = React.useState(false);
 	const classes = useStyles();
 	const theme = useTheme()
@@ -28,6 +36,7 @@ export default function CreateLabel(){
 
 	const handleClose = () => {
 		setOpen(false);
+		setLevels([]);
 	};
 
 	return (
@@ -68,17 +77,23 @@ export default function CreateLabel(){
 								</TableRow>
 							</TableHead>
 							<TableBody>
-								<TableRow>
-									<TableCell sx={{background: `${isDark?'transparent':'lightgray'}`, textAlign:'center'}}><CloseIcon /></TableCell>
-									<TableCell><Input disableUnderline placeholder='Character' /></TableCell>
-									<TableCell sx={{display: 'flex'}}><Input type='number' disableUnderline placeholder='3' /></TableCell>
-									<TableCell sx={{background:`${isDark?'transparent':'lightgray'}`, textAlign:'center'}}>Of</TableCell>
-									<TableCell><Input type='number' disableUnderline placeholder='10' /></TableCell>
-								</TableRow>
+								{
+									levels.map((level, index) => {
+										return (
+											<TableRow key={index}>
+												<TableCell sx={{background: `${isDark?'transparent':'lightgray'}`, textAlign:'center'}} onClick={() => handleRemoveLevel(index)}><CloseIcon /></TableCell>
+												<TableCell><Input disableUnderline placeholder='Character' onChange={(e) => handleEditLevelName(index, e.target.value)} value={level.name}/></TableCell>
+												<TableCell sx={{display: 'flex'}}><Input type='number' disableUnderline placeholder='3' onChange={(e) => handleEditLevelValue(index, e.target.value)} value={level.value}/></TableCell>
+												<TableCell sx={{background:`${isDark?'transparent':'lightgray'}`, textAlign:'center'}}>Of</TableCell>
+												<TableCell><Input type='number' disableUnderline placeholder='10' onChange={(e) => handleEditLevelTotalValue(index, e.target.value)} value={level.total}/></TableCell>
+											</TableRow>
+										)
+									})
+								}
 							</TableBody>
 						</Table>
 					</TableContainer>
-					<Button sx={{margin:'24px 0', border: 'solid 2px #8358ff', borderRadius: '20px', padding: '8px 32px'}}>Add More</Button>
+					<Button sx={{margin:'24px 0', border: 'solid 2px #8358ff', borderRadius: '20px', padding: '8px 32px'}} onClick={handleAddLevel}>Add More</Button>
 				</DialogContent>
 				<DialogActions sx={{display:'flex', justifyContent: 'center'}} className={classes.paperBackground}>
 					<PrimaryButton text='SAVE' />
