@@ -9,26 +9,32 @@ import {
   MenuItem,
   InputLabel, OutlinedInput, Divider
 } from '@mui/material';
+import { toast } from 'react-toastify';
 import useStyles from '../styles/styles';
 import { Container } from '@mui/system';
 import { FileUploader } from "react-drag-drop-files";
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import WarningIcon from '@mui/icons-material/Warning';
-import CreateProgressDlg from '../components/Dialog/CreateProgressDlg';
+import CreateProgressDlg from '../screens/CreateProgressDlg';
 import CreateProperty from '../screens/CreateProperty'
 import CreateLevel from '../screens/CreateLevel'
 import CreateStar from '../screens/CreateStar';
 import { CATEGORIES, CATEGORY_NAMES } from '../common/const';
 
 export default function CreatePage(){
-  const [email, setEmail] = useState('');
-  const [firstName, setFirstName] = useState('');
+  const [name, setName] = useState('');
+  const [externalLink, setExternalLink] = useState('');
+  const [collection, setCollection] = useState(CATEGORIES.ART);
   const [subject, setSubject] = useState('');
-  const [message, setMessage] = useState('');
   const [properties, setProperties] = useState([]);
   const [levels, setLevels] = useState([]);
   const [stars, setStars] = useState([]);
+  const [supply, setSupply] = useState(1);
+  const [unlock, setUnlock] = useState(false);
+  const [isExplicit, setIsExplicit] = useState(false);
+  const [openProgressDlg, setOpenProgressDlg] = useState(false);
+
   const classes = useStyles();
 
   const [file, setFile] = useState(null);
@@ -37,11 +43,6 @@ export default function CreatePage(){
   };
   
   const fileTypes = ["JPEG", "JPG", "PNG", "GIF"];
-
-  const submitForm = (e) => {
-    e.preventDefault();
-    console.log({ email, firstName, subject, message });
-  };
 
   const handleAddProperty = () => {
     let tmpProperties = [...properties];
@@ -127,6 +128,38 @@ export default function CreatePage(){
     setStars(tmpStars);
   }
 
+  const handleCreate = () => {
+    if (!isValid()) {
+      return;
+    }
+
+    setOpenProgressDlg(true);
+  }
+
+  const isValid = () => {
+    if (!file) {
+      toast('Please select the file.');
+      return false;
+    }
+
+    if (!name) {
+      toast('Please input the name.');
+      return false;
+    }
+
+    if (!subject) {
+      toast('Please input the description.');
+      return false;
+    }
+
+    if (supply <= 0) {
+      toast('Please input the supply.');
+      return false;
+    }
+
+    return true;
+  }
+
   return (
     <Box py={10} paddingTop='4rem'>
       <Container maxWidth="md">
@@ -145,28 +178,28 @@ export default function CreatePage(){
         <InputLabel htmlFor="username" className={classes.createItemTitle}>
           Name<span style={{color:'red'}}>*</span></InputLabel>
         <OutlinedInput placeholder="Item name"
-          id="username"
+          id="name"
           fullWidth
-          value={firstName}
+          value={name}
           className={classes.paperBackground}
-          onChange={(e) => setFirstName(e.target.value)}
+          onChange={(e) => setName(e.target.value)}
           sx={{borderColor: '#E7E8EC', borderRadius: '0.5rem', padding: '0.5rem, 0.75rem, 0.5rem, 0.75rem'}}
         />
 
         <InputLabel htmlFor="link" className={classes.createItemTitle}>
-          External Link<span style={{color:'red'}}>*</span></InputLabel>
+          External Link</InputLabel>
         <Typography paragraph variant="body2" className={classes.createItemDetail}>We will include a link to this URL on this item's detail page, so that users can click to learn more about it. You are welcome to link to your own webpage with more details.</Typography>
         <OutlinedInput placeholder="https://yoursite.io/item/24"
           id="link"
           fullWidth
-          value={firstName}
+          value={externalLink}
           className={classes.paperBackground}
-          onChange={(e) => setFirstName(e.target.value)}
+          onChange={(e) => setExternalLink(e.target.value)}
           sx={{borderColor: '#E7E8EC', borderRadius: '0.5rem', padding: '0.5rem, 0.75rem, 0.5rem, 0.75rem'}}
         />
         
         <InputLabel htmlFor="desc" className={classes.createItemTitle}>
-          Description</InputLabel>
+          Description<span style={{color:'red'}}>*</span></InputLabel>
         <Typography paragraph variant="body2" className={classes.createItemDetail}>We will include a link to this URL on this item's detail page, so that users can click to learn more about it. You are welcome to link to your own webpage with more details.</Typography>
         <TextareaAutosize
           id="desc"
@@ -175,8 +208,8 @@ export default function CreatePage(){
           placeholder="Provided a detailed description of your item"
           spellCheck
           fullWidth
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
+          value={subject}
+          onChange={(e) => setSubject(e.target.value)}
           style={{width: '100%', borderColor: 'darkgray'}}
           className={`${classes.inputBorder} ${classes.paperBackground}`}
         />
@@ -192,6 +225,8 @@ export default function CreatePage(){
           id="collection"
           inputProps={{ 'aria-label': 'Without label' }}
           className={classes.paperBackground}
+          onChange={(e) => setCollection(e.target.value)}
+          defaultValue={CATEGORIES.ART}
         >
           {
             Object.keys(CATEGORIES).map((key, index) => {
@@ -234,7 +269,7 @@ export default function CreatePage(){
               <Typography variant='body2'>Include unlockable content that can only be revealed by the owner of the item.</Typography>
             </Box>
           </Box>
-          <Switch />
+          <Switch onChange={(e) => setUnlock(e.target.value)}/>
         </Box>
         <Divider />
         <Box py={2} sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
@@ -248,7 +283,7 @@ export default function CreatePage(){
               </Box>
             </Box>
           </Box>
-          <Switch />
+          <Switch onChange={(e) => setIsExplicit(e.target.value)}/>
         </Box>
         <Divider />
 
@@ -261,8 +296,11 @@ export default function CreatePage(){
         <OutlinedInput
           placeholder="1" 
           id="supply"
+          value={supply}
           className={classes.paperBackground}
-          fullWidth />
+          fullWidth 
+          onChange={(e) => setSupply(parseInt(e.target.value))}
+        />
 
         {/* <InputLabel htmlFor="blockchain" sx={{marginTop: '20px', fontWeight: '700'}}>
           Blockchain</InputLabel>
@@ -297,13 +335,14 @@ export default function CreatePage(){
           type="submit"
           color="primary"
           className={classes.primaryButton}
-          onClick={submitForm}
+          onClick={handleCreate}
         >
           Create
         </Button>
 
         <CreateProgressDlg
-          open={false}
+          open={openProgressDlg}
+          handleOpenDialog={setOpenProgressDlg}
         />
       </Container>      
     </Box>

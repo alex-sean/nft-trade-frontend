@@ -8,12 +8,12 @@ import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
-import PrimaryButton from '../Button/PrimaryButton';
-import useStyles from '../../styles/styles';
+import PrimaryButton from '../components/Button/PrimaryButton';
+import useStyles from '../styles/styles';
 import { Divider, Grid } from '@mui/material';
 import { Avatar } from '@mui/material';
-import ProgressButton from '../Button/ProgressButton';
-import { PROGRESS_BTN_STATUS } from '../../common/const';
+import ProgressButton from '../components/Button/ProgressButton';
+import { PROGRESS_BTN_STATUS } from '../common/const';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -37,7 +37,7 @@ const BootstrapDialogTitle = (props) => {
             onClick={onClose}
             className={classes.modalCloseButton}
             >
-            <CloseIcon />
+            <CloseIcon onClick={onClose}/>
         </IconButton>
         </DialogTitle>
     );
@@ -66,18 +66,18 @@ const items = [
     },
 ]
 
-export default function CreateProgressDlg({ open, handleClose }) {
+export default function CreateProgressDlg({ open, handleOpenDialog }) {
     const classes = useStyles();
 
     return (
         <BootstrapDialog
-            onClose={handleClose}
+            onClose={() => handleOpenDialog(false)}
             aria-labelledby="customized-dialog-title"
             open={open}
         >
             <BootstrapDialogTitle 
                 id="customized-dialog-title" 
-                onClose={handleClose} 
+                onClose={() => handleOpenDialog(false)} 
                 sx={{display: 'flex'}}
             >
                 <Typography variant='h5' sx={{marginTop: '5px'}}>
