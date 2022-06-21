@@ -21,6 +21,7 @@ import CreateProperty from '../screens/CreateProperty'
 import CreateLevel from '../screens/CreateLevel'
 import CreateStar from '../screens/CreateStar';
 import { CATEGORIES, CATEGORY_NAMES } from '../common/const';
+import { useWalletContext } from '../hooks/useWalletContext'
 
 export default function CreatePage(){
   const [name, setName] = useState('');
@@ -34,6 +35,8 @@ export default function CreatePage(){
   const [unlock, setUnlock] = useState(false);
   const [isExplicit, setIsExplicit] = useState(false);
   const [openProgressDlg, setOpenProgressDlg] = useState(false);
+
+  const { account } = useWalletContext();
 
   const classes = useStyles();
 
@@ -130,6 +133,11 @@ export default function CreatePage(){
 
   const handleCreate = () => {
     if (!isValid()) {
+      return;
+    }
+
+    if (!account) {
+      toast('Please connect the wallet.');
       return;
     }
 
@@ -344,6 +352,16 @@ export default function CreatePage(){
           open={openProgressDlg}
           handleOpenDialog={setOpenProgressDlg}
           token={file}
+          name={name}
+          externalLink={externalLink}
+          supply={supply}
+          properties={properties}
+          levels={levels}
+          stars={stars}
+          collection={collection}
+          description={subject}
+          unlock={unlock}
+          isExplicit={isExplicit}
         />
       </Container>      
     </Box>

@@ -113,5 +113,5 @@ export const checkMintSyncStatus = async (collection, supply) => {
     params.append('collection', collection);
     params.append('supply', supply);
 
-    return await post('/sync/mint', params);
+    return await get(`/sync/mint?collection=${collection}&supply=${supply}`);
 }
