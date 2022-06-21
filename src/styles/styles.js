@@ -34,6 +34,12 @@ const styles = (theme) => {
     whiteText: {
       color: `${!isDark ? '#fff' : 'rgb(19, 23, 64)'}`,
     },
+    darkText: {
+      color: `${isDark ? '#fff' : 'rgb(19, 23, 64)'}`,
+    },
+    borderColor: {
+      border: `solid 1px ${isDark ? 'rgb(54 58 93)' : 'rgb(231 232 236)'}`,
+    },
 
     commonButton: {
       padding: '8px',

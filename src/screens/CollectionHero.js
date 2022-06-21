@@ -26,14 +26,14 @@ export default function CollectionHero(){
 
         <Box className={`${classes.displayFlex} ${classes.justifyCenter}`}>
           <Stack mt={2} p={2} divider={<Divider orientation="vertical" flexItem />} direction={{ xs: 'column', sm: 'row' }} spacing={{xs: 1, sm: 2, md: 4 }}
-                  sx={{background: '#fff', borderRadius: '15px'}}>
+              className={classes.borderColor}  sx={{ borderRadius: '15px'}}>
             <Stack divider={<Divider orientation="vertical" flexItem />} direction='row' spacing={{ xs: 1, sm: 2, md: 4 }}>
               <Box sx={{width: '95px'}}>
-                <Typography className={classes.whiteText} variant="h6">7.2K</Typography>
+                <Typography className={classes.darkText} variant="h6">7.2K</Typography>
                 <Typography variant="body2">Items</Typography>
               </Box>
               <Box sx={{width: '95px'}}>
-                <Typography className={classes.whiteText} variant="h6">5.3K</Typography>
+                <Typography className={classes.darkText} variant="h6">5.3K</Typography>
                 <Typography variant="body2">Owners</Typography>
               </Box>
             </Stack>
@@ -41,14 +41,14 @@ export default function CollectionHero(){
               <Box sx={{width: '95px'}}>
                 <Box className={`${classes.displayFlex} ${classes.justifyCenter}`}>
                   <Icon icon="logos:ethereum" rotate={2} hFlip={true} vFlip={true} />
-                  <Typography className={classes.whiteText} ml={1} variant="h6">2.55</Typography>
+                  <Typography className={classes.darkText} ml={1} variant="h6">2.55</Typography>
                 </Box>
                 <Typography variant="body2">Floor Price</Typography>
               </Box>
               <Box sx={{width: '95px'}}>
                 <Box className={`${classes.displayFlex} ${classes.justifyCenter}`}>
                   <Icon icon="logos:ethereum" rotate={2} hFlip={true} vFlip={true} />
-                  <Typography className={classes.whiteText} ml={1} variant="h6">17.2</Typography>
+                  <Typography className={classes.darkText} ml={1} variant="h6">17.2</Typography>
                 </Box>
                 <Typography variant="body2">Volume Traded</Typography>
               </Box>
