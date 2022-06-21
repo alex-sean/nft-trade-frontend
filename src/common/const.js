@@ -14,3 +14,21 @@ export const PROGRESS_BTN_STATUS = {
     PROCESSING: 1,
     NOT_PROCESSED: 2
 }
+
+export const CATEGORIES = {
+    ART: 1,
+    COLLECTIBLE: 2,
+    DOMAIN: 3,
+    MUSIC: 4,
+    PHOTOGRAPHY: 5,
+    VIRTUAL_WORLD: 6
+}
+
+export const CATEGORY_NAMES = {
+    ART: 'Art',
+    COLLECTIBLE: 'Collectible',
+    DOMAIN: 'Domain',
+    MUSIC: 'Music',
+    PHOTOGRAPHY: 'Photography',
+    VIRTUAL_WORLD: 'Virtual World'
+}

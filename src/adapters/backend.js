@@ -100,3 +100,18 @@ export const uploadBackground = async (
 
     return await post('/user/upload/background', params);
 }
+
+export const uploadToken = async (token) => {
+    let params = new FormData();
+    params.append('token', token, token.name);
+
+    return await post('/token/upload', params);
+}
+
+export const checkMintSyncStatus = async (collection, supply) => {
+    let params = new FormData();
+    params.append('collection', collection);
+    params.append('supply', supply);
+
+    return await post('/sync/mint', params);
+}

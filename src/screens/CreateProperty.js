@@ -16,7 +16,14 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 	return <Slide direction="down" ref={ref} {...props} />;
 });
 
-export default function CreatePage(){
+export default function CreateProperty({
+	properties,
+	setProperties,
+	handleAddProperty,
+	handleRemoveProperty,
+	handleEditPropertyName,
+	handleEditPropertyValue
+}) {
 	const [open, setOpen] = React.useState(false);
 	const classes = useStyles();
 	const theme = useTheme()
@@ -28,6 +35,7 @@ export default function CreatePage(){
 
 	const handleClose = () => {
 		setOpen(false);
+		setProperties([]);
 	};
 
 	return (
@@ -66,18 +74,24 @@ export default function CreatePage(){
 								</TableRow>
 							</TableHead>
 							<TableBody>
-								<TableRow>
-									<TableCell  sx={{background:`${isDark?'transparent':'lightgray'}`, textAlign:'center', height:'10px'}}><CloseIcon /></TableCell>
-									<TableCell><Input disableUnderline placeholder='Character' /></TableCell>
-									<TableCell><Input disableUnderline placeholder='Male' /></TableCell>
-								</TableRow>
+								{
+									properties.map((property, index) => {
+										return (
+											<TableRow key={index}>
+												<TableCell  sx={{background:`${isDark?'transparent':'lightgray'}`, textAlign:'center', height:'10px'}} onClick={() => handleRemoveProperty(index)}><CloseIcon /></TableCell>
+												<TableCell><Input disableUnderline placeholder='Character' onChange={(e) => handleEditPropertyName(index, e.target.value)} value={property.name}/></TableCell>
+												<TableCell><Input disableUnderline placeholder='Male' onChange={(e) => handleEditPropertyValue(index, e.target.value)} value={property.value}/></TableCell>
+											</TableRow>
+										)
+									})
+								}
 							</TableBody>
 						</Table>
 					</TableContainer>
-					<Button sx={{margin:'24px 0', border: 'solid 2px #8358ff', borderRadius: '20px', padding: '8px 32px'}}>Add More</Button>
+					<Button sx={{margin:'24px 0', border: 'solid 2px #8358ff', borderRadius: '20px', padding: '8px 32px'}} onClick={handleAddProperty}>Add More</Button>
 				</DialogContent>
 				<DialogActions sx={{display:'flex', justifyContent: 'center'}} className={classes.paperBackground}>
-					<PrimaryButton text='SAVE' />
+					<PrimaryButton text='SAVE' onClick={() => setOpen(false)}/>
 				</DialogActions>
 			</Dialog>
 		</Box>
