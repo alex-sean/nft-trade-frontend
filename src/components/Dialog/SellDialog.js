@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import {
   Box,
   Typography,
-  Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle,
+  Dialog, DialogActions, DialogContent, DialogTitle,
   Slide,
-  useTheme, Stack, Divider, Input, Grid, Select, MenuItem, FormControlLabel, Checkbox,
+  useTheme, Divider, Input, Grid, Select, MenuItem, FormControlLabel, Checkbox,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import PrimaryButton from '../Button/PrimaryButton';
