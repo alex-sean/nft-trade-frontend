@@ -57,7 +57,7 @@ export default function SellDialog(props){
 							</Box>
 							<Box display="flex" justifyContent='space-between' alignItems='center'>
 								<Typography p={1} variant="h6">SellType:</Typography>
-								<Select value={type} onChange={e => {setType(e.target.value)}}>
+								<Select sx={{paddingRight: '16px'}} value={type} onChange={e => {setType(e.target.value)}}>
               						<MenuItem value="0">Auction</MenuItem>
               						<MenuItem value="1">FixedPrice</MenuItem>
 								</Select>
