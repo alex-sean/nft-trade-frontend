@@ -174,7 +174,7 @@ const Header = (props) => {
               <Link href="/" underline="none" mr={8}>
                 <Box component="img" className={classes.logo}
                   alt="Market Place"
-                  src={`images/logo${theme.palette.mode === 'dark' ? '_white' : ''}.png`}
+                  src={`../images/logo${theme.palette.mode === 'dark' ? '_white' : ''}.png`}
                 />
               </Link>
               {!matches ? (<Search>

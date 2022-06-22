@@ -111,3 +111,19 @@ export const uploadToken = async (token) => {
 export const checkMintSyncStatus = async (collection, supply) => {
     return await get(`/sync/mint?collection=${collection}&supply=${supply}`);
 }
+
+export const getOwnedTokens = async (owner) => {
+    return await get(`/token/owned?owner=${owner}`);
+}
+
+export const getCreatedTokens = async (deployer) => {
+    return await get(`/token/created?deployer=${deployer}`);
+}
+
+export const getSaleTokens = async (owner) => {
+    return await get(`/token/sale?owner=${owner}`);
+}
+
+export const getOwnedCollections = async (owner) => {
+    return await get(`/token/owned_collection?owner=${owner}`);
+}

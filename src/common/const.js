@@ -32,3 +32,5 @@ export const CATEGORY_NAMES = {
     PHOTOGRAPHY: 'Photography',
     VIRTUAL_WORLD: 'Virtual World'
 }
+
+export const STR_MONTH = ['NONE', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'Septempber', 'October', 'November', 'December'];

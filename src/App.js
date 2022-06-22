@@ -103,7 +103,7 @@ function App() {
               <Route exact path='/create'>
                 <CreatePage />
               </Route>
-              <Route exact path='/account'>
+              <Route exact path='/account/:address'>
                 <AccountPage />
               </Route>
             </Switch>

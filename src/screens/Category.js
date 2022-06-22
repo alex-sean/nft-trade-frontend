@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Typography, Box, Container } from '@mui/material';
 import useStyles from '../styles/styles';
-import CategoryItem from '../components/CategoryItem'
+import CardItem from '../components/CardItem'
 import HomeFilter from './HomeFilter';
 
 const Category = () => {
@@ -83,7 +83,7 @@ const Category = () => {
               key={item.id}
               sx={{padding: '5px'}}
             >
-              <CategoryItem {...item} />
+              <CardItem {...item} />
             </Grid>
           ))}
         </Grid>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Grid, Typography, Container, Box, Button, Select, MenuItem, Tabs, Tab } from '@mui/material';
 import useStyles from '../styles/styles';
@@ -8,7 +8,7 @@ import CollectionPopup2 from '../components/CollectionPopup2';
 import PaletteIcon from '@mui/icons-material/Palette';
 import LinkedCameraIcon from '@mui/icons-material/LinkedCamera';
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
-import CategoryItem from '../components/CategoryItem';
+import CardItem from '../components/CardItem';
 import ActivityItemList from '../components/ActivityItemList'
 import Search from '../components/Header/Search';
 import SearchIconWrapper from '../components/Header/Search/SearchIconWrapper';
@@ -28,6 +28,11 @@ import CollectionsCard from '../components/CollectionsCard';
 import Checkbox from '@mui/material/Checkbox';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
+import { useWalletContext } from '../hooks/useWalletContext';
+import { getUserInfo, getOwnedTokens, getCreatedTokens, getSaleTokens, getOwnedCollections } from '../adapters/backend';
+import { useLoadingContext } from '../hooks/useLoadingContext';
+import { toast } from 'react-toastify';
+import { STR_MONTH } from '../common/const';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -66,12 +71,30 @@ function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
 }
 
+const defaultUserInfo = {
+  name: '...',
+  avatar: 'user_avatar.gif',
+  description: '...',
+  background: 'banner.jpg',
+  status: false,
+  address: '0x0000000000000000000000000000000000000000',
+  createdAt: new Date().toISOString()
+}
+
 export default function AccountPage(){
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
-  const [age, setAge] = React.useState('');
+  const [value, setValue] = useState(0);
+  const [age, setAge] = useState('');
+  const [userInfo, setUserInfo] = useState(defaultUserInfo);
+  const [ownedTokens, setOwnedTokens] = useState([]);
+  const [createdTokens, setCreatedTokens] = useState([]);
+  const [saleTokens, setSaleTokens] = useState([]);
+  const [ownedCollections, setOwnedCollections] = useState([]);
 
   const { address } = useParams();
+
+  const { account } = useWalletContext();
+  const { setLoading } = useLoadingContext();
 
   const handleFilterChange = (event) => {
     setAge(event.target.value);
@@ -80,6 +103,55 @@ export default function AccountPage(){
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  const handleInit = async () => {
+    setLoading(true);
+
+    try {
+      let userInfo = await getUserInfo(address);
+      if (!userInfo) {
+        throw new Error('Getting User information failed.');
+      }
+
+      if (userInfo.data) {
+        setUserInfo(userInfo.data);
+      }
+
+      let ownedTokens = await getOwnedTokens(address);
+      if (!ownedTokens) {
+        throw new Error('Getting owned tokens failed.');
+      }
+      setOwnedTokens(ownedTokens.data.tokens);
+
+      let createdTokens = await getCreatedTokens(address);
+      if (!createdTokens) {
+        throw new Error('Getting created tokens failed.');
+      }
+      setCreatedTokens(createdTokens.data.tokens);
+
+      let saleTokens = await getSaleTokens(address);
+      if (!saleTokens) {
+        throw new Error('Getting sale tokens failed.');
+      }
+      setSaleTokens(saleTokens.data.tokens);
+
+      let ownedCollections = await getOwnedCollections(address);
+      if (!ownedCollections) {
+        throw new Error('Getting owned collection failed.');
+      }
+
+      setOwnedCollections(ownedCollections.data.tokens);
+    } catch (err) {
+      console.log(err);
+      toast('Getting user information failed.');
+    }
+
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    handleInit(address);
+  }, [])
   
   const items = [
     {
@@ -185,23 +257,26 @@ export default function AccountPage(){
 
   return (
     <>
-      <Box sx={{height:'300px', backgroundImage:'url(images/user/banner.jpg)'}}></Box>
+      <Box sx={{height:'300px', backgroundImage:`url(${process.env.REACT_APP_BACKGROUND_PATH}/${userInfo.background})`}}></Box>
       <Box pb={5} className={`${classes.commonBackgroundColor} ${classes.textCenter}`}>
         <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', transform: 'translate(0, -50%)', position: 'relative'}}>
-          <img src='images/user/user_avatar.gif' 
+          <img src={`${process.env.REACT_APP_AVATAR_PATH}/${userInfo.avatar}`}
                style={{width: '148px', border: 'solid 3px #fff', borderRadius: '10px'}} />
-          <CheckCircleIcon sx={{position: 'absolute', transform: 'translate(70px, 70px)', color: 'limegreen'}} />
+          {
+            userInfo.status &&
+            <CheckCircleIcon sx={{position: 'absolute', transform: 'translate(70px, 70px)', color: 'limegreen'}} />
+          }
         </Box>
-        <Typography variant="h4">Sad Ducks</Typography>
+        <Typography variant="h4">{userInfo.name}</Typography>
         <Box mt={1} sx={{display:'flex', alignItems: 'center', justifyContent: 'center'}}>
           <Box p={1} sx={{display:'flex', maxWidth: '200px', alignItems: 'center', border: 'solid 1px lightgray', borderRadius: '20px'}}>
             <Icon icon="logos:ethereum" rotate={2} hFlip={true} vFlip={true} />
-            <Typography ml={1} nowrap>0x7a86c0b0640...</Typography>
+            <Typography ml={1} nowrap>{address.slice(0, 13)}...</Typography>
           </Box>
         </Box>
 
-        <Typography mt={3} variant="body1" paragraph>I make art with the simple goal of giving you something pleasing to look at for a few seconds.</Typography>
-        <Typography mb={3} variant="body2">Joined December 2019</Typography>
+        <Typography mt={3} variant="body1" paragraph>{userInfo.description}</Typography>
+        <Typography mb={3} variant="body2">Joined {STR_MONTH[parseInt(userInfo.createdAt.split('-')[1])]} {userInfo.createdAt.split('-')[0]}</Typography>
 
         <Box mb={2} className={`${classes.displayFlex} ${classes.justifyCenter}`} >
           <Button className={`${classes.displayFlex}`} sx={{border:'solid 1px grey', borderRadius:'10px',  color: '#000'}}>
@@ -254,16 +329,16 @@ export default function AccountPage(){
         </Grid>
 
         <Grid container className={classes.sectionGridContainer} spacing={4}>
-          {items.map((item) => (
+          {saleTokens.map((token) => (
             <Grid
-              item
+              token
               xs={12}
               sm={6}
               md={3}
               minHeight={100}
-              key={item.id}
+              key={token.objectId}
             >
-              <CategoryItem {...item} />
+              <CardItem token={token} />
             </Grid>
           ))}
         </Grid>
@@ -299,15 +374,15 @@ export default function AccountPage(){
         </Grid>
 
         <Grid container className={classes.sectionGridContainer} spacing={4}>
-          {items.map((item) => (
+          {ownedTokens.map((token) => (
             <Grid
-              item
+              token
               xs={12}
               md={3}
               minHeight={100}
-              key={item.id}
+              key={token.objectId}
             >
-              <CategoryItem {...item} />
+              <CardItem token={token} />
             </Grid>
           ))}
         </Grid>
@@ -343,24 +418,24 @@ export default function AccountPage(){
         </Grid>
 
         <Grid container className={classes.sectionGridContainer} spacing={4}>
-          {items.map((item) => (
+          {createdTokens.map((token) => (
             <Grid
-              item
+              token
               xs={12}
               md={3}
               minHeight={100}
-              key={item.id}
+              key={token.objectId}
             >
-              <CategoryItem {...item} />
+              <CardItem token={token} />
             </Grid>
           ))}
         </Grid>
       </TabPanel>
       <TabPanel value={value} index={3}>
         <Grid mt={3} container spacing={3} justifyContent="center" alignItems="flex-start">
-          {cardItems.map((item) => (
+          {ownedCollections.map((collection) => (
             <Grid item xs={12} sm={6} md={4} xl={3}>
-              <CollectionsCard {...item} />
+              <CollectionsCard collection={collection} />
             </Grid>
           ))}
         </Grid>
