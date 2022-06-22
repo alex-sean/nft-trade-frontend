@@ -21,7 +21,7 @@ const get = async (requestUrl) => {
             throw new Error('Server Error!');
         }
 
-        return res.data.data;
+        return res.data;
     } catch (err) {
         console.log(err);
         return null;
@@ -109,9 +109,5 @@ export const uploadToken = async (token) => {
 }
 
 export const checkMintSyncStatus = async (collection, supply) => {
-    let params = new FormData();
-    params.append('collection', collection);
-    params.append('supply', supply);
-
     return await get(`/sync/mint?collection=${collection}&supply=${supply}`);
 }
