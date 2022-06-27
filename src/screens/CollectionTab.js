@@ -198,7 +198,7 @@ export default function CollectionTab(props) {
               minHeight={100}
               key={item.id}
             >
-              <CardItem {...item} />
+              {/* <CardItem {...item} /> */}
             </Grid>
           ))}
         </Grid>
