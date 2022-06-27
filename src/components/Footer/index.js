@@ -21,7 +21,7 @@ const Footer = () => {
               <Link href="#" underline="none">
                 <Box component="img" className={classes.logo}
                   alt="Market Place"
-                  src={`images/logo${theme.palette.mode === 'dark' ? '_white' : ''}.png`}
+                  src={`../images/logo${theme.palette.mode === 'dark' ? '_white' : ''}.png`}
                 />
               </Link>
               <Typography className={`${classes.my32} ${classes.footerIcons}`} fontSize={'0.9rem'}>

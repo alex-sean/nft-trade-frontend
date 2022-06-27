@@ -5,7 +5,7 @@ import CircleIcon from '@mui/icons-material/Circle';
 
 export default function CollectionsCard(props) {
   const classes = useStyles();
-  const { img1, img2, img3, img4, title, owner, count } = props;
+  const { collection } = props;
 
   return (
     <>
@@ -13,10 +13,10 @@ export default function CollectionsCard(props) {
         <Link underline='none' href='/collection'>
           <CardContent>
             <Grid pr={2} container spacing={1} direction="row" justifyContent="center" alignItems="stretch">
-              <Grid item xs={9}>
-                <img src={img1} />
+              <Grid item xs={12}>
+                <img src={collection.imageURL} />
               </Grid>
-              <Grid item xs={3} container direction='column'>
+              {/* <Grid item xs={3} container direction='column'>
                 <Grid item xs>
                   <img src={img2} />
                 </Grid>
@@ -26,20 +26,20 @@ export default function CollectionsCard(props) {
                 <Grid item xs>
                   <img src={img4} />
                 </Grid>
-              </Grid>
+              </Grid> */}
             </Grid>
           </CardContent>
           <CardActions>
             <Link px={1} underline="none" className={classes.text}>
-              <Typography variant='body1'>{title}</Typography>
+              <Typography variant='body1'>{collection.name}</Typography>
             </Link>
           </CardActions>
           <Box pb={3} px={2} display="flex" justifyContent="space-between" alignItems="center">
             <Box display="flex" alignItems="center">
               <CircleIcon sx={{color:'gray'}} />
-              <Typography variant="body1"> by {owner}</Typography>
+              <Typography variant="body1"> by {collection.name}</Typography>
             </Box>
-            <Typography variant='body1'>{count} Items</Typography>
+            <Typography variant='body1'>{collection.supply} Items</Typography>
           </Box>
         </Link>
       </Card>

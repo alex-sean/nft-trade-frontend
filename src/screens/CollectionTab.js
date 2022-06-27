@@ -9,7 +9,7 @@ import LinkedCameraIcon from '@mui/icons-material/LinkedCamera';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import FormatShapesIcon from '@mui/icons-material/FormatShapes';
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
-import CategoryItem from '../components/CategoryItem';
+import CardItem from '../components/CardItem';
 import ActivityItemList from '../components/ActivityItemList'
 import Search from '../components/Header/Search';
 import SearchIconWrapper from '../components/Header/Search/SearchIconWrapper';
@@ -198,7 +198,7 @@ export default function CollectionTab(props) {
               minHeight={100}
               key={item.id}
             >
-              <CategoryItem {...item} />
+              <CardItem {...item} />
             </Grid>
           ))}
         </Grid>

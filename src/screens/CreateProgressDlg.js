@@ -107,7 +107,7 @@ export default function CreateProgressDlg({
             if (!tokenInfo) {
                 throw new Error('Uploading token failed.');
             }
-            setTokenURL(tokenInfo.tokenURL);
+            setTokenURL(tokenInfo.data.tokenURL);
             toast('Uploading token successed.');
         } catch (err) {
             console.log(err);
@@ -172,21 +172,21 @@ export default function CreateProgressDlg({
         const metadata = composeMetaData();
 
         let NFTTx = NFT.deploy({
-            data: '0x' + ERC721.bytecode,
-            arguments: [name, name.toUpperCase(), process.env.REACT_APP_CONTRACT_EXCHANGE, metadata],
+            data: ERC721.bytecode,
+            arguments: [name, name.toUpperCase(), process.env.REACT_APP_CONTRACT_EXCHANGE, JSON.stringify(metadata)],
         });
 
         const gas = await getGas(NFTTx, {from: account});
         const gasPrice = await web3.eth.getGasPrice();
 
         try {
-            const txHash = await NFTTx.send({
+            const result = await NFTTx.send({
                 from: account,
                 gas: gas,
-                gasPrice: web3.utils.toWei(gasPrice + '', 'gwei')
+                gasPrice: web3.utils.toWei(gasPrice + '', 'wei')
             });
 
-            setContractAddress(txHash);
+            setContractAddress(result._address);
 
             toast('Deploying token successed.');
         } catch (err) {
@@ -208,7 +208,7 @@ export default function CreateProgressDlg({
         const NFT = new web3.eth.Contract(ERC721.abi, contractAddress);
 
         try {
-            await NFT.methods.mintAll(supply).send();
+            await NFT.methods.mintAll(supply).send({from: account});
 
             while (true) {
                 let result = await checkMintSyncStatus(contractAddress, supply);
@@ -216,7 +216,7 @@ export default function CreateProgressDlg({
                     throw new Error('Minting failed.');
                 }
 
-                if (result.status) {
+                if (result.data.status) {
                     break;
                 }
 
@@ -289,7 +289,7 @@ export default function CreateProgressDlg({
                         </Grid>
                     </Grid>
                     <ProgressButton
-                        text="Upload"
+                        text="Deploy"
                         status={deployButtonStatus}
                         onClick={handleDeploy}
                     />
@@ -313,7 +313,7 @@ export default function CreateProgressDlg({
                         </Grid>
                     </Grid>
                     <ProgressButton
-                        text="Upload"
+                        text="Mint"
                         status={mintButtonStatus}
                         onClick={handleMint}
                     />
