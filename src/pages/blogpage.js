@@ -42,9 +42,9 @@ export default function BlogPage(){
               <Link href={`/singlepost/${blogs[0].id}`} underline="none">
                 <Card sx={{display: 'flex', borderRadius: '15px'}} className={classes.paperBackground}>
                   <CardMedia>
-                    <img src='images/blog/post_1.jpg' style={{width: '100%', height: '100%'}}></img>
+                    <img src={`${process.env.REACT_APP_BLOG_PATH}/${blogs[0].thumbnail}`} style={{width: '100%', height: '100%'}}></img>
                   </CardMedia>
-                  <CardContent sx={{width: '50%'}}>
+                  <CardContent>
                     <Box p={10} >
                       <Typography variant="body1">Deothemes in <span style={{color: '#8358ff'}}>NFT's DIGITAL ART</span></Typography>
                         <Typography py={2} variant="h4">{decodeBase64(blogs[0].title)}</Typography>
@@ -61,7 +61,7 @@ export default function BlogPage(){
                     <Link href={`/singlepost/${blog.id}`} underline="none">
                       <Card sx={{borderRadius: '15px'}} className={classes.paperBackground}>
                         <CardMedia>
-                          <img src='images/blog/post_2.jpg' style={{width: '100%', height: '100%'}}></img>
+                          <img src={`${process.env.REACT_APP_BLOG_PATH}/${blog.thumbnail}`} style={{width: '100%', height: '100%'}}></img>
                         </CardMedia>
                         <CardContent>
                           <Box p={2} >

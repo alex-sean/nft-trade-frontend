@@ -97,7 +97,7 @@ function App() {
               <Route exact path='/blog'>
                 <BlogPage />
               </Route>
-              <Route exact path='/singlepost'>
+              <Route exact path='/singlepost/:id'>
                 <SinglepostPage />
               </Route>
               <Route exact path='/create'>
