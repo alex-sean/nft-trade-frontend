@@ -115,3 +115,15 @@ export const checkMintSyncStatus = async (collection, supply) => {
 
     return await post('/sync/mint', params);
 }
+
+export const getBlogs = async (limit, offset) => {
+    return await get(`/blog/list?limit=${limit}&offset=${offset}`);
+}
+
+export const getBlogInfo = async (id) => {
+    return await get(`/blog/detail?id=${id}`);
+}
+
+export const getPartners = async (limit, offset) => {
+    return await get(`/partner/list?limit=${limit}&offset=${offset}`);
+}
