@@ -24,6 +24,8 @@ import Alert from '@mui/material/Alert';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import Utf8 from 'crypto-js/enc-utf8';
+import Base64 from 'crypto-js/enc-base64';
 
 const ContactForm = () => {
   const classes = useStyles();
@@ -67,7 +69,7 @@ const ContactForm = () => {
     fetch(`${process.env.REACT_APP_SERVER_URL}/contact/add`, {
       method: "POST",
       headers : {'Content-Type' : 'application/x-www-form-urlencoded'},
-      body: `name=${firstName}&email=${email}&type=${type}&content=${message}`,
+      body: `name=${firstName}&email=${email}&type=${type}&content=${Base64.stringify(Utf8.parse(message))}`,
     }).then((response) => (response.json())).then((response)=> {
       setFirstName('')
       setEmail('')

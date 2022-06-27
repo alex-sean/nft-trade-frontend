@@ -1,5 +1,7 @@
 import FormData from 'form-data';
 import axios from 'axios';
+import Utf8 from 'crypto-js/enc-utf8';
+import Base64 from 'crypto-js/enc-base64';
 
 const post = async (requestUrl, form) => {
     try {
@@ -138,4 +140,8 @@ export const getBlogInfo = async (id) => {
 
 export const getPartners = async (limit, offset) => {
     return await get(`/partner/list?limit=${limit}&offset=${offset}`);
+}
+
+export const decodeBase64 = code => {
+    return Utf8.stringify(Base64.parse(code))
 }
