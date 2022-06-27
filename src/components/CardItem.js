@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Box } from '@mui/material';
+import { Typography, Box, Link } from '@mui/material';
 import HistoryIcon from '@mui/icons-material/History';
 import useStyles from '../styles/styles';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -16,6 +16,14 @@ function CardItem(props) {
         <Box sx={{display:'flex', position: 'absolute', top: '16px', right: '16px', padding: '8px', background: '#fff', borderRadius: '8px'}} className={classes.hotBidLike}>
           <FavoriteBorderIcon />
           <Typography className={classes.hotBidLike}>{token.like}</Typography>
+        </Box>
+        <Box sx={{display:'flex', position: 'absolute', bottom: '-12px', left: '16px'}}>
+          <Link>
+            <img src="../images/avatars/creator_1.png" className={classes.creatorLink}/>
+          </Link>
+          <Link sx={{marginLeft: '-6px'}}>
+            <img src="../images/avatars/owner_1.png" className={classes.creatorLink}/>
+          </Link>
         </Box>
       </Box>
       <Box mt={2} sx={{display:'flex', justifyContent: 'space-between', alignItems: 'center'}}>
