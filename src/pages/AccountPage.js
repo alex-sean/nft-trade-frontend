@@ -331,6 +331,7 @@ export default function AccountPage(){
         <Grid container className={classes.sectionGridContainer} spacing={4}>
           {saleTokens.map((token) => (
             <Grid
+              item
               token
               xs={12}
               sm={6}
@@ -376,6 +377,7 @@ export default function AccountPage(){
         <Grid container className={classes.sectionGridContainer} spacing={4}>
           {ownedTokens.map((token) => (
             <Grid
+              item
               token
               xs={12}
               md={3}
@@ -417,9 +419,10 @@ export default function AccountPage(){
           </Grid>
         </Grid>
 
-        <Grid container className={classes.sectionGridContainer} spacing={4}>
+        <Grid container className={classes.sectionGridContainer} spacing={4} direction="row" justifyContent="flex-start">
           {createdTokens.map((token) => (
             <Grid
+              item
               token
               xs={12}
               md={3}

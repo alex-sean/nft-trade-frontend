@@ -12,22 +12,7 @@ export default function CollectionsCard(props) {
       <Card container sx={{borderRadius: '15px', width: '270px', margin: 'auto'}} className={classes.paperBackground}>
         <Link underline='none' href='/collection'>
           <CardContent>
-            <Grid pr={2} container spacing={1} direction="row" justifyContent="center" alignItems="stretch">
-              <Grid item xs={12}>
-                <img src={collection.imageURL} />
-              </Grid>
-              {/* <Grid item xs={3} container direction='column'>
-                <Grid item xs>
-                  <img src={img2} />
-                </Grid>
-                <Grid item xs>
-                  <img src={img3} />
-                </Grid>
-                <Grid item xs>
-                  <img src={img4} />
-                </Grid>
-              </Grid> */}
-            </Grid>
+            <img src={collection.imageURL} style={{maxHeight: '250px', width: '100%'}}/>
           </CardContent>
           <CardActions>
             <Link px={1} underline="none" className={classes.text}>

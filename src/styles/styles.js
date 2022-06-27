@@ -427,7 +427,13 @@ const styles = (theme) => {
         backgroundColor: '#fff',
       },
       fontWeight: '700'
-    }
+    },
+    creatorLink: {
+      border: `solid 1px ${isDark ? 'rgb(54 58 93)' : 'rgb(231 232 236)'} !important`,
+      borderRadius: '999px', 
+      width: '24px', 
+      height: '24px'
+    },
   };
 };
 
