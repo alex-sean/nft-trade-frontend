@@ -14,6 +14,7 @@ export default function CollectionsPage(){
       name: 'Art Me Outside',
       owner: 'Wow Frens',
       supply: '10K',
+      description: 'aaaaaaaaaaaaaaaaaaaaaa'
     },
     {
       id: 1,
@@ -24,6 +25,7 @@ export default function CollectionsPage(){
       name: 'Art Me Outside',
       owner: 'Wow Frens',
       supply: '10K',
+      description: 'aaaaaaaaaaaaaaaaaaaaaa'
     },
     {
       id: 1,
@@ -34,6 +36,7 @@ export default function CollectionsPage(){
       name: 'Art Me Outside',
       owner: 'Wow Frens',
       supply: '10K',
+      description: 'aaaaaaaaaaaaaaaaaaaaaa'
     },
     {
       id: 1,
@@ -44,6 +47,7 @@ export default function CollectionsPage(){
       name: 'Art Me Outside',
       owner: 'Wow Frens',
       supply: '10K',
+      description: 'aaaaaaaaaaaaaaaaaaaaaa'
     },
     {
       id: 1,
@@ -54,6 +58,7 @@ export default function CollectionsPage(){
       name: 'Art Me Outside',
       owner: 'Wow Frens',
       supply: '10K',
+      description: 'aaaaaaaaaaaaaaaaaaaaaa'
     },
     {
       id: 1,
@@ -64,6 +69,7 @@ export default function CollectionsPage(){
       name: 'Art Me Outside',
       owner: 'Wow Frens',
       supply: '10K',
+      description: 'aaaaaaaaaaaaaaaaaaaaaa'
     },
     {
       id: 1,
@@ -74,6 +80,7 @@ export default function CollectionsPage(){
       name: 'Art Me Outside',
       owner: 'Wow Frens',
       supply: '10K',
+      description: 'aaaaaaaaaaaaaaaaaaaaaa'
     },
     {
       id: 1,
@@ -84,6 +91,7 @@ export default function CollectionsPage(){
       name: 'Art Me Outside',
       owner: 'Wow Frens',
       supply: '10K',
+      description: 'aaaaaaaaaaaaaaaaaaaaaa'
     },
   ];
 
