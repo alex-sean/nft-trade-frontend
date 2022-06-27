@@ -130,6 +130,10 @@ export const getOwnedCollections = async (owner) => {
     return await get(`/token/owned_collection?owner=${owner}`);
 }
 
+export const getCollections = async (category) => {
+    return await get(`/token/collection?category=${category}`);
+}
+
 export const getBlogs = async (limit, offset) => {
     return await get(`/blog/list?limit=${limit}&offset=${offset}`);
 }
