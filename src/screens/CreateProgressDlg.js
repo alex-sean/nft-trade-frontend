@@ -229,7 +229,7 @@ export default function CreateProgressDlg({
             return;
         }
 
-        document.location.href="/account"
+        document.location.href=`/account/${account}`;
     }
 
     return (
