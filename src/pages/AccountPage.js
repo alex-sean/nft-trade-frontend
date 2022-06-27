@@ -140,7 +140,7 @@ export default function AccountPage(){
         throw new Error('Getting owned collection failed.');
       }
 
-      setOwnedCollections(ownedCollections.data.tokens);
+      setOwnedCollections(ownedCollections.data.collections);
     } catch (err) {
       console.log(err);
       toast('Getting user information failed.');
