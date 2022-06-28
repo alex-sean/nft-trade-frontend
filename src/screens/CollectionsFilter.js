@@ -9,6 +9,7 @@ import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import useStyles from '../styles/styles';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import { CATEGORIES, CATEGORY_NAMES } from '../common/const';
 
 export default function CollectionsFilter(){
   const classes = useStyles();
@@ -32,27 +33,18 @@ export default function CollectionsFilter(){
             onChange={handleFilter}
             aria-label="Filter"
           >
-          <ToggleButton value="all" aria-label="All">
+          <ToggleButton value={0} aria-label="All">
             All
           </ToggleButton>
-          <ToggleButton value="art" aria-label="Art">
-            <PaletteIcon />Art
-          </ToggleButton>
-          <ToggleButton value="collectibles" aria-label="Collectibles">
-            <CardGiftcardIcon />Collectibles
-          </ToggleButton>
-          <ToggleButton value="domain" aria-label="Domain">
-            <FormatShapesIcon />Domain
-          </ToggleButton>
-          <ToggleButton value="music" aria-label="Music">
-            <MusicNoteIcon />Music
-          </ToggleButton>
-          <ToggleButton value="photography" aria-label="Photography">
-            <LinkedCameraIcon />Photography
-          </ToggleButton>
-          <ToggleButton value="virtualWorld" aria-label="VirtualWorld">
-            <LanguageIcon />VirtualWorld
-          </ToggleButton>
+          {
+            Object.keys(CATEGORIES).map((category, index) => {
+              return (
+                <ToggleButton index={index} value={CATEGORIES[category]} aria-label={CATEGORY_NAMES[category]}>
+                  <PaletteIcon />{CATEGORY_NAMES[category]}
+                </ToggleButton>
+              )
+            })
+          }
         </ToggleButtonGroup>
       </Grid>
       <Grid item>
