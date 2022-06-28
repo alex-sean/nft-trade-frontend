@@ -9,7 +9,7 @@ export default function CollectionsCard(props) {
   return (
     <>
       <Card container sx={{borderRadius: '15px', width: '270px', margin: 'auto'}} className={classes.paperBackground}>
-        <Link underline='none' href='/collection'>
+        <Link underline='none' href={`/collection/${collection.collectionAddress}`}>
           <CardContent>
             <img src={collection.imageURL} style={{maxHeight: '250px', width: '100%'}}/>
             <Link px={1} underline="none" className={classes.text}>
