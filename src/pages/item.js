@@ -1,11 +1,13 @@
-import ItemHero from "../screens/ItemHero"
-import ItemCollection from "../screens/ItemCollection"
+import { useParams } from 'react-router-dom';
+import ItemHero from "../screens/ItemHero";
 
-export default function Item(){
-    return (
+export default function Item() {
+  const { collectionAddress, tokenID } = useParams();
+
+  return (
     <>
-      <ItemHero />
-      <ItemCollection />
+      <ItemHero collectionAddress={collectionAddress} tokenID={tokenID}/>
+      {/* <ItemCollection /> */}
     </>
   );
 }

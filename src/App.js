@@ -70,7 +70,7 @@ function App() {
               <Route exact path='/'>
                 <Home/>
               </Route>
-              <Route exact path='/item'>
+              <Route exact path='/item/:collectionAddress/:tokenID'>
                 <Item />
               </Route>
               <Route exact path='/collections'>
