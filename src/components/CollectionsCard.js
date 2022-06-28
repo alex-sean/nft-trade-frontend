@@ -22,7 +22,7 @@ export default function CollectionsCard(props) {
           <Box pb={3} px={2} display="flex" justifyContent="space-between" alignItems="center">
             <Box display="flex" alignItems="center">
               <CircleIcon sx={{color:'gray'}} />
-              <Typography variant="body1"> by {collection.address.length? collection.address[0].name: `${collection.deployer.slice(0, 13)}...`}</Typography>
+              <Typography variant="body1"> by {collection.address && collection.address.length? collection.address[0].name: `${collection.deployer.slice(0, 13)}...`}</Typography>
             </Box>
             <Typography variant='body1'>{collection.supply} Items</Typography>
           </Box>
