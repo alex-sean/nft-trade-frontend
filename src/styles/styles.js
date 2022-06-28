@@ -434,6 +434,11 @@ const styles = (theme) => {
       width: '24px', 
       height: '24px'
     },
+    ellipseText: {
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis'
+    }
   };
 };
 
