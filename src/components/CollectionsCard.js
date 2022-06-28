@@ -1,7 +1,6 @@
 import React from 'react';
 import { Grid, Typography, Box, Card, CardActions, CardContent, Link } from '@mui/material';
 import useStyles from '../styles/styles';
-import CircleIcon from '@mui/icons-material/Circle';
 
 export default function CollectionsCard(props) {
   const classes = useStyles();
@@ -13,15 +12,14 @@ export default function CollectionsCard(props) {
         <Link underline='none' href='/collection'>
           <CardContent>
             <img src={collection.imageURL} style={{maxHeight: '250px', width: '100%'}}/>
-          </CardContent>
-          <CardActions>
             <Link px={1} underline="none" className={classes.text}>
               <Typography variant='body1'>{collection.name}</Typography>
             </Link>
-          </CardActions>
+            <Typography variant='body2'>From 5.9 ETH 1/7</Typography>
+          </CardContent>
           <Box pb={3} px={2} display="flex" justifyContent="space-between" alignItems="center">
             <Box display="flex" alignItems="center">
-              <CircleIcon sx={{color:'gray'}} />
+              <img src="../images/avatars/creator_1.png" className={classes.creatorLink}/>
               <Typography variant="body1"> by {collection.address.length? collection.address[0].name: `${collection.deployer.slice(0, 13)}...`}</Typography>
             </Box>
             <Typography variant='body1'>{collection.supply} Items</Typography>
