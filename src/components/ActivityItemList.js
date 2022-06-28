@@ -18,7 +18,7 @@ export default function ActivityItemList(props) {
         <Grid container spacing={2} alignItems="center">
           <Grid item>
             <ButtonBase sx={{ width: 128, height: 128 }}>
-              <img style={{borderRadius: '10px'}} src="images/products/item_21_sm.jpg" />
+              <img style={{borderRadius: '10px'}} src="../images/products/item_21_sm.jpg" />
             </ButtonBase>
           </Grid>
           <Grid item sm container>
@@ -41,7 +41,7 @@ export default function ActivityItemList(props) {
         <Grid container spacing={2} alignItems="center">
           <Grid item>
             <ButtonBase sx={{ width: 128, height: 128 }}>
-              <img style={{borderRadius: '10px'}} src="images/products/item_21_sm.jpg" />
+              <img style={{borderRadius: '10px'}} src="../images/products/item_21_sm.jpg" />
             </ButtonBase>
           </Grid>
           <Grid item sm container>
@@ -64,7 +64,7 @@ export default function ActivityItemList(props) {
         <Grid container spacing={2} alignItems="center">
           <Grid item>
             <ButtonBase sx={{ width: 128, height: 128 }}>
-              <img style={{borderRadius: '10px'}} src="images/products/item_22_sm.jpg" />
+              <img style={{borderRadius: '10px'}} src="../images/products/item_22_sm.jpg" />
             </ButtonBase>
           </Grid>
           <Grid item sm container>
@@ -87,7 +87,7 @@ export default function ActivityItemList(props) {
         <Grid container spacing={2} alignItems="center">
           <Grid item>
             <ButtonBase sx={{ width: 128, height: 128 }}>
-              <img style={{borderRadius: '10px'}} src="images/products/item_23_sm.jpg" />
+              <img style={{borderRadius: '10px'}} src="../images/products/item_23_sm.jpg" />
             </ButtonBase>
           </Grid>
           <Grid item sm container>
@@ -110,7 +110,7 @@ export default function ActivityItemList(props) {
         <Grid container spacing={2} alignItems="center">
           <Grid item>
             <ButtonBase sx={{ width: 128, height: 128 }}>
-              <img style={{borderRadius: '10px'}} src="images/products/item_24_sm.jpg" />
+              <img style={{borderRadius: '10px'}} src="../images/products/item_24_sm.jpg" />
             </ButtonBase>
           </Grid>
           <Grid item sm container>
