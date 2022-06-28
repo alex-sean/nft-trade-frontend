@@ -35,6 +35,7 @@ import { toast } from 'react-toastify';
 import { STR_MONTH } from '../common/const';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import CategoryFilter from '../screens/CategoryFilter';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -305,24 +306,7 @@ export default function AccountPage(){
       </Tabs>
       <TabPanel value={value} index={0}>
         <Grid container direction="row" justifyContent="space-between" alignItems="flex-start">
-          <Grid xs item>
-            <ToggleButtonGroup
-                value={filter}
-                exclusive
-                onChange={handleFilter}
-                aria-label="Filter"
-              >
-              <ToggleButton value="collections" aria-label="Collections">
-                <PaletteIcon />Collections
-              </ToggleButton>
-              <ToggleButton value="category" aria-label="Category">
-                <CardGiftcardIcon />Category
-              </ToggleButton>
-              <ToggleButton value="price" aria-label="Price Range">
-                <LinkedCameraIcon />Price Range
-              </ToggleButton>
-            </ToggleButtonGroup>
-          </Grid>
+          <CategoryFilter />
           <Grid item mb={2}>
             <Select
               displayEmpty
@@ -358,24 +342,7 @@ export default function AccountPage(){
       </TabPanel>
       <TabPanel value={value} index={1}>
         <Grid container direction="row" justifyContent="space-between" alignItems="flex-start">
-          <Grid xs item>
-            <ToggleButtonGroup
-                value={filter}
-                exclusive
-                onChange={handleFilter}
-                aria-label="Filter"
-              >
-              <ToggleButton value="collections" aria-label="Collections">
-                <PaletteIcon />Collections
-              </ToggleButton>
-              <ToggleButton value="category" aria-label="Category">
-                <CardGiftcardIcon />Category
-              </ToggleButton>
-              <ToggleButton value="price" aria-label="Price Range">
-                <LinkedCameraIcon />Price Range
-              </ToggleButton>
-            </ToggleButtonGroup>
-          </Grid>
+          <CategoryFilter />
           <Grid item>
             <Select
               displayEmpty
@@ -410,24 +377,7 @@ export default function AccountPage(){
       </TabPanel>
       <TabPanel value={value} index={2}>
         <Grid container direction="row" justifyContent="space-between" alignItems="flex-start">
-          <Grid xs item>
-            <ToggleButtonGroup
-                value={filter}
-                exclusive
-                onChange={handleFilter}
-                aria-label="Filter"
-              >
-              <ToggleButton value="collections" aria-label="Collections">
-                <PaletteIcon />Collections
-              </ToggleButton>
-              <ToggleButton value="category" aria-label="Category">
-                <CardGiftcardIcon />Category
-              </ToggleButton>
-              <ToggleButton value="price" aria-label="Price Range">
-                <LinkedCameraIcon />Price Range
-              </ToggleButton>
-            </ToggleButtonGroup>
-          </Grid>
+          <CategoryFilter />
           <Grid item>
             <Select
               displayEmpty
