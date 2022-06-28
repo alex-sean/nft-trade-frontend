@@ -15,7 +15,7 @@ export default function CollectionsCard(props) {
             <Link px={1} underline="none" className={classes.text}>
               <Typography variant='body1'>{collection.name}</Typography>
             </Link>
-            <Typography variant='body2'>From 5.9 ETH 1/7</Typography>
+            <Typography variant='body2' className={classes.ellipseText}>{collection.description}</Typography>
           </CardContent>
           <Box pb={3} px={2} display="flex" justifyContent="space-between" alignItems="center">
             <Box display="flex" alignItems="center">

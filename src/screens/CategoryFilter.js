@@ -20,17 +20,17 @@ const CATEGORY_ICONS = {
   VIRTUAL_WORLD: <LanguageIcon />
 }
 
-export default function CategoryFilter(){
-  const [filter, setFilter] = React.useState('all');
+export default function CategoryFilter(props){
+  const { setCategory, category } = props;
 
   const handleFilter = (event, newFilter) => {
-    setFilter(newFilter);
+    setCategory(newFilter);
   };
 
   return (
     <Grid xs item>
       <ToggleButtonGroup
-          value={filter}
+          value={category}
           exclusive
           onChange={handleFilter}
           aria-label="Filter"
