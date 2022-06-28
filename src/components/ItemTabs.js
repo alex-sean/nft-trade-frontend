@@ -13,6 +13,8 @@ import DiscountIcon from '@mui/icons-material/Discount';
 import GavelIcon from '@mui/icons-material/Gavel';
 import ImportExportIcon from '@mui/icons-material/ImportExport';
 import InventoryIcon from '@mui/icons-material/Inventory';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -62,6 +64,11 @@ const rows = [
 export default function ItemTabs(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const [filter, setFilter] = React.useState('all');
+
+  const handleFilter = (event, newFilter) => {
+    setFilter(newFilter);
+  };
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -189,20 +196,25 @@ export default function ItemTabs(props) {
       </TabPanel>
       <TabPanel className={classes.paperBackground} value={value} index={3}>
         <TableContainer className={classes.paperBackground} component={Paper}>
-        <Grid p={2} xs spacing={2} container direction="row" justifyContent="flex-start">
-          <Grid item>
-            <Button variant="contained" className={classes.commonButton} startIcon={<DiscountIcon />}>Listing</Button>
-          </Grid>
-          <Grid item>
-            <Button variant="contained" className={classes.commonButton} startIcon={<GavelIcon />}>Bids</Button>
-          </Grid>
-          <Grid item>
-            <Button variant="contained" className={classes.commonButton} startIcon={<ImportExportIcon />}>Transfer</Button>
-          </Grid>
-          <Grid item>
-            <Button variant="contained" className={classes.commonButton} startIcon={<InventoryIcon />}>Purchases</Button>
-          </Grid>
-        </Grid>
+          <ToggleButtonGroup
+              value={filter}
+              exclusive
+              onChange={handleFilter}
+              aria-label="Filter"
+            >
+            <ToggleButton value="listing" aria-label="Listing">
+              <DiscountIcon />Listing
+            </ToggleButton>
+            <ToggleButton value="bids" aria-label="Bids">
+              <GavelIcon />Bids
+            </ToggleButton>
+            <ToggleButton value="transfer" aria-label="Transfer">
+              <ImportExportIcon />Transfer
+            </ToggleButton>
+            <ToggleButton value="purchases" aria-label="Purchases">
+              <InventoryIcon />Purchases
+            </ToggleButton>
+          </ToggleButtonGroup>
           <Table sx={{ minWidth: 650, width:'100%', marginTop: '32px' }} aria-label="simple table">
             <TableHead>
               <TableRow>

@@ -33,6 +33,8 @@ import { getUserInfo, getOwnedTokens, getCreatedTokens, getSaleTokens, getOwnedC
 import { useLoadingContext } from '../hooks/useLoadingContext';
 import { toast } from 'react-toastify';
 import { STR_MONTH } from '../common/const';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -90,11 +92,14 @@ export default function AccountPage(){
   const [createdTokens, setCreatedTokens] = useState([]);
   const [saleTokens, setSaleTokens] = useState([]);
   const [ownedCollections, setOwnedCollections] = useState([]);
-
+  const [filter, setFilter] = React.useState('all');
   const { address } = useParams();
-
   const { account } = useWalletContext();
   const { setLoading } = useLoadingContext();
+
+  const handleFilter = (event, newFilter) => {
+    setFilter(newFilter);
+  };
 
   const handleFilterChange = (event) => {
     setAge(event.target.value);
@@ -300,16 +305,23 @@ export default function AccountPage(){
       </Tabs>
       <TabPanel value={value} index={0}>
         <Grid container direction="row" justifyContent="space-between" alignItems="flex-start">
-          <Grid xs={12} md spacing={2} mb={2} item container direction="row" justifyContent="flex-start">
-            <Grid item>
-              <Button variant="outlined" className={classes.commonButton} startIcon={<PaletteIcon />}>Collections</Button>
-            </Grid>
-            <Grid item>
-              <Button variant="outlined" className={classes.commonButton} startIcon={<CardGiftcardIcon />}>Category</Button>
-            </Grid>
-            <Grid item>
-              <Button variant="outlined" className={classes.commonButton} startIcon={<LinkedCameraIcon />}>Price Range</Button>
-            </Grid>
+          <Grid xs item>
+            <ToggleButtonGroup
+                value={filter}
+                exclusive
+                onChange={handleFilter}
+                aria-label="Filter"
+              >
+              <ToggleButton value="collections" aria-label="Collections">
+                <PaletteIcon />Collections
+              </ToggleButton>
+              <ToggleButton value="category" aria-label="Category">
+                <CardGiftcardIcon />Category
+              </ToggleButton>
+              <ToggleButton value="price" aria-label="Price Range">
+                <LinkedCameraIcon />Price Range
+              </ToggleButton>
+            </ToggleButtonGroup>
           </Grid>
           <Grid item mb={2}>
             <Select
@@ -346,16 +358,23 @@ export default function AccountPage(){
       </TabPanel>
       <TabPanel value={value} index={1}>
         <Grid container direction="row" justifyContent="space-between" alignItems="flex-start">
-          <Grid xs spacing={2} item container direction="row" justifyContent="flex-start">
-            <Grid item>
-              <Button variant="outlined" className={classes.commonButton} startIcon={<PaletteIcon />}>Collections</Button>
-            </Grid>
-            <Grid item>
-              <Button variant="outlined" className={classes.commonButton} startIcon={<CardGiftcardIcon />}>Category</Button>
-            </Grid>
-            <Grid item>
-              <Button variant="outlined" className={classes.commonButton} startIcon={<LinkedCameraIcon />}>Price Range</Button>
-            </Grid>
+          <Grid xs item>
+            <ToggleButtonGroup
+                value={filter}
+                exclusive
+                onChange={handleFilter}
+                aria-label="Filter"
+              >
+              <ToggleButton value="collections" aria-label="Collections">
+                <PaletteIcon />Collections
+              </ToggleButton>
+              <ToggleButton value="category" aria-label="Category">
+                <CardGiftcardIcon />Category
+              </ToggleButton>
+              <ToggleButton value="price" aria-label="Price Range">
+                <LinkedCameraIcon />Price Range
+              </ToggleButton>
+            </ToggleButtonGroup>
           </Grid>
           <Grid item>
             <Select
@@ -391,16 +410,23 @@ export default function AccountPage(){
       </TabPanel>
       <TabPanel value={value} index={2}>
         <Grid container direction="row" justifyContent="space-between" alignItems="flex-start">
-          <Grid xs spacing={2} item container direction="row" justifyContent="flex-start">
-            <Grid item>
-              <Button variant="outlined" className={classes.commonButton} startIcon={<PaletteIcon />}>Collections</Button>
-            </Grid>
-            <Grid item>
-              <Button variant="outlined" className={classes.commonButton} startIcon={<CardGiftcardIcon />}>Category</Button>
-            </Grid>
-            <Grid item>
-              <Button variant="outlined" className={classes.commonButton} startIcon={<LinkedCameraIcon />}>Price Range</Button>
-            </Grid>
+          <Grid xs item>
+            <ToggleButtonGroup
+                value={filter}
+                exclusive
+                onChange={handleFilter}
+                aria-label="Filter"
+              >
+              <ToggleButton value="collections" aria-label="Collections">
+                <PaletteIcon />Collections
+              </ToggleButton>
+              <ToggleButton value="category" aria-label="Category">
+                <CardGiftcardIcon />Category
+              </ToggleButton>
+              <ToggleButton value="price" aria-label="Price Range">
+                <LinkedCameraIcon />Price Range
+              </ToggleButton>
+            </ToggleButtonGroup>
           </Grid>
           <Grid item>
             <Select
@@ -456,23 +482,28 @@ export default function AccountPage(){
               <StyledInputBase placeholder="Search" inputProps={{ 'aria-label': 'search' }}/>
             </Search>
             <Typography my={2} variant="h6">Filters</Typography>
-            <Grid xs spacing={2} container direction="row" justifyContent="flex-start">
-              <Grid item>
-                <Button variant="contained" className={classes.commonButton} startIcon={<DiscountIcon />}>Listing</Button>
-              </Grid>
-              <Grid item>
-                <Button variant="contained" className={classes.commonButton} startIcon={<GavelIcon />}>Bids</Button>
-              </Grid>
-              <Grid item>
-                <Button variant="contained" className={classes.commonButton} startIcon={<ImportExportIcon />}>Transfer</Button>
-              </Grid>
-              <Grid item>
-                <Button variant="contained" className={classes.commonButton} startIcon={<FavoriteBorderIcon />}>Likes</Button>
-              </Grid>
-              <Grid item>
-                <Button variant="contained" className={classes.commonButton} startIcon={<InventoryIcon />}>Purchases</Button>
-              </Grid>
-            </Grid>
+            <ToggleButtonGroup
+              value={filter}
+              exclusive
+              onChange={handleFilter}
+              aria-label="Filter"
+            >
+              <ToggleButton value="listing" aria-label="Listing">
+                <DiscountIcon />Listing
+              </ToggleButton>
+              <ToggleButton value="bids" aria-label="Bids">
+                <GavelIcon />Bids
+              </ToggleButton>
+              <ToggleButton value="transfer" aria-label="Transfer">
+                <ImportExportIcon />Transfer
+              </ToggleButton>
+              <ToggleButton value="likes" aria-label="Likes">
+                <FavoriteBorderIcon />Likes
+              </ToggleButton>
+              <ToggleButton value="purchases" aria-label="Purchases">
+                <InventoryIcon />Purchases
+              </ToggleButton>
+            </ToggleButtonGroup>
           </Grid>
         </Grid>
       </TabPanel>

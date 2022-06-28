@@ -7,10 +7,17 @@ import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import FormatShapesIcon from '@mui/icons-material/FormatShapes';
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import useStyles from '../styles/styles';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 export default function CollectionsFilter(){
   const classes = useStyles();
   const [age, setAge] = React.useState('');
+  const [filter, setFilter] = React.useState('all');
+
+  const handleFilter = (event, newFilter) => {
+    setFilter(newFilter);
+  };
 
   const handleChange = (event) => {
     setAge(event.target.value);
@@ -18,28 +25,35 @@ export default function CollectionsFilter(){
 
   return (
     <Grid container direction="row" justifyContent="space-between" alignItems="flex-start">
-      <Grid xs spacing={2} item container direction="row" justifyContent="flex-start">
-        <Grid item>
-          <Button variant="contained" className={classes.commonButton}>All</Button>
-        </Grid>
-        <Grid item>
-          <Button variant="contained"  className={classes.commonButton} startIcon={<PaletteIcon />}>Art</Button>
-        </Grid>
-        <Grid item>
-          <Button variant="contained"  className={classes.commonButton} startIcon={<CardGiftcardIcon />}>Collectibles</Button>
-        </Grid>
-        <Grid item>
-          <Button variant="contained"  className={classes.commonButton} startIcon={<FormatShapesIcon />}>Domain</Button>
-        </Grid>
-        <Grid item>
-          <Button variant="contained"  className={classes.commonButton} startIcon={<MusicNoteIcon />}>Music</Button>
-        </Grid>
-        <Grid item>
-          <Button variant="contained"  className={classes.commonButton} startIcon={<LinkedCameraIcon />}>Photography</Button>
-        </Grid>
-        <Grid item>
-          <Button variant="contained"  className={classes.commonButton} startIcon={<LanguageIcon />}>VirtualWorld</Button>
-        </Grid>
+      <Grid xs item>
+        <ToggleButtonGroup
+            value={filter}
+            exclusive
+            onChange={handleFilter}
+            aria-label="Filter"
+          >
+          <ToggleButton value="all" aria-label="All">
+            All
+          </ToggleButton>
+          <ToggleButton value="art" aria-label="Art">
+            <PaletteIcon />Art
+          </ToggleButton>
+          <ToggleButton value="collectibles" aria-label="Collectibles">
+            <CardGiftcardIcon />Collectibles
+          </ToggleButton>
+          <ToggleButton value="domain" aria-label="Domain">
+            <FormatShapesIcon />Domain
+          </ToggleButton>
+          <ToggleButton value="music" aria-label="Music">
+            <MusicNoteIcon />Music
+          </ToggleButton>
+          <ToggleButton value="photography" aria-label="Photography">
+            <LinkedCameraIcon />Photography
+          </ToggleButton>
+          <ToggleButton value="virtualWorld" aria-label="VirtualWorld">
+            <LanguageIcon />VirtualWorld
+          </ToggleButton>
+        </ToggleButtonGroup>
       </Grid>
       <Grid item>
         <Select

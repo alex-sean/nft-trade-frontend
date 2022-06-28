@@ -10,10 +10,18 @@ import ImportExportIcon from '@mui/icons-material/ImportExport';
 import GavelIcon from '@mui/icons-material/Gavel';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import InventoryIcon from '@mui/icons-material/Inventory';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import React from 'react';
 
 export default function ActivityPage(){
   const classes = useStyles();
-  
+  const [filter, setFilter] = React.useState('all');
+
+  const handleFilter = (event, newFilter) => {
+    setFilter(newFilter);
+  };
+
   return (
     <Box ClassName={classes.gradientBackground}>
       <Container maxWidth="lg">
@@ -31,23 +39,28 @@ export default function ActivityPage(){
               <StyledInputBase placeholder="Search" inputProps={{ 'aria-label': 'search' }}/>
             </Search>
             <Typography my={2} variant="h6">Filters</Typography>
-            <Grid spacing={2} container direction="row" justifyContent="flex-start">
-              <Grid item>
-                <Button variant="contained" className={classes.commonButton} startIcon={<DiscountIcon />}>Listing</Button>
-              </Grid>
-              <Grid item>
-                <Button variant="contained" className={classes.commonButton} startIcon={<GavelIcon />}>Bids</Button>
-              </Grid>
-              <Grid item>
-                <Button variant="contained" className={classes.commonButton} startIcon={<ImportExportIcon />}>Transfer</Button>
-              </Grid>
-              <Grid item>
-                <Button variant="contained" className={classes.commonButton} startIcon={<FavoriteBorderIcon />}>Likes</Button>
-              </Grid>
-              <Grid item>
-                <Button variant="contained" className={classes.commonButton} startIcon={<InventoryIcon />}>Purchases</Button>
-              </Grid>
-            </Grid>
+            <ToggleButtonGroup
+              value={filter}
+              exclusive
+              onChange={handleFilter}
+              aria-label="Filter"
+            >
+              <ToggleButton value="listing" aria-label="Listing">
+                <DiscountIcon />Listing
+              </ToggleButton>
+              <ToggleButton value="bids" aria-label="Bids">
+                <GavelIcon />Bids
+              </ToggleButton>
+              <ToggleButton value="transfer" aria-label="Transfer">
+                <ImportExportIcon />Transfer
+              </ToggleButton>
+              <ToggleButton value="likes" aria-label="Likes">
+                <FavoriteBorderIcon />Likes
+              </ToggleButton>
+              <ToggleButton value="purchases" aria-label="Purchases">
+                <InventoryIcon />Purchases
+              </ToggleButton>
+            </ToggleButtonGroup>
           </Grid>
         </Grid>
       </Container>
