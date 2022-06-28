@@ -14,10 +14,10 @@ export default function CollectionHero(){
 
   return (
     <>
-      <Box sx={{height:'300px', backgroundImage:'url(images/collections/collection_banner.jpg)'}}></Box>
+      <Box sx={{height:'300px', backgroundImage:'url(../images/collections/collection_banner.jpg)'}}></Box>
       <Box pb={5} className={`${classes.commonBackgroundColor} ${classes.textCenter}`}>
         <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', transform: 'translate(0, -50%)', position: 'relative'}}>
-          <img src='images/collections/collection_avatar.jpg' 
+          <img src='../images/collections/collection_avatar.jpg' 
                style={{width: '148px', border: 'solid 3px #fff', borderRadius: '10px'}} />
           <CheckCircleIcon sx={{position: 'absolute', transform: 'translate(70px, 70px)', color: 'limegreen'}} />
         </Box>

@@ -76,7 +76,7 @@ function App() {
               <Route exact path='/collections'>
                 <CollectionsPage />
               </Route>
-              <Route exact path='/collection'>
+              <Route exact path='/collection/:collectionAddress'>
                 <CollectionPage />
               </Route>
               <Route exact path='/activity'>
