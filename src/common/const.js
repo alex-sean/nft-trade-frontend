@@ -48,5 +48,5 @@ export const LIST_TYPE = {
 export const ASSETS = {
     AVAX: '0xd00ae08403b9bbb9124bb305c09058e32c39a48c',
     USDT: '0xafda926d549a67229d8db529638e0bafcdb66458',
-
+    TEST: '0x5509122913a941960a434200213c999b515b50e4'
 }

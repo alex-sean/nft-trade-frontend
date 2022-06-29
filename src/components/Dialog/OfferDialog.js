@@ -10,6 +10,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import PrimaryButton from '../Button/PrimaryButton';
 import useStyles from '../../styles/styles';
 import { ASSETS } from '../../common/const';
+import OfferProgressDlg from './OfferProgressDlg';
+import { toast } from 'react-toastify';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
 	return <Slide direction="up" ref={ref} {...props} />;
@@ -18,7 +20,11 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function OfferDialog(props){
 	const {visible, tokenInfo, setVisibility} = props;
 	const [asset, setAsset] = useState(ASSETS.AVAX);
+	const [showProgressDlg, setShowProgressDlg] = useState(false);
+	const [offerAmount, setOfferAmount] = useState(0);
+
 	const classes = useStyles();
+
 	const theme = useTheme()
 	const isDark = theme.palette.mode === 'dark'
 
@@ -26,7 +32,16 @@ export default function OfferDialog(props){
 		setVisibility(false);
 	};
 
-	return (
+	const handleOffer = () => {
+		if (isNaN(offerAmount)) {
+			toast('Please input the correct offer amount.');
+			return;
+		}
+
+		setShowProgressDlg(true);
+	}
+
+	return [
 		<Dialog
 			borderRadius={5}
 			open={visible}
@@ -51,7 +66,7 @@ export default function OfferDialog(props){
 					<Box display="flex" justifyContent='space-between' alignItems='center'>
 						<Box display="flex" justifyContent='space-between' alignItems='center'>
 							<Typography p={2} variant="h6">Offer Amount:</Typography>
-							<Input p={1} sx="width: 50px" inputProps={{min: 0, style: { textAlign: 'center' }}} />
+							<Input p={1} sx="width: 50px" inputProps={{min: 0, style: { textAlign: 'center' }}} onChange={(e) => setOfferAmount(e.target.value)}/>
 						</Box>
 						<Select sx={{paddingRight: '16px'}} value={asset} onChange={e => {setAsset(e.target.value)}}>
 							{
@@ -66,8 +81,9 @@ export default function OfferDialog(props){
 				</Box>
 			</DialogContent>
 			<DialogActions sx={{display:'flex', justifyContent: 'center'}} className={classes.paperBackground}>
-				<PrimaryButton text='OFFER' />
+				<PrimaryButton text='Offer' onClick={handleOffer}/>
 			</DialogActions>
-		</Dialog>
-	)
+		</Dialog>,
+		<OfferProgressDlg open={showProgressDlg} handleOpenDialog={setShowProgressDlg} token={tokenInfo? tokenInfo.token: null} offerAmount={offerAmount} asset={asset}></OfferProgressDlg>
+	]
 }
