@@ -17,6 +17,7 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { getAssetName } from '../common/CommonUtils';
 import { useWalletContext } from '../hooks/useWalletContext';
+import Web3 from 'web3';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -131,7 +132,7 @@ export default function ItemTabs(props) {
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
-                    {offer.amount} {getAssetName(offer.asset)}
+                    {Web3.utils.fromWei(offer.amount + '')} {getAssetName(offer.asset)}
                   </TableCell>
                   <TableCell align="center">{0}</TableCell>
                   <TableCell align="right">{getOffererName(offer)}</TableCell>
