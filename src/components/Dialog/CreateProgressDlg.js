@@ -50,29 +50,6 @@ const BootstrapDialogTitle = (props) => {
     );
 };
 
-const items = [
-    {
-        title: 'title',
-        value: 'value',
-    },
-    {
-        title: 'title',
-        value: 'value',
-    },
-    {
-        title: 'title',
-        value: 'value',
-    },
-    {
-        title: 'title',
-        value: 'value',
-    },
-    {
-        title: 'title',
-        value: 'value',
-    },
-]
-
 export default function CreateProgressDlg({
     open,
     handleOpenDialog,
