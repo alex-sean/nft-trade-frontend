@@ -16,7 +16,7 @@ import { FileUploader } from "react-drag-drop-files";
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import WarningIcon from '@mui/icons-material/Warning';
-import CreateProgressDlg from '../screens/CreateProgressDlg';
+import CreateProgressDlg from '../components/Dialog/CreateProgressDlg';
 import CreateProperty from '../screens/CreateProperty'
 import CreateLevel from '../screens/CreateLevel'
 import CreateStar from '../screens/CreateStar';

@@ -8,19 +8,19 @@ import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
-import PrimaryButton from '../components/Button/PrimaryButton';
-import useStyles from '../styles/styles';
+import PrimaryButton from '../Button/PrimaryButton';
+import useStyles from '../../styles/styles';
 import { Divider, Grid } from '@mui/material';
 import { Avatar } from '@mui/material';
-import ProgressButton from '../components/Button/ProgressButton';
-import { PROGRESS_BTN_STATUS } from '../common/const';
-import { uploadToken, checkMintSyncStatus } from '../adapters/backend';
-import { useLoadingContext } from '../hooks/useLoadingContext';
+import ProgressButton from '../Button/ProgressButton';
+import { PROGRESS_BTN_STATUS } from '../../common/const';
+import { uploadToken, checkMintSyncStatus } from '../../adapters/backend';
+import { useLoadingContext } from '../../hooks/useLoadingContext';
 import { toast } from 'react-toastify';
-import { useWalletContext } from '../hooks/useWalletContext';
-import ERC721 from '../contracts/NFT.json';
-import { getGas } from '../common/Web3Utils';
-import { snooze } from '../common/CommonUtils';
+import { useWalletContext } from '../../hooks/useWalletContext';
+import ERC721 from '../../contracts/NFT.json';
+import { getGas } from '../../common/Web3Utils';
+import { snooze } from '../../common/CommonUtils';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
