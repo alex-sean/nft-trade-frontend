@@ -4,10 +4,10 @@ import useStyles from '../../styles/styles';
 
 function PrimaryButton(props) {
   const classes = useStyles();
-  const { text } = props;
+  const { text, onClick } = props;
 
   return (
-    <Button className={classes.primaryButton}
+    <Button className={classes.primaryButton} onClick={onClick}
       >
       {text}
     </Button>
