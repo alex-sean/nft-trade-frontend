@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Typography, Box, Container, Tabs, Tab, Grid, Paper, Button,
          Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
@@ -65,6 +65,9 @@ export default function ItemTabs(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const [filter, setFilter] = React.useState('all');
+  const [properties, setProperties] = useState([]);
+
+  const { tokenInfo } = props;
 
   const handleFilter = (event, newFilter) => {
     setFilter(newFilter);
@@ -73,6 +76,14 @@ export default function ItemTabs(props) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  useEffect(() => {
+    if (!tokenInfo) {
+      return;
+    }
+
+    setProperties(JSON.parse(tokenInfo.token.tokenURIData).properties);
+  }, [tokenInfo])
 
   return (
     <Container maxWidth="lg">
@@ -92,11 +103,10 @@ export default function ItemTabs(props) {
           <Table sx={{ minWidth: 650, width:'100%' }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>Dessert (100g serving)</TableCell>
-                <TableCell align="right">Calories</TableCell>
-                <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                <TableCell>Price</TableCell>
+                <TableCell align="right">USD Price</TableCell>
+                <TableCell align="right">From</TableCell>
+                <TableCell align="right">Action</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -111,7 +121,6 @@ export default function ItemTabs(props) {
                   <TableCell align="right">{row.calories}</TableCell>
                   <TableCell align="right">{row.fat}</TableCell>
                   <TableCell align="right">{row.carbs}</TableCell>
-                  <TableCell align="right">{row.protein}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -120,62 +129,18 @@ export default function ItemTabs(props) {
       </TabPanel>
       <TabPanel className={classes.paperBackground} value={value} index={1} style={{border: 'solid 1px gainsboro', borderRadius: '8px'}}>
         <Grid container spacing={5}>
-          <Grid item xs={6} md={3}>
-            <Paper className={classes.hoverShadow} sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
-              <Typography align='center' color="primary" variant='body1'>ACCESSORY</Typography>
-              <Typography align='center' variant='h6'>Metal headband</Typography>
-              <Typography align='center' variant='body2'>3% have this trait</Typography>
-            </Paper>
-          </Grid>
-          <Grid item xs={6} md={3}>
-            <Paper className={classes.hoverShadow} sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
-              <Typography align='center' color="primary" variant='body1'>SKIN</Typography>
-              <Typography align='center' variant='h6'>Dark Brown</Typography>
-              <Typography align='center' variant='body2'>8% have this trait</Typography>
-            </Paper>
-          </Grid>
-          <Grid item xs={6} md={3}>
-            <Paper className={classes.hoverShadow} sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
-              <Typography align='center' color="primary" variant='body1'>EYES</Typography>
-              <Typography align='center' variant='h6'>Cyborg</Typography>
-              <Typography align='center' variant='body2'>2% have this trait</Typography>
-            </Paper>
-          </Grid>
-          <Grid item xs={6} md={3}>
-            <Paper className={classes.hoverShadow} sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
-              <Typography align='center' color="primary" variant='body1'>CLOTH</Typography>
-              <Typography align='center' variant='h6'>Adidas</Typography>
-              <Typography align='center' variant='body2'>7% have this trait</Typography>
-            </Paper>
-          </Grid>
-          <Grid item xs={6} md={3}>
-            <Paper className={classes.hoverShadow} sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
-              <Typography align='center' color="primary" variant='body1'>HAIR</Typography>
-              <Typography align='center' variant='h6'>White Ash</Typography>
-              <Typography align='center' variant='body2'>7% have this trait</Typography>
-            </Paper>
-          </Grid>
-          <Grid item xs={6} md={3}>
-            <Paper className={classes.hoverShadow} sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
-              <Typography align='center' color="primary" variant='body1'>CHARACTER</Typography>
-              <Typography align='center' variant='h6'>TSAREVNA</Typography>
-              <Typography align='center' variant='body2'>1% have this trait</Typography>
-            </Paper>
-          </Grid>
-          <Grid item xs={6} md={3}>
-            <Paper className={classes.hoverShadow} sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
-              <Typography align='center' color="primary" variant='body1'>BACKGROUND</Typography>
-              <Typography align='center' variant='h6'>CyberPunk</Typography>
-              <Typography align='center' variant='body2'>9% have this trait</Typography>
-            </Paper>
-          </Grid>
-          <Grid item xs={6} md={3}>
-            <Paper className={classes.hoverShadow} sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
-              <Typography align='center' color="primary" variant='body1'>MOUTH</Typography>
-              <Typography align='center' variant='h6'>Flower</Typography>
-              <Typography align='center' variant='body2'>9% have this trait</Typography>
-            </Paper>
-          </Grid>
+          {
+            properties.map((property, index) => {
+              return (
+                <Grid item xs={6} md={3} key={index}>
+                  <Paper className={classes.hoverShadow} sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
+                    <Typography align='center' color="primary" variant='body1'>{property.name}</Typography>
+                    <Typography align='center' variant='h6'>{property.value}</Typography>
+                  </Paper>
+                </Grid>
+              )
+            })
+          }
         </Grid>
       </TabPanel>
       <TabPanel className={classes.paperBackground} value={value} index={2} style={{border: 'solid 1px gainsboro', borderRadius: '8px', padding: '32px'}}>

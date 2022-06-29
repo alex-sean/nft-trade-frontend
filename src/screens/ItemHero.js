@@ -168,10 +168,10 @@ export default function ItemHero(props){
               {/* <ItemCreator src='../../images/avatars/avatar_7.jpg' title="Creator 10% royalties" subtitle='@creative_world'></ItemCreator> */}
               <ItemCreator src={getOwnerAvatarURL()} title="Owned by" subtitle={getOwnerName()}></ItemCreator>
             </Grid>
-            <ItemBid />
+            <ItemBid tokenInfo={tokenInfo}/>
           </Grid>
         </Grid>
-        <ItemTabs />
+        <ItemTabs tokenInfo={tokenInfo}/>
       </Container>
     </Box>
   );
