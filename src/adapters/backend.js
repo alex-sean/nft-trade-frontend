@@ -114,6 +114,10 @@ export const checkMintSyncStatus = async (collection, supply) => {
     return await get(`/sync/mint?collection=${collection}&supply=${supply}`);
 }
 
+export const checkOfferSyncStatus = async (collectionAddress, tokenID, owner, buyer, offerAmount, asset) => {
+    return await get(`/sync/offer?collectionAddress=${collectionAddress}&tokenID=${tokenID}&owner=${owner}&buyer=${buyer}&offerAmount=${offerAmount}&asset=${asset}`);
+}
+
 export const getOwnedTokens = async (owner) => {
     return await get(`/token/owned?owner=${owner}`);
 }
