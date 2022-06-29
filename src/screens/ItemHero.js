@@ -34,7 +34,7 @@ export default function ItemHero(props){
         throw new Error('Getting token information failed.');
       }
 
-      setTokenInfo(tokenInfo.data);
+      setTokenInfo(tokenInfo.data.token);
     } catch (err) {
       console.log(err);
       toast('Getting token information failed.');

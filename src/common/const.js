@@ -44,3 +44,9 @@ export const LIST_TYPE = {
     FIXED_PRICE: 1,
     AUCTION: 2
 };
+
+export const ASSETS = {
+    AVAX: '0xd00ae08403b9bbb9124bb305c09058e32c39a48c',
+    USDT: '0xafda926d549a67229d8db529638e0bafcdb66458',
+
+}

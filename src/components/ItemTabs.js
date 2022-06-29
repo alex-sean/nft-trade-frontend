@@ -15,6 +15,8 @@ import ImportExportIcon from '@mui/icons-material/ImportExport';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import { getAssetName } from '../common/CommonUtils';
+import { useWalletContext } from '../hooks/useWalletContext';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -69,6 +71,8 @@ export default function ItemTabs(props) {
 
   const { tokenInfo } = props;
 
+  const { account } = useWalletContext();
+
   const handleFilter = (event, newFilter) => {
     setFilter(newFilter);
   };
@@ -84,6 +88,14 @@ export default function ItemTabs(props) {
 
     setProperties(JSON.parse(tokenInfo.token.tokenURIData).properties);
   }, [tokenInfo])
+
+  const getOffererName = (offer) => {
+    if (offer.address && offer.address.length > 0) {
+      return offer.address[0].name;
+    } else {
+      return offer.buyer.slice(0, 13);
+    }
+  }
 
   return (
     <Container maxWidth="lg">
@@ -104,23 +116,29 @@ export default function ItemTabs(props) {
             <TableHead>
               <TableRow>
                 <TableCell>Price</TableCell>
-                <TableCell align="right">USD Price</TableCell>
+                <TableCell align="center">USD Price</TableCell>
                 <TableCell align="right">From</TableCell>
-                <TableCell align="right">Action</TableCell>
+                {
+                  tokenInfo && tokenInfo.token.owner === account.toLowerCase() &&
+                  <TableCell align="right">Action</TableCell>
+                }
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
+              {tokenInfo && tokenInfo.offers.map((offer, index) => (
                 <TableRow
-                  key={row.name}
+                  key={index}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
-                    {row.name}
+                    {offer.amount} {getAssetName(offer.asset)}
                   </TableCell>
-                  <TableCell align="right">{row.calories}</TableCell>
-                  <TableCell align="right">{row.fat}</TableCell>
-                  <TableCell align="right">{row.carbs}</TableCell>
+                  <TableCell align="center">{0}</TableCell>
+                  <TableCell align="right">{getOffererName(offer)}</TableCell>
+                  {
+                    tokenInfo && tokenInfo.token.owner === account.toLowerCase() &&
+                    <TableCell align="right">Accept</TableCell>
+                  }
                 </TableRow>
               ))}
             </TableBody>
@@ -152,10 +170,10 @@ export default function ItemTabs(props) {
             <Typography p={1} variant='body2'>Blockchain:</Typography>
           </Grid>
           <Grid sx>
-            <Typography p={1} color="primary" variant='body2'>0x1cBB182322Aee8ce9F4F1f98d7460173ee30Af1F</Typography>
-            <Typography p={1} variant='body2'>7714</Typography>
+            <Typography p={1} color="primary" variant='body2'>{tokenInfo? tokenInfo.token.collectionAddress: '...'}</Typography>
+            <Typography p={1} variant='body2'>{tokenInfo? tokenInfo.token.tokenID: '0'}</Typography>
             <Typography p={1} variant='body2'>ERC-721</Typography>
-            <Typography p={1} variant='body2'>Ethereum</Typography>
+            <Typography p={1} variant='body2'>Avalanche Network</Typography>
           </Grid>
         </Grid>
       </TabPanel>
