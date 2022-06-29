@@ -142,6 +142,10 @@ export const getTokensByCollection = async (address) => {
     return await get(`/token/get_by_collection?address=${address}`);
 }
 
+export const getTokenDetail = async (collectionAddress, tokenID) => {
+    return await get(`/token/detail?collectionAddress=${collectionAddress}&tokenID=${tokenID}`);
+}
+
 export const getBlogs = async (limit, offset) => {
     return await get(`/blog/list?limit=${limit}&offset=${offset}`);
 }
