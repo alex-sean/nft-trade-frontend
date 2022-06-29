@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import PropTypes from 'prop-types';
 import { Grid, Typography, Box, Divider, Button, Card, CardActions, CardContent } from '@mui/material';
@@ -7,6 +7,8 @@ import useStyles from '../styles/styles';
 import { Icon } from '@iconify/react';
 import { LIST_TYPE } from '../common/const';
 import { useWalletContext } from '../hooks/useWalletContext';
+import SellDialog from '../components/Dialog/SellDialog';
+import OfferDialog from '../components/Dialog/OfferDialog';
 
 export default function ItemBid(props) {
   const classes = useStyles();
@@ -14,6 +16,8 @@ export default function ItemBid(props) {
   const { tokenInfo } = props;
 
   const { account } = useWalletContext();
+
+  const [showOfferDlg, setShowOfferDlg] = useState(false);
 
   const showItemButtons = () => {
     if (!tokenInfo) {
@@ -61,7 +65,7 @@ export default function ItemBid(props) {
         }
 
         return (
-          <Button className={classes.primaryButton} sx={{width: '100%'}}>
+          <Button className={classes.primaryButton} sx={{width: '100%'}} onClick={() => setShowOfferDlg(true)}>
             Offer
           </Button>
         )
@@ -144,6 +148,8 @@ export default function ItemBid(props) {
           }
         </CardActions>
       </Card>
+      <SellDialog visible={false}/>
+      <OfferDialog visible={showOfferDlg} tokenInfo={tokenInfo} setVisibility={setShowOfferDlg}/>
     </>
   );
 }
