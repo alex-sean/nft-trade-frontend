@@ -14,7 +14,7 @@ export default function ItemCreator(props) {
     <Grid item xs={12} md={6}>
       <Grid container spacing={1}>
         <Grid item xs='auto'>
-          <img src={src} style={{borderRadius: '12px'}}/>
+          <img src={src} style={{borderRadius: '12px', width: '40px'}}/>
         </Grid>
         <Grid item>
           <Typography noWrap variant="body2">{title}</Typography>

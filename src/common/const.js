@@ -33,4 +33,14 @@ export const CATEGORY_NAMES = {
     VIRTUAL_WORLD: 'Virtual World'
 }
 
+export const CATEGORY_NAMES_IN_ARRAY = [
+    'None', 'Art', 'Collectible', 'Domain', 'Music', 'Photography', 'Virtual World'
+]
+
 export const STR_MONTH = ['NONE', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'Septempber', 'October', 'November', 'December'];
+
+export const LIST_TYPE = {
+    NONE: 0,
+    FIXED_PRICE: 1,
+    AUCTION: 2
+};
