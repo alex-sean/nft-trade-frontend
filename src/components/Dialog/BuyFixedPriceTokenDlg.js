@@ -15,6 +15,7 @@ import { useLoadingContext } from '../../hooks/useLoadingContext';
 import BEP20Price from '../../contracts/BEP20Price.json';
 import { toast } from 'react-toastify';
 import BuyCoinProgressDlg from './BuyCoinProgressDlg';
+import BuyTokenProgressDlg from './BuyTokenProgressDlg';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
 	return <Slide direction="up" ref={ref} {...props} />;
@@ -27,6 +28,7 @@ export default function BuyFixedPriceTokenDlg(props){
 	const [asset, setAsset] = useState('');
 	const [price, setPrice] = useState(0);
 	const [showCoinDlg, setShowCoinDlg] = useState(false);
+	const [showTokenDlg, setShowTokenDlg] = useState(false);
 
 	const { web3 } = useWalletContext();
 	const { setLoading } = useLoadingContext();
@@ -98,7 +100,7 @@ export default function BuyFixedPriceTokenDlg(props){
 		if (asset === 'Native') {
 			setShowCoinDlg(true);
 		} else {
-
+			setShowTokenDlg(true);
 		}
 	}
 
@@ -150,6 +152,7 @@ export default function BuyFixedPriceTokenDlg(props){
 				<PrimaryButton text='Buy' onClick={handleOpenProgressDlg}/>
 			</DialogActions>
 		</Dialog>,
-		<BuyCoinProgressDlg open={showCoinDlg} handleOpenDialog={setShowCoinDlg} token={token} amount={price.toFixed(4)}/>
+		<BuyCoinProgressDlg open={showCoinDlg} handleOpenDialog={setShowCoinDlg} token={token} amount={price.toFixed(4)}/>,
+		<BuyTokenProgressDlg open={showTokenDlg} handleOpenDialog={setShowTokenDlg} token={token} asset={asset} amount={price.toFixed(4)} />
 	])
 }
