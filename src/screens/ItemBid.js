@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
-import useScrollTrigger from '@mui/material/useScrollTrigger';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import { Grid, Typography, Box, Divider, Button, Card, CardActions, CardContent } from '@mui/material';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import useStyles from '../styles/styles';
 import { Icon } from '@iconify/react';
 import { LIST_TYPE } from '../common/const';
 import { useWalletContext } from '../hooks/useWalletContext';
 import SellDialog from '../components/Dialog/SellDialog';
 import OfferDialog from '../components/Dialog/OfferDialog';
+import CancelOfferProgressDlg from '../components/Dialog/CancelOfferProgressDlg';
 
 export default function ItemBid(props) {
   const classes = useStyles();
@@ -18,6 +16,9 @@ export default function ItemBid(props) {
   const { account } = useWalletContext();
 
   const [showOfferDlg, setShowOfferDlg] = useState(false);
+  const [showCancelOfferDlg, setShowCancelOfferDlg] = useState(false);
+
+  const [offerAsset, setOfferAsset] = useState('');
 
   const showItemButtons = () => {
     if (!tokenInfo) {
@@ -56,9 +57,9 @@ export default function ItemBid(props) {
           </Button>
         )
       } else {
-        if (existOffer()) {
+        if (offerAsset) {
           return (
-            <Button className={classes.primaryButton} sx={{width: '100%'}}>
+            <Button className={classes.primaryButton} sx={{width: '100%'}} onClick={() => setShowCancelOfferDlg(true)}>
               Cancel Offer
             </Button>
           )
@@ -73,19 +74,17 @@ export default function ItemBid(props) {
     }
   }
 
-  const existOffer = () => {
+  useEffect(() => {
     if (!tokenInfo) {
-      return false;
+      return;
     }
 
     for (let i in tokenInfo.offers) {
       if (tokenInfo.offers[i].buyer === account.toLowerCase()) {
-        return true;
+        setOfferAsset(tokenInfo.offers[i].asset);
       }
     }
-
-    return false;
-  }
+  }, [tokenInfo])
 
   return (
     <>
@@ -150,6 +149,7 @@ export default function ItemBid(props) {
       </Card>
       <SellDialog visible={false}/>
       <OfferDialog visible={showOfferDlg} tokenInfo={tokenInfo} setVisibility={setShowOfferDlg}/>
+      <CancelOfferProgressDlg open={showCancelOfferDlg} asset={offerAsset} handleOpenDialog={setShowCancelOfferDlg} token={tokenInfo? tokenInfo.token: null}/>
     </>
   );
 }

@@ -94,7 +94,7 @@ export default function ItemTabs(props) {
     if (offer.address && offer.address.length > 0) {
       return offer.address[0].name;
     } else {
-      return offer.buyer.slice(0, 13);
+      return `${offer.buyer.slice(0, 13)}...`;
     }
   }
 
