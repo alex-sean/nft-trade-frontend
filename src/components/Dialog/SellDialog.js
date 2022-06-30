@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Typography,
@@ -15,9 +15,10 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function SellDialog(props){
-	const { open, setOpen, token } = props
+	const { open, setOpen, token, serviceFee } = props
 	const [type, setType] = useState(0);
-	const [serviceFee, setServiceFee] = useState(0);
+	const [price, setPrice] = useState(0);
+	const [servicePrice, setServicePrice] = useState(0);
 
 	const classes = useStyles();
 	const theme = useTheme()
@@ -26,6 +27,14 @@ export default function SellDialog(props){
 	const handleClose = () => {
 		setOpen(false);
 	};
+
+	useEffect(() => {
+		if (isNaN(price)) {
+			setServicePrice(0);
+		} else {
+			setServicePrice(parseFloat(price) * parseInt(serviceFee) / 10000);
+		}
+	}, [price])
 
 	return (
 		<Dialog
@@ -50,11 +59,11 @@ export default function SellDialog(props){
 							</Box>
 							<Box display="flex" justifyContent='space-between' alignItems='center'>
 								<Typography p={1} variant="h6">Price:</Typography>
-								<Input p={1} />USD
+								<Input p={1} onChange={(e) => setPrice(e.target.value)}/> USD
 							</Box>
 							<Box display="flex" justifyContent='space-between' alignItems='center'>
 								<Typography p={1} variant="h6">ServiceFee:</Typography>
-								<Typography p={1} variant="body1">0.002USD</Typography>
+								<Typography p={1} variant="body1">{servicePrice} USD</Typography>
 							</Box>
 							<Box display="flex" justifyContent='space-between' alignItems='center'>
 								<Typography p={1} variant="h6">SellType:</Typography>

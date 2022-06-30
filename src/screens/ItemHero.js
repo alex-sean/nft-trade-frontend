@@ -10,7 +10,7 @@ import ItemCreator from '../components/ItemCreator';
 import ItemBid from '../screens/ItemBid';
 import ItemTabs from '../components/ItemTabs';
 import { useLoadingContext } from '../hooks/useLoadingContext';
-import { getTokenDetail } from '../adapters/backend';
+import { getTokenDetail, getServiceFee } from '../adapters/backend';
 import { toast } from 'react-toastify';
 import { CATEGORY_NAMES_IN_ARRAY, LIST_TYPE } from '../common/const';
 import { useWalletContext } from '../hooks/useWalletContext';
@@ -25,6 +25,8 @@ export default function ItemHero(props){
 
   const [tokenInfo, setTokenInfo] = useState();
 
+  const [serviceFee, setServiceFee] = useState(0);
+
   const getTokenInfo = async () => {
     setLoading(true);
 
@@ -35,6 +37,13 @@ export default function ItemHero(props){
       }
 
       setTokenInfo(tokenInfo.data.token);
+
+      const serviceFee = await getServiceFee();
+      if (!serviceFee) {
+        throw new Error('Getting Service fee failed.');
+      }
+
+      setServiceFee(serviceFee.data.serviceFee);
     } catch (err) {
       console.log(err);
       toast('Getting token information failed.');
@@ -168,7 +177,7 @@ export default function ItemHero(props){
               {/* <ItemCreator src='../../images/avatars/avatar_7.jpg' title="Creator 10% royalties" subtitle='@creative_world'></ItemCreator> */}
               <ItemCreator src={getOwnerAvatarURL()} title="Owned by" subtitle={getOwnerName()}></ItemCreator>
             </Grid>
-            <ItemBid tokenInfo={tokenInfo}/>
+            <ItemBid tokenInfo={tokenInfo} serviceFee={serviceFee}/>
           </Grid>
         </Grid>
         <ItemTabs tokenInfo={tokenInfo}/>

@@ -11,7 +11,7 @@ import CancelOfferProgressDlg from '../components/Dialog/CancelOfferProgressDlg'
 export default function ItemBid(props) {
   const classes = useStyles();
 
-  const { tokenInfo } = props;
+  const { tokenInfo, serviceFee } = props;
 
   const { account } = useWalletContext();
 
@@ -151,7 +151,7 @@ export default function ItemBid(props) {
       <SellDialog visible={false}/>
       <OfferDialog visible={showOfferDlg} tokenInfo={tokenInfo} setVisibility={setShowOfferDlg}/>
       <CancelOfferProgressDlg open={showCancelOfferDlg} asset={offerAsset} handleOpenDialog={setShowCancelOfferDlg} token={tokenInfo? tokenInfo.token: null}/>
-      <SellDialog open={showSellDlg} setOpen={setShowSellDlg}/>
+      <SellDialog open={showSellDlg} setOpen={setShowSellDlg} serviceFee={serviceFee} token={tokenInfo? tokenInfo.token: null}/>
     </>
   );
 }
