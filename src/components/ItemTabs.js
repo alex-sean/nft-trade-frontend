@@ -118,10 +118,10 @@ export default function ItemTabs(props) {
               <TableRow>
                 <TableCell>Price</TableCell>
                 <TableCell align="center">USD Price</TableCell>
-                <TableCell align="right">From</TableCell>
+                <TableCell align={"center"}>From</TableCell>
                 {
                   tokenInfo && tokenInfo.token.owner === account.toLowerCase() &&
-                  <TableCell align="right">Action</TableCell>
+                  <TableCell align="center">Action</TableCell>
                 }
               </TableRow>
             </TableHead>
@@ -135,10 +135,10 @@ export default function ItemTabs(props) {
                     {Web3.utils.fromWei(offer.amount + '')} {getAssetName(offer.asset)}
                   </TableCell>
                   <TableCell align="center">{0}</TableCell>
-                  <TableCell align="right">{getOffererName(offer)}</TableCell>
+                  <TableCell align="center">{getOffererName(offer)}</TableCell>
                   {
                     tokenInfo && tokenInfo.token.owner === account.toLowerCase() &&
-                    <TableCell align="right">
+                    <TableCell align="center">
                       <Button className={classes.primaryButton}>Accept</Button>
                     </TableCell>
                   }

@@ -73,7 +73,7 @@ export default function ItemHero(props){
 
   const getTokenName = () => {
     if (tokenInfo) {
-      return tokenInfo.token.name;
+      return `${tokenInfo.token.name} #${tokenInfo.token.tokenID}`;
     } else {
       return '...';
     }
