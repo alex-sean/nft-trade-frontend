@@ -156,7 +156,7 @@ export default function ItemHero(props){
               (
                 <Box className={`${classes.displayFlex} ${classes.my8}`} >
                   <Icon icon="logos:ethereum" rotate={2} hFlip={true} vFlip={true} />
-                  <Typography ml={1} color="rgb(16 185 129)">{getTokenPrice()} ETH</Typography>
+                  <Typography ml={1} color="rgb(16 185 129)">{getTokenPrice()} USD</Typography>
                   {
                     tokenInfo.token.listType === LIST_TYPE.AUCTION &&
                     (

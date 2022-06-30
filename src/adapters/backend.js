@@ -130,6 +130,10 @@ export const checkListSyncStatus = async (collectionAddress, tokenID, owner, lis
     return await get(`/sync/list?collectionAddress=${collectionAddress}&tokenID=${tokenID}&owner=${owner}&listType=${listType}`);
 }
 
+export const checkUnListSyncStatus = async (collectionAddress, tokenID, owner) => {
+    return await get(`/sync/unlist?collectionAddress=${collectionAddress}&tokenID=${tokenID}&owner=${owner}`);
+}
+
 export const getServiceFee = async () => {
     return await get(`/config/service_fee`);
 }
