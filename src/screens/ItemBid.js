@@ -29,28 +29,50 @@ export default function ItemBid(props) {
     }
 
     if (tokenInfo.token.listed) {
-      if (tokenInfo.token.listType === LIST_TYPE.FIXED_PRICE) {
-        return (
-          <Button className={classes.primaryButton} sx={{width: '100%'}} onClick={() => setShowCancelSellDlg(true)}>
-            Cancel Sell
-          </Button>
-        )
-      } else if (tokenInfo.token.listType === LIST_TYPE.AUCTION) {
-        if (tokenInfo.token.auctionEndTime > Date.now()) {
+      if (tokenInfo.token.owner === account.toLowerCase()) {
+        if (tokenInfo.token.listType === LIST_TYPE.FIXED_PRICE) {
           return (
-            <Button className={classes.primaryButton} sx={{width: '100%'}}>
+            <Button className={classes.primaryButton} sx={{width: '100%'}} onClick={() => setShowCancelSellDlg(true)}>
               Cancel Sell
             </Button>
-          )  
-        } else {
-          return (
-            <Button className={classes.primaryButton} sx={{width: '100%'}}>
-              Complete Auction
-            </Button>
           )
+        } else if (tokenInfo.token.listType === LIST_TYPE.AUCTION) {
+          if (tokenInfo.token.auctionEndTime > Date.now()) {
+            return (
+              <Button className={classes.primaryButton} sx={{width: '100%'}}>
+                Cancel Sell
+              </Button>
+            )  
+          } else {
+            return (
+              <Button className={classes.primaryButton} sx={{width: '100%'}}>
+                Complete Auction
+              </Button>
+            )
+          }
         }
       } else {
-        return;
+        if (tokenInfo.token.listType === LIST_TYPE.FIXED_PRICE) {
+          return (
+            <Button className={classes.primaryButton} sx={{width: '100%'}} onClick={() => setShowCancelSellDlg(true)}>
+              Buy
+            </Button>
+          )
+        } else if (tokenInfo.token.listType === LIST_TYPE.AUCTION) {
+          if (tokenInfo.token.auctionEndTime > Date.now()) {
+            return (
+              <Button className={classes.primaryButton} sx={{width: '100%'}}>
+                Bid
+              </Button>
+            )
+          } else {
+            return (
+              <Button className={classes.primaryButton} sx={{width: '100%'}} disabled>
+                Waiting Auction...
+              </Button>
+            )
+          }
+        }
       }
     } else {
       if (tokenInfo.token.owner === account.toLowerCase()) {
