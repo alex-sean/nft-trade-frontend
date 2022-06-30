@@ -17,6 +17,7 @@ export default function ItemBid(props) {
 
   const [showOfferDlg, setShowOfferDlg] = useState(false);
   const [showCancelOfferDlg, setShowCancelOfferDlg] = useState(false);
+  const [showSellDlg, setShowSellDlg] = useState(false);
 
   const [offerAsset, setOfferAsset] = useState('');
 
@@ -52,7 +53,7 @@ export default function ItemBid(props) {
     } else {
       if (tokenInfo.token.owner === account.toLowerCase()) {
         return (
-          <Button className={classes.primaryButton} sx={{width: '100%'}}>
+          <Button className={classes.primaryButton} sx={{width: '100%'}} onClick={() => setShowSellDlg(true)}>
             Sell Token
           </Button>
         )
@@ -150,6 +151,7 @@ export default function ItemBid(props) {
       <SellDialog visible={false}/>
       <OfferDialog visible={showOfferDlg} tokenInfo={tokenInfo} setVisibility={setShowOfferDlg}/>
       <CancelOfferProgressDlg open={showCancelOfferDlg} asset={offerAsset} handleOpenDialog={setShowCancelOfferDlg} token={tokenInfo? tokenInfo.token: null}/>
+      <SellDialog open={showSellDlg} setOpen={setShowSellDlg}/>
     </>
   );
 }

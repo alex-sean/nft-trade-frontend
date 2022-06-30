@@ -15,9 +15,10 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function SellDialog(props){
-	const {visible} = props
-	const [open, setOpen] = React.useState(visible);
-	const [type, setType] = useState(0)
+	const { open, setOpen, token } = props
+	const [type, setType] = useState(0);
+	const [serviceFee, setServiceFee] = useState(0);
+
 	const classes = useStyles();
 	const theme = useTheme()
 	const isDark = theme.palette.mode === 'dark'
@@ -45,7 +46,7 @@ export default function SellDialog(props){
 						<Box p={1}>
 							<Box display="flex" justifyContent='space-between' alignItems='center'>
 								<Typography p={1} variant="h6">TokenName:</Typography>
-								<Typography p={1} variant="body1">#1</Typography>
+								<Typography p={1} variant="body1">{token? `${token.name} #${token.tokenID}`: '...'}</Typography>
 							</Box>
 							<Box display="flex" justifyContent='space-between' alignItems='center'>
 								<Typography p={1} variant="h6">Price:</Typography>
