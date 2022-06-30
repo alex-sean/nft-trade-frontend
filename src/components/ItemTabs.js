@@ -18,6 +18,7 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { getAssetName } from '../common/CommonUtils';
 import { useWalletContext } from '../hooks/useWalletContext';
 import Web3 from 'web3';
+import AcceptOfferProgressDlg from './Dialog/AcceptOfferProgressDlg';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -69,6 +70,8 @@ export default function ItemTabs(props) {
   const [value, setValue] = React.useState(0);
   const [filter, setFilter] = React.useState('all');
   const [properties, setProperties] = useState([]);
+  const [offer, setOffer] = useState(null);
+  const [showAcceptOfferDlg, setShowAcceptOfferDlg] = useState(false);
 
   const { tokenInfo } = props;
 
@@ -96,6 +99,11 @@ export default function ItemTabs(props) {
     } else {
       return `${offer.buyer.slice(0, 13)}...`;
     }
+  }
+
+  const handleAcceptOffer = (offer) => {
+    setOffer(offer);
+    setShowAcceptOfferDlg(true);
   }
 
   return (
@@ -139,7 +147,7 @@ export default function ItemTabs(props) {
                   {
                     tokenInfo && tokenInfo.token.owner === account.toLowerCase() &&
                     <TableCell align="center">
-                      <Button className={classes.primaryButton}>Accept</Button>
+                      <Button className={classes.primaryButton} onClick={() => handleAcceptOffer(offer)}>Accept</Button>
                     </TableCell>
                   }
                 </TableRow>
@@ -233,6 +241,7 @@ export default function ItemTabs(props) {
       <TabPanel className={classes.paperBackground} value={value} index={4}>
         <Graph />
       </TabPanel>
+      <AcceptOfferProgressDlg open={showAcceptOfferDlg} handleOpenDialog={setShowAcceptOfferDlg} token={tokenInfo? tokenInfo.token: null} offer={offer}/>
     </Container>
   );
 }

@@ -122,6 +122,10 @@ export const checkCancelOfferSyncStatus = async (collectionAddress, tokenID, own
     return await get(`/sync/cancel_offer?collectionAddress=${collectionAddress}&tokenID=${tokenID}&owner=${owner}&buyer=${buyer}&asset=${asset}`);
 }
 
+export const checkAcceptOfferSyncStatus = async (collectionAddress, tokenID, owner, buyer, asset) => {
+    return await get(`/sync/accept_offer?collectionAddress=${collectionAddress}&tokenID=${tokenID}&owner=${owner}&buyer=${buyer}&asset=${asset}`);
+}
+
 export const getOwnedTokens = async (owner) => {
     return await get(`/token/owned?owner=${owner}`);
 }
