@@ -126,6 +126,10 @@ export const checkAcceptOfferSyncStatus = async (collectionAddress, tokenID, own
     return await get(`/sync/accept_offer?collectionAddress=${collectionAddress}&tokenID=${tokenID}&owner=${owner}&buyer=${buyer}&asset=${asset}`);
 }
 
+export const checkListSyncStatus = async (collectionAddress, tokenID, owner, listType) => {
+    return await get(`/sync/list?collectionAddress=${collectionAddress}&tokenID=${tokenID}&owner=${owner}&listType=${listType}`);
+}
+
 export const getServiceFee = async () => {
     return await get(`/config/service_fee`);
 }
