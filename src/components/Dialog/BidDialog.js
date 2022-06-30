@@ -53,7 +53,7 @@ export default function BidDialog(props){
 							<Typography p={2} variant="h6">Bid Amount:</Typography>
 							<Input p={1} sx="width: 50px" inputProps={{min: 0, style: { textAlign: 'center' }}} />
 						</Box>
-						<Select sx={{paddingRight: '16px'}} value={type} onChange={e => {setType(e.target.value)}}>
+						<Select sx={{paddingRight: '16px', paddingLeft: '16px'}} value={type} onChange={e => {setType(e.target.value)}}>
 							<MenuItem value="0">Token1</MenuItem>
 							<MenuItem value="1">Token2</MenuItem>
 						</Select>

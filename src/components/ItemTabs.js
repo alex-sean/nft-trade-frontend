@@ -138,7 +138,9 @@ export default function ItemTabs(props) {
                   <TableCell align="right">{getOffererName(offer)}</TableCell>
                   {
                     tokenInfo && tokenInfo.token.owner === account.toLowerCase() &&
-                    <TableCell align="right">Accept</TableCell>
+                    <TableCell align="right">
+                      <Button className={classes.primaryButton}>Accept</Button>
+                    </TableCell>
                   }
                 </TableRow>
               ))}
