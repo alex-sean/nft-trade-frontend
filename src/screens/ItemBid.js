@@ -8,6 +8,7 @@ import SellDialog from '../components/Dialog/SellDialog';
 import OfferDialog from '../components/Dialog/OfferDialog';
 import CancelOfferProgressDlg from '../components/Dialog/CancelOfferProgressDlg';
 import CancelSellProgressDlg from '../components/Dialog/CancelSellProgressDlg';
+import BuyFixedPriceTokenDlg from '../components/Dialog/BuyFixedPriceTokenDlg';
 
 export default function ItemBid(props) {
   const classes = useStyles();
@@ -20,6 +21,7 @@ export default function ItemBid(props) {
   const [showCancelOfferDlg, setShowCancelOfferDlg] = useState(false);
   const [showSellDlg, setShowSellDlg] = useState(false);
   const [showCancelSellDlg, setShowCancelSellDlg] = useState(false);
+  const [showBuyFixedPriceDlg, setShowBuyFixedPriceDlg] = useState(false);
 
   const [offerAsset, setOfferAsset] = useState('');
 
@@ -54,7 +56,7 @@ export default function ItemBid(props) {
       } else {
         if (tokenInfo.token.listType === LIST_TYPE.FIXED_PRICE) {
           return (
-            <Button className={classes.primaryButton} sx={{width: '100%'}} onClick={() => setShowCancelSellDlg(true)}>
+            <Button className={classes.primaryButton} sx={{width: '100%'}} onClick={() => setShowBuyFixedPriceDlg(true)}>
               Buy
             </Button>
           )
@@ -177,6 +179,7 @@ export default function ItemBid(props) {
       <CancelOfferProgressDlg open={showCancelOfferDlg} asset={offerAsset} handleOpenDialog={setShowCancelOfferDlg} token={tokenInfo? tokenInfo.token: null}/>
       <SellDialog open={showSellDlg} setOpen={setShowSellDlg} serviceFee={serviceFee} token={tokenInfo? tokenInfo.token: null}/>
       <CancelSellProgressDlg open={showCancelSellDlg} handleOpenDialog={setShowCancelOfferDlg} token={tokenInfo? tokenInfo.token: null}/>
+      <BuyFixedPriceTokenDlg open={showBuyFixedPriceDlg} setOpen={setShowBuyFixedPriceDlg} token={tokenInfo? tokenInfo.token: null}/>
     </>
   );
 }
