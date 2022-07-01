@@ -10,7 +10,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import PrimaryButton from '../Button/PrimaryButton';
 import useStyles from '../../styles/styles';
 import SellProgressDlg from './SellProgressDlg';
-import { LIST_TYPE } from '../../common/const';
+import { LIST_TYPE, ASSETS } from '../../common/const';
 import ImageCheckButton from '../Button/ImageCheckButton'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -25,7 +25,8 @@ export default function SellDialog(props){
 	const [showSellProgressDlg, setShowSellProgressDlg] = useState(false);
 	const [isStableCoin, setIsStableCoin] = useState(true);
 	const [auctionEndTime, setAuctionEndTime] = useState(0);
-	const [expired, setExpired] = useState(false)
+	const [expired, setExpired] = useState(false);
+	const [assets, setAssets] = useState([]);
 
 	const classes = useStyles();
 	const theme = useTheme()
@@ -42,6 +43,31 @@ export default function SellDialog(props){
 			setServicePrice(parseFloat(price) * parseInt(serviceFee) / 10000);
 		}
 	}, [price])
+
+	const handleAssetChecked = (checked, asset) => {
+		if (checked) {
+			if (asset === 'Native') {
+				setIsStableCoin(true);
+			} else {
+				let tmpAssets = [...assets];
+				tmpAssets.push(asset);
+				setAssets(tmpAssets);
+			}
+		} else {
+			if (asset === 'Native') {
+				setIsStableCoin(false);
+			} else {
+				let tmpAssets = [...assets];
+				for (let i in tmpAssets) {
+					if (tmpAssets[i] === asset) {
+						tmpAssets = tmpAssets.splice(i, 1);
+						break;
+					}
+				}
+				setAssets(tmpAssets);
+			}
+		}
+	}
 
 	return ([
 		<Dialog
@@ -100,14 +126,12 @@ export default function SellDialog(props){
 					<Divider orientation="vertical" flexItem />
 					<Grid item xs p={3}>
 						<Box display='flex' justifyContent='space-evenly'>
-							<ImageCheckButton imgUrl = 'images/avatars/avatar_1.jpg' text='Token1' />
-							<ImageCheckButton imgUrl = 'images/avatars/avatar_2.jpg' text='Token2' />
-							<ImageCheckButton imgUrl = 'images/avatars/avatar_3.jpg' text='Token3' />
+							<ImageCheckButton imgUrl = '../../images/chains/AVAX.png' text='AVAX' onChange={(e) => handleAssetChecked(e.target.value, 'Native')}/>
+							<ImageCheckButton imgUrl = '../../images/chains/AVAX.png' text='WAVAX' onChange={(e) => handleAssetChecked(e.target.value, ASSETS.AVAX)}/>
+							<ImageCheckButton imgUrl = '../../images/chains/USDT.png' text='USDT' onChange={(e) => handleAssetChecked(e.target.value, ASSETS.USDT)}/>
 						</Box>
 						<Box m={2} display='flex' justifyContent='space-evenly'>
-							<ImageCheckButton imgUrl = 'images/avatars/avatar_4.jpg' text='Token4' />
-							<ImageCheckButton imgUrl = 'images/avatars/avatar_5.jpg' text='Token5' />
-							<ImageCheckButton imgUrl = 'images/avatars/avatar_6.jpg' text='Token6' />
+							<ImageCheckButton imgUrl = '../../images/chains/USDT.png' text='TEST' onChange={(e) => handleAssetChecked(e.target.value, ASSETS.TEST)}/>
 						</Box>
 					</Grid>
 				</Grid>
@@ -122,7 +146,7 @@ export default function SellDialog(props){
 			handleOpenDialog={setShowSellProgressDlg}
 			token={token}
 			usdPrice={price}
-			assets={['0x5509122913a941960a434200213c999b515b50e4']}
+			assets={assets}
 			isStableCoin={isStableCoin}
 			auctionEndTime={auctionEndTime}
 			sellType={listType}

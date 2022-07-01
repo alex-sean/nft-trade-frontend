@@ -1,4 +1,5 @@
 import { ASSETS } from './const';
+import BEP20Price from '../contracts/BEP20Price.json';
 
 export async function snooze(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -16,7 +17,7 @@ export function getAssetName(asset) {
     return 'NULL';
 }
 
-export async function getTokenPrice(asset) {
+export async function getTokenPrice(web3, asset) {
     try {
         const priceContract = new web3.eth.Contract(BEP20Price.abi, process.env.REACT_APP_PRICE_CONTRACT_EXCHANGE);
         let rate = 0;
