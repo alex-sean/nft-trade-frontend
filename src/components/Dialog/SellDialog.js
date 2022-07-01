@@ -28,6 +28,8 @@ export default function SellDialog(props){
 	const [expired, setExpired] = useState(false);
 	const [assets, setAssets] = useState([]);
 
+	const [avaxChecked, setAvaxChecked] = useState(false);
+
 	const classes = useStyles();
 	const theme = useTheme()
 	const isDark = theme.palette.mode === 'dark'
@@ -68,6 +70,15 @@ export default function SellDialog(props){
 			}
 		}
 	}
+
+	useEffect(() => {
+		if (listType === LIST_TYPE.AUCTION) {
+			handleAssetChecked(false, 'Native');
+			setAvaxChecked(false);
+		} else {
+			setAvaxChecked(true);
+		}
+	}, [listType])
 
 	return ([
 		<Dialog
@@ -126,12 +137,12 @@ export default function SellDialog(props){
 					<Divider orientation="vertical" flexItem />
 					<Grid item xs p={3}>
 						<Box display='flex' justifyContent='space-evenly'>
-							<ImageCheckButton imgUrl = '../../images/chains/AVAX.png' text='AVAX' onChange={(e) => handleAssetChecked(e.target.value, 'Native')}/>
-							<ImageCheckButton imgUrl = '../../images/chains/AVAX.png' text='WAVAX' onChange={(e) => handleAssetChecked(e.target.value, ASSETS.AVAX)}/>
-							<ImageCheckButton imgUrl = '../../images/chains/USDT.png' text='USDT' onChange={(e) => handleAssetChecked(e.target.value, ASSETS.USDT)}/>
+							<ImageCheckButton imgUrl = '../../images/chains/AVAX.png' text='AVAX' content='Native' onChange={handleAssetChecked} disabled={!avaxChecked}/>
+							<ImageCheckButton imgUrl = '../../images/chains/AVAX.png' text='WAVAX' content={ASSETS.AVAX} onChange={handleAssetChecked}/>
+							<ImageCheckButton imgUrl = '../../images/chains/USDT.png' text='USDT' content={ASSETS.USDT} onChange={handleAssetChecked}/>
 						</Box>
 						<Box m={2} display='flex' justifyContent='space-evenly'>
-							<ImageCheckButton imgUrl = '../../images/chains/USDT.png' text='TEST' onChange={(e) => handleAssetChecked(e.target.value, ASSETS.TEST)}/>
+							<ImageCheckButton imgUrl = '../../images/chains/USDT.png' text='TEST' content={ASSETS.TEST} onChange={handleAssetChecked}/>
 						</Box>
 					</Grid>
 				</Grid>
