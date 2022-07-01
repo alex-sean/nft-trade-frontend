@@ -31,3 +31,29 @@ export async function getTokenPrice(web3, asset) {
         console.log(err);
     }
 }
+
+export async function getAssetPrices(web3) {
+    let ret = {};
+    try {
+        const assetNames = Object.keys(ASSETS);
+        for (let i in assetNames) {
+            const assetName = assetNames[i];
+
+            ret[assetName] = await getTokenPrice(web3, ASSETS[assetName]);
+        }
+
+        ret['Native'] = await getTokenPrice(web3, 'Native');
+    } catch (err) {
+        console.log(err);
+    }
+
+    return ret;
+}
+
+export function getUSDPrice(rates, price, asset) {
+    if (rates[asset]) {
+        return (price * rates[asset] / Math.pow(10, 18)).toFixed(2);
+    }
+
+    return 0;
+}

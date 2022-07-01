@@ -113,6 +113,18 @@ export default function ItemBid(props) {
     }
   }, [tokenInfo])
 
+  const getHighestBidText = () => {
+    if (tokenInfo) {
+      if (tokenInfo.orders.length === 0) {
+        return `Minimum bid by Owner`
+      } else {
+        return ``
+      }
+    } else {
+      return '...'
+    }
+  }
+
   return (
     <>
       <Card container className={classes.paperBackground}>
@@ -123,6 +135,7 @@ export default function ItemBid(props) {
               <Grid item xs={12} md={6}>
                 <Box>
                   <Typography noWrap>
+                    
                     Highest bid by 0x695d2ef170ce69e794707eeef9497af2de25df82
                   </Typography>
                 </Box>

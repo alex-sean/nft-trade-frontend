@@ -12,6 +12,7 @@ import useStyles from '../../styles/styles';
 import SellProgressDlg from './SellProgressDlg';
 import { LIST_TYPE, ASSETS } from '../../common/const';
 import ImageCheckButton from '../Button/ImageCheckButton'
+import { toast } from 'react-toastify';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
 	return <Slide direction="up" ref={ref} {...props} />;
@@ -80,6 +81,29 @@ export default function SellDialog(props){
 		}
 	}, [listType])
 
+	const handleAuctionTimeChanged = (date) => {
+		const ts = parseInt(new Date(date).getTime() / 1000);
+		if (ts < Date.now() / 1000) {
+			toast('Please select the correct date.');
+			return;
+		}
+		setAuctionEndTime(parseInt(new Date(date).getTime() / 1000));
+	}
+
+	const openSellProgressDlg = () => {
+		if (isNaN(price)) {
+			toast('Please input the correct price.');
+			return;
+		}
+
+		if (listType === LIST_TYPE.AUCTION && auctionEndTime < Date.now() / 1000) {
+			toast('Please input the correct auction time.');
+			return;
+		}
+
+		setShowSellProgressDlg(true);
+	}
+
 	return ([
 		<Dialog
 			key="1"
@@ -121,7 +145,7 @@ export default function SellDialog(props){
 								<Box display="flex" justifyContent='space-between' alignItems='center'>
 									<Typography p={1} variant="h6">End date:</Typography>
 									<input type="date"
-										style={{height: '40px', fontSize: 'large', fontWeight: '700', border: '1px solid #bbb', borderRadius: '4px', padding: '4px'}} />
+										style={{height: '40px', fontSize: 'large', fontWeight: '700', border: '1px solid #bbb', borderRadius: '4px', padding: '4px'}} onChange={(e) => handleAuctionTimeChanged(e.target.value)}/>
 								</Box>
 							)}
 						</Box>
@@ -140,7 +164,7 @@ export default function SellDialog(props){
 				</Grid>
 			</DialogContent>
 			<DialogActions sx={{display:'flex', justifyContent: 'center'}} className={classes.paperBackground}>
-				<PrimaryButton text='SELL' onClick={() => setShowSellProgressDlg(true)}/>
+				<PrimaryButton text='SELL' onClick={openSellProgressDlg}/>
 			</DialogActions>
 		</Dialog>,
 		<SellProgressDlg 

@@ -14,6 +14,7 @@ import { getTokenDetail, getServiceFee } from '../adapters/backend';
 import { toast } from 'react-toastify';
 import { CATEGORY_NAMES_IN_ARRAY, LIST_TYPE } from '../common/const';
 import { useWalletContext } from '../hooks/useWalletContext';
+import { getAssetPrices } from '../common/CommonUtils';
 
 export default function ItemHero(props){
   const classes = useStyles();
@@ -21,11 +22,13 @@ export default function ItemHero(props){
   const { collectionAddress, tokenID } = useParams();
 
   const { setLoading } = useLoadingContext();
-  const { account } = useWalletContext();
+  const { account, web3 } = useWalletContext();
 
   const [tokenInfo, setTokenInfo] = useState();
 
   const [serviceFee, setServiceFee] = useState(0);
+
+  const [rates, setRates] = useState({});
 
   const getTokenInfo = async () => {
     setLoading(true);
@@ -48,13 +51,31 @@ export default function ItemHero(props){
       console.log(err);
       toast('Getting token information failed.');
     }
-
-    setLoading(false);
   }
 
   useEffect(() => {
     getTokenInfo();
   }, [])
+
+  const getRates = async () => {
+    try {
+      const ratesResult = await getAssetPrices(web3);
+      setRates(ratesResult);
+    } catch (err) {
+      console.log(err);
+      toast('Getting rate failed.');
+    }
+
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    if (!web3) {
+      return;
+    }
+
+    getRates();
+  }, [web3])
 
   const getTokenImageURL = () => {
     if (tokenInfo) {
@@ -177,10 +198,10 @@ export default function ItemHero(props){
               {/* <ItemCreator src='../../images/avatars/avatar_7.jpg' title="Creator 10% royalties" subtitle='@creative_world'></ItemCreator> */}
               <ItemCreator src={getOwnerAvatarURL()} title="Owned by" subtitle={getOwnerName()}></ItemCreator>
             </Grid>
-            <ItemBid tokenInfo={tokenInfo} serviceFee={serviceFee}/>
+            <ItemBid tokenInfo={tokenInfo} serviceFee={serviceFee} rates={rates}/>
           </Grid>
         </Grid>
-        <ItemTabs tokenInfo={tokenInfo}/>
+        <ItemTabs tokenInfo={tokenInfo} rates={rates}/>
       </Container>
     </Box>
   );

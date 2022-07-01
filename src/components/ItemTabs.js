@@ -15,7 +15,7 @@ import ImportExportIcon from '@mui/icons-material/ImportExport';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import { getAssetName } from '../common/CommonUtils';
+import { getAssetName, getUSDPrice } from '../common/CommonUtils';
 import { useWalletContext } from '../hooks/useWalletContext';
 import Web3 from 'web3';
 import AcceptOfferProgressDlg from './Dialog/AcceptOfferProgressDlg';
@@ -73,7 +73,7 @@ export default function ItemTabs(props) {
   const [offer, setOffer] = useState(null);
   const [showAcceptOfferDlg, setShowAcceptOfferDlg] = useState(false);
 
-  const { tokenInfo } = props;
+  const { tokenInfo, rates } = props;
 
   const { account } = useWalletContext();
 
@@ -142,7 +142,7 @@ export default function ItemTabs(props) {
                   <TableCell component="th" scope="row">
                     {Web3.utils.fromWei(offer.amount + '')} {getAssetName(offer.asset)}
                   </TableCell>
-                  <TableCell align="center">{0}</TableCell>
+                  <TableCell align="center">{getUSDPrice(rates, Web3.utils.fromWei(offer.amount + ''), getAssetName(offer.asset))}</TableCell>
                   <TableCell align="center">{getOffererName(offer)}</TableCell>
                   {
                     tokenInfo && tokenInfo.token.owner === account.toLowerCase() &&

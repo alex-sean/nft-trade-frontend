@@ -5,6 +5,7 @@ import { WalletContext } from '../contexts/WalletContext'
 
 import { LOCAL_STORAGE_KEY, WALLET_TYPE } from '../common/const'
 import { ToastContainer, toast } from "react-toastify";
+import { getAssetPrices } from "../common/CommonUtils";
 
 const providerParam = {
     infuraId: 'a7a08bee7e2e427591a17baafee2c515',
@@ -188,9 +189,6 @@ export const WalletProvider = ({ children }) => {
     useEffect(() => {
         const initBalanceByAccount = async () => {
             if (account === '') return;
-
-            const web3 = new Web3(await getCurrentProvider());
-            setWeb3(web3);
     
             web3.eth.getBalance(account)
             .then((balance) => {
@@ -202,7 +200,16 @@ export const WalletProvider = ({ children }) => {
         }
 
         initBalanceByAccount();
-    }, [account])
+    }, [account, web3])
+
+    useEffect(() => {
+        const initWeb3 = async () => {
+            const web3 = new Web3(await getCurrentProvider());
+            setWeb3(web3);
+        }
+
+        initWeb3();
+    }, []);
 
     const handleDisconnect = () => {
         localStorage.setItem(LOCAL_STORAGE_KEY.CONNECTED, 0)
