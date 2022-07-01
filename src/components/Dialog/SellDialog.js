@@ -117,21 +117,13 @@ export default function SellDialog(props){
 								</Select>
 							</Box>
 							
-							{listType == LIST_TYPE.AUCTION ? (
-								<>
-									<Box display="flex" justifyContent='space-between' alignItems='center'>
-										<Typography p={1} variant="h6">Select end date:</Typography>
-										<Checkbox checked={expired} onChange={e => {setExpired(e.target.checked)}}></Checkbox>
-									</Box>
-									{expired ? (
-										<Box display="flex" justifyContent='space-between' alignItems='center'>
-											<Typography p={1} variant="h6">End date:</Typography>
-											<input type="date"
-												style={{height: '40px', fontSize: 'large', fontWeight: '700', border: '1px solid #bbb', borderRadius: '4px', padding: '4px'}} />
-										</Box>
-									) : ('')}
-								</>
-							) : ('')}
+							{ listType == LIST_TYPE.AUCTION && (
+								<Box display="flex" justifyContent='space-between' alignItems='center'>
+									<Typography p={1} variant="h6">End date:</Typography>
+									<input type="date"
+										style={{height: '40px', fontSize: 'large', fontWeight: '700', border: '1px solid #bbb', borderRadius: '4px', padding: '4px'}} />
+								</Box>
+							)}
 						</Box>
 					</Grid>
 					<Divider orientation="vertical" flexItem />
