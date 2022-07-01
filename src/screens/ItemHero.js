@@ -14,7 +14,8 @@ import { getTokenDetail, getServiceFee } from '../adapters/backend';
 import { toast } from 'react-toastify';
 import { CATEGORY_NAMES_IN_ARRAY, LIST_TYPE } from '../common/const';
 import { useWalletContext } from '../hooks/useWalletContext';
-import { getAssetPrices } from '../common/CommonUtils';
+import { getAssetName, getAssetPrices, getUSDPrice } from '../common/CommonUtils';
+import Web3 from 'web3';
 
 export default function ItemHero(props){
   const classes = useStyles();
@@ -146,6 +147,23 @@ export default function ItemHero(props){
     }
   }
 
+  const getHighestBidText = () => {
+    if (tokenInfo && tokenInfo.orders.length) {
+      let maxBidIndex = 0;
+      let maxUSDPrice = 0;
+      tokenInfo.token.orders.map((order, index) => {
+        if (getUSDPrice(rates, Web3.utils.fromWei(order.amount + ''), order.asset) > maxUSDPrice) {
+          maxUSDPrice = getUSDPrice(rates, Web3.utils.fromWei(order.amount + ''), order.asset);
+          maxBidIndex = index;
+        }
+      })
+
+      return `Highest Bid ${Web3.utils.fromWei(tokenInfo.token.orders[maxBidIndex].amount + '')} ${getAssetName(tokenInfo.token.orders[maxBidIndex].asset)}($${maxUSDPrice})`;
+    } else {
+      return '';
+    }
+  }
+
   return (
     <Box className={classes.itemHeroContainer}>
       <Container maxWidth="lg">
@@ -160,7 +178,10 @@ export default function ItemHero(props){
                 <Link underline="none" sx={{color: '#ff0'}}>
                   <Typography mr={2} color="rgb(131, 88, 255)">{getCategoryName()}</Typography>
                 </Link>
-                <CheckCircleIcon sx={{color: 'rgb(16, 185, 129)'}}/>
+                {
+                  tokenInfo && tokenInfo.token.status &&
+                  <CheckCircleIcon sx={{color: 'rgb(16, 185, 129)'}}/>
+                }
               </Box>
               <Box className={`${classes.displayFlex}`} >
                 <Typography className={`${classes.displayFlex}`} sx={{border:'solid 1px grey', borderRadius:'10px', padding:'8px'}}>
@@ -176,14 +197,14 @@ export default function ItemHero(props){
               tokenInfo && tokenInfo.token.listed &&
               (
                 <Box className={`${classes.displayFlex} ${classes.my8}`} >
-                  <Icon icon="logos:ethereum" rotate={2} hFlip={true} vFlip={true} />
-                  <Typography ml={1} color="rgb(16 185 129)">{getTokenPrice()} USD</Typography>
+                  {/* <Icon icon="logos:ethereum" rotate={2} hFlip={true} vFlip={true} /> */}
+                  <Typography ml={1} color="rgb(16 185 129)">$ {getTokenPrice()}</Typography>
                   {
                     tokenInfo.token.listType === LIST_TYPE.AUCTION &&
                     (
                       [
-                        <Typography ml={3} color="gray">Highest bid 4.7 ETH</Typography>,
-                        <Typography ml={3} color="gray">1/1 available</Typography>
+                        <Typography ml={3} color="gray">{getHighestBidText()}</Typography>,
+                        // <Typography ml={3} color="gray">1/1 available</Typography>
                       ]
                     )
                   }
