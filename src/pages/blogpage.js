@@ -3,7 +3,6 @@ import PrimaryButton from "../components/Button/PrimaryButton";
 import useStyles from '../styles/styles';
 import { getBlogs, decodeBase64 } from '../adapters/backend';
 import { useEffect, useState } from "react";
-import SellDialog from '../components/Dialog/SellDialog'
 
 export default function BlogPage(){
   const classes = useStyles();
@@ -34,7 +33,6 @@ export default function BlogPage(){
 
   return (
     <Box py={4} className={classes.gradientBackground}>
-      <SellDialog open={true} />
       <Container maxWidth="lg">
         {
           offset === 0 ? (
