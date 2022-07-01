@@ -9,11 +9,13 @@ import OfferDialog from '../components/Dialog/OfferDialog';
 import CancelOfferProgressDlg from '../components/Dialog/CancelOfferProgressDlg';
 import CancelSellProgressDlg from '../components/Dialog/CancelSellProgressDlg';
 import BuyFixedPriceTokenDlg from '../components/Dialog/BuyFixedPriceTokenDlg';
+import { getAssetName, getUSDPrice } from '../common/CommonUtils';
+import Web3 from 'web3';
 
 export default function ItemBid(props) {
   const classes = useStyles();
 
-  const { tokenInfo, serviceFee } = props;
+  const { tokenInfo, serviceFee, rates } = props;
 
   const { account } = useWalletContext();
 
@@ -22,8 +24,14 @@ export default function ItemBid(props) {
   const [showSellDlg, setShowSellDlg] = useState(false);
   const [showCancelSellDlg, setShowCancelSellDlg] = useState(false);
   const [showBuyFixedPriceDlg, setShowBuyFixedPriceDlg] = useState(false);
+  const [highestBidIndex, setHighestBidIndex] = useState(-1);
 
   const [offerAsset, setOfferAsset] = useState('');
+
+  const [leftDay, setLeftDay] = useState(0);
+  const [leftHour, setLeftHour] = useState(0);
+  const [leftMin, setLeftMin] = useState(0);
+  const [leftSec, setLeftSec] = useState(0);
 
   const showItemButtons = () => {
     if (!tokenInfo) {
@@ -111,18 +119,101 @@ export default function ItemBid(props) {
         setOfferAsset(tokenInfo.offers[i].asset);
       }
     }
+
+    if (tokenInfo.token.listType === LIST_TYPE.AUCTION) {
+      setInterval(calculateLeftDuration, 1000);
+    }
   }, [tokenInfo])
 
-  const getHighestBidText = () => {
+  useEffect(() => {
+    if (!tokenInfo) {
+      return;
+    }
+
+    if (rates === {}) {
+      return;
+    }
+
+    getHighestBid();
+  }, [tokenInfo, rates])
+
+  const getHighestBid = () => {
     if (tokenInfo) {
       if (tokenInfo.orders.length === 0) {
-        return `Minimum bid by Owner`
+        setHighestBidIndex(-1)
       } else {
-        return ``
+        let maxUSDPrice = 0;
+        let highestIndex = 0;
+        tokenInfo.orders.map((order, index) => {
+          const usdPrice = getUSDPrice(rates, Web3.utils.fromWei(order.amount + ''), order.asset);
+          if (usdPrice > maxUSDPrice) {
+            maxUSDPrice = usdPrice;
+            highestIndex = index;
+          }
+        })
+
+        setHighestBidIndex(highestIndex);
+      }
+    }
+  }
+
+  const getHighestBidText = () => {
+    if (highestBidIndex === -1) {
+      return 'Minimum Bid By Owner';
+    } else {
+      if (tokenInfo.orders[highestBidIndex].address && tokenInfo.orders[highestBidIndex].address.length) {
+        return `Highest Bid By ${tokenInfo.orders[highestBidIndex].address[0].name}`;
+      } else {
+        return `Highest Bid By ${tokenInfo.orders[highestBidIndex].buyer.slice(0, 13)}`;
+      }
+    }
+  }
+
+  const getHighestBidAmountText = () => {
+    if (highestBidIndex === -1) {
+      return `...`;
+    } else {
+      return `${Web3.utils.fromWei(tokenInfo.orders[highestBidIndex].amount)} ${getAssetName(tokenInfo.orders[highestBidIndex].asset)}`
+    }
+  }
+
+  const getHighestBidUSDAmount = () => {
+    if (highestBidIndex === -1) {
+      return `$ ${tokenInfo.token.price}`;
+    } else {
+      return `$ ${getUSDPrice(rates, Web3.utils.fromWei(tokenInfo.orders[highestBidIndex].amount), getAssetName(tokenInfo.orders[highestBidIndex].asset))}}`
+    }
+  }
+
+  const getBidUserAvatar = () => {
+    let avatarURL = 'user_avatar.gif';
+    if (highestBidIndex === -1) {
+      if (tokenInfo && tokenInfo.token.address && tokenInfo.token.address.length > 0) {
+        avatarURL = tokenInfo.token.address[0].avatar;
       }
     } else {
-      return '...'
+      if (tokenInfo.orders[highestBidIndex].address && tokenInfo.orders[highestBidIndex].address.length) {
+        avatarURL = tokenInfo.orders[highestBidIndex].address[0].avatar;
+      }
     }
+
+    return `${process.env.REACT_APP_AVATAR_PATH}/${avatarURL}`;
+  }
+
+  const calculateLeftDuration = () => {
+    let leftTS = tokenInfo.token.auctionEndTime - parseInt(Date.now() / 1000);
+
+    const tmpLeftSec = leftTS % 60;
+    leftTS = Math.floor(leftTS / 60);
+    const tmpLeftMin = leftTS % 60;
+    leftTS = Math.floor(leftTS / 60);
+    const tmpLeftHr = leftTS % 60;
+    const tmpLeftDay = Math.floor(leftTS / 24);
+
+    setLeftDay(tmpLeftDay);
+    setLeftHour(tmpLeftHr);
+    setLeftMin(tmpLeftMin);
+    setLeftSec(tmpLeftSec);
   }
 
   return (
@@ -135,20 +226,19 @@ export default function ItemBid(props) {
               <Grid item xs={12} md={6}>
                 <Box>
                   <Typography noWrap>
-                    
-                    Highest bid by 0x695d2ef170ce69e794707eeef9497af2de25df82
+                    {getHighestBidText()}
                   </Typography>
                 </Box>
                 <Grid container spacing={3} pt={2}>
                   <Grid item xs='auto'>
-                    <img src='images/avatars/avatar_4.jpg' style={{borderRadius: '12px'}}/>
+                    <img src={getBidUserAvatar()} style={{borderRadius: '12px', height: '50px'}}/>
                   </Grid>
                   <Grid item>
                     <Box sx={{display:'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-                      <Icon icon="logos:ethereum" rotate={2} hFlip={true} vFlip={true} />
-                      <Typography color="rgb(16, 185, 129)">4.7 ETH</Typography>
+                      {/* <Icon icon="logos:ethereum" rotate={2} hFlip={true} vFlip={true} /> */}
+                      <Typography color="rgb(16, 185, 129)">{getHighestBidAmountText()}</Typography>
                     </Box>
-                    <Typography noWrap>~10,864.10</Typography>
+                    <Typography noWrap>~{getHighestBidUSDAmount()}</Typography>
                   </Grid>
                 </Grid>
               </Grid>
@@ -161,19 +251,19 @@ export default function ItemBid(props) {
                 </Box>
                 <Grid container spacing={3} pt={2}>
                   <Grid item xs={3}>
-                    <Typography noWrap variant="body2">106</Typography>
+                    <Typography noWrap variant="body2">{leftDay}</Typography>
                     <Typography noWrap variant="body1">Days</Typography>
                   </Grid>
                   <Grid item xs={3}>
-                    <Typography noWrap variant="body2">09</Typography>
+                    <Typography noWrap variant="body2">{leftHour}</Typography>
                     <Typography noWrap variant="body1">Hrs</Typography>
                   </Grid>
                   <Grid item xs={3}>
-                    <Typography noWrap variant="body2">21</Typography>
+                    <Typography noWrap variant="body2">{leftMin}</Typography>
                     <Typography noWrap variant="body1">Min</Typography>
                   </Grid>
                   <Grid item xs={3}>
-                    <Typography noWrap variant="body2">23</Typography>
+                    <Typography noWrap variant="body2">{leftSec}</Typography>
                     <Typography noWrap variant="body1">Sec</Typography>
                   </Grid>
                 </Grid>
