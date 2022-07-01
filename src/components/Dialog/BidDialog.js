@@ -28,7 +28,6 @@ export default function BidDialog(props){
 
 	return (
 		<Dialog
-			borderRadius={5}
 			open={open}
 			TransitionComponent={Transition}
 			keepMounted
@@ -51,7 +50,7 @@ export default function BidDialog(props){
 					<Box display="flex" justifyContent='space-between' alignItems='center'>
 						<Box display="flex" justifyContent='space-between' alignItems='center'>
 							<Typography p={2} variant="h6">Bid Amount:</Typography>
-							<Input p={1} sx="width: 50px" inputProps={{min: 0, style: { textAlign: 'center' }}} />
+							<Input p={1} sx={{width: "50px"}} inputProps={{min: 0, style: { textAlign: 'center' }}} />
 						</Box>
 						<Select sx={{paddingRight: '16px', marginLeft: '16px'}} value={type} onChange={e => {setType(e.target.value)}}>
 							<MenuItem value="0">Token1</MenuItem>

@@ -13,9 +13,9 @@ export default function ImageCheckButton(props) {
   
   return (
     <Box p={1} sx={{position: 'relative'}} onClick={handleChange}>
-      <img style={{width: '32px', height: '32px'}} src={imgUrl} />
+      <img style={{width: '40px', height: '40px'}} src={imgUrl} />
       <Typography>{text}</Typography>
-      <Checkbox sx={{position: 'absolute', left: '20px', top: '-10px'}} checked={checked} />
+      <Checkbox sx={{position: 'absolute', left: '26px', top: '-12px'}} checked={checked} />
     </Box>
   );
 }

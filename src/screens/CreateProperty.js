@@ -49,7 +49,6 @@ export default function CreateProperty({
 			</Box>
 			<Button variant="outlined" sx={{color: "#8358ff", fontSize: '25px', borderRadius: '10px'}} onClick={handleClickOpen}>+</Button>
 			<Dialog
-				borderRadius={5}
 				open={open}
 				TransitionComponent={Transition}
 				keepMounted

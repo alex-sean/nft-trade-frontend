@@ -17,7 +17,7 @@ const Footer = () => {
       <Container maxWidth="lg">
         <Grid container spacing={5}>
           <Grid container item xs={12} sm={6}>
-            <Grid item xs="12" md="8">
+            <Grid item xs={12} md={8}>
               <Link href="#" underline="none">
                 <Box component="img" className={classes.logo}
                   alt="Market Place"

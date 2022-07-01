@@ -184,7 +184,7 @@ const ProfileForm = () => {
   }, [account])
 
   return [
-    <Box sx={{height:'300px', backgroundImage:`url(${getBackgroundUrl()})`, position: 'relative'}}>
+    <Box key={1} sx={{height:'300px', backgroundImage:`url(${getBackgroundUrl()})`, position: 'relative'}}>
       <Container maxWidth="lg">
         <input type='file' id='background' ref={backgroundInputFile} style={{display: 'none'}} onChange={onBackgroundChanged} accept="image/*"/>
         <Button startIcon={<EditOutlinedIcon />} className={classes.commonButton}
@@ -194,7 +194,7 @@ const ProfileForm = () => {
         </Button>
       </Container>
     </Box>,
-    <Box className={classes.formContainer}>
+    <Box key={2} className={classes.formContainer}>
       <Grid container spacing={5}>
         <Grid item xs={12} md>
           <Box

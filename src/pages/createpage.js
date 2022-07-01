@@ -172,7 +172,7 @@ export default function CreatePage(){
     <Box py={10} paddingTop='4rem'>
       <Container maxWidth="md">
         <Typography py={1} align="center" variant="h4" paddingBottom='4rem'>Create</Typography>
-        <InputLabel htmlFor="username" className={classes.createItemTitle} marginTop="0px">
+        <InputLabel htmlFor="username" className={classes.createItemTitle}>
           Image, Video, Audio, or 3D Model<span style={{color:'red'}}>*</span></InputLabel>
         <Typography mb={1} variant="body2" className={classes.createItemDetail}>Drag or choose your file to upload</Typography>
         <FileUploader
@@ -215,7 +215,6 @@ export default function CreatePage(){
           minRows={6}
           placeholder="Provided a detailed description of your item"
           spellCheck
-          fullWidth
           value={subject}
           onChange={(e) => setSubject(e.target.value)}
           style={{width: '100%', borderColor: 'darkgray'}}

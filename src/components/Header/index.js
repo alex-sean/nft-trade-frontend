@@ -239,12 +239,12 @@ const Header = (props) => {
               <PagesMenu />
               <ExploreMenu />
               <ResourceMenu />
-              <Link href="/create" underline="none" key="1">
+              <Link href="/create" underline="none" key="2">
                 <Typography className={classes.link}>Create</Typography>
               </Link>
               {
                 account === '' ?
-                  <Link href="/wallet" underline="none" key="1">
+                  <Link href="/wallet" underline="none" key="3">
                     <IconButton className={classes.menuIcon}>
                       <AccountBalanceWalletIcon />
                     </IconButton>

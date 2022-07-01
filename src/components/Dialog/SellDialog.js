@@ -44,7 +44,7 @@ export default function SellDialog(props){
 
 	return ([
 		<Dialog
-			borderRadius={5}
+			key="1"
 			open={open}
 			TransitionComponent={Transition}
 			keepMounted
@@ -82,12 +82,16 @@ export default function SellDialog(props){
 					</Grid>
 					<Divider orientation="vertical" flexItem />
 					<Grid item xs p={3}>
-						<ImageCheckButton imgUrl = 'images/avatars/avatar_1.jpg' text='Token1' />
-						<ImageCheckButton imgUrl = 'images/avatars/avatar_2.jpg' text='Token2' />
-						<ImageCheckButton imgUrl = 'images/avatars/avatar_3.jpg' text='Token3' />
-						<ImageCheckButton imgUrl = 'images/avatars/avatar_4.jpg' text='Token4' />
-						<ImageCheckButton imgUrl = 'images/avatars/avatar_5.jpg' text='Token5' />
-						<ImageCheckButton imgUrl = 'images/avatars/avatar_6.jpg' text='Token6' />
+						<Box display='flex' justifyContent='space-evenly'>
+							<ImageCheckButton imgUrl = 'images/avatars/avatar_1.jpg' text='Token1' />
+							<ImageCheckButton imgUrl = 'images/avatars/avatar_2.jpg' text='Token2' />
+							<ImageCheckButton imgUrl = 'images/avatars/avatar_3.jpg' text='Token3' />
+						</Box>
+						<Box m={2} display='flex' justifyContent='space-evenly'>
+							<ImageCheckButton imgUrl = 'images/avatars/avatar_4.jpg' text='Token4' />
+							<ImageCheckButton imgUrl = 'images/avatars/avatar_5.jpg' text='Token5' />
+							<ImageCheckButton imgUrl = 'images/avatars/avatar_6.jpg' text='Token6' />
+						</Box>
 					</Grid>
 				</Grid>
 			</DialogContent>
@@ -96,6 +100,7 @@ export default function SellDialog(props){
 			</DialogActions>
 		</Dialog>,
 		<SellProgressDlg 
+			key='progressDlg'
 			open={showSellProgressDlg}
 			handleOpenDialog={setShowSellProgressDlg}
 			token={token}

@@ -140,7 +140,7 @@ const ContactForm = () => {
                 Message<span style={{color:'red'}}>*</span></InputLabel>
               <TextareaAutosize
                 id="message"
-                error={!isInit && !message}
+                // error={!isInit && !message}
                 aria-label="minimum height"
                 minRows={6}
                 spellCheck
@@ -160,7 +160,7 @@ const ContactForm = () => {
               >
                 Submit
               </Button>
-              <Collapse in={errMsg}>
+              <Collapse in={errMsg.trim() !== ''}>
                 <Alert severity={`${errMsg==='Success sent.' ? 'success' : "error"}`}
                   action={
                     <IconButton

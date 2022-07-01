@@ -35,13 +35,13 @@ export default function CategoryFilter(props){
           onChange={handleFilter}
           aria-label="Filter"
         >
-        <ToggleButton value={0} aria-label="All">
+        <ToggleButton key="all" value={0} aria-label="All">
           All
         </ToggleButton>
         {
           Object.keys(CATEGORIES).map((category, index) => {
             return (
-              <ToggleButton index={index} value={CATEGORIES[category]} aria-label={CATEGORY_NAMES[category]}>
+              <ToggleButton key={index} index={index} value={CATEGORIES[category]} aria-label={CATEGORY_NAMES[category]}>
                 {CATEGORY_ICONS[category]}{CATEGORY_NAMES[category]}
               </ToggleButton>
             )
