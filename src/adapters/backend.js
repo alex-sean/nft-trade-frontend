@@ -146,6 +146,10 @@ export const checkCancelBidSyncStatus = async (collectionAddress, tokenID, buyer
     return await get(`/sync/cancel_bid?collectionAddress=${collectionAddress}&tokenID=${tokenID}&buyer=${buyer}&asset=${asset}`);
 }
 
+export const checkCompleteAuctionSyncStatus = async (collectionAddress, tokenID, buyer) => {
+    return await get(`/sync/cancel_bid?collectionAddress=${collectionAddress}&tokenID=${tokenID}&buyer=${buyer}`);
+}
+
 export const getServiceFee = async () => {
     return await get(`/config/service_fee`);
 }

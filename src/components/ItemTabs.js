@@ -19,6 +19,8 @@ import { getAssetName, getUSDPrice } from '../common/CommonUtils';
 import { useWalletContext } from '../hooks/useWalletContext';
 import Web3 from 'web3';
 import AcceptOfferProgressDlg from './Dialog/AcceptOfferProgressDlg';
+import { LIST_TYPE } from '../common/const';
+import AuctionCompleteProgressDlg from './Dialog/AuctionCompleteProgressDlg';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -72,6 +74,8 @@ export default function ItemTabs(props) {
   const [properties, setProperties] = useState([]);
   const [offer, setOffer] = useState(null);
   const [showAcceptOfferDlg, setShowAcceptOfferDlg] = useState(false);
+  const [showAuctionCompleteProgressDlg, setShowAuctionCompleteProgressDlg] = useState(false);
+  const [selectedOrder, setSelectedOrder] = useState();
 
   const { tokenInfo, rates } = props;
 
@@ -101,9 +105,22 @@ export default function ItemTabs(props) {
     }
   }
 
+  const getBidderName = (order) => {
+    if (order.address && order.address.length > 0) {
+      return order.address[0].name;
+    } else {
+      return `${order.buyer.slice(0, 13)}...`;
+    }
+  }
+
   const handleAcceptOffer = (offer) => {
     setOffer(offer);
     setShowAcceptOfferDlg(true);
+  }
+
+  const handleCompleteOrder = (order) => {
+    setSelectedOrder(order);
+    setShowAuctionCompleteProgressDlg(true);
   }
 
   return (
@@ -113,7 +130,12 @@ export default function ItemTabs(props) {
       onChange={handleChange}
       aria-label="icon position tabs example"
       >
-        <Tab {...a11yProps(0)} icon={<FormatListBulletedIcon />} iconPosition="start" label="Offers" />
+        {
+          (!tokenInfo || !tokenInfo.token.listed) ?
+          <Tab {...a11yProps(0)} icon={<FormatListBulletedIcon />} iconPosition="start" label="Offers" />
+          :
+          <Tab {...a11yProps(0)} icon={<FormatListBulletedIcon />} iconPosition="start" label="Bids" />
+        }
         <Tab {...a11yProps(1)} icon={<EarbudsIcon />} iconPosition="start" label="Properties" />
         <Tab {...a11yProps(2)} icon={<ListAltIcon />} iconPosition="start" label="Details" />
         <Tab {...a11yProps(3)} icon={<StackedLineChartIcon />} iconPosition="start" label="Activity" />
@@ -134,7 +156,7 @@ export default function ItemTabs(props) {
               </TableRow>
             </TableHead>
             <TableBody>
-              {tokenInfo && tokenInfo.offers.map((offer, index) => (
+              {tokenInfo && !tokenInfo.token.listed && tokenInfo.offers.map((offer, index) => (
                 <TableRow
                   key={index}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -148,6 +170,31 @@ export default function ItemTabs(props) {
                     tokenInfo && tokenInfo.token.owner === account.toLowerCase() &&
                     <TableCell align="center">
                       <Button className={classes.primaryButton} onClick={() => handleAcceptOffer(offer)}>Accept</Button>
+                    </TableCell>
+                  }
+                </TableRow>
+              ))}
+
+              {tokenInfo && tokenInfo.token.listed && tokenInfo.orders.map((order, index) => (
+                <TableRow
+                  key={index}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">
+                    {Web3.utils.fromWei(order.amount + '')} {getAssetName(order.asset)}
+                  </TableCell>
+                  <TableCell align="center">{getUSDPrice(rates, Web3.utils.fromWei(order.amount + ''), getAssetName(order.asset))}</TableCell>
+                  <TableCell align="center">{getBidderName(order)}</TableCell>
+                  {
+                    tokenInfo && tokenInfo.token.owner === account.toLowerCase() && tokenInfo.token.auctionEndTime > Date.now() / 1000 &&
+                    <TableCell align="center">
+                      <Button className={classes.primaryButton} onClick={() => handleAcceptOffer(order)} disabled={true}>Waiting...</Button>
+                    </TableCell>
+                  }
+                  {
+                    tokenInfo && tokenInfo.token.owner === account.toLowerCase() && tokenInfo.token.auctionEndTime < Date.now() / 1000 &&
+                    <TableCell align="center">
+                      <Button className={classes.primaryButton} onClick={() => handleAcceptOffer(order)} >Accept</Button>
                     </TableCell>
                   }
                 </TableRow>
@@ -242,6 +289,7 @@ export default function ItemTabs(props) {
         <Graph />
       </TabPanel>
       <AcceptOfferProgressDlg open={showAcceptOfferDlg} handleOpenDialog={setShowAcceptOfferDlg} token={tokenInfo? tokenInfo.token: null} offer={offer}/>
+      <AuctionCompleteProgressDlg open={showAuctionCompleteProgressDlg} handleOpenDialog={setShowAuctionCompleteProgressDlg} order={selectedOrder} token={tokenInfo? tokenInfo.token: null}/>
     </Container>
   );
 }

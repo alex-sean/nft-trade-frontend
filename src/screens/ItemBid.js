@@ -28,10 +28,12 @@ export default function ItemBid(props) {
   const [showBuyFixedPriceDlg, setShowBuyFixedPriceDlg] = useState(false);
   const [showBidDlg, setShowBidDlg] = useState(false);
   const [showCancelBidProgressDlg, setShowCancelBidProgressDlg] = useState(false);
+  const [showCompleteAuctionProgressDlg, setShowCompleteAuctionProgressDlg] = useState(false);
 
   const [highestBidIndex, setHighestBidIndex] = useState(-1);
   const [offerAsset, setOfferAsset] = useState('');
   const [myBidAsset, setMyBidAsset] = useState('');
+  const [selectedOrder, setSelectedOrder] = useState(null);
   const [leftDay, setLeftDay] = useState(0);
   const [leftHour, setLeftHour] = useState(0);
   const [leftMin, setLeftMin] = useState(0);
@@ -59,7 +61,7 @@ export default function ItemBid(props) {
             )  
           } else {
             return (
-              <Button className={classes.primaryButton} sx={{width: '100%'}}>
+              <Button className={classes.primaryButton} sx={{width: '100%'}} onClick={() => handleCompleteAuction()}>
                 Complete Auction
               </Button>
             )
@@ -259,6 +261,16 @@ export default function ItemBid(props) {
     setLeftHour(tmpLeftHr);
     setLeftMin(tmpLeftMin);
     setLeftSec(tmpLeftSec);
+  }
+
+  const handleCompleteAuction = (order) => {
+    if (order) {
+      setSelectedOrder(order);
+    } else {
+      setSelectedOrder(tokenInfo.orders[highestBidIndex]);
+    }
+
+    setShowCompleteAuctionProgressDlg(true);
   }
 
   return (
