@@ -4,7 +4,7 @@ import {
   Typography,
   Dialog, DialogActions, DialogContent, DialogTitle,
   Slide,
-  useTheme, Divider, Input, Grid, Select, MenuItem, FormControlLabel, Checkbox,
+  useTheme, Divider, Input, Grid, Select, MenuItem, FormControlLabel, Checkbox, TextField,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import PrimaryButton from '../Button/PrimaryButton';
@@ -25,6 +25,7 @@ export default function SellDialog(props){
 	const [showSellProgressDlg, setShowSellProgressDlg] = useState(false);
 	const [isStableCoin, setIsStableCoin] = useState(true);
 	const [auctionEndTime, setAuctionEndTime] = useState(0);
+	const [expired, setExpired] = useState(false)
 
 	const classes = useStyles();
 	const theme = useTheme()
@@ -78,6 +79,22 @@ export default function SellDialog(props){
               						<MenuItem value={LIST_TYPE.FIXED_PRICE}>Fixed Price</MenuItem>
 								</Select>
 							</Box>
+							
+							{listType == LIST_TYPE.AUCTION ? (
+								<>
+									<Box display="flex" justifyContent='space-between' alignItems='center'>
+										<Typography p={1} variant="h6">Select end date:</Typography>
+										<Checkbox checked={expired} onChange={e => {setExpired(e.target.checked)}}></Checkbox>
+									</Box>
+									{expired ? (
+										<Box display="flex" justifyContent='space-between' alignItems='center'>
+											<Typography p={1} variant="h6">End date:</Typography>
+											<input type="date"
+												style={{height: '40px', fontSize: 'large', fontWeight: '700', border: '1px solid #bbb', borderRadius: '4px', padding: '4px'}} />
+										</Box>
+									) : ('')}
+								</>
+							) : ('')}
 						</Box>
 					</Grid>
 					<Divider orientation="vertical" flexItem />
