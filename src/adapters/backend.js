@@ -138,6 +138,14 @@ export const checkBuySyncStatus = async (collectionAddress, tokenID, owner) => {
     return await get(`/sync/buy?collectionAddress=${collectionAddress}&tokenID=${tokenID}&owner=${owner}`);
 }
 
+export const checkBidSyncStatus = async (collectionAddress, tokenID, buyer, asset) => {
+    return await get(`/sync/bid?collectionAddress=${collectionAddress}&tokenID=${tokenID}&buyer=${buyer}&asset=${asset}`);
+}
+
+export const checkCancelBidSyncStatus = async (collectionAddress, tokenID, buyer, asset) => {
+    return await get(`/sync/cancel_bid?collectionAddress=${collectionAddress}&tokenID=${tokenID}&buyer=${buyer}&asset=${asset}`);
+}
+
 export const getServiceFee = async () => {
     return await get(`/config/service_fee`);
 }

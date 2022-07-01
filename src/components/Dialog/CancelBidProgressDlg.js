@@ -14,7 +14,7 @@ import { Divider, Grid } from '@mui/material';
 import { Avatar } from '@mui/material';
 import ProgressButton from '../Button/ProgressButton';
 import { PROGRESS_BTN_STATUS } from '../../common/const';
-import { checkBuySyncStatus } from '../../adapters/backend';
+import { checkCancelBidSyncStatus, checkUnListSyncStatus } from '../../adapters/backend';
 import { useLoadingContext } from '../../hooks/useLoadingContext';
 import { toast } from 'react-toastify';
 import { useWalletContext } from '../../hooks/useWalletContext';
@@ -52,58 +52,35 @@ const BootstrapDialogTitle = (props) => {
     );
 };
 
-export default function BuyTokenProgressDlg({
+export default function CancelBidProgressDlg({
     open,
     handleOpenDialog,
     token,
-    amount,
     asset
 }) {
     const classes = useStyles();
 
-    const [approveButtonStatus, setApproveButtonStatus] = useState(PROGRESS_BTN_STATUS.PROCESSING);
-    const [buyButtonStatus, setBuyButtonStatus] = useState(PROGRESS_BTN_STATUS.NOT_PROCESSED);
+    const [cancelBidButtonStatus, setCancelBidButtonStatus] = useState(PROGRESS_BTN_STATUS.PROCESSING);
 
     const { setLoading } = useLoadingContext();
     const { web3, account } = useWalletContext();
 
-    const handleApprove = async () => {
-        setLoading(true);
-
-        try {
-            const erc20 = new web3.eth.Contract(ERC20.abi, asset);
-            await erc20.methods.approve(process.env.REACT_APP_CONTRACT_EXCHANGE, Web3.utils.toWei(amount + '')).send({ from: account });
-
-            toast('Approving ERC20 token successed.');
-        } catch (err) {
-            console.log(err);
-            setLoading(false);
-            toast('Approving ERC20 token failed.');
-            return;
-        }
-
-        setLoading(false);
-
-        setApproveButtonStatus(PROGRESS_BTN_STATUS.PROCESSED);
-        setBuyButtonStatus(PROGRESS_BTN_STATUS.PROCESSING);
-    }
-
-    const handleBuy = async () => {
+    const handleCancelBid = async () => {
         setLoading(true);
 
         try {
             const exchange = new web3.eth.Contract(EXCHANGE.abi, process.env.REACT_APP_CONTRACT_EXCHANGE);
-            await exchange.methods.buy(token.owner, token.collectionAddress, token.tokenID, asset, Web3.utils.toWei(amount + '')).send({ from: account });
+            await exchange.methods.cancelBid(token.owner, token.collectionAddress, token.tokenID, asset).send({ from: account });
 
-            while (true) {    
-                let result = await checkBuySyncStatus(
+            while (true) {
+                let result = await checkCancelBidSyncStatus(
                     token.collectionAddress,
                     token.tokenID,
-                    account,
+                    token.owner,
+                    asset
                 );
-
                 if (!result) {
-                    throw new Error('Minting failed.');
+                    throw new Error('Checking Cancel Bid Sync Status failed.');
                 }
 
                 if (result.data.status) {
@@ -112,10 +89,11 @@ export default function BuyTokenProgressDlg({
 
                 await snooze(100);
             }
+
         } catch (err) {
             console.log(err);
             setLoading(false);
-            toast('Approving ERC20 token failed.');
+            toast('Cancelling bid failed.');
             return;
         }
 
@@ -134,7 +112,7 @@ export default function BuyTokenProgressDlg({
                 sx={{display: 'flex'}}
             >
                 <Typography variant='h5' sx={{marginTop: '5px'}}>
-                    Offer token
+                    Cancel Bid
                 </Typography>
             </BootstrapDialogTitle>
             <DialogContent dividers sx={{padding: '30px'}}>
@@ -147,41 +125,17 @@ export default function BuyTokenProgressDlg({
                         </Grid>
                         <Grid item md={9} className={classes.modalProgressContent}>
                             <Typography variant='h5'>
-                                Approve
+                                Cancel Bid
                             </Typography>
                             <Typography>
-                                Approve the ERC20 token.
+                                Cancel the bid in the auction list.
                             </Typography>
                         </Grid>
                     </Grid>
                     <ProgressButton
-                        text="Approve"
-                        status={approveButtonStatus}
-                        onClick={handleApprove}
-                    />
-                    <Divider/>
-                </div>
-                
-                <div style={{marginBottom: '10px'}}>
-                    <Grid container spacing={2}>
-                        <Grid item md={3}>
-                            <Avatar src="../../images/wallets/metamask.svg" 
-                                sx={{width: '72px', height: 'auto', border: 'solid 1px lightgray', background: '#fff'}}>
-                            </Avatar>
-                        </Grid>
-                        <Grid item md={9} className={classes.modalProgressContent}>
-                            <Typography variant='h5'>
-                                Buy
-                            </Typography>
-                            <Typography>
-                                Buy ERC721 token with ERC20 token.
-                            </Typography>
-                        </Grid>
-                    </Grid>
-                    <ProgressButton
-                        text="Buy"
-                        status={buyButtonStatus}
-                        onClick={handleBuy}
+                        text="Cancel Bid"
+                        status={cancelBidButtonStatus}
+                        onClick={handleCancelBid}
                     />
                 </div>
             </DialogContent>

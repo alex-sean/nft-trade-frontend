@@ -115,11 +115,10 @@ export default function OfferProgressDlg({
                 await snooze(100);
             }
 
-            toast('Approving ERC20 token successed.');
         } catch (err) {
             console.log(err);
             setLoading(false);
-            toast('Approving ERC20 token failed.');
+            toast('Offering token failed.');
             return;
         }
 

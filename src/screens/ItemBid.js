@@ -9,8 +9,10 @@ import OfferDialog from '../components/Dialog/OfferDialog';
 import CancelOfferProgressDlg from '../components/Dialog/CancelOfferProgressDlg';
 import CancelSellProgressDlg from '../components/Dialog/CancelSellProgressDlg';
 import BuyFixedPriceTokenDlg from '../components/Dialog/BuyFixedPriceTokenDlg';
+import BidDialog from '../components/Dialog/BidDialog';
 import { getAssetName, getUSDPrice } from '../common/CommonUtils';
 import Web3 from 'web3';
+import CancelBidProgressDlg from '../components/Dialog/CancelBidProgressDlg';
 
 export default function ItemBid(props) {
   const classes = useStyles();
@@ -24,10 +26,12 @@ export default function ItemBid(props) {
   const [showSellDlg, setShowSellDlg] = useState(false);
   const [showCancelSellDlg, setShowCancelSellDlg] = useState(false);
   const [showBuyFixedPriceDlg, setShowBuyFixedPriceDlg] = useState(false);
+  const [showBidDlg, setShowBidDlg] = useState(false);
+  const [showCancelBidProgressDlg, setShowCancelBidProgressDlg] = useState(false);
+
   const [highestBidIndex, setHighestBidIndex] = useState(-1);
-
   const [offerAsset, setOfferAsset] = useState('');
-
+  const [myBidAsset, setMyBidAsset] = useState('');
   const [leftDay, setLeftDay] = useState(0);
   const [leftHour, setLeftHour] = useState(0);
   const [leftMin, setLeftMin] = useState(0);
@@ -47,9 +51,9 @@ export default function ItemBid(props) {
             </Button>
           )
         } else if (tokenInfo.token.listType === LIST_TYPE.AUCTION) {
-          if (tokenInfo.token.auctionEndTime > Date.now()) {
+          if (tokenInfo.token.auctionEndTime > Date.now() / 1000) {
             return (
-              <Button className={classes.primaryButton} sx={{width: '100%'}}>
+              <Button className={classes.primaryButton} sx={{width: '100%'}} onClick={() => setShowCancelSellDlg(true)}>
                 Cancel Sell
               </Button>
             )  
@@ -69,18 +73,34 @@ export default function ItemBid(props) {
             </Button>
           )
         } else if (tokenInfo.token.listType === LIST_TYPE.AUCTION) {
-          if (tokenInfo.token.auctionEndTime > Date.now()) {
-            return (
-              <Button className={classes.primaryButton} sx={{width: '100%'}}>
-                Bid
-              </Button>
-            )
+          if (tokenInfo.token.auctionEndTime > Date.now() / 1000) {
+            if (isBidded()) {
+              return (
+                <Button className={classes.primaryButton} sx={{width: '100%'}} onClick={() => setShowCancelBidProgressDlg(true)}>
+                  Cancel Bid
+                </Button>
+              )
+            } else {
+              return (
+                <Button className={classes.primaryButton} sx={{width: '100%'}} onClick={() => setShowBidDlg(true)}>
+                  Bid
+                </Button>
+              )
+            }
           } else {
-            return (
-              <Button className={classes.primaryButton} sx={{width: '100%'}} disabled>
-                Waiting Auction...
-              </Button>
-            )
+            if (isBidded()) {
+              return (
+                <Button className={classes.primaryButton} sx={{width: '100%'}} onClick={() => setShowCancelBidProgressDlg(true)}>
+                  Cancel Bid
+                </Button>
+              )
+            } else {
+              return (
+                <Button className={classes.primaryButton} sx={{width: '100%'}} disabled>
+                  Expired
+                </Button>
+              )
+            }
           }
         }
       }
@@ -109,6 +129,22 @@ export default function ItemBid(props) {
     }
   }
 
+  const isBidded = () => {
+    if (!tokenInfo) {
+      return false;
+    }
+
+    for (let i in tokenInfo.orders) {
+      const order = tokenInfo.orders[i];
+
+      if (order.buyer === account.toLowerCase()) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   useEffect(() => {
     if (!tokenInfo) {
       return;
@@ -122,6 +158,15 @@ export default function ItemBid(props) {
 
     if (tokenInfo.token.listType === LIST_TYPE.AUCTION) {
       setInterval(calculateLeftDuration, 1000);
+
+      for (let i in tokenInfo.orders) {
+        const order = tokenInfo.orders[i];
+  
+        if (order.buyer === account.toLowerCase()) {
+          setMyBidAsset(order.asset);
+          return;
+        }
+      }
     }
   }, [tokenInfo])
 
@@ -173,7 +218,7 @@ export default function ItemBid(props) {
     if (highestBidIndex === -1) {
       return `...`;
     } else {
-      return `${Web3.utils.fromWei(tokenInfo.orders[highestBidIndex].amount)} ${getAssetName(tokenInfo.orders[highestBidIndex].asset)}`
+      return `${Web3.utils.fromWei(tokenInfo.orders[highestBidIndex].amount + '')} ${getAssetName(tokenInfo.orders[highestBidIndex].asset)}`
     }
   }
 
@@ -181,7 +226,7 @@ export default function ItemBid(props) {
     if (highestBidIndex === -1) {
       return `$ ${tokenInfo.token.price}`;
     } else {
-      return `$ ${getUSDPrice(rates, Web3.utils.fromWei(tokenInfo.orders[highestBidIndex].amount), getAssetName(tokenInfo.orders[highestBidIndex].asset))}}`
+      return `$ ${getUSDPrice(rates, Web3.utils.fromWei(tokenInfo.orders[highestBidIndex].amount + ''), getAssetName(tokenInfo.orders[highestBidIndex].asset))}`
     }
   }
 
@@ -207,7 +252,7 @@ export default function ItemBid(props) {
     leftTS = Math.floor(leftTS / 60);
     const tmpLeftMin = leftTS % 60;
     leftTS = Math.floor(leftTS / 60);
-    const tmpLeftHr = leftTS % 60;
+    const tmpLeftHr = leftTS % 24;
     const tmpLeftDay = Math.floor(leftTS / 24);
 
     setLeftDay(tmpLeftDay);
@@ -252,19 +297,19 @@ export default function ItemBid(props) {
                 <Grid container spacing={3} pt={2}>
                   <Grid item xs={3}>
                     <Typography noWrap variant="body2">{leftDay}</Typography>
-                    <Typography noWrap variant="body1">Days</Typography>
+                    <Typography noWrap variant="body1">D</Typography>
                   </Grid>
                   <Grid item xs={3}>
                     <Typography noWrap variant="body2">{leftHour}</Typography>
-                    <Typography noWrap variant="body1">Hrs</Typography>
+                    <Typography noWrap variant="body1">H</Typography>
                   </Grid>
                   <Grid item xs={3}>
                     <Typography noWrap variant="body2">{leftMin}</Typography>
-                    <Typography noWrap variant="body1">Min</Typography>
+                    <Typography noWrap variant="body1">M</Typography>
                   </Grid>
                   <Grid item xs={3}>
                     <Typography noWrap variant="body2">{leftSec}</Typography>
-                    <Typography noWrap variant="body1">Sec</Typography>
+                    <Typography noWrap variant="body1">S</Typography>
                   </Grid>
                 </Grid>
               </Grid>
@@ -281,8 +326,10 @@ export default function ItemBid(props) {
       <OfferDialog visible={showOfferDlg} tokenInfo={tokenInfo} setVisibility={setShowOfferDlg}/>
       <CancelOfferProgressDlg open={showCancelOfferDlg} asset={offerAsset} handleOpenDialog={setShowCancelOfferDlg} token={tokenInfo? tokenInfo.token: null}/>
       <SellDialog open={showSellDlg} setOpen={setShowSellDlg} serviceFee={serviceFee} token={tokenInfo? tokenInfo.token: null}/>
-      <CancelSellProgressDlg open={showCancelSellDlg} handleOpenDialog={setShowCancelOfferDlg} token={tokenInfo? tokenInfo.token: null}/>
+      <CancelSellProgressDlg open={showCancelSellDlg} handleOpenDialog={setShowCancelSellDlg} token={tokenInfo? tokenInfo.token: null}/>
       <BuyFixedPriceTokenDlg open={showBuyFixedPriceDlg} setOpen={setShowBuyFixedPriceDlg} token={tokenInfo? tokenInfo.token: null}/>
+      <BidDialog open={showBidDlg} handleOpenDialog={setShowBidDlg} token={tokenInfo? tokenInfo.token: null} rates={rates}/>
+      <CancelBidProgressDlg open={showCancelBidProgressDlg} handleOpenDialog={setShowCancelBidProgressDlg} token={tokenInfo? tokenInfo.token: null} asset={myBidAsset}/>
     </>
   );
 }

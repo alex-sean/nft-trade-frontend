@@ -14,7 +14,7 @@ import { Divider, Grid } from '@mui/material';
 import { Avatar } from '@mui/material';
 import ProgressButton from '../Button/ProgressButton';
 import { PROGRESS_BTN_STATUS } from '../../common/const';
-import { checkBuySyncStatus } from '../../adapters/backend';
+import { checkBidSyncStatus, checkBuySyncStatus } from '../../adapters/backend';
 import { useLoadingContext } from '../../hooks/useLoadingContext';
 import { toast } from 'react-toastify';
 import { useWalletContext } from '../../hooks/useWalletContext';
@@ -52,7 +52,7 @@ const BootstrapDialogTitle = (props) => {
     );
 };
 
-export default function BuyTokenProgressDlg({
+export default function BidProgressDlg({
     open,
     handleOpenDialog,
     token,
@@ -62,7 +62,7 @@ export default function BuyTokenProgressDlg({
     const classes = useStyles();
 
     const [approveButtonStatus, setApproveButtonStatus] = useState(PROGRESS_BTN_STATUS.PROCESSING);
-    const [buyButtonStatus, setBuyButtonStatus] = useState(PROGRESS_BTN_STATUS.NOT_PROCESSED);
+    const [bidButtonStatus, setBidButtonStatus] = useState(PROGRESS_BTN_STATUS.NOT_PROCESSED);
 
     const { setLoading } = useLoadingContext();
     const { web3, account } = useWalletContext();
@@ -85,21 +85,22 @@ export default function BuyTokenProgressDlg({
         setLoading(false);
 
         setApproveButtonStatus(PROGRESS_BTN_STATUS.PROCESSED);
-        setBuyButtonStatus(PROGRESS_BTN_STATUS.PROCESSING);
+        setBidButtonStatus(PROGRESS_BTN_STATUS.PROCESSING);
     }
 
-    const handleBuy = async () => {
+    const handleBid = async () => {
         setLoading(true);
 
         try {
             const exchange = new web3.eth.Contract(EXCHANGE.abi, process.env.REACT_APP_CONTRACT_EXCHANGE);
-            await exchange.methods.buy(token.owner, token.collectionAddress, token.tokenID, asset, Web3.utils.toWei(amount + '')).send({ from: account });
+            await exchange.methods.bid(token.owner, token.collectionAddress, token.tokenID, asset, Web3.utils.toWei(amount + '')).send({ from: account });
 
             while (true) {    
-                let result = await checkBuySyncStatus(
+                let result = await checkBidSyncStatus(
                     token.collectionAddress,
                     token.tokenID,
                     account,
+                    asset
                 );
 
                 if (!result) {
@@ -115,7 +116,7 @@ export default function BuyTokenProgressDlg({
         } catch (err) {
             console.log(err);
             setLoading(false);
-            toast('Approving ERC20 token failed.');
+            toast('Bid token failed.');
             return;
         }
 
@@ -134,7 +135,7 @@ export default function BuyTokenProgressDlg({
                 sx={{display: 'flex'}}
             >
                 <Typography variant='h5' sx={{marginTop: '5px'}}>
-                    Offer token
+                    Bid
                 </Typography>
             </BootstrapDialogTitle>
             <DialogContent dividers sx={{padding: '30px'}}>
@@ -171,17 +172,17 @@ export default function BuyTokenProgressDlg({
                         </Grid>
                         <Grid item md={9} className={classes.modalProgressContent}>
                             <Typography variant='h5'>
-                                Buy
+                                Bid
                             </Typography>
                             <Typography>
-                                Buy ERC721 token with ERC20 token.
+                                Join auction with ERC20 token.
                             </Typography>
                         </Grid>
                     </Grid>
                     <ProgressButton
-                        text="Buy"
-                        status={buyButtonStatus}
-                        onClick={handleBuy}
+                        text="Bid"
+                        status={bidButtonStatus}
+                        onClick={handleBid}
                     />
                 </div>
             </DialogContent>

@@ -151,14 +151,14 @@ export default function ItemHero(props){
     if (tokenInfo && tokenInfo.orders.length) {
       let maxBidIndex = 0;
       let maxUSDPrice = 0;
-      tokenInfo.token.orders.map((order, index) => {
-        if (getUSDPrice(rates, Web3.utils.fromWei(order.amount + ''), order.asset) > maxUSDPrice) {
-          maxUSDPrice = getUSDPrice(rates, Web3.utils.fromWei(order.amount + ''), order.asset);
+      tokenInfo.orders.map((order, index) => {
+        if (getUSDPrice(rates, Web3.utils.fromWei(order.amount + ''), getAssetName(order.asset)) > maxUSDPrice) {
+          maxUSDPrice = getUSDPrice(rates, Web3.utils.fromWei(order.amount + ''), getAssetName(order.asset));
           maxBidIndex = index;
         }
       })
 
-      return `Highest Bid ${Web3.utils.fromWei(tokenInfo.token.orders[maxBidIndex].amount + '')} ${getAssetName(tokenInfo.token.orders[maxBidIndex].asset)}($${maxUSDPrice})`;
+      return `Highest Bid ${Web3.utils.fromWei(tokenInfo.orders[maxBidIndex].amount + '')} ${getAssetName(tokenInfo.orders[maxBidIndex].asset)}($ ${maxUSDPrice})`;
     } else {
       return '';
     }
