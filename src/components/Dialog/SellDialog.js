@@ -11,6 +11,7 @@ import PrimaryButton from '../Button/PrimaryButton';
 import useStyles from '../../styles/styles';
 import SellProgressDlg from './SellProgressDlg';
 import { LIST_TYPE } from '../../common/const';
+import ImageCheckButton from '../Button/ImageCheckButton'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
 	return <Slide direction="up" ref={ref} {...props} />;
@@ -80,37 +81,13 @@ export default function SellDialog(props){
 						</Box>
 					</Grid>
 					<Divider orientation="vertical" flexItem />
-					<Grid item xs>
-						<FormControlLabel
-							value="1"
-							control={<Checkbox />}
-							label="Token1"
-							labelPlacement="bottom" />
-						<FormControlLabel
-							value="2"
-							control={<Checkbox />}
-							label="Token2"
-							labelPlacement="bottom" />
-						<FormControlLabel
-							value="3"
-							control={<Checkbox />}
-							label="Token3"
-							labelPlacement="bottom" />
-						<FormControlLabel
-							value="4"
-							control={<Checkbox />}
-							label="Token4"
-							labelPlacement="bottom" />
-						<FormControlLabel
-							value="5"
-							control={<Checkbox />}
-							label="Token5"
-							labelPlacement="bottom" />
-						<FormControlLabel
-							value="6"
-							control={<Checkbox />}
-							label="Token6"
-							labelPlacement="bottom" />
+					<Grid item xs p={3}>
+						<ImageCheckButton imgUrl = 'images/avatars/avatar_1.jpg' text='Token1' />
+						<ImageCheckButton imgUrl = 'images/avatars/avatar_2.jpg' text='Token2' />
+						<ImageCheckButton imgUrl = 'images/avatars/avatar_3.jpg' text='Token3' />
+						<ImageCheckButton imgUrl = 'images/avatars/avatar_4.jpg' text='Token4' />
+						<ImageCheckButton imgUrl = 'images/avatars/avatar_5.jpg' text='Token5' />
+						<ImageCheckButton imgUrl = 'images/avatars/avatar_6.jpg' text='Token6' />
 					</Grid>
 				</Grid>
 			</DialogContent>
