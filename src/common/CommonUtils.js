@@ -15,4 +15,18 @@ export function getAssetName(asset) {
 
     return 'NULL';
 }
-  
+
+export async function getTokenPrice(asset) {
+    try {
+        const priceContract = new web3.eth.Contract(BEP20Price.abi, process.env.REACT_APP_PRICE_CONTRACT_EXCHANGE);
+        let rate = 0;
+        if (asset === 'Native') {
+            rate = await priceContract.methods.getAVAXPrice().call();
+        } else {
+            rate = await priceContract.methods.getTokenPrice(asset).call();
+        }
+        return rate;
+    } catch (err) {
+        console.log(err);
+    }
+}

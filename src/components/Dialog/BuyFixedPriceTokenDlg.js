@@ -16,6 +16,7 @@ import BEP20Price from '../../contracts/BEP20Price.json';
 import { toast } from 'react-toastify';
 import BuyCoinProgressDlg from './BuyCoinProgressDlg';
 import BuyTokenProgressDlg from './BuyTokenProgressDlg';
+import { getTokenPrice } from '../../common/CommonUtils';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
 	return <Slide direction="up" ref={ref} {...props} />;
@@ -66,13 +67,7 @@ export default function BuyFixedPriceTokenDlg(props){
 		setLoading(true);
 
 		try {
-			const priceContract = new web3.eth.Contract(BEP20Price.abi, process.env.REACT_APP_PRICE_CONTRACT_EXCHANGE);
-			let rate = 0;
-			if (asset === 'Native') {
-				rate = await priceContract.methods.getAVAXPrice().call();
-			} else {
-				rate = await priceContract.methods.getTokenPrice(asset).call();
-			}
+			const rate = await getTokenPrice(asset);
 			setPrice((token.price) * Math.pow(10, 18) / rate);
 		} catch (err) {
 			console.log(err);
