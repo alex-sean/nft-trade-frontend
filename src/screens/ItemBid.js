@@ -1,23 +1,29 @@
-import React, { useState } from 'react';
-import useScrollTrigger from '@mui/material/useScrollTrigger';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import { Grid, Typography, Box, Divider, Button, Card, CardActions, CardContent } from '@mui/material';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import useStyles from '../styles/styles';
 import { Icon } from '@iconify/react';
 import { LIST_TYPE } from '../common/const';
 import { useWalletContext } from '../hooks/useWalletContext';
 import SellDialog from '../components/Dialog/SellDialog';
 import OfferDialog from '../components/Dialog/OfferDialog';
+import CancelOfferProgressDlg from '../components/Dialog/CancelOfferProgressDlg';
+import CancelSellProgressDlg from '../components/Dialog/CancelSellProgressDlg';
+import BuyFixedPriceTokenDlg from '../components/Dialog/BuyFixedPriceTokenDlg';
 
 export default function ItemBid(props) {
   const classes = useStyles();
 
-  const { tokenInfo } = props;
+  const { tokenInfo, serviceFee } = props;
 
   const { account } = useWalletContext();
 
   const [showOfferDlg, setShowOfferDlg] = useState(false);
+  const [showCancelOfferDlg, setShowCancelOfferDlg] = useState(false);
+  const [showSellDlg, setShowSellDlg] = useState(false);
+  const [showCancelSellDlg, setShowCancelSellDlg] = useState(false);
+  const [showBuyFixedPriceDlg, setShowBuyFixedPriceDlg] = useState(false);
+
+  const [offerAsset, setOfferAsset] = useState('');
 
   const showItemButtons = () => {
     if (!tokenInfo) {
@@ -25,40 +31,62 @@ export default function ItemBid(props) {
     }
 
     if (tokenInfo.token.listed) {
-      if (tokenInfo.token.listType === LIST_TYPE.FIXED_PRICE) {
-        return (
-          <Button className={classes.primaryButton} sx={{width: '100%'}}>
-            Cancel Sell
-          </Button>
-        )
-      } else if (tokenInfo.token.listType === LIST_TYPE.AUCTION) {
-        if (tokenInfo.token.auctionEndTime > Date.now()) {
+      if (tokenInfo.token.owner === account.toLowerCase()) {
+        if (tokenInfo.token.listType === LIST_TYPE.FIXED_PRICE) {
           return (
-            <Button className={classes.primaryButton} sx={{width: '100%'}}>
+            <Button className={classes.primaryButton} sx={{width: '100%'}} onClick={() => setShowCancelSellDlg(true)}>
               Cancel Sell
             </Button>
-          )  
-        } else {
-          return (
-            <Button className={classes.primaryButton} sx={{width: '100%'}}>
-              Complete Auction
-            </Button>
           )
+        } else if (tokenInfo.token.listType === LIST_TYPE.AUCTION) {
+          if (tokenInfo.token.auctionEndTime > Date.now()) {
+            return (
+              <Button className={classes.primaryButton} sx={{width: '100%'}}>
+                Cancel Sell
+              </Button>
+            )  
+          } else {
+            return (
+              <Button className={classes.primaryButton} sx={{width: '100%'}}>
+                Complete Auction
+              </Button>
+            )
+          }
         }
       } else {
-        return;
+        if (tokenInfo.token.listType === LIST_TYPE.FIXED_PRICE) {
+          return (
+            <Button className={classes.primaryButton} sx={{width: '100%'}} onClick={() => setShowBuyFixedPriceDlg(true)}>
+              Buy
+            </Button>
+          )
+        } else if (tokenInfo.token.listType === LIST_TYPE.AUCTION) {
+          if (tokenInfo.token.auctionEndTime > Date.now()) {
+            return (
+              <Button className={classes.primaryButton} sx={{width: '100%'}}>
+                Bid
+              </Button>
+            )
+          } else {
+            return (
+              <Button className={classes.primaryButton} sx={{width: '100%'}} disabled>
+                Waiting Auction...
+              </Button>
+            )
+          }
+        }
       }
     } else {
       if (tokenInfo.token.owner === account.toLowerCase()) {
         return (
-          <Button className={classes.primaryButton} sx={{width: '100%'}}>
+          <Button className={classes.primaryButton} sx={{width: '100%'}} onClick={() => setShowSellDlg(true)}>
             Sell Token
           </Button>
         )
       } else {
-        if (existOffer()) {
+        if (offerAsset) {
           return (
-            <Button className={classes.primaryButton} sx={{width: '100%'}}>
+            <Button className={classes.primaryButton} sx={{width: '100%'}} onClick={() => setShowCancelOfferDlg(true)}>
               Cancel Offer
             </Button>
           )
@@ -73,19 +101,17 @@ export default function ItemBid(props) {
     }
   }
 
-  const existOffer = () => {
+  useEffect(() => {
     if (!tokenInfo) {
-      return false;
+      return;
     }
 
     for (let i in tokenInfo.offers) {
       if (tokenInfo.offers[i].buyer === account.toLowerCase()) {
-        return true;
+        setOfferAsset(tokenInfo.offers[i].asset);
       }
     }
-
-    return false;
-  }
+  }, [tokenInfo])
 
   return (
     <>
@@ -150,6 +176,10 @@ export default function ItemBid(props) {
       </Card>
       <SellDialog visible={false}/>
       <OfferDialog visible={showOfferDlg} tokenInfo={tokenInfo} setVisibility={setShowOfferDlg}/>
+      <CancelOfferProgressDlg open={showCancelOfferDlg} asset={offerAsset} handleOpenDialog={setShowCancelOfferDlg} token={tokenInfo? tokenInfo.token: null}/>
+      <SellDialog open={showSellDlg} setOpen={setShowSellDlg} serviceFee={serviceFee} token={tokenInfo? tokenInfo.token: null}/>
+      <CancelSellProgressDlg open={showCancelSellDlg} handleOpenDialog={setShowCancelOfferDlg} token={tokenInfo? tokenInfo.token: null}/>
+      <BuyFixedPriceTokenDlg open={showBuyFixedPriceDlg} setOpen={setShowBuyFixedPriceDlg} token={tokenInfo? tokenInfo.token: null}/>
     </>
   );
 }

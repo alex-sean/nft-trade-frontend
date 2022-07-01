@@ -118,6 +118,30 @@ export const checkOfferSyncStatus = async (collectionAddress, tokenID, owner, bu
     return await get(`/sync/offer?collectionAddress=${collectionAddress}&tokenID=${tokenID}&owner=${owner}&buyer=${buyer}&offerAmount=${offerAmount}&asset=${asset}`);
 }
 
+export const checkCancelOfferSyncStatus = async (collectionAddress, tokenID, owner, buyer, asset) => {
+    return await get(`/sync/cancel_offer?collectionAddress=${collectionAddress}&tokenID=${tokenID}&owner=${owner}&buyer=${buyer}&asset=${asset}`);
+}
+
+export const checkAcceptOfferSyncStatus = async (collectionAddress, tokenID, owner, buyer, asset) => {
+    return await get(`/sync/accept_offer?collectionAddress=${collectionAddress}&tokenID=${tokenID}&owner=${owner}&buyer=${buyer}&asset=${asset}`);
+}
+
+export const checkListSyncStatus = async (collectionAddress, tokenID, owner, listType) => {
+    return await get(`/sync/list?collectionAddress=${collectionAddress}&tokenID=${tokenID}&owner=${owner}&listType=${listType}`);
+}
+
+export const checkUnListSyncStatus = async (collectionAddress, tokenID, owner) => {
+    return await get(`/sync/unlist?collectionAddress=${collectionAddress}&tokenID=${tokenID}&owner=${owner}`);
+}
+
+export const checkBuySyncStatus = async (collectionAddress, tokenID, owner) => {
+    return await get(`/sync/buy?collectionAddress=${collectionAddress}&tokenID=${tokenID}&owner=${owner}`);
+}
+
+export const getServiceFee = async () => {
+    return await get(`/config/service_fee`);
+}
+
 export const getOwnedTokens = async (owner) => {
     return await get(`/token/owned?owner=${owner}`);
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Typography,
@@ -9,15 +9,22 @@ import {
 import CloseIcon from '@mui/icons-material/Close';
 import PrimaryButton from '../Button/PrimaryButton';
 import useStyles from '../../styles/styles';
+import SellProgressDlg from './SellProgressDlg';
+import { LIST_TYPE } from '../../common/const';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
 	return <Slide direction="up" ref={ref} {...props} />;
 });
 
 export default function SellDialog(props){
-	const {visible} = props
-	const [open, setOpen] = React.useState(visible);
-	const [type, setType] = useState(0)
+	const { open, setOpen, token, serviceFee } = props
+	const [listType, setListType] = useState(0);
+	const [price, setPrice] = useState(LIST_TYPE.FIXED_PRICE);
+	const [servicePrice, setServicePrice] = useState(0);
+	const [showSellProgressDlg, setShowSellProgressDlg] = useState(false);
+	const [isStableCoin, setIsStableCoin] = useState(true);
+	const [auctionEndTime, setAuctionEndTime] = useState(0);
+
 	const classes = useStyles();
 	const theme = useTheme()
 	const isDark = theme.palette.mode === 'dark'
@@ -26,7 +33,15 @@ export default function SellDialog(props){
 		setOpen(false);
 	};
 
-	return (
+	useEffect(() => {
+		if (isNaN(price)) {
+			setServicePrice(0);
+		} else {
+			setServicePrice(parseFloat(price) * parseInt(serviceFee) / 10000);
+		}
+	}, [price])
+
+	return ([
 		<Dialog
 			borderRadius={5}
 			open={open}
@@ -45,21 +60,21 @@ export default function SellDialog(props){
 						<Box p={1}>
 							<Box display="flex" justifyContent='space-between' alignItems='center'>
 								<Typography p={1} variant="h6">TokenName:</Typography>
-								<Typography p={1} variant="body1">#1</Typography>
+								<Typography p={1} variant="body1">{token? `${token.name} #${token.tokenID}`: '...'}</Typography>
 							</Box>
 							<Box display="flex" justifyContent='space-between' alignItems='center'>
 								<Typography p={1} variant="h6">Price:</Typography>
-								<Input p={1} />USD
+								<Input p={1} onChange={(e) => setPrice(e.target.value)}/> USD
 							</Box>
 							<Box display="flex" justifyContent='space-between' alignItems='center'>
 								<Typography p={1} variant="h6">ServiceFee:</Typography>
-								<Typography p={1} variant="body1">0.002USD</Typography>
+								<Typography p={1} variant="body1">{servicePrice} USD</Typography>
 							</Box>
 							<Box display="flex" justifyContent='space-between' alignItems='center'>
 								<Typography p={1} variant="h6">SellType:</Typography>
-								<Select sx={{paddingRight: '16px'}} value={type} onChange={e => {setType(e.target.value)}}>
-              						<MenuItem value="0">Auction</MenuItem>
-              						<MenuItem value="1">FixedPrice</MenuItem>
+								<Select sx={{paddingRight: '16px'}}  defaultValue={LIST_TYPE.FIXED_PRICE} value={listType} onChange={e => {setListType(e.target.value)}}>
+              						<MenuItem value={LIST_TYPE.AUCTION}>Auction</MenuItem>
+              						<MenuItem value={LIST_TYPE.FIXED_PRICE}>Fixed Price</MenuItem>
 								</Select>
 							</Box>
 						</Box>
@@ -100,8 +115,18 @@ export default function SellDialog(props){
 				</Grid>
 			</DialogContent>
 			<DialogActions sx={{display:'flex', justifyContent: 'center'}} className={classes.paperBackground}>
-				<PrimaryButton text='SELL' />
+				<PrimaryButton text='SELL' onClick={() => setShowSellProgressDlg(true)}/>
 			</DialogActions>
-		</Dialog>
-	)
+		</Dialog>,
+		<SellProgressDlg 
+			open={showSellProgressDlg}
+			handleOpenDialog={setShowSellProgressDlg}
+			token={token}
+			usdPrice={price}
+			assets={['0x5509122913a941960a434200213c999b515b50e4']}
+			isStableCoin={isStableCoin}
+			auctionEndTime={auctionEndTime}
+			sellType={listType}
+		/>
+	])
 }

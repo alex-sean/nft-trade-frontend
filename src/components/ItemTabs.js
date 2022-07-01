@@ -18,6 +18,7 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { getAssetName } from '../common/CommonUtils';
 import { useWalletContext } from '../hooks/useWalletContext';
 import Web3 from 'web3';
+import AcceptOfferProgressDlg from './Dialog/AcceptOfferProgressDlg';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -69,6 +70,8 @@ export default function ItemTabs(props) {
   const [value, setValue] = React.useState(0);
   const [filter, setFilter] = React.useState('all');
   const [properties, setProperties] = useState([]);
+  const [offer, setOffer] = useState(null);
+  const [showAcceptOfferDlg, setShowAcceptOfferDlg] = useState(false);
 
   const { tokenInfo } = props;
 
@@ -94,8 +97,13 @@ export default function ItemTabs(props) {
     if (offer.address && offer.address.length > 0) {
       return offer.address[0].name;
     } else {
-      return offer.buyer.slice(0, 13);
+      return `${offer.buyer.slice(0, 13)}...`;
     }
+  }
+
+  const handleAcceptOffer = (offer) => {
+    setOffer(offer);
+    setShowAcceptOfferDlg(true);
   }
 
   return (
@@ -118,10 +126,10 @@ export default function ItemTabs(props) {
               <TableRow>
                 <TableCell>Price</TableCell>
                 <TableCell align="center">USD Price</TableCell>
-                <TableCell align="right">From</TableCell>
+                <TableCell align={"center"}>From</TableCell>
                 {
                   tokenInfo && tokenInfo.token.owner === account.toLowerCase() &&
-                  <TableCell align="right">Action</TableCell>
+                  <TableCell align="center">Action</TableCell>
                 }
               </TableRow>
             </TableHead>
@@ -135,11 +143,11 @@ export default function ItemTabs(props) {
                     {Web3.utils.fromWei(offer.amount + '')} {getAssetName(offer.asset)}
                   </TableCell>
                   <TableCell align="center">{0}</TableCell>
-                  <TableCell align="right">{getOffererName(offer)}</TableCell>
+                  <TableCell align="center">{getOffererName(offer)}</TableCell>
                   {
                     tokenInfo && tokenInfo.token.owner === account.toLowerCase() &&
-                    <TableCell align="right">
-                      <Button className={classes.primaryButton}>Accept</Button>
+                    <TableCell align="center">
+                      <Button className={classes.primaryButton} onClick={() => handleAcceptOffer(offer)}>Accept</Button>
                     </TableCell>
                   }
                 </TableRow>
@@ -233,6 +241,7 @@ export default function ItemTabs(props) {
       <TabPanel className={classes.paperBackground} value={value} index={4}>
         <Graph />
       </TabPanel>
+      <AcceptOfferProgressDlg open={showAcceptOfferDlg} handleOpenDialog={setShowAcceptOfferDlg} token={tokenInfo? tokenInfo.token: null} offer={offer}/>
     </Container>
   );
 }
