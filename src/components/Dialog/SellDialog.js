@@ -101,6 +101,11 @@ export default function SellDialog(props){
 			return;
 		}
 
+		if (!assets.length) {
+			toast('Please select at least one asset.');
+			return;
+		}
+
 		setShowSellProgressDlg(true);
 	}
 
@@ -153,12 +158,12 @@ export default function SellDialog(props){
 					<Divider orientation="vertical" flexItem />
 					<Grid item xs p={3}>
 						<Box display='flex' justifyContent='space-evenly'>
-							<ImageCheckButton imgUrl = '../../images/chains/AVAX.png' text='AVAX' content='Native' onChange={handleAssetChecked} disabled={!avaxChecked}/>
-							<ImageCheckButton imgUrl = '../../images/chains/AVAX.png' text='WAVAX' content={ASSETS.AVAX} onChange={handleAssetChecked}/>
-							<ImageCheckButton imgUrl = '../../images/chains/USDT.png' text='USDT' content={ASSETS.USDT} onChange={handleAssetChecked}/>
+							<ImageCheckButton imgUrl = '../../images/chains/AVAX.png' text='AVAX' content='Native' handleChange={handleAssetChecked} disabled={!avaxChecked}/>
+							<ImageCheckButton imgUrl = '../../images/chains/AVAX.png' text='WAVAX' content={ASSETS.AVAX} handleChange={handleAssetChecked}/>
+							<ImageCheckButton imgUrl = '../../images/chains/USDT.png' text='USDT' content={ASSETS.USDT} handleChange={handleAssetChecked}/>
 						</Box>
 						<Box m={2} display='flex' justifyContent='space-evenly'>
-							<ImageCheckButton imgUrl = '../../images/chains/USDT.png' text='TEST' content={ASSETS.TEST} onChange={handleAssetChecked}/>
+							<ImageCheckButton imgUrl = '../../images/chains/USDT.png' text='TEST' content={ASSETS.TEST} handleChange={handleAssetChecked}/>
 						</Box>
 					</Grid>
 				</Grid>

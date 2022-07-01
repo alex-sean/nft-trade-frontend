@@ -12,9 +12,8 @@ export default function ImageCheckButton(props) {
       return;
     }
 
+    handleChange(!checked, content);
     setChecked(!checked);
-
-    handleChange(checked, content);
   }
 
   useEffect(() => {
