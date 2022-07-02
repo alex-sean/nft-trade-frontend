@@ -5,15 +5,17 @@ import Category from "../screens/Category";
 import SellItems from "../screens/SellItems"
 import { useEffect, useState } from "react";
 import { useLoadingContext } from '../hooks/useLoadingContext';
-import { getHotBidItems, getPopularCollections } from "../adapters/backend";
+import { getFeaturedCollections, getHotBidItems, getPopularCollections } from "../adapters/backend";
 import { toast } from 'react-toastify';
 import { getPastTimeStamp } from "../common/CommonUtils";
+import { CATEGORIES } from "../common/const";
 
 export default function Home(){
   const { setLoading } = useLoadingContext();
   
   const [hotBitItems, setHotBitItems] = useState([]);
   const [popularCollections, setPopularCollections] = useState([]);
+  const [featuredCollections, setFeaturedCollections] = useState([]);
 
   const getDashBoardData = async () => {
     setLoading(true);
@@ -31,6 +33,12 @@ export default function Home(){
         throw new Error('Getting popular collections failed.');
       }
       setPopularCollections(popularCollections.data.collections);
+
+      let featuredCollections = await getFeaturedCollections(0);
+      if (!featuredCollections) {
+        throw new Error('Getting featured collections failed.');
+      }
+      setFeaturedCollections(featuredCollections.data.collections);
     } catch (err) {
       console.log(err);
       toast('Getting dashboard items failed.');
@@ -48,8 +56,8 @@ export default function Home(){
       <Hero />
       <Hotbids items={hotBitItems}/>
       <Collections items={popularCollections} setItems={setPopularCollections}/>
-      {/* <Category />
-      <SellItems /> */}
+      <Category items={featuredCollections} setItems={setFeaturedCollections}/>
+      <SellItems />
     </>
   );
 }

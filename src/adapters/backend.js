@@ -166,6 +166,10 @@ export const getPopularCollections = async (from) => {
     return await get(`/token/get_popular_collections?from=${from}`);
 }
 
+export const getFeaturedCollections = async (category) => {
+    return await get(`/token/get_featured_collections?category=${category}`);
+}
+
 export const getServiceFee = async () => {
     return await get(`/config/service_fee`);
 }
