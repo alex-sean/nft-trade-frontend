@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@mui/material';
 import useStyles from '../styles/styles';
 import Menu, { MenuProps } from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { styled, alpha } from '@mui/material/styles';
+import { getPastTimeStamp } from '../common/CommonUtils';
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -48,16 +49,24 @@ const StyledMenu = styled((props) => (
 }));
 
 function CollectionMenu(props) {
-  const { text } = props;
+  const { getCollections } = props;
   const classes = useStyles();
   
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [periodText, setPeriodText] = useState('last 7 days');
+
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
+  const handleClose = (from, text) => {
     setAnchorEl(null);
+    if (!from) {
+      return;
+    }
+    
+    getCollections(from);
+    setPeriodText(text);
   };
 
   return (
@@ -72,7 +81,7 @@ function CollectionMenu(props) {
         onClick={handleClick}
         endIcon={<KeyboardArrowDownIcon />}
       >
-        last 7 days
+        {periodText}
       </Button>
       <StyledMenu
         id="demo-customized-menu"
@@ -81,15 +90,15 @@ function CollectionMenu(props) {
         }}
         anchorEl={anchorEl}
         open={open}
-        onClose={handleClose}
+        onClose={() => handleClose()}
       >
-        <MenuItem onClick={handleClose} disableRipple className={classes.collectionMenuItem}>
+        <MenuItem onClick={() => handleClose(getPastTimeStamp(1), 'Last 24 hours')} disableRipple className={classes.collectionMenuItem}>
           Last 24 hours
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple className={classes.collectionMenuItem}>
+        <MenuItem onClick={() => handleClose(getPastTimeStamp(7), 'Last 7 days')} disableRipple className={classes.collectionMenuItem}>
           Last 7 days
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple className={classes.collectionMenuItem}>
+        <MenuItem onClick={() => handleClose(getPastTimeStamp(30), 'Last 30 days')} disableRipple className={classes.collectionMenuItem}>
           Last 30 days
         </MenuItem>
       </StyledMenu>

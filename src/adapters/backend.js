@@ -162,6 +162,10 @@ export const getlikeCollection = async (collectionAddress, address) => {
     return await get(`/token/get_like_collection?collectionAddress=${collectionAddress}&address=${address}`);
 }
 
+export const getPopularCollections = async (from) => {
+    return await get(`/token/get_popular_collections?from=${from}`);
+}
+
 export const getServiceFee = async () => {
     return await get(`/config/service_fee`);
 }

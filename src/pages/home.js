@@ -5,13 +5,15 @@ import Category from "../screens/Category";
 import SellItems from "../screens/SellItems"
 import { useEffect, useState } from "react";
 import { useLoadingContext } from '../hooks/useLoadingContext';
-import { getHotBidItems } from "../adapters/backend";
+import { getHotBidItems, getPopularCollections } from "../adapters/backend";
 import { toast } from 'react-toastify';
+import { getPastTimeStamp } from "../common/CommonUtils";
 
 export default function Home(){
   const { setLoading } = useLoadingContext();
   
   const [hotBitItems, setHotBitItems] = useState([]);
+  const [popularCollections, setPopularCollections] = useState([]);
 
   const getDashBoardData = async () => {
     setLoading(true);
@@ -23,6 +25,12 @@ export default function Home(){
       }
 
       setHotBitItems(hotBidItems.data.tokens);
+
+      let popularCollections = await getPopularCollections(getPastTimeStamp(7));
+      if (!popularCollections) {
+        throw new Error('Getting popular collections failed.');
+      }
+      setPopularCollections(popularCollections.data.collections);
     } catch (err) {
       console.log(err);
       toast('Getting dashboard items failed.');
@@ -39,7 +47,7 @@ export default function Home(){
     <>
       <Hero />
       <Hotbids items={hotBitItems}/>
-      <Collections/>
+      <Collections items={popularCollections} setItems={setPopularCollections}/>
       {/* <Category />
       <SellItems /> */}
     </>

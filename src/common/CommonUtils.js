@@ -57,3 +57,7 @@ export function getUSDPrice(rates, price, asset) {
 
     return 0;
 }
+
+export function getPastTimeStamp(days) {
+    return Date.now() - 3600 * 24 * days * 1000;
+}
