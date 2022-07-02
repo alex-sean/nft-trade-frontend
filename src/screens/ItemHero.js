@@ -4,13 +4,14 @@ import { Grid, Typography, Container, Box, Link } from '@mui/material';
 import useStyles from '../styles/styles';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import ItemMenu from '../components/ItemMenu';
 import { Icon } from '@iconify/react';
 import ItemCreator from '../components/ItemCreator';
 import ItemBid from '../screens/ItemBid';
 import ItemTabs from '../components/ItemTabs';
 import { useLoadingContext } from '../hooks/useLoadingContext';
-import { getTokenDetail, getServiceFee } from '../adapters/backend';
+import { getTokenDetail, getServiceFee, getlikeToken, likeToken } from '../adapters/backend';
 import { toast } from 'react-toastify';
 import { CATEGORY_NAMES_IN_ARRAY, LIST_TYPE, TOKEN_STATUS } from '../common/const';
 import { useWalletContext } from '../hooks/useWalletContext';
@@ -31,6 +32,8 @@ export default function ItemHero(props){
 
   const [rates, setRates] = useState({});
 
+  const [like, setLike] = useState(false);
+
   const getTokenInfo = async () => {
     setLoading(true);
 
@@ -48,6 +51,12 @@ export default function ItemHero(props){
       }
 
       setServiceFee(serviceFee.data.serviceFee);
+
+      const likeResult = await getlikeToken(collectionAddress, tokenID, account);
+      if (!likeResult) {
+        throw new Error('Getting like failed.');
+      }
+      setLike(likeResult.data.status);
     } catch (err) {
       console.log(err);
       toast('Getting token information failed.');
@@ -164,6 +173,31 @@ export default function ItemHero(props){
     }
   }
 
+  const updateLike = async () => {
+    setLoading(true);
+
+    try {
+      let result = await likeToken(collectionAddress, tokenID, !like);
+      if (!result) {
+        throw new Error('Updating failed.');
+      }
+
+      if (result.data.status) {
+        if (like) {
+          tokenInfo.token.like--;
+        } else {
+          tokenInfo.token.like++;
+        }
+        setLike(!like);
+      }
+    } catch (err) {
+      console.log(err);
+      toast('Updaing failed.');
+    }
+
+    setLoading(false);
+  }
+
   return (
     <Box className={classes.itemHeroContainer}>
       <Container maxWidth="lg">
@@ -185,7 +219,13 @@ export default function ItemHero(props){
               </Box>
               <Box className={`${classes.displayFlex}`} >
                 <Typography className={`${classes.displayFlex}`} sx={{border:'solid 1px grey', borderRadius:'10px', padding:'8px'}}>
-                  <FavoriteBorderIcon />{getLikes()}
+                  {
+                    like?
+                    <FavoriteIcon sx={{color: 'red'}} onClick={() => updateLike()}/>
+                    :
+                    <FavoriteBorderIcon onClick={() => updateLike()}/>
+                  }
+                  {getLikes()}
                 </Typography>
                 <ItemMenu />
               </Box>
