@@ -49,16 +49,16 @@ export default function ActivityPage(){
                 <DiscountIcon />Listing
               </ToggleButton>
               <ToggleButton value="bids" aria-label="Bids">
-                <GavelIcon />Bids
+                <GavelIcon />Create
               </ToggleButton>
               <ToggleButton value="transfer" aria-label="Transfer">
-                <ImportExportIcon />Transfer
+                <ImportExportIcon />Offer
               </ToggleButton>
               <ToggleButton value="likes" aria-label="Likes">
                 <FavoriteBorderIcon />Likes
               </ToggleButton>
               <ToggleButton value="purchases" aria-label="Purchases">
-                <InventoryIcon />Purchases
+                <InventoryIcon />Exchange
               </ToggleButton>
             </ToggleButtonGroup>
           </Grid>

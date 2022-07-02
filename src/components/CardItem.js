@@ -101,7 +101,7 @@ function CardItem(props) {
       <Box mt={2} sx={{display:'flex', justifyContent: 'space-between', alignItems: 'center'}}>
         <Typography variant="h6" className={classes.collectionItemTitle}>{token.name} #{token.tokenID}</Typography>
         {/* <MoreHorizIcon /> */}
-        {`$ ${token.price} USD`}
+        {`$ ${token.price}`}
       </Box>
       <Typography className={[classes.collectionSubtitle, classes.ellipseText]}>{token.description}</Typography>
       <Box sx={{display:'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px'}}>

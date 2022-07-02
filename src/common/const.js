@@ -56,3 +56,12 @@ export const TOKEN_STATUS = {
     VERIFIED: 1,
     REJECTED: 2
 }
+
+export const ACTIVITY_TYPE = {
+    NONE: 0,
+    CREATE: 1,
+    OFFER: 2,
+    LISTING: 3,
+    EXCHANGE: 4,
+    LIKE: 5
+};

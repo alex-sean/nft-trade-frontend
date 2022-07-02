@@ -232,7 +232,7 @@ export default function ItemHero(props){
                   }
                   {getLikes()}
                 </Typography>
-                <ItemMenu />
+                {/* <ItemMenu /> */}
               </Box>
             </Box>
             <Typography variant="h4" fontWeight={700} className={classes.title}>
