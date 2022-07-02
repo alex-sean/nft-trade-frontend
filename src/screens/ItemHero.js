@@ -174,10 +174,15 @@ export default function ItemHero(props){
   }
 
   const updateLike = async () => {
+    if (!account) {
+      toast('Please connect the wallet.');
+      return;
+    }
+
     setLoading(true);
 
     try {
-      let result = await likeToken(collectionAddress, tokenID, !like);
+      let result = await likeToken(collectionAddress, tokenID, account, !like);
       if (!result) {
         throw new Error('Updating failed.');
       }
