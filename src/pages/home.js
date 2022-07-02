@@ -39,8 +39,8 @@ export default function Home(){
     <>
       <Hero />
       <Hotbids items={hotBitItems}/>
-      {/* <Collections/>
-      <Category />
+      <Collections/>
+      {/* <Category />
       <SellItems /> */}
     </>
   );

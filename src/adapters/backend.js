@@ -154,6 +154,14 @@ export const getHotBidItems = async () => {
     return await get(`/token/hot_bid`);
 }
 
+export const likeCollection = async (collectionAddress, address, like) => {
+    return await get(`/token/like_collection?collectionAddress=${collectionAddress}&address=${address}&like=${like}`);
+}
+
+export const getlikeCollection = async (collectionAddress, address) => {
+    return await get(`/token/get_like_collection?collectionAddress=${collectionAddress}&address=${address}`);
+}
+
 export const getServiceFee = async () => {
     return await get(`/config/service_fee`);
 }

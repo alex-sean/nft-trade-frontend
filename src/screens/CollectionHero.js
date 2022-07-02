@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Divider, Typography, Box, Button, Stack } from '@mui/material';
 import useStyles from '../styles/styles';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
@@ -8,11 +8,21 @@ import CollectionPopup2 from '../components/CollectionPopup2';
 import Checkbox from '@mui/material/Checkbox';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
+import { TOKEN_STATUS } from '../common/const';
+import { useLoadingContext } from '../hooks/useLoadingContext';
+import { useWalletContext } from '../hooks/useWalletContext';
+import { toast } from 'react-toastify';
+import { getlikeCollection, likeCollection } from '../adapters/backend';
 
 export default function CollectionHero(props){
   const classes = useStyles();
 
   const { collection } = props;
+
+  const { setLoading } = useLoadingContext();
+  const { account } = useWalletContext();
+
+  const [like, setLike] = useState(false);
 
   const getCollectionAvatarURL = () => {
     if (collection) {
@@ -34,6 +44,47 @@ export default function CollectionHero(props){
     }
   }
 
+  const initLike = async () => {
+    try {
+      const result = await getlikeCollection(collection.collection.collectionAddress, account);
+      if (!result) {
+        throw new Error('Getting like status failed.');
+      }
+
+      setLike(result.data.status);
+    } catch (err) {
+      console.log(err);
+      toast('Getting like status failed.');
+    }
+  }
+
+  const setLikeCollection = async () => {
+    if (!account) {
+      toast('Please connect the wallet.');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const result = await likeCollection(collection.collection.collectionAddress, account, !like);
+      if (result.data.status) {
+        setLike(!like);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+
+    setLoading(false);
+  }
+
+  useEffect(() => {console.log(collection, account);
+    if (!collection || !account) {
+      return;
+    }
+
+    initLike();
+  }, [collection, account])
+
   return (
     <>
       <Box sx={{height:'300px', backgroundImage:`url(../images/collections/collection_banner.jpg)`}}></Box>
@@ -42,7 +93,7 @@ export default function CollectionHero(props){
           <img src={`${getCollectionAvatarURL()}`}
                style={{width: '148px', border: 'solid 3px #fff', borderRadius: '10px'}} />
           {
-            collection && collection.collection.status &&
+            collection && collection.collection.status === TOKEN_STATUS.VERIFIED &&
             <CheckCircleIcon sx={{position: 'absolute', transform: 'translate(70px, 70px)', color: 'limegreen'}} />
           }
         </Box>
@@ -65,15 +116,15 @@ export default function CollectionHero(props){
             <Stack divider={<Divider orientation="vertical" flexItem />} direction='row' spacing={{ xs: 1, sm: 2, md: 4 }}>
               <Box sx={{width: '95px'}}>
                 <Box className={`${classes.displayFlex} ${classes.justifyCenter}`}>
-                  <Icon icon="logos:ethereum" rotate={2} hFlip={true} vFlip={true} />
-                  <Typography className={classes.darkText} ml={1} variant="h6">{collection? collection.floorPrice: 0}</Typography>
+                  {/* <Icon icon="logos:ethereum" rotate={2} hFlip={true} vFlip={true} /> */}
+                  <Typography className={classes.darkText} ml={1} variant="h6">$ {collection? collection.floorPrice: 0}</Typography>
                 </Box>
                 <Typography variant="body2">Floor Price</Typography>
               </Box>
               <Box sx={{width: '95px'}}>
                 <Box className={`${classes.displayFlex} ${classes.justifyCenter}`}>
-                  <Icon icon="logos:ethereum" rotate={2} hFlip={true} vFlip={true} />
-                  <Typography className={classes.darkText} ml={1} variant="h6">{collection? collection.collection.volume: 0}</Typography>
+                  {/* <Icon icon="logos:ethereum" rotate={2} hFlip={true} vFlip={true} /> */}
+                  <Typography className={classes.darkText} ml={1} variant="h6">$ {collection? collection.collection.volume: 0}</Typography>
                 </Box>
                 <Typography variant="body2">Volume Traded</Typography>
               </Box>
@@ -85,10 +136,10 @@ export default function CollectionHero(props){
 
         <Box mb={2} className={`${classes.displayFlex} ${classes.justifyCenter}`} >
           <Button className={`${classes.displayFlex}`} sx={{border:'solid 1px grey', borderRadius:'10px', padding:'8px', color: '#000'}}>
-            <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{color: 'red'}} />} />
+            <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{color: 'red'}} />} checked={like} onChange={(e) => setLikeCollection()}/>
           </Button>
           <CollectionPopup1 />
-          <CollectionPopup2 />
+          {/* <CollectionPopup2 /> */}
         </Box>
       </Box>
     </>
