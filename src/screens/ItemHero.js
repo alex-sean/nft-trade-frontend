@@ -12,7 +12,7 @@ import ItemTabs from '../components/ItemTabs';
 import { useLoadingContext } from '../hooks/useLoadingContext';
 import { getTokenDetail, getServiceFee } from '../adapters/backend';
 import { toast } from 'react-toastify';
-import { CATEGORY_NAMES_IN_ARRAY, LIST_TYPE } from '../common/const';
+import { CATEGORY_NAMES_IN_ARRAY, LIST_TYPE, TOKEN_STATUS } from '../common/const';
 import { useWalletContext } from '../hooks/useWalletContext';
 import { getAssetName, getAssetPrices, getUSDPrice } from '../common/CommonUtils';
 import Web3 from 'web3';
@@ -179,7 +179,7 @@ export default function ItemHero(props){
                   <Typography mr={2} color="rgb(131, 88, 255)">{getCategoryName()}</Typography>
                 </Link>
                 {
-                  tokenInfo && tokenInfo.token.status &&
+                  tokenInfo && tokenInfo.token.status === TOKEN_STATUS.VERIFIED &&
                   <CheckCircleIcon sx={{color: 'rgb(16, 185, 129)'}}/>
                 }
               </Box>
