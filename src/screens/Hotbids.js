@@ -9,7 +9,7 @@ import { Navigation } from "swiper";
 import "swiper/css/navigation";
 import 'swiper/css';
 
-const Hotbids = () => {
+const Hotbids = ({ items }) => {
   const classes = useStyles();
   const theme = useTheme();
   const matchLg = useMediaQuery(theme.breakpoints.up('lg'))
@@ -75,9 +75,9 @@ const Hotbids = () => {
       </Box>
       <Container maxWidth="lg" spacing={4}>
         <Swiper navigation={true} modules={[Navigation]} slidesPerView={matchLg ? '4' : (matctMd ? '3' : (matctSm ? '2' : '1'))} >
-          {sectionItems.map((item) => (
+          {items.map((item) => (
             <SwiperSlide key={item.id}>
-              <HotbidItem {...item} />
+              <HotbidItem item={item} />
             </SwiperSlide>
           ))}
         </Swiper>
