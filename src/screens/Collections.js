@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Typography, Box, Container, useMediaQuery } from '@mui/material';
+import { Grid, Typography, Box, Container, useMediaQuery, Link } from '@mui/material';
 import useStyles from '../styles/styles';
 import CollectionItem from '../components/CollectionItem';
 import PrimaryButton from '../components/Button/PrimaryButton';
@@ -57,7 +57,9 @@ const Collections = ({ items, setItems }) => {
           ))}
         </Grid>
       </Container>
-      {/* <PrimaryButton text="Go to Rankings" /> */}
+      <Link underline='none' href='/rankings'>
+        <PrimaryButton text="Go to Rankings" />
+      </Link>
     </Box>
   );
 };

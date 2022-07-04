@@ -19,6 +19,7 @@ import BlogPage from './pages/blogpage';
 import SinglepostPage from './pages/singlepostpage';
 import CreatePage from './pages/createpage';
 import AccountPage from './pages/AccountPage';
+import RankingsPage from './pages/RankingsPage';
 import { WalletProvider } from './providers/WalletProvider';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -105,6 +106,9 @@ function App() {
               </Route>
               <Route exact path='/account/:address'>
                 <AccountPage />
+              </Route>
+              <Route exact path='/rankings'>
+                <RankingsPage />
               </Route>
             </Switch>
           </WalletProvider>

@@ -23,7 +23,7 @@ export default function HotbidItem(props) {
       <Typography className={classes.hotBidSubtitle}>{`Last Bid ${Web3.utils.fromWei(item.orders[0].amount + '')} ${getAssetName(item.orders[0].asset)}`}</Typography>
       <Box sx={{display:'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px'}}>
         <Typography className={classes.hotBidPlaceBid}>Place Bid</Typography>
-        <Box sx={{display:'flex'}} className={classes.hotBidLike}>
+        <Box sx={{display:'flex', alignItems: 'center'}} className={classes.hotBidLike}>
           <FavoriteBorderIcon />
           <Typography className={classes.hotBidLike}>{item.like}</Typography>
         </Box>

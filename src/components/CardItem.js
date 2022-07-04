@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Typography, Box, Link } from '@mui/material';
+import { Typography, Box, Link, Tooltip } from '@mui/material';
 import HistoryIcon from '@mui/icons-material/History';
 import useStyles from '../styles/styles';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -91,10 +91,14 @@ function CardItem(props) {
         </Box>
         <Box sx={{display:'flex', position: 'absolute', bottom: '-12px', left: '16px'}}>
           <Link>
-            <img src="../images/avatars/creator_1.png" className={classes.creatorLink}/>
+            <Tooltip title="Creator: Sussygirl">
+              <img src="../images/avatars/creator_1.png" className={classes.creatorLink}/>
+            </Tooltip>
           </Link>
           <Link sx={{marginLeft: '-6px'}}>
-            <img src="../images/avatars/owner_1.png" className={classes.creatorLink}/>
+            <Tooltip title="Owner: Sussygirl">
+              <img src="../images/avatars/owner_1.png" className={classes.creatorLink}/>
+            </Tooltip>
           </Link>
         </Box>
       </Box>
@@ -106,7 +110,7 @@ function CardItem(props) {
       <Typography className={[classes.collectionSubtitle, classes.ellipseText]}>{token.description}</Typography>
       <Box sx={{display:'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px'}}>
         <Typography className={classes.collectionBuy}>Buy now</Typography>
-        <Box sx={{display:'flex', color: '#5A5D79'}}>
+        <Box sx={{display:'flex', alignItems:'end', color: '#5A5D79'}}>
           <HistoryIcon />
           <Typography className={classes.collectionHistory}>View History</Typography>
         </Box>
