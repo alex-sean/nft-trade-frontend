@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Typography, Box, Paper, Card, CardActions, CardContent, Link, Avatar } from '@mui/material';
+import { Grid, Typography, Box, Paper, Card, CardActions, CardContent, Link, Avatar, Button } from '@mui/material';
 import useStyles from '../styles/styles';
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import { styled } from '@mui/material/styles';
@@ -8,6 +8,7 @@ import DiscountIcon from '@mui/icons-material/Discount';
 import ImportExportIcon from '@mui/icons-material/ImportExport';
 import GavelIcon from '@mui/icons-material/Gavel';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import PrimaryButton from './Button/PrimaryButton';
 
 export default function ActivityItemList(props) {
   const classes = useStyles();
@@ -129,6 +130,10 @@ export default function ActivityItemList(props) {
           </Grid>
         </Grid>
       </Paper>
+      <Box sx={{width: '100%'}}>
+        <Button className={classes.primaryButton} style={{display: 'block', marginLeft:'auto', marginRight:'auto'}}>Load more
+        </Button>
+      </Box>
     </>
   );
 }

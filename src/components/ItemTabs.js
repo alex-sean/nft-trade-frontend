@@ -15,12 +15,16 @@ import ImportExportIcon from '@mui/icons-material/ImportExport';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import { getAssetName, getUSDPrice } from '../common/CommonUtils';
+import { getAssetName, getUSDPrice, getActivityEvent, getActivityIcon, getTimeStr } from '../common/CommonUtils';
 import { useWalletContext } from '../hooks/useWalletContext';
+import { useLoadingContext } from '../hooks/useLoadingContext';
 import Web3 from 'web3';
 import AcceptOfferProgressDlg from './Dialog/AcceptOfferProgressDlg';
-import { LIST_TYPE } from '../common/const';
+import { LIST_TYPE, ACTIVITY_TYPE } from '../common/const';
 import AuctionCompleteProgressDlg from './Dialog/AuctionCompleteProgressDlg';
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { getActivitiesByToken } from '../adapters/backend';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -70,16 +74,18 @@ const rows = [
 export default function ItemTabs(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-  const [filter, setFilter] = React.useState('all');
+  const [filter, setFilter] = React.useState(-1);
   const [properties, setProperties] = useState([]);
   const [offer, setOffer] = useState(null);
   const [showAcceptOfferDlg, setShowAcceptOfferDlg] = useState(false);
   const [showAuctionCompleteProgressDlg, setShowAuctionCompleteProgressDlg] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState();
+  const [activities, setActivities] = useState([]);
 
   const { tokenInfo, rates } = props;
 
   const { account } = useWalletContext();
+  const { setLoading } = useLoadingContext();
 
   const handleFilter = (event, newFilter) => {
     setFilter(newFilter);
@@ -95,6 +101,7 @@ export default function ItemTabs(props) {
     }
 
     setProperties(JSON.parse(tokenInfo.token.tokenURIData).properties);
+    setActivities(tokenInfo.activities);
   }, [tokenInfo])
 
   const getOffererName = (offer) => {
@@ -122,6 +129,44 @@ export default function ItemTabs(props) {
     setSelectedOrder(order);
     setShowAuctionCompleteProgressDlg(true);
   }
+
+  const getActivityPrice = (activity) => {
+    if (activity.amount) {
+      if (activity.asset === 'USD') {
+        return `$ ${activity.amount.toFixed(2)}`;
+      } else {
+        return `${Web3.utils.fromWei(activity.amount).toFixed(4)} ${getAssetName(activity.asset)}`;
+      }
+    } else {
+      return '';
+    }
+  }
+
+  const refreshActivities = async () => {
+    setLoading(true);
+
+    try {
+      let activities = await getActivitiesByToken(tokenInfo.token.collectionAddress, tokenInfo.token.tokenID, filter);
+      if (!activities) {
+        throw new Error('Getting activities failed.');
+      }
+
+      setActivities(activities.data.activities);
+    } catch (err) {
+      console.log(err);
+      toast('Getting activities failed.');
+    }
+    
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    if (filter === -1) {
+      return;
+    }
+
+    refreshActivities();
+  }, [filter])
 
   return (
     <Container maxWidth="lg">
@@ -243,42 +288,43 @@ export default function ItemTabs(props) {
               onChange={handleFilter}
               aria-label="Filter"
             >
-            <ToggleButton value="listing" aria-label="Listing">
-              <DiscountIcon />Listing
-            </ToggleButton>
-            <ToggleButton value="bids" aria-label="Bids">
-              <GavelIcon />Bids
-            </ToggleButton>
-            <ToggleButton value="transfer" aria-label="Transfer">
-              <ImportExportIcon />Transfer
-            </ToggleButton>
-            <ToggleButton value="purchases" aria-label="Purchases">
-              <InventoryIcon />Purchases
-            </ToggleButton>
+              <ToggleButton value="0" aria-label="Listing">
+                All
+              </ToggleButton>
+              <ToggleButton value="3" aria-label="Listing">
+                <DiscountIcon />Listing
+              </ToggleButton>
+              <ToggleButton value="1" aria-label="Bids">
+                <GavelIcon />Create
+              </ToggleButton>
+              <ToggleButton value="2" aria-label="Transfer">
+                <ImportExportIcon />Offer
+              </ToggleButton>
+              <ToggleButton value="4" aria-label="Purchases">
+                <InventoryIcon />Exchange
+              </ToggleButton>
           </ToggleButtonGroup>
           <Table sx={{ minWidth: 650, width:'100%', marginTop: '32px' }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>Dessert (100g serving)</TableCell>
-                <TableCell align="right">Calories</TableCell>
-                <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                <TableCell align="center">Event</TableCell>
+                <TableCell align="center">Price</TableCell>
+                <TableCell align="center">Operator</TableCell>
+                <TableCell align="center">Date</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
+              {activities.map((activity) => activity.type !== ACTIVITY_TYPE.LIKE && (
                 <TableRow
-                  key={row.name}
+                  key={activity.objectId}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
-                  <TableCell component="th" scope="row">
-                    {row.name}
+                  <TableCell component="th" scope="row" align="center">
+                    {getActivityIcon(activity.type)}{getActivityEvent(activity.type)}
                   </TableCell>
-                  <TableCell align="right">{row.calories}</TableCell>
-                  <TableCell align="right">{row.fat}</TableCell>
-                  <TableCell align="right">{row.carbs}</TableCell>
-                  <TableCell align="right">{row.protein}</TableCell>
+                  <TableCell align="center">{getActivityPrice(activity)}</TableCell>
+                  <TableCell align="center"><Link href={`/account/${activity.operator}`}>{activity.Operator && activity.Operator.length > 0? activity.Operator[0].name: activity.operator.slice(0, 13)}</Link></TableCell>
+                  <TableCell align="center">{getTimeStr(activity.updatedAt)}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
