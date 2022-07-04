@@ -223,7 +223,7 @@ export default function CreatePage(){
 
         <InputLabel htmlFor="collection" className={classes.createItemTitle}>
           Collection</InputLabel>
-        <Box py={1} display="flex" alignItems="center">
+        <Box py={1} display="flex" alignItems="end">
           <Typography mr={1} variant="body2" className={classes.createItemDetail}>This is the collection where your item will appear.</Typography>
           <InfoOutlinedIcon sx={{color: 'gray'}}/>
         </Box>
@@ -284,7 +284,7 @@ export default function CreatePage(){
             <WarningIcon/>
             <Box pl={1}>
               <Typography variant="h6">Explicit & Sensitive Content</Typography>
-              <Box py={1} display="flex" alignItems="center">
+              <Box py={1} display="flex" alignItems="end">
                 <Typography mr={1} variant="body2">Set this item as explicit and sensitive content.</Typography>
                 <InfoOutlinedIcon sx={{color: 'gray'}}/>
               </Box>
@@ -296,7 +296,7 @@ export default function CreatePage(){
 
         <InputLabel htmlFor="supply" sx={{marginTop: '20px', fontWeight: '700'}}>
           Supply</InputLabel>
-        <Box py={1} display="flex" alignItems="center">
+        <Box py={1} display="flex" alignItems="end">
           <Typography mr={1} variant="body2">The number of items that can be minted. No gas cost to you!</Typography>
           <InfoOutlinedIcon sx={{color: 'gray'}}/>
         </Box>

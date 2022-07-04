@@ -66,7 +66,7 @@ export default function AccountMenu() {
           </Box>
         </Box>
         <MenuItem onClick={handleClose}>
-          <Link href={`/account/${account}`} underline="none" key="1" display='flex'>
+          <Link href={`/account/${account}`} underline="none" key="1" alignItems='center' display='flex'>
             <ListItemIcon>
               <PersonIcon fontSize="small" />
             </ListItemIcon>
@@ -74,7 +74,7 @@ export default function AccountMenu() {
           </Link>
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <Link href="/profile" underline="none" key="2" display='flex'>
+          <Link href="/profile" underline="none" key="2" alignItems='center' display='flex'>
             <ListItemIcon>
               <SettingsIcon fontSize="small" />
             </ListItemIcon>

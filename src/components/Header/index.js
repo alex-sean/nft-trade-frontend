@@ -34,7 +34,6 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AppsIcon from '@mui/icons-material/Apps';
-import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import PersonIcon from '@mui/icons-material/Person';
 import PrimaryButton from "../../components/Button/PrimaryButton";
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -43,6 +42,12 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import RedditIcon from '@mui/icons-material/Reddit';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import { useWalletContext } from '../../hooks/useWalletContext';
+import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
+import LinkedCameraIcon from '@mui/icons-material/LinkedCamera';
+import LanguageIcon from '@mui/icons-material/Language';
+import MusicNoteIcon from '@mui/icons-material/MusicNote';
+import FormatShapesIcon from '@mui/icons-material/FormatShapes';
+import PaletteIcon from '@mui/icons-material/Palette';
 
 const Header = (props) => {
   const classes = useStyles();
@@ -108,17 +113,47 @@ const Header = (props) => {
             <Typography className={classes.mobileLink}>Explopre</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Link href="/collections" underline="none" key="1" display='flex'>
+            <Link href="/collections" py={1} underline="none" key="1" alignItems='center' display='flex'>
               <ListItemIcon>
-                <AppsIcon fontSize="small" />
+                <AppsIcon fontSize="large" sx={{padding: '8px', background:"rgb(245 248 250)", marginRight: '16px', borderRadius: '40px', fill:'#131740'}}/>
               </ListItemIcon>
               <Typography className={classes.mobileLink}>All NFTs</Typography>
             </Link>
-            <Link href="/collection" underline="none" key="2" display='flex'>
+            <Link href="/collection" py={1} underline="none" key="2" alignItems='center' display='flex'>
               <ListItemIcon>
-                <LibraryMusicIcon sx={{fill:'#10b981'}} fontSize="small" />
+                <PaletteIcon fontSize="large" sx={{padding: '8px', background:"rgb(228 252 244)", marginRight: '16px', borderRadius: '40px', fill:'#10b981'}} />
               </ListItemIcon>
               <Typography className={classes.mobileLink}>Art</Typography>
+            </Link>
+            <Link href="/collection" py={1} underline="none" key="3" display='flex' alignItems='center'>
+              <ListItemIcon>
+                <CardGiftcardIcon fontSize="large" sx={{padding: '8px', background:"rgb(253 247 238)", marginRight: '16px', borderRadius: '40px', fill:'#feb240'}} />
+              </ListItemIcon>
+              <Typography className={classes.mobileLink}>COLLECTIBLE</Typography>
+            </Link>
+            <Link href="/collection" py={1} underline="none" key="2" display='flex' alignItems='center'>
+              <ListItemIcon>
+                <FormatShapesIcon fontSize="large"  sx={{padding: '8px', background:"rgb(242 238 255)", marginRight: '16px', marginRight: '16px', borderRadius: '40px', fill:'#8358ff'}} />
+              </ListItemIcon>
+              <Typography className={classes.mobileLink}>DOMAIN</Typography>
+            </Link>
+            <Link href="/collection" py={1} underline="none" key="2" display='flex' alignItems='center'>
+              <ListItemIcon>
+                <MusicNoteIcon fontSize="large" sx={{padding: '8px', background:"rgb(255 238 250)", marginRight: '16px', borderRadius: '40px', fill:'#f35bc7'}} />
+              </ListItemIcon>
+              <Typography className={classes.mobileLink}>MUSIC</Typography>
+            </Link>
+            <Link href="/collection" py={1} underline="none" key="2" display='flex' alignItems='center'>
+              <ListItemIcon>
+                <LinkedCameraIcon fontSize="large" sx={{padding: '8px', background:"rgb(234 242 254)", marginRight: '16px', borderRadius: '40px', fill:'#428af8'}} />
+              </ListItemIcon>
+              <Typography className={classes.mobileLink}>PHOTOGRAPHY</Typography>
+            </Link>
+            <Link href="/collection" py={1} underline="none" key="2" display='flex' alignItems='center'>
+              <ListItemIcon>
+                <LanguageIcon fontSize="large" background="rgb(238 252 255)" sx={{padding: '8px', background:"rgb(242 238 255)", marginRight: '16px', borderRadius: '40px', fill:'#46c7e3'}} />
+              </ListItemIcon>
+              <Typography className={classes.mobileLink}>Virtual World</Typography>
             </Link>
           </AccordionDetails>
         </Accordion>

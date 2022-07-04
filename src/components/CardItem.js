@@ -110,7 +110,7 @@ function CardItem(props) {
       <Typography className={[classes.collectionSubtitle, classes.ellipseText]}>{token.description}</Typography>
       <Box sx={{display:'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px'}}>
         <Typography className={classes.collectionBuy}>Buy now</Typography>
-        <Box sx={{display:'flex', color: '#5A5D79'}}>
+        <Box sx={{display:'flex', alignItems:'end', color: '#5A5D79'}}>
           <HistoryIcon />
           <Typography className={classes.collectionHistory}>View History</Typography>
         </Box>
