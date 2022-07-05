@@ -250,7 +250,7 @@ export default function CreatePage(){
           handleEditPropertyValue={handleEditPropertyValue}
         />
         <Divider />
-        <CreateLevel
+        {/* <CreateLevel
           levels={levels}
           handleAddLevel={handleAddLevel}
           handleRemoveLevel={handleRemoveLevel}
@@ -266,7 +266,7 @@ export default function CreatePage(){
           handleEditStarName={handleEditStarName}
           handleEditStarValue={handleEditStarValue}
           handleEditStarTotalValue={handleEditStarTotalValue}
-        />
+        /> */}
         <Divider />
         <Box py={2} sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
           <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
