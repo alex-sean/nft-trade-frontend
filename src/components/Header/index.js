@@ -271,8 +271,13 @@ const Header = (props) => {
               <Link href="/" underline="none" key="1">
                 <Typography className={classes.link}>Home</Typography>
               </Link>
-              <PagesMenu />
               <ExploreMenu />
+              <Link href="/activity" underline="none" key="1">
+                <Typography className={classes.link}>Activity</Typography>
+              </Link>
+              <Link href="/contact" underline="none" key="1">
+                <Typography className={classes.link}>Contact</Typography>
+              </Link>
               <ResourceMenu />
               <Link href="/create" underline="none" key="2">
                 <Typography className={classes.link}>Create</Typography>

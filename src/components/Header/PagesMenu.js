@@ -37,28 +37,13 @@ export default function PagesMenu() {
         }}
       >
         <MenuItem onClick={handleClose}>
-          <Link href="/item" underline="none" key="1">
-            <Typography className={classes.link}>Item Details</Typography>
-          </Link>
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
           <Link href="/activity" underline="none" key="2">
             <Typography className={classes.link}>Activity</Typography>
           </Link>
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <Link href="/profile" underline="none" key="4">
-            <Typography className={classes.link}>Edit Profile</Typography>
-          </Link>
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
           <Link href="/contact" underline="none" key="5">
             <Typography className={classes.link}>Contact</Typography>
-          </Link>
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <Link href="/wallet" underline="none" key="6">
-            <Typography className={classes.link}>Wallet</Typography>
           </Link>
         </MenuItem>
       </Menu>

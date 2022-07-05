@@ -27,14 +27,14 @@ export default function WalletPage(){
                 <Typography className={classes.para} p={2} variant='body1' paragraph>Start exploring blockchain applications in seconds. Trusted by over 1 million users worldwide.</Typography>
               </Paper>
             </Grid>
-            <Grid item xs={12} md={4}>
+            {/* <Grid item xs={12} md={4}>
               <Paper className={`${classes.hoverShadow} ${classes.paperBackground}`} elevation={1} sx={{textAlign: 'center', borderRadius: '15px', position: 'relative', minHeight: '200px'}}>
                 <Avatar src="images/wallets/coinbase.svg" className={classes.paperBackground}
                         sx={{width: '72px', height: 'auto', position: 'absolute', top: '-36px', right: 'calc(50% - 36px)', border: 'solid 1px lightgray'}}></Avatar>
                 <Typography pt={5} variant='h6'>Coinbase</Typography>
                 <Typography className={classes.para} p={2} variant='body1' paragraph>The easiest and most secure crypto wallet. ... No Coinbase account required.</Typography>
               </Paper>
-            </Grid>
+            </Grid> */}
             <Grid item xs={12} md={4}>
               <Paper className={`${classes.hoverShadow} ${classes.paperBackground}`} elevation={1} sx={{textAlign: 'center', borderRadius: '15px', position: 'relative', minHeight: '200px'}}>
                 <Avatar src="images/wallets/wallet_connect.svg" className={classes.paperBackground}
