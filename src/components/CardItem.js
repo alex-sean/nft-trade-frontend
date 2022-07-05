@@ -75,6 +75,40 @@ function CardItem(props) {
 
     setLoading(false);
   }
+
+  const getDeployerAvatarURL = () => {
+    let avatarURL = 'user_avatar.gif';
+    if (token && token.Deployer && token.Deployer.length > 0) {
+      avatarURL = token.Deployer[0].avatar;
+    }
+
+    return `${process.env.REACT_APP_AVATAR_PATH}/${avatarURL}`;
+  }
+
+  const getOwnerAvatarURL = () => {
+    let avatarURL = 'user_avatar.gif';
+    if (token && token.Owner && token.Owner.length > 0) {
+      avatarURL = token.Owner[0].avatar;
+    }
+
+    return `${process.env.REACT_APP_AVATAR_PATH}/${avatarURL}`;
+  }
+
+  const getOwnerName = () => {
+    if (token && token.Owner && token.Owner.length > 0) {
+      return token.Owner[0].name;
+    } 
+
+    return `${token.owner.slice(0, 13)}...`;
+  }
+
+  const getDeployerName = () => {
+    if (token && token.Deployer && token.Deployer.length > 0) {
+      return token.Deployer[0].name;
+    } 
+
+    return `${token.deployer.slice(0, 13)}...`;
+  }
   
   return (
     <Box className={`${classes.hoverShadow} ${classes.paperBackground}`} sx={{border:'solid 1px rgba(0, 0, 0, 0.1)', borderRadius:'1.25rem', padding: '1.1875rem', marginBottom: '16px'}} onClick={() => document.location.href=`/item/${token.collectionAddress}/${token.tokenID}`}>
@@ -91,13 +125,13 @@ function CardItem(props) {
         </Box>
         <Box sx={{display:'flex', position: 'absolute', bottom: '-12px', left: '16px'}}>
           <Link>
-            <Tooltip title="Creator: Sussygirl">
-              <img src="../images/avatars/creator_1.png" className={classes.creatorLink}/>
+            <Tooltip title={`Creator: ${getDeployerName()}`}>
+              <img src={getDeployerAvatarURL()} className={classes.creatorLink}/>
             </Tooltip>
           </Link>
           <Link sx={{marginLeft: '-6px'}}>
-            <Tooltip title="Owner: Sussygirl">
-              <img src="../images/avatars/owner_1.png" className={classes.creatorLink}/>
+          <Tooltip title={`Owner: ${getOwnerName()}`}>
+              <img src={getOwnerAvatarURL()} className={classes.creatorLink}/>
             </Tooltip>
           </Link>
         </Box>
