@@ -6,6 +6,15 @@ export default function CollectionsCard(props) {
   const classes = useStyles();
   const { collection } = props;
 
+  const getDeployerAvatarURL = () => {
+    let avatarURL = 'user_avatar.gif';
+    if (collection && collection.address && collection.address.length > 0) {
+      avatarURL = collection.address[0].avatar;
+    }
+
+    return `${process.env.REACT_APP_AVATAR_PATH}/${avatarURL}`;
+  }
+
   return (
     <>
       <Card container sx={{borderRadius: '15px', width: '270px', margin: 'auto'}} className={classes.paperBackground}>
@@ -19,7 +28,7 @@ export default function CollectionsCard(props) {
           </CardContent>
           <Box pb={3} px={2} display="flex" justifyContent="space-between" alignItems="center">
             <Box display="flex" alignItems="center">
-              <img src="../images/avatars/creator_1.png" className={classes.creatorLink}/>
+              <img src={getDeployerAvatarURL()} className={classes.creatorLink}/>
               <Typography variant="body1"> by {collection.address && collection.address.length? collection.address[0].name: `${collection.deployer.slice(0, 13)}...`}</Typography>
             </Box>
             <Typography variant='body1'>{collection.supply} Items</Typography>

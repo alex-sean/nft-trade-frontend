@@ -44,7 +44,7 @@ export default function ActivityPage(){
               <SearchIconWrapper>
                 <SearchIcon />
               </SearchIconWrapper>
-              <StyledInputBase placeholder="collection or user address" inputProps={{ 'aria-label': 'search' }} onKeyUp={(e) => handlekeyUp(e.keyCode)} onChange={(e) => setTmpSearch(e.target.value)}/>
+              <StyledInputBase placeholder="Please input collection address or user address" inputProps={{ 'aria-label': 'search' }} onKeyUp={(e) => handlekeyUp(e.keyCode)} onChange={(e) => setTmpSearch(e.target.value)}/>
             </Search>
             <Typography my={2} variant="h6">Filters</Typography>
             <ToggleButtonGroup
