@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -9,6 +9,8 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import { formatDate } from '../common/CommonUtils';
+import Web3 from 'web3';
 
 ChartJS.register(
   CategoryScale,
@@ -27,7 +29,7 @@ export const options = {
     },
     title: {
       display: true,
-      text: 'Chart.js Bar Chart',
+      text: 'Price Chart',
     },
   },
 };
@@ -38,18 +40,35 @@ export const data = {
   labels,
   datasets: [
     {
-      label: 'Dataset 1',
+      label: 'USD Price',
       data: [100, 200, 140, 300, 400, 220, 500],
       backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    },
-    {
-      label: 'Dataset 2',
-      data:  [100, 900, 140, 300, 600, 320, 700],
-      backgroundColor: 'rgba(53, 162, 235, 0.5)',
     },
   ],
 };
 
-export default function Graph() {
-  return <Bar options={options} data={data} />;
+export default function Graph({prices}) {
+  const getChartData = () => {
+    let labels = [];
+    let data = [];
+    for (let i in prices) {
+      const price = prices[i];
+
+      labels.push(formatDate(new Date(price.updatedAt)));
+      data.push(Web3.utils.fromWei(price.price + ''));
+    }
+
+    return {
+      labels,
+      datasets: [
+        {
+          label: 'USD Price',
+          data: data,
+          backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        },
+      ],
+    };
+  }
+
+  return <Bar options={options} data={getChartData()} />;
 }

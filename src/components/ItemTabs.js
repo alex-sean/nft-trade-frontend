@@ -135,7 +135,7 @@ export default function ItemTabs(props) {
       if (activity.asset === 'USD') {
         return `$ ${activity.amount.toFixed(2)}`;
       } else {
-        return `${Web3.utils.fromWei(activity.amount).toFixed(4)} ${getAssetName(activity.asset)}`;
+        return `${parseFloat(Web3.utils.fromWei(activity.amount + '')).toFixed(4)} ${getAssetName(activity.asset)}`;
       }
     } else {
       return '';
@@ -332,7 +332,7 @@ export default function ItemTabs(props) {
         </TableContainer>
       </TabPanel>
       <TabPanel className={classes.paperBackground} value={value} index={4}>
-        <Graph />
+        <Graph prices={tokenInfo? tokenInfo.prices: []}/>
       </TabPanel>
       <AcceptOfferProgressDlg open={showAcceptOfferDlg} handleOpenDialog={setShowAcceptOfferDlg} token={tokenInfo? tokenInfo.token: null} offer={offer}/>
       <AuctionCompleteProgressDlg open={showAuctionCompleteProgressDlg} handleOpenDialog={setShowAuctionCompleteProgressDlg} order={selectedOrder} token={tokenInfo? tokenInfo.token: null}/>
