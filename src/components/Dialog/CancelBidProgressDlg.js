@@ -4,11 +4,9 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
-import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
-import PrimaryButton from '../Button/PrimaryButton';
 import useStyles from '../../styles/styles';
 import { Divider, Grid } from '@mui/material';
 import { Avatar } from '@mui/material';
@@ -18,11 +16,8 @@ import { checkCancelBidSyncStatus, checkUnListSyncStatus } from '../../adapters/
 import { useLoadingContext } from '../../hooks/useLoadingContext';
 import { toast } from 'react-toastify';
 import { useWalletContext } from '../../hooks/useWalletContext';
-import ERC20 from '../../contracts/ERC20.json';
 import EXCHANGE from '../../contracts/Exchange.json';
-import { getGas } from '../../common/Web3Utils';
 import { snooze } from '../../common/CommonUtils';
-import Web3 from 'web3';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {

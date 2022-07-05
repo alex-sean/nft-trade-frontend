@@ -4,11 +4,9 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
-import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
-import PrimaryButton from '../Button/PrimaryButton';
 import useStyles from '../../styles/styles';
 import { Divider, Grid } from '@mui/material';
 import { Avatar } from '@mui/material';
@@ -20,7 +18,6 @@ import { toast } from 'react-toastify';
 import { useWalletContext } from '../../hooks/useWalletContext';
 import ERC20 from '../../contracts/ERC20.json';
 import EXCHANGE from '../../contracts/Exchange.json';
-import { getGas } from '../../common/Web3Utils';
 import { snooze } from '../../common/CommonUtils';
 import Web3 from 'web3';
 
@@ -72,7 +69,7 @@ export default function BidProgressDlg({
 
         try {
             const erc20 = new web3.eth.Contract(ERC20.abi, asset);
-            await erc20.methods.approve(process.env.REACT_APP_CONTRACT_EXCHANGE, Web3.utils.toWei(amount + '')).send({ from: account });
+            await erc20.methods.increaseAllowance(process.env.REACT_APP_CONTRACT_EXCHANGE, Web3.utils.toWei(amount + '')).send({ from: account });
 
             toast('Approving ERC20 token successed.');
         } catch (err) {

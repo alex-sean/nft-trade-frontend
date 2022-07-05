@@ -24,7 +24,7 @@ export default function SellDialog(props){
 	const [price, setPrice] = useState(LIST_TYPE.FIXED_PRICE);
 	const [servicePrice, setServicePrice] = useState(0);
 	const [showSellProgressDlg, setShowSellProgressDlg] = useState(false);
-	const [isStableCoin, setIsStableCoin] = useState(true);
+	const [isStableCoin, setIsStableCoin] = useState(false);
 	const [auctionEndTime, setAuctionEndTime] = useState(0);
 	const [expired, setExpired] = useState(false);
 	const [assets, setAssets] = useState([]);
@@ -101,8 +101,13 @@ export default function SellDialog(props){
 			return;
 		}
 
-		if (!assets.length) {
+		if (!assets.length && !isStableCoin) {
 			toast('Please select at least one asset.');
+			return;
+		}
+
+		if (parseInt(price) !== parseFloat(price)) {
+			toast('Please input integer USD price.');
 			return;
 		}
 

@@ -72,7 +72,7 @@ export default function BuyTokenProgressDlg({
 
         try {
             const erc20 = new web3.eth.Contract(ERC20.abi, asset);
-            await erc20.methods.approve(process.env.REACT_APP_CONTRACT_EXCHANGE, Web3.utils.toWei(amount + '')).send({ from: account });
+            await erc20.methods.increaseAllowance(process.env.REACT_APP_CONTRACT_EXCHANGE, Web3.utils.toWei(amount + '')).send({ from: account });
 
             toast('Approving ERC20 token successed.');
         } catch (err) {

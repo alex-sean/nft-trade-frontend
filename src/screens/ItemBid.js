@@ -13,6 +13,7 @@ import BidDialog from '../components/Dialog/BidDialog';
 import { getAssetName, getUSDPrice } from '../common/CommonUtils';
 import Web3 from 'web3';
 import CancelBidProgressDlg from '../components/Dialog/CancelBidProgressDlg';
+import AuctionCompleteProgressDlg from '../components/Dialog/AuctionCompleteProgressDlg';
 
 export default function ItemBid(props) {
   const classes = useStyles();
@@ -38,6 +39,8 @@ export default function ItemBid(props) {
   const [leftHour, setLeftHour] = useState(0);
   const [leftMin, setLeftMin] = useState(0);
   const [leftSec, setLeftSec] = useState(0);
+
+  const [intervalID, setIntervalID] = useState(0);
 
   const showItemButtons = () => {
     if (!tokenInfo) {
@@ -159,7 +162,8 @@ export default function ItemBid(props) {
     }
 
     if (tokenInfo.token.listType === LIST_TYPE.AUCTION) {
-      setInterval(calculateLeftDuration, 1000);
+      const intervalID = setInterval(calculateLeftDuration, 1000);
+      setIntervalID(intervalID);
 
       for (let i in tokenInfo.orders) {
         const order = tokenInfo.orders[i];
@@ -249,6 +253,16 @@ export default function ItemBid(props) {
 
   const calculateLeftDuration = () => {
     let leftTS = tokenInfo.token.auctionEndTime - parseInt(Date.now() / 1000);
+
+    if (leftTS < 0) {
+      setLeftDay(0);
+      setLeftHour(0);
+      setLeftMin(0);
+      setLeftSec(0);
+
+      clearInterval(intervalID);
+      return;
+    }
 
     const tmpLeftSec = leftTS % 60;
     leftTS = Math.floor(leftTS / 60);
@@ -342,6 +356,7 @@ export default function ItemBid(props) {
       <BuyFixedPriceTokenDlg open={showBuyFixedPriceDlg} setOpen={setShowBuyFixedPriceDlg} token={tokenInfo? tokenInfo.token: null}/>
       <BidDialog open={showBidDlg} handleOpenDialog={setShowBidDlg} token={tokenInfo? tokenInfo.token: null} rates={rates}/>
       <CancelBidProgressDlg open={showCancelBidProgressDlg} handleOpenDialog={setShowCancelBidProgressDlg} token={tokenInfo? tokenInfo.token: null} asset={myBidAsset}/>
+      <AuctionCompleteProgressDlg open={showCompleteAuctionProgressDlg} handleOpenDialog={setShowCompleteAuctionProgressDlg} order={selectedOrder} token={tokenInfo? tokenInfo.token: null}/>
     </>
   );
 }

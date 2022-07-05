@@ -67,7 +67,7 @@ export default function BuyFixedPriceTokenDlg(props){
 		setLoading(true);
 
 		try {
-			const rate = await getTokenPrice(asset);
+			const rate = await getTokenPrice(web3, asset);
 			setPrice((token.price) * Math.pow(10, 18) / rate);
 		} catch (err) {
 			console.log(err);

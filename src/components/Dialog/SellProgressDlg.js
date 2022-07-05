@@ -145,7 +145,7 @@ export default function SellProgressDlg({
                 sx={{display: 'flex'}}
             >
                 <Typography variant='h5' sx={{marginTop: '5px'}}>
-                    Offer token
+                    Sell token
                 </Typography>
             </BootstrapDialogTitle>
             <DialogContent dividers sx={{padding: '30px'}}>

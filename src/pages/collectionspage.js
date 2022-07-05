@@ -7,12 +7,15 @@ import { getCollections } from '../adapters/backend';
 import { useLoadingContext } from '../hooks/useLoadingContext';
 import { toast } from 'react-toastify';
 import CategoryFilter from '../screens/CategoryFilter';
+import { useParams } from 'react-router-dom';
 
 export default function CollectionsPage(){
   const classes = useStyles();
 
+  const { filter } = useParams();
+
   const [collections, setCollections] = useState([]);
-  const [category, setCategory] = useState(0);
+  const [category, setCategory] = useState(filter);
 
   const { setLoading } = useLoadingContext();
 
@@ -33,7 +36,7 @@ export default function CollectionsPage(){
   }
 
   useEffect(() => {
-    getCollectionsByCategory(0);
+    getCollectionsByCategory(filter);
   }, [])
 
   useEffect(() => {

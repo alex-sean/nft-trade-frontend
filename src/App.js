@@ -74,7 +74,7 @@ function App() {
               <Route exact path='/item/:collectionAddress/:tokenID'>
                 <Item />
               </Route>
-              <Route exact path='/collections'>
+              <Route exact path='/collections/:filter'>
                 <CollectionsPage />
               </Route>
               <Route exact path='/collection/:collectionAddress'>

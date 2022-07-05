@@ -44,7 +44,7 @@ export default function ExploreMenu() {
         }}
       >
         <MenuItem onClick={handleClose}>
-          <Link href="/collections" underline="none" key="1" display='flex' alignItems='center'>
+          <Link href="/collections/0" underline="none" key="1" display='flex' alignItems='center'>
             <ListItemIcon>
               <AppsIcon fontSize="large" sx={{padding: '8px', background:"rgb(245 248 250)", marginRight: '16px', borderRadius: '40px', fill:'#131740'}}/>
             </ListItemIcon>
@@ -52,7 +52,7 @@ export default function ExploreMenu() {
           </Link>
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <Link href="/collection" underline="none" key="2" display='flex' alignItems='center'>
+          <Link href="/collection/1" underline="none" key="2" display='flex' alignItems='center'>
             <ListItemIcon>
               <PaletteIcon fontSize="large" sx={{padding: '8px', background:"rgb(228 252 244)", marginRight: '16px', borderRadius: '40px', fill:'#10b981'}} />
             </ListItemIcon>
@@ -60,7 +60,7 @@ export default function ExploreMenu() {
           </Link>
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <Link href="/collection" underline="none" key="2" display='flex' alignItems='center'>
+          <Link href="/collection/2" underline="none" key="2" display='flex' alignItems='center'>
             <ListItemIcon>
               <CardGiftcardIcon fontSize="large" sx={{padding: '8px', background:"rgb(253 247 238)", marginRight: '16px', borderRadius: '40px', fill:'#feb240'}} />
             </ListItemIcon>
@@ -68,7 +68,7 @@ export default function ExploreMenu() {
           </Link>
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <Link href="/collection" underline="none" key="2" display='flex' alignItems='center'>
+          <Link href="/collection/3" underline="none" key="2" display='flex' alignItems='center'>
             <ListItemIcon>
               <FormatShapesIcon fontSize="large"  sx={{padding: '8px', background:"rgb(242 238 255)", marginRight: '16px', marginRight: '16px', borderRadius: '40px', fill:'#8358ff'}} />
             </ListItemIcon>
@@ -76,7 +76,7 @@ export default function ExploreMenu() {
           </Link>
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <Link href="/collection" underline="none" key="2" display='flex' alignItems='center'>
+          <Link href="/collection/4" underline="none" key="2" display='flex' alignItems='center'>
             <ListItemIcon>
               <MusicNoteIcon fontSize="large" sx={{padding: '8px', background:"rgb(255 238 250)", marginRight: '16px', borderRadius: '40px', fill:'#f35bc7'}} />
             </ListItemIcon>
@@ -84,7 +84,7 @@ export default function ExploreMenu() {
           </Link>
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <Link href="/collection" underline="none" key="2" display='flex' alignItems='center'>
+          <Link href="/collection/5" underline="none" key="2" display='flex' alignItems='center'>
             <ListItemIcon>
               <LinkedCameraIcon fontSize="large" sx={{padding: '8px', background:"rgb(234 242 254)", marginRight: '16px', borderRadius: '40px', fill:'#428af8'}} />
             </ListItemIcon>
@@ -92,7 +92,7 @@ export default function ExploreMenu() {
           </Link>
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <Link href="/collection" underline="none" key="2" display='flex' alignItems='center'>
+          <Link href="/collection/6" underline="none" key="2" display='flex' alignItems='center'>
             <ListItemIcon>
               <LanguageIcon fontSize="large" background="rgb(238 252 255)" sx={{padding: '8px', background:"rgb(242 238 255)", marginRight: '16px', borderRadius: '40px', fill:'#46c7e3'}} />
             </ListItemIcon>
