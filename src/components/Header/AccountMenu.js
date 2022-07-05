@@ -62,7 +62,7 @@ export default function AccountMenu() {
           <Typography variant='body1'>Balance</Typography>
           <Box mt={1} sx={{display:'flex', alignItems: 'center'}}>
             {/* <Icon icon="logos:ethereum" rotate={2} hFlip={true} vFlip={true} /> */}
-            <img src='./images/chains/AVAX.png' style={{width: '18px'}}></img>
+            <img src='../../images/chains/AVAX.png' style={{width: '18px'}}></img>
             <Typography ml={1} color="rgb(16, 185, 129)">{balance.toFixed(4)} AVAX</Typography>
           </Box>
         </Box>

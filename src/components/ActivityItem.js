@@ -24,11 +24,11 @@ export default function ActivityItem({ activity }) {
     if (activity.asset === 'USD') {
       amountReplacement = activity.amount.toFixed(2);
     } else if (activity.asset) {
-      amountReplacement = Web3.utils.fromWei(activity.amount +'').toFixed(4);
+      amountReplacement = parseFloat(Web3.utils.fromWei(activity.amount +'')).toFixed(4);
     }
 
     ret = ret.replace(
-      '%AMOUNT',
+      '%AMOUNT%',
       amountReplacement    
     );
 
