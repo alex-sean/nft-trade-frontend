@@ -4,6 +4,7 @@ import DiscountIcon from '@mui/icons-material/Discount';
 import GavelIcon from '@mui/icons-material/Gavel';
 import ImportExportIcon from '@mui/icons-material/ImportExport';
 import InventoryIcon from '@mui/icons-material/Inventory';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 export async function snooze(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -90,6 +91,8 @@ export function getActivityIcon(activityType) {
             return <DiscountIcon />;
         case ACTIVITY_TYPE.OFFER:
             return <ImportExportIcon />;
+        case ACTIVITY_TYPE.LIKE:
+            return <FavoriteIcon />;
     }
     return '';
 }
