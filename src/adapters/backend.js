@@ -170,6 +170,14 @@ export const getlikeToken = async (collectionAddress, tokenID, address) => {
     return await get(`/token/get_like_token?collectionAddress=${collectionAddress}&tokenID=${tokenID}&address=${address}`);
 }
 
+export const getActivitiesByToken = async (collectionAddress, tokenID, category) => {
+    return await get(`/activity/get_by_token?collectionAddress=${collectionAddress}&tokenID=${tokenID}&category=${category}`);
+}
+
+export const getActivity = async (search, filter, from, limit) => {
+    return await get(`/activity/get?search=${search}&filter=${filter}&from=${from}&limit=${limit}`);
+}
+
 export const getPopularCollections = async (from) => {
     return await get(`/token/get_popular_collections?from=${from}`);
 }
