@@ -186,6 +186,10 @@ export const getFeaturedCollections = async (category) => {
     return await get(`/token/get_featured_collections?category=${category}`);
 }
 
+export const getCollectionPrices = async (collectionAddress) => {
+    return await get(`/token/collection_prices?collectionAddress=${collectionAddress}`);
+}
+
 export const getServiceFee = async () => {
     return await get(`/config/service_fee`);
 }

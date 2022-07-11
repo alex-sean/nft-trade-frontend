@@ -15,6 +15,7 @@ import Search from '../components/Header/Search';
 import SearchIconWrapper from '../components/Header/Search/SearchIconWrapper';
 import StyledInputBase from '../components/Header/Search/StyledInputBase';
 import SearchIcon from '@mui/icons-material/Search';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import DiscountIcon from '@mui/icons-material/Discount';
 import ImportExportIcon from '@mui/icons-material/ImportExport';
 import GavelIcon from '@mui/icons-material/Gavel';
@@ -23,6 +24,8 @@ import InventoryIcon from '@mui/icons-material/Inventory';
 import Graph from '../components/Graph';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import { getCollectionPrices } from '../adapters/backend';
+import CategoryFilter from './CategoryFilter';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -69,70 +72,54 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
+const SORT_TYPE = {
+  PRICE: 0,
+  RECENT: 1
+}
+
+const TAB = {
+  ITEMS: 0,
+  ACTIVITY: 1
+}
+
 export default function CollectionTab(props) {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
-  const [filter, setFilter] = React.useState('all');
-  const [age, setAge] = React.useState('');
+  const [tab, setTab] = React.useState(TAB.ITEMS);
+  const [filter, setFilter] = React.useState(0);
+  const [sort, setSort] = React.useState(SORT_TYPE.PRICE);
 
-  const { tokens } = props;
+  const { tokens, prices } = props;
 
   const handleFilter = (event, newFilter) => {
     setFilter(newFilter);
   };
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  const handleTab = (event, newValue) => {
+    setTab(newValue);
   };
 
-  const handleAgeChange = (event) => {
-    setAge(event.target.value);
+  const handleSort = (event) => {
+    setSort(event.target.value);
   };
 
   return (
     <Container maxWidth="lg">
       <Tabs centered
-        value={value}
-        onChange={handleChange}
+        value={tab}
+        onChange={handleTab}
         aria-label="icon position tabs example"
         >
         <Tab {...a11yProps(0)} icon={<QrCodeIcon />} iconPosition="start" label="Items" />
         <Tab {...a11yProps(1)} icon={<StackedLineChartIcon />} iconPosition="start" label="Activity" />
       </Tabs>
       <Divider />
-      <TabPanel value={value} index={0}>
+      <TabPanel value={tab} index={0}>
         <Grid container direction="row" justifyContent="space-between" alignItems="flex-start">
-          <Grid xs={12} lg item>
-            <ToggleButtonGroup
-              value={filter}
-              exclusive
-              onChange={handleFilter}
-              aria-label="Filter"
-            >
-              <ToggleButton value="all" aria-label="All">
-                All
-              </ToggleButton>
-              <ToggleButton value="blockchain" aria-label="Blockchain">
-                <PaletteIcon />Blockchain
-              </ToggleButton>
-              <ToggleButton value="category" aria-label="Category">
-                <CardGiftcardIcon />Category
-              </ToggleButton>
-              <ToggleButton value="property" aria-label="Properties">
-                <FormatShapesIcon />Properties
-              </ToggleButton>
-              <ToggleButton value="sale" aria-label="Sale Type">
-                <MusicNoteIcon />Sale Type
-              </ToggleButton>
-              <ToggleButton value="price" aria-label="Price Range">
-                <LinkedCameraIcon />Price Range
-              </ToggleButton>
-            </ToggleButtonGroup>
-          </Grid>
+          <CategoryFilter category={filter} setCategory={setFilter}/>
           <Grid item mb={2}>
             <Select
-              value={age}
-              onChange={handleAgeChange}
+              value={sort}
+              onChange={handleSort}
               displayEmpty
               inputProps={{ 'aria-label': 'Without label' }}
               sx={{width: '180px', padding: "0"}}
@@ -140,8 +127,8 @@ export default function CollectionTab(props) {
               <MenuItem value="">
                 <em>Recently Added</em>
               </MenuItem>
-              <MenuItem value={10}>Top</MenuItem>
-              <MenuItem value={20}>Recent</MenuItem>
+              <MenuItem value={SORT_TYPE.PRICE}>Top</MenuItem>
+              <MenuItem value={SORT_TYPE.RECENT}>Recent</MenuItem>
             </Select>
           </Grid>
         </Grid>
@@ -161,19 +148,19 @@ export default function CollectionTab(props) {
           ))}
         </Grid>
       </TabPanel>
-      <TabPanel value={value} index={1}>
-        <Graph />
+      <TabPanel value={tab} index={1}>
+        <Graph prices={prices}/>
         <Grid mt={3} container spacing={8}>
           <Grid item xs={12} lg>
-            <ActivityItemList />
+            <ActivityItemList search={tokens.length? tokens[0].collectionAddress: ''} filter={filter}/>
           </Grid>
           <Grid item xs>
-            <Search>
+            {/* <Search>
               <SearchIconWrapper>
                 <SearchIcon />
               </SearchIconWrapper>
-              <StyledInputBase placeholder="Search" inputProps={{ 'aria-label': 'search' }}/>
-            </Search>
+              <StyledInputBase placeholder="Please input collection address or user address" inputProps={{ 'aria-label': 'search' }}/>
+            </Search> */}
             <Typography my={2} variant="h6">Filters</Typography>
             <ToggleButtonGroup
               value={filter}
@@ -181,23 +168,23 @@ export default function CollectionTab(props) {
               onChange={handleFilter}
               aria-label="Filter"
             >
-              <ToggleButton value="listing" aria-label="Listing">
+              <ToggleButton value="0" aria-label="Listing">
+                All
+              </ToggleButton>
+              <ToggleButton value="3" aria-label="Listing">
                 <DiscountIcon />Listing
               </ToggleButton>
-              <ToggleButton value="bids" aria-label="Bids">
-                <GavelIcon />Bids
+              <ToggleButton value="1" aria-label="Bids">
+                <GavelIcon />Create
               </ToggleButton>
-              <ToggleButton value="transfer" aria-label="Transfer">
-                <ImportExportIcon />Transfer
+              <ToggleButton value="2" aria-label="Transfer">
+                <ImportExportIcon />Offer
               </ToggleButton>
-              <ToggleButton value="likes" aria-label="Likes">
-                <FavoriteBorderIcon />Likes
+              <ToggleButton value="4" aria-label="Purchases">
+                <InventoryIcon />Exchange
               </ToggleButton>
-              <ToggleButton value="sale" aria-label="Sale Type">
-                <MusicNoteIcon />Sale Type
-              </ToggleButton>
-              <ToggleButton value="purchases" aria-label="Purchases">
-                <InventoryIcon />Purchases
+              <ToggleButton value="5" aria-label="Purchases">
+                <FavoriteIcon />Like
               </ToggleButton>
             </ToggleButtonGroup>
           </Grid>
