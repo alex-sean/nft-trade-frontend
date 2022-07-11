@@ -311,7 +311,7 @@ const styles = (theme) => {
     sectionGridContainer: {
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'center',
+      justifyContent: 'flex-start',
       width: '100%',
       // minHeight: '500px',
       marginTop: '0px',
