@@ -75,11 +75,11 @@ export default function ActivityItem({ activity }) {
       <Paper className={`${`${classes.hoverShadow} ${classes.paperBackground}`} ${classes.paperBackground}`} elevation={1} sx={{p: 2, mb: 3, maxWidth: 740, borderRadius: '20px'}}>
         <Grid container spacing={2} alignItems="center">
           <Grid item>
-            <ButtonBase sx={{ width: 128, height: 128 }}>
-              <img style={{borderRadius: '10px', width: '40px'}} src={getActivityAvatarURL()} />
+            <ButtonBase sx={{ display:'flex', justifyContent: 'center', padding: '32px' }}>
+              <img style={{borderRadius: '10px', width: '48px'}} src={getActivityAvatarURL()} />
             </ButtonBase>
           </Grid>
-          <Grid item sm container>
+          <Grid item xs container alignItems='center'>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
                 <Typography gutterBottom variant="h6" component="div">{getEventTitle(activity)}</Typography>
