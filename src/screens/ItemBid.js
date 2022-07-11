@@ -52,14 +52,14 @@ export default function ItemBid(props) {
         if (tokenInfo.token.listType === LIST_TYPE.FIXED_PRICE) {
           return (
             <Button className={classes.primaryButton} sx={{width: '100%'}} onClick={() => setShowCancelSellDlg(true)}>
-              Cancel Sell
+              Cancel List
             </Button>
           )
         } else if (tokenInfo.token.listType === LIST_TYPE.AUCTION) {
           if (tokenInfo.token.auctionEndTime > Date.now() / 1000) {
             return (
               <Button className={classes.primaryButton} sx={{width: '100%'}} onClick={() => setShowCancelSellDlg(true)}>
-                Cancel Sell
+                Cancel List
               </Button>
             )  
           } else {
@@ -113,7 +113,7 @@ export default function ItemBid(props) {
       if (tokenInfo.token.owner === account.toLowerCase()) {
         return (
           <Button className={classes.primaryButton} sx={{width: '100%'}} onClick={() => setShowSellDlg(true)}>
-            Sell Token
+            List Token
           </Button>
         )
       } else {
