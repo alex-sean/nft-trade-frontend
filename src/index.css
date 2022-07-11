@@ -112,3 +112,8 @@ code {
   background:rgb(185 160 255);
   color: white;
 }
+
+.MuiToggleButton-root {
+  align-items: unset;
+  font-size: large;
+}
