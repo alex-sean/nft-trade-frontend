@@ -20,8 +20,8 @@ const Hero = () => {
           The world's largest digital marketplace <br />for crypto collectibles and non-fungible <br />tokens
           </Typography>
           <Box display='flex' alignItems='center'>
-            <PrimaryButton text='Upload'></PrimaryButton>
-            <SecondaryButton text="Explore" />
+            <PrimaryButton text='Upload' onClick={() => document.location.href = '/create'}></PrimaryButton>
+            <SecondaryButton text="Explore" onClick={() => document.location.href = '/collections/0'}/>
           </Box>
         </Grid>
         <Grid item xs={12} md={7} sx={{position:'relative'}}>

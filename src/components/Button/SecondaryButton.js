@@ -3,11 +3,11 @@ import { Button } from '@mui/material';
 import useStyles from '../../styles/styles';
 
 function SecondaryButton(props) {
-  const { text } = props;
+  const { text, onClick } = props;
   const classes = useStyles();
   
   return (
-    <Button className={classes.secondaryButton}
+    <Button className={classes.secondaryButton} onClick={onClick}
       >
       {text}
     </Button>
