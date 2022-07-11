@@ -7,10 +7,15 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import RedditIcon from '@mui/icons-material/Reddit';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import { useTheme } from '@mui/material/styles';
+import { CATEGORIES } from '../../common/const';
 
 const Footer = () => {
   const classes = useStyles();
   const theme = useTheme();
+
+  const redirectToMarket = (category) => {
+    window.location.href = `/collections/${category}`;
+  }
 
   return (
     <Box sx={{ flexGrow: 1 }} className={classes.footerContainer}>
@@ -38,27 +43,27 @@ const Footer = () => {
           </Grid>
           <Grid item xs={12} sm={6} md={2}>
             <Typography className={classes.footerTitle}>Marketplace</Typography>
-            <Typography className={classes.footerItem}>All NFTs</Typography>
-            <Typography className={classes.footerItem}>Art</Typography>
-            <Typography className={classes.footerItem}>Music</Typography>
-            <Typography className={classes.footerItem}>Domain Names</Typography>
-            <Typography className={classes.footerItem}>Collectibles</Typography>
-            <Typography className={classes.footerItem}>Virtual World</Typography>
+            <Typography className={classes.footerItem} onClick={() => redirectToMarket(0)}>All NFTs</Typography>
+            <Typography className={classes.footerItem} onClick={() => redirectToMarket(CATEGORIES.ART)}>Art</Typography>
+            <Typography className={classes.footerItem} onClick={() => redirectToMarket(CATEGORIES.MUSIC)}>Music</Typography>
+            <Typography className={classes.footerItem} onClick={() => redirectToMarket(CATEGORIES.DOMAIN)}>Domain Names</Typography>
+            <Typography className={classes.footerItem} onClick={() => redirectToMarket(CATEGORIES.COLLECTIBLE)}>Collectibles</Typography>
+            <Typography className={classes.footerItem} onClick={() => redirectToMarket(CATEGORIES.VIRTUAL_WORLD)}>Virtual World</Typography>
           </Grid>
           <Grid item xs={12} sm={6} md={2}>
             <Typography className={classes.footerTitle}>Company</Typography>
-            <Typography className={classes.footerItem}>Explore</Typography>
-            <Typography className={classes.footerItem}>About</Typography>
-            <Typography className={classes.footerItem}>Contact Us</Typography>
-            <Typography className={classes.footerItem}>Our Blog</Typography>
-            <Typography className={classes.footerItem}>FAQ</Typography>
+            {/* <Typography className={classes.footerItem}>Explore</Typography>
+            <Typography className={classes.footerItem}>About</Typography> */}
+            <Typography className={classes.footerItem} onClick={() => document.location.href = '/contact'}>Contact Us</Typography>
+            <Typography className={classes.footerItem} onClick={() => document.location.href = '/blog'}>Our Blog</Typography>
+            <Typography className={classes.footerItem} onClick={() => document.location.href = '/newsletter'}>Subscribe</Typography>
           </Grid>
           <Grid item xs={12} sm={6} md={2}>
             <Typography className={classes.footerTitle}>My Account</Typography>
-            <Typography className={classes.footerItem}>Authors</Typography>
+            {/* <Typography className={classes.footerItem}>Authors</Typography>
             <Typography className={classes.footerItem}>Collection</Typography>
-            <Typography className={classes.footerItem}>Author Profile</Typography>
-            <Typography className={classes.footerItem}>Create Item</Typography>
+            <Typography className={classes.footerItem}>Author Profile</Typography> */}
+            <Typography className={classes.footerItem} onClick={() => document.location.href = '/create'}>Create Item</Typography>
           </Grid>
         </Grid>
         <Grid mt={3} container spacing={1} justifyContent="space-between" alignItems='center'>
