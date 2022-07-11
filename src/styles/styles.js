@@ -438,6 +438,9 @@ const styles = (theme) => {
       whiteSpace: 'nowrap',
       overflow: 'hidden',
       textOverflow: 'ellipsis'
+    },
+    searchInput: {
+      width: '100% !important'
     }
   };
 };

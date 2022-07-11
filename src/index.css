@@ -35,10 +35,6 @@ code {
   border-width: 1px;
 }
 
-.css-11u4ehf-MuiInputBase-root {
-  width: 100% !important;
-}
-
 .swiper-button-next, .swiper-button-prev{
   background-color: #fff;
   border-radius: 99px;
@@ -115,4 +111,9 @@ code {
 .Mui-disabled.MuiButton-textPrimary {
   background:rgb(185 160 255);
   color: white;
+}
+
+.MuiToggleButton-root {
+  align-items: unset;
+  font-size: large;
 }

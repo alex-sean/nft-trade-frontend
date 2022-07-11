@@ -131,9 +131,10 @@ const ContactForm = () => {
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                <MenuItem value={1}>1</MenuItem>
-                <MenuItem value={2}>2</MenuItem>
-                <MenuItem value={3}>3</MenuItem>
+                <MenuItem value={1}>Create</MenuItem>
+                <MenuItem value={2}>Verify</MenuItem>
+                <MenuItem value={3}>List/Bid</MenuItem>
+                <MenuItem value={4}>Offer</MenuItem>
               </Select>
 
               <InputLabel htmlFor="message" sx={{marginTop: '20px', fontWeight: '700'}}>
