@@ -24,6 +24,8 @@ export default function CategoryFilter(props){
   const { setCategory, category } = props;
 
   const handleFilter = (event, newFilter) => {
+    if (!newFilter)
+      newFilter = 0
     setCategory(newFilter);
   };
 

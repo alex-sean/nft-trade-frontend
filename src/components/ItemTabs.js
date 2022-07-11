@@ -88,6 +88,8 @@ export default function ItemTabs(props) {
   const { setLoading } = useLoadingContext();
 
   const handleFilter = (event, newFilter) => {
+    if (!newFilter)
+      newFilter = 0
     setFilter(newFilter);
   };
 
