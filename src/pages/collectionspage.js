@@ -48,9 +48,9 @@ export default function CollectionsPage(){
       <Container maxWidth="lg">
         <Typography py={3} align="center" variant="h4">Explore Collections</Typography>
         <CategoryFilter setCategory={setCategory} category={category}/>
-        <Grid mt={3} container spacing={3} justifyContent="space-around" alignItems="flex-start">
+        <Grid mt={3} container spacing={3} alignItems="flex-start" justifyContent='flex-start'>
           {collections.map((collection) => (
-            <Grid collection xs={12} sm={6} md={4} xl={3}>
+            <Grid item collection xs={12} sm={6} md={4} xl={3}>
               <CollectionsCard collection={collection} />
             </Grid>
           ))}
