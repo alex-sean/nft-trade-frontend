@@ -9,6 +9,22 @@ import Web3 from 'web3';
 export default function HotbidItem(props) {
   const { item } = props;
   const classes = useStyles();
+
+  const getBidAmountString = () => {
+    if (item.orders.length > 0) {
+      return `Last Bid ${Web3.utils.fromWei(item.orders[0].amount + '')}`;
+    } else {
+      return `Minium Bid ${item.price}`;
+    }
+  }
+
+  const getBidAssetString = () => {
+    if (item.orders.length > 0) {
+      return getAssetName(item.orders[0].asset);
+    } else {
+      return 'USD';
+    }
+  }
   
   return (
     <Box className={`${classes.hotBidItem} ${classes.hoverShadow}`} onClick={() => document.location.href=`/item/${item.collectionAddress}/${item.tokenID}`}>
@@ -20,7 +36,7 @@ export default function HotbidItem(props) {
           <Typography color="rgb(16, 185, 129)" className={classes.hotBidPrice}>{`$ ${item.price}`}</Typography>
         </Box>
       </Box>
-      <Typography className={classes.hotBidSubtitle}>{`Last Bid ${Web3.utils.fromWei(item.orders[0].amount + '')} ${getAssetName(item.orders[0].asset)}`}</Typography>
+      <Typography className={classes.hotBidSubtitle}>{`${getBidAmountString()} ${getBidAssetString()}`}</Typography>
       <Box sx={{display:'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px'}}>
         <Typography className={classes.hotBidPlaceBid}>Place Bid</Typography>
         <Box sx={{display:'flex', alignItems: 'center'}} className={classes.hotBidLike}>
