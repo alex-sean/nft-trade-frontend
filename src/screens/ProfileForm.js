@@ -188,7 +188,7 @@ const ProfileForm = () => {
       <Container maxWidth="lg">
         <input type='file' id='background' ref={backgroundInputFile} style={{display: 'none'}} onChange={onBackgroundChanged} accept="image/*"/>
         <Button startIcon={<EditOutlinedIcon />} className={classes.commonButton}
-                sx={{position: 'absolute', right: '10%', bottom: '16px',}}
+                sx={{position: 'absolute', right: '10%', bottom: '16px', alignItems:'unset'}}
                 onClick={openBackgroundSelectionDlg}>
           Edit Cover Photo
         </Button>
