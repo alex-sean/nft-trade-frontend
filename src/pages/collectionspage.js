@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Container, Typography, Grid, Select, MenuItem } from "@mui/material";
+import { Box, Container, Typography, Grid, Select, MenuItem, Button } from "@mui/material";
 import CollectionsFilter from '../screens/CollectionsFilter';
 import CollectionsCard from "../components/CollectionsCard";
 import useStyles from '../styles/styles';
@@ -77,6 +77,9 @@ export default function CollectionsPage(){
             </Grid>
           ))}
         </Grid>
+        <Box sx={{display: 'flex', justifyContent: 'center'}}>
+          <Button className={classes.primaryButton}>Load More</Button>
+        </Box>
       </Container>
     </Box>
   );
