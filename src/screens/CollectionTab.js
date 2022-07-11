@@ -91,6 +91,8 @@ export default function CollectionTab(props) {
   const { tokens, prices } = props;
 
   const handleFilter = (event, newFilter) => {
+    if (!newFilter)
+      newFilter = 0
     setFilter(newFilter);
   };
 
