@@ -124,7 +124,7 @@ export default function SellDialog(props){
 			aria-describedby="alert-dialog-slide-description"
 			>
 			<DialogTitle display='flex' justifyContent='space-between' className={classes.paperBackground}>
-				<Typography>Sell Token</Typography>
+				<Typography>List Token</Typography>
 				<CloseIcon onClick={handleClose} />
 			</DialogTitle>
 			<DialogContent dividers className={classes.paperBackground}>
@@ -144,7 +144,7 @@ export default function SellDialog(props){
 								<Typography p={1} variant="body1">{servicePrice} USD</Typography>
 							</Box>
 							<Box display="flex" justifyContent='space-between' alignItems='center'>
-								<Typography p={1} variant="h6">SellType:</Typography>
+								<Typography p={1} variant="h6">ListType:</Typography>
 								<Select sx={{paddingRight: '16px'}}  defaultValue={LIST_TYPE.FIXED_PRICE} value={listType} onChange={e => {setListType(e.target.value)}}>
               						<MenuItem value={LIST_TYPE.AUCTION}>Auction</MenuItem>
               						<MenuItem value={LIST_TYPE.FIXED_PRICE}>Fixed Price</MenuItem>
@@ -174,7 +174,7 @@ export default function SellDialog(props){
 				</Grid>
 			</DialogContent>
 			<DialogActions sx={{display:'flex', justifyContent: 'center'}} className={classes.paperBackground}>
-				<PrimaryButton text='SELL' onClick={openSellProgressDlg}/>
+				<PrimaryButton text='LIST' onClick={openSellProgressDlg}/>
 			</DialogActions>
 		</Dialog>,
 		<SellProgressDlg 
