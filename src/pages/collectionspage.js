@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Container, Typography, Grid } from "@mui/material";
+import { Box, Container, Typography, Grid, Select, MenuItem } from "@mui/material";
 import CollectionsFilter from '../screens/CollectionsFilter';
 import CollectionsCard from "../components/CollectionsCard";
 import useStyles from '../styles/styles';
@@ -16,6 +16,7 @@ export default function CollectionsPage(){
 
   const [collections, setCollections] = useState([]);
   const [category, setCategory] = useState(filter);
+  const [sort, setSort] = React.useState(0);
 
   const { setLoading } = useLoadingContext();
 
@@ -43,11 +44,32 @@ export default function CollectionsPage(){
     getCollectionsByCategory(category);
   }, [category])
 
+  const handleSort = (event) => {
+    setSort(event.target.value);
+  };
+
   return (
     <Box py={4} className={classes.collectionsPage}>
       <Container maxWidth="lg">
         <Typography py={3} align="center" variant="h4">Explore Collections</Typography>
-        <CategoryFilter setCategory={setCategory} category={category}/>
+        <Grid container direction="row" justifyContent="space-between" alignItems="flex-start">
+          <CategoryFilter setCategory={setCategory} category={category}/>
+          <Grid item mb={2}>
+            <Select
+              value={sort}
+              onChange={handleSort}
+              displayEmpty
+              inputProps={{ 'aria-label': 'Without label' }}
+              sx={{width: '180px', padding: "0"}}
+            >
+              <MenuItem value="0">Listed</MenuItem>
+              <MenuItem value={1}>Verified</MenuItem>
+              <MenuItem value={2}>Recent</MenuItem>
+              <MenuItem value={3}>Price</MenuItem>
+            </Select>
+          </Grid>
+        </Grid>
+
         <Grid mt={3} container spacing={3} alignItems="flex-start" justifyContent='flex-start'>
           {collections.map((collection) => (
             <Grid item collection xs={12} sm={6} md={4} xl={3}>
