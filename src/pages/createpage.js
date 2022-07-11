@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Box,
   Typography,
@@ -36,7 +36,7 @@ export default function CreatePage(){
   const [isExplicit, setIsExplicit] = useState(false);
   const [openProgressDlg, setOpenProgressDlg] = useState(false);
 
-  const { account } = useWalletContext();
+  const { account, isConnected } = useWalletContext();
 
   const classes = useStyles();
 
@@ -165,8 +165,19 @@ export default function CreatePage(){
       return false;
     }
 
+    if (!account) {
+      toast('Please connect the wallet.');
+      return false;
+    }
+
     return true;
   }
+
+  useEffect(() => {
+    if (!isConnected()) {
+      toast('Please connect the wallet.');
+    }
+  }, [])
 
   return (
     <Box py={10} paddingTop='4rem'>

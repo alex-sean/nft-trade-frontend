@@ -3,13 +3,14 @@ import CollectionTab from '../screens/CollectionTab';
 import CollectionHero from '../screens/CollectionHero';
 import { useParams } from 'react-router-dom';
 import { useLoadingContext } from '../hooks/useLoadingContext';
-import { getCollectionDetail, getTokensByCollection } from '../adapters/backend';
+import { getCollectionDetail, getCollectionPrices, getTokensByCollection } from '../adapters/backend';
 import { toast } from 'react-toastify';
 
 export default function CollectionPage(){
   const { collectionAddress } = useParams();
   const [collectionInfo, setCollectionInfo] = useState();
   const [tokens, setTokens] = useState([]);
+  const [prices, setPrices] = useState([]);
 
   const { setLoading } = useLoadingContext();
 
@@ -34,6 +35,15 @@ export default function CollectionPage(){
       if (tokens.data) {
         setTokens(tokens.data.tokens);
       }
+
+      let prices = await getCollectionPrices(collectionAddress);
+      if (!prices) {
+        throw new Error('Getting prices failed.');
+      }
+
+      if (prices.data) {
+        setPrices(prices.data.prices);
+      }
     } catch (err) {
       console.log(err);
       toast('Getting collection information failed.');
@@ -49,7 +59,7 @@ export default function CollectionPage(){
   return (
     <>
       <CollectionHero collection={collectionInfo}/>
-      <CollectionTab tokens={tokens}/>
+      <CollectionTab tokens={tokens} prices={prices}/>
     </>
   );
 }

@@ -209,6 +209,14 @@ export const WalletProvider = ({ children }) => {
         }
 
         initWeb3();
+
+        const connected = localStorage.getItem(LOCAL_STORAGE_KEY.CONNECTED);
+        if (parseInt(connected)) {
+            const walletType = localStorage.getItem(LOCAL_STORAGE_KEY.WALLET_TYPE);
+            if (walletType) {
+                handleConnect(parseInt(walletType));
+            }
+        }
     }, []);
 
     const handleDisconnect = () => {
@@ -252,6 +260,17 @@ export const WalletProvider = ({ children }) => {
         setAccount(account? account: '');
     }
 
+    const isConnected = () => {
+        const connected = localStorage.getItem(LOCAL_STORAGE_KEY.CONNECTED);
+        if (parseInt(connected)) {
+            const walletType = localStorage.getItem(LOCAL_STORAGE_KEY.WALLET_TYPE);
+            if (walletType) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     return  (
         <WalletContext.Provider value={{
             web3,
@@ -259,7 +278,8 @@ export const WalletProvider = ({ children }) => {
             balance,
             handleConnect,
             handleDisconnect,
-            refreshBalance
+            refreshBalance,
+            isConnected
         }}>
             {children}
         </WalletContext.Provider>
