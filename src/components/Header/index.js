@@ -13,7 +13,7 @@ import {
   Divider,
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import React from 'react';
+import React, { useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import useStyles from '../../styles/styles';
 import { useTheme } from '@mui/material/styles';
@@ -199,6 +199,13 @@ const Header = (props) => {
 
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down('md'));
+  const [keyword, setKeyword] = useState('');
+
+  const handlekeyUp = (key) => {
+    if (key === 13) {
+      document.location.href=`/collections/${keyword}`;
+    }
+  }
 
   return (
     <Box sx={{ marginBottom: '90px' }}>
@@ -219,6 +226,8 @@ const Header = (props) => {
                   <StyledInputBase
                     placeholder="Search"
                     inputProps={{ 'aria-label': 'search' }}
+                    onChange={(e) => setKeyword(e.target.value)}
+                    onKeyUp={(e) => handlekeyUp(e.keyCode)}
                   />
               </Search>): ''}
             </Box>
