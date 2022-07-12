@@ -20,6 +20,7 @@ export default function CollectionsPage(){
   const [keyword, setKeyword] = useState(isNaN(filter)? filter: '');
   const [sort, setSort] = React.useState(1);
   const [pageNum, setPageNum] = useState(0);
+  const [showLoadBtn, setShowLoadBtn] = useState(true);
 
   const { setLoading } = useLoadingContext();
 
@@ -39,6 +40,10 @@ export default function CollectionsPage(){
         tmpCollections.push(...result.data.collections);
         setCollections(tmpCollections);
       }
+
+      if ((pageNum + 1) * 12 > result.data.total) {
+        setShowLoadBtn(false);
+      }
     } catch (err) {
       toast('Getting collections failed.');
     }
@@ -52,7 +57,11 @@ export default function CollectionsPage(){
 
   useEffect(() => {
     getCollectionsByCategory();
-  }, [category, filter, pageNum, sort])
+  }, [pageNum])
+
+  useEffect(() => {
+    setPageNum(0);
+  }, [category, filter, sort])
 
   const handleSort = (event) => {
     setSort(event.target.value);
@@ -86,9 +95,14 @@ export default function CollectionsPage(){
             </Grid>
           ))}
         </Grid>
-        <Box sx={{display: 'flex', justifyContent: 'center'}}>
-          <Button className={classes.primaryButton} onClick={() => setPageNum(pageNum + 1)}>Load More</Button>
-        </Box>
+        {
+          showLoadBtn &&
+          (
+            <Box sx={{display: 'flex', justifyContent: 'center'}}>
+              <Button className={classes.primaryButton} onClick={() => setPageNum(pageNum + 1)}>Load More</Button>
+            </Box>
+          )
+        }
       </Container>
     </Box>
   );
