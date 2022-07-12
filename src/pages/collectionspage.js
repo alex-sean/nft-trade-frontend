@@ -8,6 +8,7 @@ import { useLoadingContext } from '../hooks/useLoadingContext';
 import { toast } from 'react-toastify';
 import CategoryFilter from '../screens/CategoryFilter';
 import { useParams } from 'react-router-dom';
+import { CATEGORIES } from '../common/const';
 
 export default function CollectionsPage(){
   const classes = useStyles();
@@ -15,20 +16,34 @@ export default function CollectionsPage(){
   const { filter } = useParams();
 
   const [collections, setCollections] = useState([]);
-  const [category, setCategory] = useState(filter);
-  const [sort, setSort] = React.useState(0);
+  const [category, setCategory] = useState(isNaN(filter)? 0: filter);
+  const [keyword, setKeyword] = useState(isNaN(filter)? filter: '');
+  const [sort, setSort] = React.useState(1);
+  const [pageNum, setPageNum] = useState(0);
+  const [showLoadBtn, setShowLoadBtn] = useState(true);
 
   const { setLoading } = useLoadingContext();
 
-  const getCollectionsByCategory = async (category) => {
+  const getCollectionsByCategory = async () => {
     setLoading(true);
 
     try {
-      let collections = await getCollections(category);
-      if (!collections) {
+      let result = await getCollections(category, keyword, pageNum * 12, 12, sort);
+      if (!result) {
         throw new Error('Getting owned tokens failed.');
       }
-      setCollections(collections.data.collections);
+
+      if (pageNum === 0) {
+        setCollections(result.data.collections);
+      } else {
+        let tmpCollections = [...collections];
+        tmpCollections.push(...result.data.collections);
+        setCollections(tmpCollections);
+      }
+
+      if ((pageNum + 1) * 12 > result.data.total) {
+        setShowLoadBtn(false);
+      }
     } catch (err) {
       toast('Getting collections failed.');
     }
@@ -41,8 +56,12 @@ export default function CollectionsPage(){
   }, [])
 
   useEffect(() => {
-    getCollectionsByCategory(category);
-  }, [category])
+    getCollectionsByCategory();
+  }, [pageNum])
+
+  useEffect(() => {
+    setPageNum(0);
+  }, [category, filter, sort])
 
   const handleSort = (event) => {
     setSort(event.target.value);
@@ -62,7 +81,6 @@ export default function CollectionsPage(){
               inputProps={{ 'aria-label': 'Without label' }}
               sx={{width: '180px', padding: "0"}}
             >
-              <MenuItem value="0">Listed</MenuItem>
               <MenuItem value={1}>Verified</MenuItem>
               <MenuItem value={2}>Recent</MenuItem>
               <MenuItem value={3}>Price</MenuItem>
@@ -77,9 +95,14 @@ export default function CollectionsPage(){
             </Grid>
           ))}
         </Grid>
-        <Box sx={{display: 'flex', justifyContent: 'center'}}>
-          <Button className={classes.primaryButton}>Load More</Button>
-        </Box>
+        {
+          showLoadBtn &&
+          (
+            <Box sx={{display: 'flex', justifyContent: 'center'}}>
+              <Button className={classes.primaryButton} onClick={() => setPageNum(pageNum + 1)}>Load More</Button>
+            </Box>
+          )
+        }
       </Container>
     </Box>
   );

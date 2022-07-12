@@ -289,7 +289,7 @@ export default function AccountPage(){
             <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{color: 'red'}} />} />
           </Button>
           <CollectionPopup1 />
-          <CollectionPopup2 />
+          {/* <CollectionPopup2 /> */}
         </Box>
       </Box>
     <Container maxWidth="lg">
