@@ -92,7 +92,7 @@ export default function CollectionTab(props) {
 
   const handleFilter = (event, newFilter) => {
     if (!newFilter)
-      newFilter = 0
+      newFilter = '0'
     setFilter(newFilter);
   };
 
@@ -168,31 +168,74 @@ export default function CollectionTab(props) {
               <StyledInputBase placeholder="Please input collection address or user address" inputProps={{ 'aria-label': 'search' }}/>
             </Search> */}
             <Typography my={2} variant="h6">Filters</Typography>
-            <ToggleButtonGroup
-              value={filter}
-              exclusive
-              onChange={handleFilter}
-              aria-label="Filter"
-            >
-              <ToggleButton value="0" aria-label="Listing">
-                All
-              </ToggleButton>
-              <ToggleButton value="3" aria-label="Listing">
-                <DiscountIcon />Listing
-              </ToggleButton>
-              <ToggleButton value="1" aria-label="Bids">
-                <GavelIcon />Create
-              </ToggleButton>
-              <ToggleButton value="2" aria-label="Transfer">
-                <ImportExportIcon />Offer
-              </ToggleButton>
-              <ToggleButton value="4" aria-label="Purchases">
-                <InventoryIcon />Exchange
-              </ToggleButton>
-              <ToggleButton value="5" aria-label="Purchases">
-                <FavoriteIcon />Like
-              </ToggleButton>
-            </ToggleButtonGroup>
+            <Grid container direction="row" justifyContent="flex-start" alignItems="flex-start" mb={3} rowSpacing={1}>
+              <Grid item>
+                <ToggleButtonGroup
+                  value={filter}
+                  exclusive
+                  onChange={handleFilter}
+                  aria-label="Filter">
+                  <ToggleButton value="0" aria-label="Listing">
+                    All
+                  </ToggleButton>
+                </ToggleButtonGroup>
+              </Grid>
+              <Grid item>
+                <ToggleButtonGroup
+                  value={filter}
+                  exclusive
+                  onChange={handleFilter}
+                  aria-label="Filter">
+                  <ToggleButton value="3" aria-label="Listing">
+                    <DiscountIcon />Listing
+                  </ToggleButton>
+                </ToggleButtonGroup>
+              </Grid>
+              <Grid item>
+                <ToggleButtonGroup
+                  value={filter}
+                  exclusive
+                  onChange={handleFilter}
+                  aria-label="Filter">
+                  <ToggleButton value="1" aria-label="Bids">
+                    <GavelIcon />Create
+                  </ToggleButton>
+                </ToggleButtonGroup>
+              </Grid>
+              <Grid item>
+                <ToggleButtonGroup
+                  value={filter}
+                  exclusive
+                  onChange={handleFilter}
+                  aria-label="Filter">
+                  <ToggleButton value="2" aria-label="Transfer">
+                    <ImportExportIcon />Offer
+                  </ToggleButton>
+                </ToggleButtonGroup>
+              </Grid>
+              <Grid item>
+                <ToggleButtonGroup
+                  value={filter}
+                  exclusive
+                  onChange={handleFilter}
+                  aria-label="Filter">
+                  <ToggleButton value="4" aria-label="Purchases">
+                    <InventoryIcon />Exchange
+                  </ToggleButton>
+                </ToggleButtonGroup>
+              </Grid>
+              <Grid item>
+                <ToggleButtonGroup
+                  value={filter}
+                  exclusive
+                  onChange={handleFilter}
+                  aria-label="Filter">
+                  <ToggleButton value="5" aria-label="Purchases">
+                    <FavoriteIcon />Like
+                  </ToggleButton>
+                </ToggleButtonGroup>
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </TabPanel>

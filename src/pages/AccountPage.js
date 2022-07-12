@@ -297,6 +297,11 @@ export default function AccountPage(){
         value={value}
         onChange={handleChange}
         aria-label="icon position tabs example"
+        sx={{
+          '& .MuiTabs-flexContainer': {
+            flexWrap: 'wrap',
+          },
+        }}
         >
         <Tab {...a11yProps(0)} icon={<LocalAtmIcon />} iconPosition="start" label="On Sale" />
         <Tab {...a11yProps(1)} icon={<SystemUpdateAltIcon />} iconPosition="start" label="Owned" />
@@ -432,28 +437,63 @@ export default function AccountPage(){
               <StyledInputBase placeholder="Search" inputProps={{ 'aria-label': 'search' }}/>
             </Search>
             <Typography my={2} variant="h6">Filters</Typography>
-            <ToggleButtonGroup
-              value={filter}
-              exclusive
-              onChange={handleFilter}
-              aria-label="Filter"
-            >
-              <ToggleButton value="listing" aria-label="Listing">
-                <DiscountIcon />Listing
-              </ToggleButton>
-              <ToggleButton value="bids" aria-label="Bids">
-                <GavelIcon />Bids
-              </ToggleButton>
-              <ToggleButton value="transfer" aria-label="Transfer">
-                <ImportExportIcon />Transfer
-              </ToggleButton>
-              <ToggleButton value="likes" aria-label="Likes">
-                <FavoriteBorderIcon />Likes
-              </ToggleButton>
-              <ToggleButton value="purchases" aria-label="Purchases">
-                <InventoryIcon />Purchases
-              </ToggleButton>
-            </ToggleButtonGroup>
+            <Grid container direction="row" justifyContent="flex-start" alignItems="flex-start" mb={3} rowSpacing={1}>
+              <Grid item>
+                <ToggleButtonGroup
+                  value={filter}
+                  exclusive
+                  onChange={handleFilter}
+                  aria-label="Filter">
+                  <ToggleButton value="listing" aria-label="Listing">
+                    <DiscountIcon />Listing
+                  </ToggleButton>
+                </ToggleButtonGroup>
+              </Grid>
+              <Grid item>
+                <ToggleButtonGroup
+                    value={filter}
+                    exclusive
+                    onChange={handleFilter}
+                    aria-label="Filter">
+                  <ToggleButton value="bids" aria-label="Bids">
+                    <GavelIcon />Bids
+                  </ToggleButton>
+                </ToggleButtonGroup>
+              </Grid>
+              <Grid item>
+                <ToggleButtonGroup
+                    value={filter}
+                    exclusive
+                    onChange={handleFilter}
+                    aria-label="Filter">
+                  <ToggleButton value="transfer" aria-label="Transfer">
+                    <ImportExportIcon />Transfer
+                  </ToggleButton>
+                </ToggleButtonGroup>
+              </Grid>
+              <Grid item>
+                <ToggleButtonGroup
+                    value={filter}
+                    exclusive
+                    onChange={handleFilter}
+                    aria-label="Filter">
+                  <ToggleButton value="likes" aria-label="Likes">
+                    <FavoriteBorderIcon />Likes
+                  </ToggleButton>
+                </ToggleButtonGroup>
+              </Grid>
+              <Grid item>
+                <ToggleButtonGroup
+                    value={filter}
+                    exclusive
+                    onChange={handleFilter}
+                    aria-label="Filter">
+                  <ToggleButton value="purchases" aria-label="Purchases">
+                    <InventoryIcon />Purchases
+                  </ToggleButton>
+                </ToggleButtonGroup>
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </TabPanel>

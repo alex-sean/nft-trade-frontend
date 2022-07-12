@@ -24,32 +24,79 @@ export default function HomeFilter(){
   };
 
   return (
-    <Grid container direction="row" justifyContent="space-between" alignItems="flex-start" mb={3}>
-      <Grid xs item>
+    <Grid container direction="row" justifyContent="flex-start" alignItems="flex-start" mb={3} rowSpacing={1}>
+      <Grid item>
         <ToggleButtonGroup
             value={filter}
             exclusive
             onChange={handleFilter}
-            aria-label="Filter"
-          >
+            aria-label="Filter">
           <ToggleButton value="all" aria-label="All">
             All
           </ToggleButton>
+        </ToggleButtonGroup>
+      </Grid>
+      <Grid item>
+        <ToggleButtonGroup
+            value={filter}
+            exclusive
+            onChange={handleFilter}
+            aria-label="Filter">
           <ToggleButton value="art" aria-label="Art">
             <PaletteIcon />Art
           </ToggleButton>
+        </ToggleButtonGroup>
+      </Grid>
+      <Grid item>
+        <ToggleButtonGroup
+          value={filter}
+          exclusive
+          onChange={handleFilter}
+          aria-label="Filter">
           <ToggleButton value="collectibles" aria-label="Collectibles">
             <CardGiftcardIcon />Collectibles
           </ToggleButton>
+        </ToggleButtonGroup>
+      </Grid>
+      <Grid item>
+        <ToggleButtonGroup
+          value={filter}
+          exclusive
+          onChange={handleFilter}
+          aria-label="Filter">
           <ToggleButton value="domain" aria-label="Domain">
             <FormatShapesIcon />Domain
           </ToggleButton>
+        </ToggleButtonGroup>
+      </Grid>
+      <Grid item>
+        <ToggleButtonGroup
+            value={filter}
+            exclusive
+            onChange={handleFilter}
+            aria-label="Filter">
           <ToggleButton value="music" aria-label="Music">
             <MusicNoteIcon />Music
           </ToggleButton>
+        </ToggleButtonGroup>
+      </Grid>
+      <Grid item>
+        <ToggleButtonGroup
+          value={filter}
+          exclusive
+          onChange={handleFilter}
+          aria-label="Filter">
           <ToggleButton value="photography" aria-label="Photography">
             <LinkedCameraIcon />Photography
           </ToggleButton>
+        </ToggleButtonGroup>
+      </Grid>
+      <Grid item>
+        <ToggleButtonGroup
+          value={filter}
+          exclusive
+          onChange={handleFilter}
+          aria-label="Filter">
           <ToggleButton value="virtualWorld" aria-label="VirtualWorld">
             <LanguageIcon />VirtualWorld
           </ToggleButton>

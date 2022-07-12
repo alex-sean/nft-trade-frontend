@@ -89,7 +89,7 @@ export default function ItemTabs(props) {
 
   const handleFilter = (event, newFilter) => {
     if (!newFilter)
-      newFilter = 0
+      newFilter = '0'
     setFilter(newFilter);
   };
 
@@ -284,28 +284,63 @@ export default function ItemTabs(props) {
       </TabPanel>
       <TabPanel className={classes.paperBackground} value={value} index={3}>
         <TableContainer className={classes.paperBackground} component={Paper}>
-          <ToggleButtonGroup
-              value={filter}
-              exclusive
-              onChange={handleFilter}
-              aria-label="Filter"
-            >
-              <ToggleButton value="0" aria-label="Listing">
-                All
-              </ToggleButton>
-              <ToggleButton value="3" aria-label="Listing">
-                <DiscountIcon />Listing
-              </ToggleButton>
-              <ToggleButton value="1" aria-label="Bids">
-                <GavelIcon />Create
-              </ToggleButton>
-              <ToggleButton value="2" aria-label="Transfer">
-                <ImportExportIcon />Offer
-              </ToggleButton>
-              <ToggleButton value="4" aria-label="Purchases">
-                <InventoryIcon />Exchange
-              </ToggleButton>
-          </ToggleButtonGroup>
+          <Grid container direction="row" justifyContent="flex-start" alignItems="flex-start" mb={3} rowSpacing={1}>
+            <Grid item>
+              <ToggleButtonGroup
+                  value={filter}
+                  exclusive
+                  onChange={handleFilter}
+                  aria-label="Filter">
+                  <ToggleButton value="0" aria-label="Listing">
+                    All
+                  </ToggleButton>
+              </ToggleButtonGroup>
+            </Grid>
+            <Grid item>
+              <ToggleButtonGroup
+                  value={filter}
+                  exclusive
+                  onChange={handleFilter}
+                  aria-label="Filter">
+                <ToggleButton value="3" aria-label="Listing">
+                  <DiscountIcon />Listing
+                </ToggleButton>
+              </ToggleButtonGroup>
+            </Grid>
+            <Grid item>
+              <ToggleButtonGroup
+                  value={filter}
+                  exclusive
+                  onChange={handleFilter}
+                  aria-label="Filter">
+                <ToggleButton value="1" aria-label="Bids">
+                  <GavelIcon />Create
+                </ToggleButton>
+              </ToggleButtonGroup>
+            </Grid>
+            <Grid item>
+              <ToggleButtonGroup
+                  value={filter}
+                  exclusive
+                  onChange={handleFilter}
+                  aria-label="Filter">
+                <ToggleButton value="2" aria-label="Transfer">
+                  <ImportExportIcon />Offer
+                </ToggleButton>
+              </ToggleButtonGroup>
+            </Grid>
+            <Grid item>
+              <ToggleButtonGroup
+                  value={filter}
+                  exclusive
+                  onChange={handleFilter}
+                  aria-label="Filter">
+                <ToggleButton value="4" aria-label="Purchases">
+                  <InventoryIcon />Exchange
+                </ToggleButton>
+              </ToggleButtonGroup>
+            </Grid>
+          </Grid>
           <Table sx={{ minWidth: 650, width:'100%', marginTop: '32px' }} aria-label="simple table">
             <TableHead>
               <TableRow>

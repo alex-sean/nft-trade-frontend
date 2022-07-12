@@ -78,7 +78,7 @@ const Header = (props) => {
             <ListItemText className={classes.mobileLink} primary='Home' />
           </ListItem>
         </Link>
-        <Accordion sx={{boxShadow: 'none'}}>
+        {/* <Accordion sx={{boxShadow: 'none'}}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
@@ -103,7 +103,7 @@ const Header = (props) => {
               <Typography className={classes.mobileLink}>Wallet</Typography>
             </Link>
           </AccordionDetails>
-        </Accordion>
+        </Accordion> */}
         <Accordion sx={{boxShadow: 'none'}}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -113,43 +113,43 @@ const Header = (props) => {
             <Typography className={classes.mobileLink}>Explopre</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Link href="/collections" py={1} underline="none" key="1" alignItems='center' display='flex'>
+            <Link href="/collections/0" py={1} underline="none" key="1" alignItems='center' display='flex'>
               <ListItemIcon>
                 <AppsIcon fontSize="large" sx={{padding: '8px', background:"rgb(245 248 250)", marginRight: '16px', borderRadius: '40px', fill:'#131740'}}/>
               </ListItemIcon>
               <Typography className={classes.mobileLink}>All NFTs</Typography>
             </Link>
-            <Link href="/collection" py={1} underline="none" key="2" alignItems='center' display='flex'>
+            <Link href="/collections/1" py={1} underline="none" key="2" alignItems='center' display='flex'>
               <ListItemIcon>
                 <PaletteIcon fontSize="large" sx={{padding: '8px', background:"rgb(228 252 244)", marginRight: '16px', borderRadius: '40px', fill:'#10b981'}} />
               </ListItemIcon>
               <Typography className={classes.mobileLink}>Art</Typography>
             </Link>
-            <Link href="/collection" py={1} underline="none" key="3" display='flex' alignItems='center'>
+            <Link href="/collections/2" py={1} underline="none" key="3" display='flex' alignItems='center'>
               <ListItemIcon>
                 <CardGiftcardIcon fontSize="large" sx={{padding: '8px', background:"rgb(253 247 238)", marginRight: '16px', borderRadius: '40px', fill:'#feb240'}} />
               </ListItemIcon>
               <Typography className={classes.mobileLink}>COLLECTIBLE</Typography>
             </Link>
-            <Link href="/collection" py={1} underline="none" key="4" display='flex' alignItems='center'>
+            <Link href="/collections/3" py={1} underline="none" key="4" display='flex' alignItems='center'>
               <ListItemIcon>
                 <FormatShapesIcon fontSize="large"  sx={{padding: '8px', background:"rgb(242 238 255)", marginRight: '16px', marginRight: '16px', borderRadius: '40px', fill:'#8358ff'}} />
               </ListItemIcon>
               <Typography className={classes.mobileLink}>DOMAIN</Typography>
             </Link>
-            <Link href="/collection" py={1} underline="none" key="5" display='flex' alignItems='center'>
+            <Link href="/collections/4" py={1} underline="none" key="5" display='flex' alignItems='center'>
               <ListItemIcon>
                 <MusicNoteIcon fontSize="large" sx={{padding: '8px', background:"rgb(255 238 250)", marginRight: '16px', borderRadius: '40px', fill:'#f35bc7'}} />
               </ListItemIcon>
               <Typography className={classes.mobileLink}>MUSIC</Typography>
             </Link>
-            <Link href="/collection" py={1} underline="none" key="6" display='flex' alignItems='center'>
+            <Link href="/collections/5" py={1} underline="none" key="6" display='flex' alignItems='center'>
               <ListItemIcon>
                 <LinkedCameraIcon fontSize="large" sx={{padding: '8px', background:"rgb(234 242 254)", marginRight: '16px', borderRadius: '40px', fill:'#428af8'}} />
               </ListItemIcon>
               <Typography className={classes.mobileLink}>PHOTOGRAPHY</Typography>
             </Link>
-            <Link href="/collection" py={1} underline="none" key="7" display='flex' alignItems='center'>
+            <Link href="/collections/6" py={1} underline="none" key="7" display='flex' alignItems='center'>
               <ListItemIcon>
                 <LanguageIcon fontSize="large" background="rgb(238 252 255)" sx={{padding: '8px', background:"rgb(242 238 255)", marginRight: '16px', borderRadius: '40px', fill:'#46c7e3'}} />
               </ListItemIcon>
@@ -157,6 +157,16 @@ const Header = (props) => {
             </Link>
           </AccordionDetails>
         </Accordion>
+        <Link href="/activity" underline='none'>
+          <ListItem button key={3}>
+            <ListItemText className={classes.mobileLink} primary='Activity' />
+          </ListItem>
+        </Link>
+        <Link href="/contact" underline='none'>
+          <ListItem button key={4}>
+            <ListItemText className={classes.mobileLink} primary='Contact' />
+          </ListItem>
+        </Link>
         <Accordion sx={{boxShadow: 'none'}}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -178,7 +188,7 @@ const Header = (props) => {
           </AccordionDetails>
         </Accordion>
         <Link href="/newsletter" underline='none'>
-          <ListItem button key={1}>
+          <ListItem button key={5}>
             <ListItemText className={classes.mobileLink} primary='Create' />
           </ListItem>
         </Link>

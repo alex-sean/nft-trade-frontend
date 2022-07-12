@@ -30,26 +30,35 @@ export default function CategoryFilter(props){
   };
 
   return (
-    <Grid xs item>
-      <ToggleButtonGroup
-          value={category}
-          exclusive
-          onChange={handleFilter}
-          aria-label="Filter"
-        >
-        <ToggleButton key="all" value={0} aria-label="All">
-          All
-        </ToggleButton>
-        {
-          Object.keys(CATEGORIES).map((category, index) => {
-            return (
-              <ToggleButton key={index} index={index} value={CATEGORIES[category]} aria-label={CATEGORY_NAMES[category]}>
-                {CATEGORY_ICONS[category]}{CATEGORY_NAMES[category]}
-              </ToggleButton>
-            )
-          })
-        }
-      </ToggleButtonGroup>
+    <Grid xs={12} sm item container direction="row" justifyContent="flex-start" alignItems="flex-start" rowSpacing={1} mb={3}>
+      <Grid item>
+        <ToggleButtonGroup
+            value={category}
+            exclusive
+            onChange={handleFilter}
+            aria-label="Filter">
+          <ToggleButton key="all" value={0} aria-label="All">
+            All
+          </ToggleButton>
+        </ToggleButtonGroup>
+      </Grid>
+          {
+            Object.keys(CATEGORIES).map((category, index) => {
+              return (
+                <Grid item>
+                  <ToggleButtonGroup
+                      value={category}
+                      exclusive
+                      onChange={handleFilter}
+                      aria-label="Filter">
+                    <ToggleButton key={index} index={index} value={CATEGORIES[category]} aria-label={CATEGORY_NAMES[category]}>
+                      {CATEGORY_ICONS[category]}{CATEGORY_NAMES[category]}
+                    </ToggleButton>
+                  </ToggleButtonGroup>
+                </Grid>
+              )
+            })
+          }
     </Grid>
   );
 }
