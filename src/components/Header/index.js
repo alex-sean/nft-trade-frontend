@@ -131,25 +131,25 @@ const Header = (props) => {
               </ListItemIcon>
               <Typography className={classes.mobileLink}>COLLECTIBLE</Typography>
             </Link>
-            <Link href="/collection" py={1} underline="none" key="2" display='flex' alignItems='center'>
+            <Link href="/collection" py={1} underline="none" key="4" display='flex' alignItems='center'>
               <ListItemIcon>
                 <FormatShapesIcon fontSize="large"  sx={{padding: '8px', background:"rgb(242 238 255)", marginRight: '16px', marginRight: '16px', borderRadius: '40px', fill:'#8358ff'}} />
               </ListItemIcon>
               <Typography className={classes.mobileLink}>DOMAIN</Typography>
             </Link>
-            <Link href="/collection" py={1} underline="none" key="2" display='flex' alignItems='center'>
+            <Link href="/collection" py={1} underline="none" key="5" display='flex' alignItems='center'>
               <ListItemIcon>
                 <MusicNoteIcon fontSize="large" sx={{padding: '8px', background:"rgb(255 238 250)", marginRight: '16px', borderRadius: '40px', fill:'#f35bc7'}} />
               </ListItemIcon>
               <Typography className={classes.mobileLink}>MUSIC</Typography>
             </Link>
-            <Link href="/collection" py={1} underline="none" key="2" display='flex' alignItems='center'>
+            <Link href="/collection" py={1} underline="none" key="6" display='flex' alignItems='center'>
               <ListItemIcon>
                 <LinkedCameraIcon fontSize="large" sx={{padding: '8px', background:"rgb(234 242 254)", marginRight: '16px', borderRadius: '40px', fill:'#428af8'}} />
               </ListItemIcon>
               <Typography className={classes.mobileLink}>PHOTOGRAPHY</Typography>
             </Link>
-            <Link href="/collection" py={1} underline="none" key="2" display='flex' alignItems='center'>
+            <Link href="/collection" py={1} underline="none" key="7" display='flex' alignItems='center'>
               <ListItemIcon>
                 <LanguageIcon fontSize="large" background="rgb(238 252 255)" sx={{padding: '8px', background:"rgb(242 238 255)", marginRight: '16px', borderRadius: '40px', fill:'#46c7e3'}} />
               </ListItemIcon>
@@ -272,19 +272,19 @@ const Header = (props) => {
                 <Typography className={classes.link}>Home</Typography>
               </Link>
               <ExploreMenu />
-              <Link href="/activity" underline="none" key="1">
+              <Link href="/activity" underline="none" key="2">
                 <Typography className={classes.link}>Activity</Typography>
               </Link>
-              <Link href="/contact" underline="none" key="1">
+              <Link href="/contact" underline="none" key="3">
                 <Typography className={classes.link}>Contact</Typography>
               </Link>
               <ResourceMenu />
-              <Link href="/create" underline="none" key="2">
+              <Link href="/create" underline="none" key="4">
                 <Typography className={classes.link}>Create</Typography>
               </Link>
               {
                 account === '' ?
-                  <Link href="/wallet" underline="none" key="3">
+                  <Link href="/wallet" underline="none" key="5">
                     <IconButton className={classes.menuIcon}>
                       <AccountBalanceWalletIcon />
                     </IconButton>
