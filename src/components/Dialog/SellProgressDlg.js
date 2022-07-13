@@ -145,7 +145,7 @@ export default function SellProgressDlg({
                 sx={{display: 'flex'}}
             >
                 <Typography variant='h5' sx={{marginTop: '5px'}}>
-                    Sell token
+                    List token
                 </Typography>
             </BootstrapDialogTitle>
             <DialogContent dividers sx={{padding: '30px'}}>
@@ -182,7 +182,7 @@ export default function SellProgressDlg({
                         </Grid>
                         <Grid item md={9} className={classes.modalProgressContent}>
                             <Typography variant='h5'>
-                                Sell
+                                List
                             </Typography>
                             <Typography>
                                 List ERC721 token onto the market.
@@ -190,7 +190,7 @@ export default function SellProgressDlg({
                         </Grid>
                     </Grid>
                     <ProgressButton
-                        text="Sell"
+                        text="List"
                         status={sellButtonStatus}
                         onClick={handleSell}
                     />
