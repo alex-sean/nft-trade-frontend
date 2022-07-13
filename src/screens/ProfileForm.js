@@ -219,9 +219,9 @@ const ProfileForm = () => {
               placeholder="Tell the world your story!"
               spellCheck
               value={message}
-              className={classes.paperBackground}
+              className={`${classes.paperBackground} ${classes.darkText}`}
               onChange={(e) => setMessage(e.target.value)}
-              style={{width: '100%'}}
+              style={{width: '100%', borderRadius: '5px'}}
             />
 
             <InputLabel htmlFor="email" sx={{marginTop: '20px', fontWeight: '700'}}>
