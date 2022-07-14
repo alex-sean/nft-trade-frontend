@@ -43,7 +43,7 @@ export default function CategoryFilter(props){
         </ToggleButtonGroup>
       </Grid>
           {
-            Object.keys(CATEGORIES).map((category, index) => {
+            Object.keys(CATEGORIES).map((item, index) => {
               return (
                 <Grid item>
                   <ToggleButtonGroup
@@ -51,8 +51,8 @@ export default function CategoryFilter(props){
                       exclusive
                       onChange={handleFilter}
                       aria-label="Filter">
-                    <ToggleButton key={index} index={index} value={CATEGORIES[category]} aria-label={CATEGORY_NAMES[category]}>
-                      {CATEGORY_ICONS[category]}{CATEGORY_NAMES[category]}
+                    <ToggleButton key={index} index={index} value={CATEGORIES[item]} aria-label={CATEGORY_NAMES[item]}>
+                      {CATEGORY_ICONS[item]}{CATEGORY_NAMES[item]}
                     </ToggleButton>
                   </ToggleButtonGroup>
                 </Grid>

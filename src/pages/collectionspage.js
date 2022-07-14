@@ -16,7 +16,7 @@ export default function CollectionsPage(){
   const { filter } = useParams();
 
   const [collections, setCollections] = useState([]);
-  const [category, setCategory] = useState(isNaN(filter)? 0: filter);
+  const [category, setCategory] = useState(isNaN(filter)? 0: parseInt(filter));
   const [keyword, setKeyword] = useState(isNaN(filter)? filter: '');
   const [sort, setSort] = React.useState(1);
   const [pageNum, setPageNum] = useState(0);
