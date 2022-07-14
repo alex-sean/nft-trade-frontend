@@ -60,6 +60,9 @@ export default function CollectionsPage(){
   }, [pageNum])
 
   useEffect(() => {
+    if (pageNum === 0) {
+      getCollectionsByCategory();
+    }
     setPageNum(0);
   }, [category, filter, sort])
 

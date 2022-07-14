@@ -57,9 +57,9 @@ const Collections = ({ items, setItems }) => {
           ))}
         </Grid>
       </Container>
-      {/* <Link underline='none' href='/rankings'>
+      <Link underline='none' href='/rankings'>
         <PrimaryButton text="Go to Rankings" />
-      </Link> */}
+      </Link>
     </Box>
   );
 };

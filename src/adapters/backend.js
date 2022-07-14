@@ -147,7 +147,7 @@ export const checkCancelBidSyncStatus = async (collectionAddress, tokenID, buyer
 }
 
 export const checkCompleteAuctionSyncStatus = async (collectionAddress, tokenID, buyer) => {
-    return await get(`/sync/cancel_bid?collectionAddress=${collectionAddress}&tokenID=${tokenID}&buyer=${buyer}`);
+    return await get(`/sync/complete_auction?collectionAddress=${collectionAddress}&tokenID=${tokenID}&buyer=${buyer}`);
 }
 
 export const getHotBidItems = async () => {
