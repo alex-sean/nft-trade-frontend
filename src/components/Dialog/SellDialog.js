@@ -114,6 +114,10 @@ export default function SellDialog(props){
 		setShowSellProgressDlg(true);
 	}
 
+	const handleListType = e => {
+		setListType(e.target.value)
+	}
+
 	return ([
 		<Dialog
 			key="1"
@@ -123,11 +127,30 @@ export default function SellDialog(props){
 			onClose={handleClose}
 			aria-describedby="alert-dialog-slide-description"
 			>
-			<DialogTitle display='flex' justifyContent='space-between' className={classes.paperBackground}>
-				<Typography>List Token</Typography>
-				<CloseIcon onClick={handleClose} />
+			<DialogTitle display='flex' justifyContent='center' alignItems='baseline' className={classes.paperBackground}>
+				<Typography pt={3}>Base Currency</Typography>
 			</DialogTitle>
 			<DialogContent dividers className={classes.paperBackground}>
+				<Grid container spacing={2} mb={3}>
+					<Grid item xs={12} sm={6} >
+						<Typography align='left'>Native Token</Typography>
+						<Box display='flex' justifyContent='space-evenly'>
+							<ImageCheckButton imgUrl = '../../images/chains/AVAX.png' text='' content='Native' handleChange={handleAssetChecked} isChecked={true}/>
+						</Box>
+						<Typography sx={{border: '1px solid #0f0', borderRadius: '10px', padding: '4px'}}>
+							<b>Bull market proof</b>. Pick this if you believe we are in a bull market.
+						</Typography>
+					</Grid>
+					<Grid item xs={12} sm={6}>
+						<Typography align='left'>Stable Token</Typography>
+						<Box display='flex' justifyContent='space-evenly'>
+							<ImageCheckButton imgUrl = '../../images/chains/XTZ.png' text='' content='Stable' handleChange={handleAssetChecked}/>
+						</Box>
+						<Typography sx={{border: '1px solid #f00', borderRadius: '10px', padding: '4px'}}>
+							<b>Bear market proof</b>. Pick this if you believe we are in a bear market.
+						</Typography>
+					</Grid>
+				</Grid>
 				<Grid container>
 					<Grid item xs>
 						<Box p={1}>
@@ -145,7 +168,7 @@ export default function SellDialog(props){
 							</Box>
 							<Box display="flex" justifyContent='space-between' alignItems='center'>
 								<Typography p={1} variant="h6">ListType:</Typography>
-								<Select sx={{paddingRight: '16px'}}  defaultValue={LIST_TYPE.FIXED_PRICE} value={listType} onChange={e => {setListType(e.target.value)}}>
+								<Select sx={{paddingRight: '16px'}}  defaultValue={LIST_TYPE.FIXED_PRICE} value={listType} onChange={handleListType}>
               						<MenuItem value={LIST_TYPE.AUCTION}>Auction</MenuItem>
               						<MenuItem value={LIST_TYPE.FIXED_PRICE}>Fixed Price</MenuItem>
 								</Select>
@@ -167,7 +190,7 @@ export default function SellDialog(props){
 							<ImageCheckButton imgUrl = '../../images/chains/AVAX.png' text='WAVAX' content={ASSETS.AVAX} handleChange={handleAssetChecked}/>
 							<ImageCheckButton imgUrl = '../../images/chains/USDT.png' text='USDT' content={ASSETS.USDT} handleChange={handleAssetChecked}/>
 						</Box>
-						<Box m={2} display='flex' justifyContent='space-evenly'>
+						<Box m={2} display='flex' justifyContent='flex-start'>
 							<ImageCheckButton imgUrl = '../../images/chains/USDT.png' text='TEST' content={ASSETS.TEST} handleChange={handleAssetChecked}/>
 						</Box>
 					</Grid>

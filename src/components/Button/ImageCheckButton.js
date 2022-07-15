@@ -3,7 +3,7 @@ import { Box, Checkbox, Typography } from '@mui/material';
 import useStyles from '../../styles/styles';
 
 export default function ImageCheckButton(props) {
-  const { text, imgUrl, content, handleChange, disabled } = props;
+  const { text, imgUrl, content, handleChange, disabled, isChecked } = props;
   const classes = useStyles();
   const [checked, setChecked] = useState(false)
 
@@ -17,10 +17,8 @@ export default function ImageCheckButton(props) {
   }
 
   useEffect(() => {
-    if (disabled) {
-      setChecked(false);
-    }
-  }, [disabled])
+      setChecked(isChecked);
+  }, [disabled, isChecked])
   
   return (
     <Box p={1} sx={{position: 'relative'}} onClick={handleClick}>
