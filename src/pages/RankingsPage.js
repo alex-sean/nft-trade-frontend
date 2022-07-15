@@ -64,7 +64,7 @@ export default function RankingsPage(props) {
 
   return (
     <Container maxWidth="lg">
-      <Typography my={5} align='center' variant='h4'>Rankings</Typography>
+      <Typography py={10} align='center' variant='h4'>Rankings</Typography>
 
       <CategoryFilter setCategory={setCategory} category={category}/>
       <TableContainer className={`${classes.paperBackground} ${classes.mt32}`} component={Paper}>
