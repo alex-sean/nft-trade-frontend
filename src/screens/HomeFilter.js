@@ -16,6 +16,8 @@ export default function HomeFilter(){
   const [filter, setFilter] = React.useState('all');
 
   const handleFilter = (event, newFilter) => {
+    if (!newFilter)
+      newFilter = 'all'
     setFilter(newFilter);
   };
 
