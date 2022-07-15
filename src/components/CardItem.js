@@ -8,6 +8,8 @@ import { useWalletContext } from '../hooks/useWalletContext';
 import { useLoadingContext } from '../hooks/useLoadingContext';
 import { getlikeToken, likeToken } from '../adapters/backend';
 import { toast } from 'react-toastify';
+import { BASE_CURRENCY_TYPE } from '../common/const';
+import Web3 from 'web3';
 
 function CardItem(props) {
   const { token } = props;
@@ -109,6 +111,18 @@ function CardItem(props) {
 
     return `${token.deployer.slice(0, 13)}...`;
   }
+
+  const getPrice = () => {
+    if (token.listed) {
+      if (token.baseType === BASE_CURRENCY_TYPE.USD) {
+        return `$ ${Web3.utils.fromWei(token.usdPrice + '')}`;
+      } else {
+        return `${Web3.utils.fromWei(token.avaxPrice + '')} AVAX`;
+      }
+    } else {
+      return '$ 0'
+    }
+  }
   
   return (
     <Box className={`${classes.hoverShadow} ${classes.paperBackground}`} sx={{border:'solid 1px rgba(0, 0, 0, 0.1)', borderRadius:'1.25rem', padding: '1.1875rem', marginBottom: '16px'}} onClick={() => document.location.href=`/item/${token.collectionAddress}/${token.tokenID}`}>
@@ -139,7 +153,7 @@ function CardItem(props) {
       <Box mt={2} sx={{display:'flex', justifyContent: 'space-between', alignItems: 'center'}}>
         <Typography variant="h6" className={classes.collectionItemTitle}>{token.name} #{token.tokenID}</Typography>
         {/* <MoreHorizIcon /> */}
-        {`$ ${token.price}`}
+        {getPrice()}
       </Box>
       <Typography className={[classes.collectionSubtitle, classes.ellipseText]}>{token.description}</Typography>
       <Box sx={{display:'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px'}}>

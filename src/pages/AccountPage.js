@@ -23,6 +23,7 @@ import { Icon } from '@iconify/react';
 import PropTypes from 'prop-types';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import SystemUpdateAltIcon from '@mui/icons-material/SystemUpdateAlt';
 import CollectionsCard from '../components/CollectionsCard';
 import Checkbox from '@mui/material/Checkbox';
@@ -93,7 +94,7 @@ export default function AccountPage(){
   const [createdTokens, setCreatedTokens] = useState([]);
   const [saleTokens, setSaleTokens] = useState([]);
   const [ownedCollections, setOwnedCollections] = useState([]);
-  const [filter, setFilter] = React.useState('all');
+  const [filter, setFilter] = React.useState(0);
   const { address } = useParams();
   const { account } = useWalletContext();
   const { setLoading } = useLoadingContext();
@@ -276,7 +277,7 @@ export default function AccountPage(){
         <Typography variant="h4">{userInfo.name}</Typography>
         <Box mt={1} sx={{display:'flex', alignItems: 'center', justifyContent: 'center'}}>
           <Box p={1} sx={{display:'flex', maxWidth: '200px', alignItems: 'center', border: 'solid 1px lightgray', borderRadius: '20px'}}>
-            <Icon icon="logos:ethereum" rotate={2} hFlip={true} vFlip={true} />
+            {/* <Icon icon="logos:ethereum" rotate={2} hFlip={true} vFlip={true} /> */}
             <Typography ml={1} nowrap>{address.slice(0, 13)}...</Typography>
           </Box>
         </Box>
@@ -427,15 +428,15 @@ export default function AccountPage(){
       <TabPanel value={value} index={4}>
         <Grid mt={3} container spacing={8}>
           <Grid item xs={12} lg>
-            <ActivityItemList />
+            <ActivityItemList search={address} filter={filter}/>
           </Grid>
           <Grid item xs>
-            <Search>
+            {/* <Search>
               <SearchIconWrapper>
                 <SearchIcon />
               </SearchIconWrapper>
               <StyledInputBase placeholder="Search" inputProps={{ 'aria-label': 'search' }}/>
-            </Search>
+            </Search> */}
             <Typography my={2} variant="h6">Filters</Typography>
             <Grid container direction="row" justifyContent="flex-start" alignItems="flex-start" mb={3} rowSpacing={1}>
               <Grid item>
@@ -444,52 +445,63 @@ export default function AccountPage(){
                   exclusive
                   onChange={handleFilter}
                   aria-label="Filter">
-                  <ToggleButton value="listing" aria-label="Listing">
+                  <ToggleButton value="0" aria-label="Listing">
+                    All
+                  </ToggleButton>
+                </ToggleButtonGroup>
+              </Grid>
+              <Grid item>
+                <ToggleButtonGroup
+                  value={filter}
+                  exclusive
+                  onChange={handleFilter}
+                  aria-label="Filter">
+                  <ToggleButton value="3" aria-label="Listing">
                     <DiscountIcon />Listing
                   </ToggleButton>
                 </ToggleButtonGroup>
               </Grid>
               <Grid item>
                 <ToggleButtonGroup
-                    value={filter}
-                    exclusive
-                    onChange={handleFilter}
-                    aria-label="Filter">
-                  <ToggleButton value="bids" aria-label="Bids">
-                    <GavelIcon />Bids
+                  value={filter}
+                  exclusive
+                  onChange={handleFilter}
+                  aria-label="Filter">
+                  <ToggleButton value="1" aria-label="Bids">
+                    <GavelIcon />Create
                   </ToggleButton>
                 </ToggleButtonGroup>
               </Grid>
               <Grid item>
                 <ToggleButtonGroup
-                    value={filter}
-                    exclusive
-                    onChange={handleFilter}
-                    aria-label="Filter">
-                  <ToggleButton value="transfer" aria-label="Transfer">
-                    <ImportExportIcon />Transfer
+                  value={filter}
+                  exclusive
+                  onChange={handleFilter}
+                  aria-label="Filter">
+                  <ToggleButton value="2" aria-label="Transfer">
+                    <ImportExportIcon />Offer
                   </ToggleButton>
                 </ToggleButtonGroup>
               </Grid>
               <Grid item>
                 <ToggleButtonGroup
-                    value={filter}
-                    exclusive
-                    onChange={handleFilter}
-                    aria-label="Filter">
-                  <ToggleButton value="likes" aria-label="Likes">
-                    <FavoriteBorderIcon />Likes
+                  value={filter}
+                  exclusive
+                  onChange={handleFilter}
+                  aria-label="Filter">
+                  <ToggleButton value="4" aria-label="Purchases">
+                    <InventoryIcon />Exchange
                   </ToggleButton>
                 </ToggleButtonGroup>
               </Grid>
               <Grid item>
                 <ToggleButtonGroup
-                    value={filter}
-                    exclusive
-                    onChange={handleFilter}
-                    aria-label="Filter">
-                  <ToggleButton value="purchases" aria-label="Purchases">
-                    <InventoryIcon />Purchases
+                  value={filter}
+                  exclusive
+                  onChange={handleFilter}
+                  aria-label="Filter">
+                  <ToggleButton value="5" aria-label="Purchases">
+                    <FavoriteIcon />Like
                   </ToggleButton>
                 </ToggleButtonGroup>
               </Grid>

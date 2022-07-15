@@ -65,3 +65,8 @@ export const ACTIVITY_TYPE = {
     EXCHANGE: 4,
     LIKE: 5
 };
+
+export const BASE_CURRENCY_TYPE = {
+    USD: 0,
+    AVAX: 1
+}
