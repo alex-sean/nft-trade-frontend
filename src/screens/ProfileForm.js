@@ -89,18 +89,23 @@ const ProfileForm = () => {
 
     try {
       let userInfo = await getUserInfo(account);
-      if (userInfo) {
-        setRegistered(true);
 
-        setName(userInfo.name);
-        setEmail(userInfo.email);
-        setMessage(userInfo.description);
-        setTwitterAccount(userInfo.twitter_account? userInfo.twitter_account: '');
-        setInstagramAccount(userInfo.instagram_account? userInfo.instagram_account: '');
-        setOwnUrl(userInfo.own_url? userInfo.own_url: '');
-        setAvatar(userInfo.avatar? userInfo.avatar: null);
-        setBackground(userInfo.background? userInfo.background: null);
+      if (!userInfo || !userInfo.data) {
+        throw new Error('Not exist user');
       }
+
+      userInfo = userInfo.data;
+
+      setRegistered(true);
+
+      setName(userInfo.name);
+      setEmail(userInfo.email);
+      setMessage(userInfo.description);
+      setTwitterAccount(userInfo.twitter_account? userInfo.twitter_account: '');
+      setInstagramAccount(userInfo.instagram_account? userInfo.instagram_account: '');
+      setOwnUrl(userInfo.own_url? userInfo.own_url: '');
+      setAvatar(userInfo.avatar? userInfo.avatar: null);
+      setBackground(userInfo.background? userInfo.background: null);
     } catch (err) {
       console.log(err);
     }
@@ -165,7 +170,7 @@ const ProfileForm = () => {
       return;
     }
 
-    if (!twitterAccount && instagramAccount && !ownUrl) {
+    if (!twitterAccount && !instagramAccount && !ownUrl) {
       toast('Please input a social account!');
       return;
     }
