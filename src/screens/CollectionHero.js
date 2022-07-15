@@ -13,6 +13,7 @@ import { useLoadingContext } from '../hooks/useLoadingContext';
 import { useWalletContext } from '../hooks/useWalletContext';
 import { toast } from 'react-toastify';
 import { getlikeCollection, likeCollection } from '../adapters/backend';
+import Web3 from 'web3';
 
 export default function CollectionHero(props){
   const classes = useStyles();
@@ -124,7 +125,7 @@ export default function CollectionHero(props){
               <Box sx={{width: '95px'}}>
                 <Box className={`${classes.displayFlex} ${classes.justifyCenter}`}>
                   {/* <Icon icon="logos:ethereum" rotate={2} hFlip={true} vFlip={true} /> */}
-                  <Typography className={classes.darkText} ml={1} variant="h6">$ {collection? collection.collection.volume: 0}</Typography>
+                  <Typography className={classes.darkText} ml={1} variant="h6">$ {collection? parseFloat(Web3.utils.fromWei(collection.collection.volume + '')).toFixed(2): 0}</Typography>
                 </Box>
                 <Typography variant="body2">Volume Traded</Typography>
               </Box>
