@@ -70,3 +70,9 @@ export const BASE_CURRENCY_TYPE = {
     USD: 0,
     AVAX: 1
 }
+
+export const USER_STATUS = {
+    PENDING: 0,
+    VERIFIED: 1,
+    REJECTED: 2
+}

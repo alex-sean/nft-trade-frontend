@@ -33,7 +33,7 @@ import { useWalletContext } from '../hooks/useWalletContext';
 import { getUserInfo, getOwnedTokens, getCreatedTokens, getSaleTokens, getOwnedCollections } from '../adapters/backend';
 import { useLoadingContext } from '../hooks/useLoadingContext';
 import { toast } from 'react-toastify';
-import { STR_MONTH } from '../common/const';
+import { STR_MONTH, USER_STATUS } from '../common/const';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import CategoryFilter from '../screens/CategoryFilter';
@@ -270,7 +270,7 @@ export default function AccountPage(){
           <img src={`${process.env.REACT_APP_AVATAR_PATH}/${userInfo.avatar}`}
                style={{width: '148px', border: 'solid 3px #fff', borderRadius: '10px'}} />
           {
-            userInfo.status &&
+            userInfo.status === USER_STATUS.VERIFIED &&
             <CheckCircleIcon sx={{position: 'absolute', transform: 'translate(70px, 70px)', color: 'limegreen'}} />
           }
         </Box>
