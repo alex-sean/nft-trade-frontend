@@ -39,9 +39,9 @@ export default function HotbidItem(props) {
       <Typography className={classes.hotBidSubtitle}>{`${getBidAmountString()} ${getBidAssetString()}`}</Typography>
       <Box sx={{display:'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px'}}>
         <Typography className={classes.hotBidPlaceBid}>Place Bid</Typography>
-        <Box sx={{display:'flex', alignItems: 'center'}} className={classes.hotBidLike}>
+        <Box sx={{display:'flex', alignItems: 'flex-end'}} className={classes.hotBidLike}>
           <FavoriteBorderIcon />
-          <Typography className={classes.hotBidLike}>{item.like}</Typography>
+          <Typography pl={1} className={classes.hotBidLike}>{item.like}</Typography>
         </Box>
       </Box>
     </Box>

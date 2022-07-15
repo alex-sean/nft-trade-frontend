@@ -128,7 +128,7 @@ function CardItem(props) {
     <Box className={`${classes.hoverShadow} ${classes.paperBackground}`} sx={{border:'solid 1px rgba(0, 0, 0, 0.1)', borderRadius:'1.25rem', padding: '1.1875rem', marginBottom: '16px'}} onClick={() => document.location.href=`/item/${token.collectionAddress}/${token.tokenID}`}>
       <Box sx={{position: 'relative'}}>
         <img style={{width: '100%'}} src={`${token.imageURL}`} className={classes.rounded}/>
-        <Box sx={{display:'flex', position: 'absolute', top: '16px', right: '16px', padding: '8px', background: '#fff', borderRadius: '8px'}} className={classes.hotBidLike}>
+        <Box sx={{display:'flex', alignItems: 'flex-end', position: 'absolute', top: '16px', right: '16px', padding: '8px', background: '#fff', borderRadius: '8px'}} className={classes.hotBidLike}>
           {
             like?
             <FavoriteIcon sx={{color: 'red'}} onClick={(e) => updateLike(e)}/>
