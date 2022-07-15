@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid, Typography, Box, Card, CardActions, CardContent, Link } from '@mui/material';
 import useStyles from '../styles/styles';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { useWalletContext } from '../hooks/useWalletContext';
+import { useLoadingContext } from '../hooks/useLoadingContext';
+import { getlikeCollection, likeCollection } from '../adapters/backend';
+import { toast } from 'react-toastify';
 
 export default function CollectionsCard(props) {
   const classes = useStyles();
   const { collection } = props;
+
+  const { account } = useWalletContext();
+  const { setLoading } = useLoadingContext();
+
+  const [like, setLike] = useState(false);
+  const [likeCnt, setLikeCnt] = useState(collection.like);
 
   const getDeployerAvatarURL = () => {
     let avatarURL = 'user_avatar.gif';
@@ -17,6 +27,63 @@ export default function CollectionsCard(props) {
     return `${process.env.REACT_APP_AVATAR_PATH}/${avatarURL}`;
   }
 
+  useEffect(() => {
+    if (!collection) {
+      return;
+    }
+
+    getLike();
+  }, [collection, account])
+
+  const getLike = async () => {
+    if (!account) {
+      return;
+    }
+
+    try {
+      const likeStatus = await getlikeCollection(collection.collectionAddress, account);
+      if (!likeStatus) {
+        throw new Error('Getting like status failed.');
+      }
+
+      setLike(likeStatus.data.status);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const updateLike = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!account) {
+      toast('Please connect the wallet.');
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const result = await likeCollection(collection.collectionAddress, account, !like);
+      if (!result) {
+        throw new Error('Updating like status failed.');
+      }
+
+      if (result.data.status) {
+        if (like) {
+          setLikeCnt(likeCnt - 1);
+        } else {
+          setLikeCnt(likeCnt + 1);
+        }
+        setLike(!like);
+      }
+    } catch (err) {
+      console.log(err);
+      toast('Updating like status failed.');
+    }
+
+    setLoading(false);
+  }
+
   return (
     <>
       <Card container sx={{borderRadius: '15px', width: '270px', margin: 'auto'}} className={classes.paperBackground}>
@@ -24,12 +91,12 @@ export default function CollectionsCard(props) {
           <CardContent sx={{position:'relative'}}>
             <Box sx={{display:'flex', alignItems: 'flex-end', position: 'absolute', top: '20px', right: '20px', padding: '8px', background: '#fff', borderRadius: '8px'}} className={classes.hotBidLike}>
               {
-                collection.like?
-                <FavoriteIcon sx={{color: 'red'}}/>
+                like?
+                <FavoriteIcon sx={{color: 'red'}} onClick={(e) => updateLike(e)}/>
                 :
-                <FavoriteBorderIcon/>
+                <FavoriteBorderIcon onClick={(e) => updateLike(e)}/>
               }
-              <Typography className={classes.hotBidLike}>{collection.like}</Typography>
+              <Typography className={classes.hotBidLike}>{likeCnt}</Typography>
             </Box>
             <img src={collection.imageURL} style={{maxHeight: '250px', width: '100%'}}/>
             <Link px={1} underline="none" className={classes.text}>
