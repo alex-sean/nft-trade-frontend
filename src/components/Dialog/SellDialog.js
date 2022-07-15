@@ -10,7 +10,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import PrimaryButton from '../Button/PrimaryButton';
 import useStyles from '../../styles/styles';
 import SellProgressDlg from './SellProgressDlg';
-import { LIST_TYPE, ASSETS } from '../../common/const';
+import { LIST_TYPE, ASSETS, BASE_CURRENCY_TYPE } from '../../common/const';
 import ImageCheckButton from '../Button/ImageCheckButton'
 import { toast } from 'react-toastify';
 
@@ -20,14 +20,15 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function SellDialog(props){
 	const { open, setOpen, token, serviceFee } = props
-	const [listType, setListType] = useState(0);
-	const [price, setPrice] = useState(LIST_TYPE.FIXED_PRICE);
+	const [listType, setListType] = useState(LIST_TYPE.FIXED_PRICE);
+	const [price, setPrice] = useState(0);
 	const [servicePrice, setServicePrice] = useState(0);
 	const [showSellProgressDlg, setShowSellProgressDlg] = useState(false);
 	const [isStableCoin, setIsStableCoin] = useState(false);
 	const [auctionEndTime, setAuctionEndTime] = useState(0);
 	const [expired, setExpired] = useState(false);
 	const [assets, setAssets] = useState([]);
+	const [baseCurrency, setBaseCurrency] = useState(BASE_CURRENCY_TYPE.AVAX);
 
 	const [avaxChecked, setAvaxChecked] = useState(false);
 
@@ -38,6 +39,14 @@ export default function SellDialog(props){
 	const handleClose = () => {
 		setOpen(false);
 	};
+
+	const reverBaseCurrency = () => {
+		if (baseCurrency === BASE_CURRENCY_TYPE.USD) {
+			setBaseCurrency(BASE_CURRENCY_TYPE.AVAX);
+		} else {
+			setBaseCurrency(BASE_CURRENCY_TYPE.USD);
+		}
+	}
 
 	useEffect(() => {
 		if (isNaN(price)) {
@@ -106,8 +115,8 @@ export default function SellDialog(props){
 			return;
 		}
 
-		if (parseInt(price) !== parseFloat(price)) {
-			toast('Please input integer USD price.');
+		if (isNaN(price)) {
+			toast('Please input correct price.');
 			return;
 		}
 
@@ -116,6 +125,13 @@ export default function SellDialog(props){
 
 	const handleListType = e => {
 		setListType(e.target.value)
+	}
+
+	const getCurrencyName = () => {
+		if (baseCurrency === BASE_CURRENCY_TYPE.AVAX) {
+			return 'AVAX';
+		}
+		return 'USD';
 	}
 
 	return ([
@@ -135,7 +151,7 @@ export default function SellDialog(props){
 					<Grid item xs={12} sm={6} >
 						<Typography align='left'>Native Token</Typography>
 						<Box display='flex' justifyContent='space-evenly'>
-							<ImageCheckButton imgUrl = '../../images/chains/AVAX.png' text='' content='Native' handleChange={handleAssetChecked} isChecked={true}/>
+							<ImageCheckButton imgUrl = '../../images/chains/AVAX.png' text='' content='Native' handleChange={() => reverBaseCurrency()} isChecked={baseCurrency === BASE_CURRENCY_TYPE.AVAX}/>
 						</Box>
 						<Typography sx={{border: '1px solid #0f0', borderRadius: '10px', padding: '4px'}}>
 							<b>Bull market proof</b>. Pick this if you believe we are in a bull market.
@@ -144,7 +160,7 @@ export default function SellDialog(props){
 					<Grid item xs={12} sm={6}>
 						<Typography align='left'>Stable Token</Typography>
 						<Box display='flex' justifyContent='space-evenly'>
-							<ImageCheckButton imgUrl = '../../images/chains/XTZ.png' text='' content='Stable' handleChange={handleAssetChecked}/>
+							<ImageCheckButton imgUrl = '../../images/chains/XTZ.png' text='' content='Stable' handleChange={() => reverBaseCurrency()} isChecked={baseCurrency === BASE_CURRENCY_TYPE.USD}/>
 						</Box>
 						<Typography sx={{border: '1px solid #f00', borderRadius: '10px', padding: '4px'}}>
 							<b>Bear market proof</b>. Pick this if you believe we are in a bear market.
@@ -160,11 +176,11 @@ export default function SellDialog(props){
 							</Box>
 							<Box display="flex" justifyContent='space-between' alignItems='center'>
 								<Typography p={1} variant="h6">Price:</Typography>
-								<Input p={1} onChange={(e) => setPrice(e.target.value)}/> USD
+								<Input p={1} onChange={(e) => setPrice(e.target.value)}/> {getCurrencyName()}
 							</Box>
 							<Box display="flex" justifyContent='space-between' alignItems='center'>
 								<Typography p={1} variant="h6">ServiceFee:</Typography>
-								<Typography p={1} variant="body1">{servicePrice} USD</Typography>
+								<Typography p={1} variant="body1">{servicePrice} {getCurrencyName()}</Typography>
 							</Box>
 							<Box display="flex" justifyContent='space-between' alignItems='center'>
 								<Typography p={1} variant="h6">ListType:</Typography>
@@ -205,11 +221,12 @@ export default function SellDialog(props){
 			open={showSellProgressDlg}
 			handleOpenDialog={setShowSellProgressDlg}
 			token={token}
-			usdPrice={price}
+			price={price}
 			assets={assets}
 			isStableCoin={isStableCoin}
 			auctionEndTime={auctionEndTime}
 			sellType={listType}
+			baseCurrency={baseCurrency}
 		/>
 	])
 }

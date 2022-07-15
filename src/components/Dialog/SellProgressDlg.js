@@ -56,11 +56,12 @@ export default function SellProgressDlg({
     open,
     handleOpenDialog,
     token,
-    usdPrice,
+    price,
     assets,
     sellType,
     isStableCoin,
-    auctionEndTime
+    auctionEndTime,
+    baseCurrency
 }) {
     const classes = useStyles();
 
@@ -99,11 +100,12 @@ export default function SellProgressDlg({
             await exchange.methods.list(
                 token.collectionAddress,
                 token.tokenID,
-                usdPrice,
+                Web3.utils.toWei(price + ''),
                 isStableCoin, 
                 assets,
                 sellType,
-                auctionEndTime
+                auctionEndTime,
+                baseCurrency
             ).send({ from: account });
 
             while (true) {

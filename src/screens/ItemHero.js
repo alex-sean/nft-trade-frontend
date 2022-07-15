@@ -13,7 +13,7 @@ import ItemTabs from '../components/ItemTabs';
 import { useLoadingContext } from '../hooks/useLoadingContext';
 import { getTokenDetail, getServiceFee, getlikeToken, likeToken } from '../adapters/backend';
 import { toast } from 'react-toastify';
-import { CATEGORY_NAMES_IN_ARRAY, LIST_TYPE, TOKEN_STATUS } from '../common/const';
+import { BASE_CURRENCY_TYPE, CATEGORY_NAMES_IN_ARRAY, LIST_TYPE, TOKEN_STATUS } from '../common/const';
 import { useWalletContext } from '../hooks/useWalletContext';
 import { getAssetName, getAssetPrices, getUSDPrice } from '../common/CommonUtils';
 import Web3 from 'web3';
@@ -121,7 +121,14 @@ export default function ItemHero(props){
 
   const getTokenPrice = () => {
     if (tokenInfo) {
-      return tokenInfo.token.price;
+      if (tokenInfo.token.listed) {
+        if (tokenInfo.token.baseCurrencyType === BASE_CURRENCY_TYPE.AVAX) {
+          return `${Web3.utils.fromWei(tokenInfo.token.avaxPrice + '')} AVAX`;
+        } else {
+          return `$ ${Web3.utils.fromWei(tokenInfo.token.usdPrice + '')}`;
+        }
+      }
+      return 0;
     } else {
       return 0;
     }
@@ -243,7 +250,7 @@ export default function ItemHero(props){
               (
                 <Box className={`${classes.displayFlex} ${classes.my8}`} >
                   {/* <Icon icon="logos:ethereum" rotate={2} hFlip={true} vFlip={true} /> */}
-                  <Typography ml={1} color="rgb(16 185 129)">$ {getTokenPrice()}</Typography>
+                  <Typography ml={1} color="rgb(16 185 129)">{getTokenPrice()}</Typography>
                   {
                     tokenInfo.token.listType === LIST_TYPE.AUCTION &&
                     (
