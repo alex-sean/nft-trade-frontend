@@ -55,14 +55,14 @@ export default function AccountMenu() {
         sx={{maxWidth: "230px"}}
       >
         <Box p={2} display="flex" alignItems="center">
-          <Typography noWrap>{account}</Typography>
+          <Typography noWrap sx={{marginTop: '4px'}}>{account}</Typography>
           <ContentCopyIcon onClick={handleCopyAddress}/>
         </Box>
         <Box mx={2} my={1} p={2} border={1} borderColor='lightgray' borderRadius={2}>
           <Typography variant='body1'>Balance</Typography>
           <Box mt={1} sx={{display:'flex', alignItems: 'center'}}>
             {/* <Icon icon="logos:ethereum" rotate={2} hFlip={true} vFlip={true} /> */}
-            <img src='../../images/chains/AVAX.png' style={{width: '18px'}}></img>
+            <img src='../../images/chains/AVAX.png' style={{width: '18px', marginBottom: '4px'}}></img>
             <Typography ml={1} color="rgb(16, 185, 129)">{balance.toFixed(4)} AVAX</Typography>
           </Box>
         </Box>

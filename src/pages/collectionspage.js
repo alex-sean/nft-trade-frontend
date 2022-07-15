@@ -64,6 +64,7 @@ export default function CollectionsPage(){
       getCollectionsByCategory();
     }
     setPageNum(0);
+    getCollectionsByCategory();
   }, [category, filter, sort])
 
   const handleSort = (event) => {

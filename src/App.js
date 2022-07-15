@@ -25,7 +25,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
-  const [darkMode, setDarkMode] = useState(window.localStorage.getItem('darkMode') === 'true');
+  const [darkMode, setDarkMode] = useState(window.localStorage.getItem('darkMode') !== 'false');
   const theme = createTheme({
     typography: {
       fontFamily: `CalSans-SemiBold, sans-serif`,

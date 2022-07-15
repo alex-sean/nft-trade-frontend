@@ -146,7 +146,7 @@ const ContactForm = () => {
                 minRows={6}
                 spellCheck
                 value={message}
-                className={classes.paperBackground}
+                className={`${classes.paperBackground} ${classes.darkText}`}
                 onChange={(e) => setMessage(e.target.value)}
                 style={{width: '100%'}}
               />
