@@ -61,6 +61,7 @@ export default function CollectionsPage(){
 
   useEffect(() => {
     setPageNum(0);
+    getCollectionsByCategory();
   }, [category, filter, sort])
 
   const handleSort = (event) => {
