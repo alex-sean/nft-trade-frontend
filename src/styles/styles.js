@@ -40,6 +40,9 @@ const styles = (theme) => {
     borderColor: {
       border: `solid 1px ${isDark ? 'rgb(54 58 93)' : 'rgb(231 232 236)'}`,
     },
+    pointerCursor: {
+      cursor: 'pointer'
+    },
 
     commonButton: {
       padding: '8px',
@@ -53,6 +56,7 @@ const styles = (theme) => {
       },
     },
     hoverShadow: {
+      cursor: 'pointer',
       '&:hover': {
         boxShadow: "0 0 transparent,0 0 transparent,0px 4px 6px -4px rgba(13,16,45,.1),0px 10px 15px -3px rgba(13,16,45,.1)",
       }
@@ -145,7 +149,8 @@ const styles = (theme) => {
       borderRadius:'1.25rem', 
       maxWidth: '230px', 
       padding: '1.1875rem',
-      margin: 'auto'
+      margin: 'auto',
+      cursor: 'pointer'
     },
     hotBidPrice: {
       fontSize: '.875rem',
