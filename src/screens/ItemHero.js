@@ -229,18 +229,18 @@ export default function ItemHero(props){
                   <CheckCircleIcon sx={{color: 'rgb(16, 185, 129)'}}/>
                 }
               </Box>
-              <Box className={`${classes.displayFlex}`} >
-                <Typography className={`${classes.displayFlex}`} sx={{border:'solid 1px grey', borderRadius:'10px', padding:'8px'}}>
+              {/* <Box className={`${classes.displayFlex}`} > */}
+                <Box className={`${classes.displayFlex}`} sx={{border:'solid 1px grey', borderRadius:'10px', padding:'8px'}}>
                   {
                     like?
                     <FavoriteIcon sx={{color: 'red'}} onClick={() => updateLike()}/>
                     :
                     <FavoriteBorderIcon onClick={() => updateLike()}/>
                   }
-                  {getLikes()}
-                </Typography>
+                  &nbsp;&nbsp;{getLikes()}
+                </Box>
                 {/* <ItemMenu /> */}
-              </Box>
+              {/* </Box> */}
             </Box>
             <Typography variant="h4" fontWeight={700} className={classes.title}>
               {getTokenName()}

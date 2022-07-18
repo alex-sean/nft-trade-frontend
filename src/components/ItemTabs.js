@@ -256,7 +256,7 @@ export default function ItemTabs(props) {
             properties.map((property, index) => {
               return (
                 <Grid item xs={6} md={3} key={index}>
-                  <Paper className={classes.hoverShadow} sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
+                  <Paper className={`${classes.hoverShadow} ${classes.dropdownMenu}`} sx={{borderRadius: '15px', padding: '16px'}}>
                     <Typography align='center' color="primary" variant='body1'>{property.name}</Typography>
                     <Typography align='center' variant='h6'>{property.value}</Typography>
                   </Paper>
