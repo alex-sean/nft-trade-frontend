@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, Menu, MenuItem, MenuList, Typography, Divider } from '@mui/material';
+import { Button, Menu, MenuItem, Typography, Divider } from '@mui/material';
 import useStyles from '../styles/styles';
 import ShareIcon from '@mui/icons-material/Share';
 import TwitterIcon from '@mui/icons-material/Twitter';
@@ -42,21 +42,19 @@ export default function CollectionPopup1() {
           'aria-labelledby': 'pages-button',
         }}
       >
-        <MenuList className={classes.dropdownMenu}>
-          <MenuItem onClick={handleClose}>
-            <TwitterIcon /> <Typography ml={1} className={classes.link}>Twitter</Typography>
-          </MenuItem>
-          <Divider />
-          <MenuItem onClick={handleClose}>
-            <RedditIcon /> <Typography ml={1} className={classes.link}>Discord</Typography>
-          </MenuItem>
-          <MenuItem onClick={handleClose}>
-            <EmailIcon /> <Typography ml={1} className={classes.link}>Email</Typography>
-          </MenuItem>
-          <MenuItem onClick={handleClose}>
-            <LinkIcon /> <Typography ml={1} className={classes.link}>Copy</Typography>
-          </MenuItem>
-        </MenuList>
+        <MenuItem className={classes.dropdownMenu} onClick={handleClose}>
+          <TwitterIcon /> <Typography ml={1} className={classes.link}>Twitter</Typography>
+        </MenuItem>
+        <Divider />
+        <MenuItem className={classes.dropdownMenu} onClick={handleClose}>
+          <RedditIcon /> <Typography ml={1} className={classes.link}>Discord</Typography>
+        </MenuItem>
+        <MenuItem className={classes.dropdownMenu} onClick={handleClose}>
+          <EmailIcon /> <Typography ml={1} className={classes.link}>Email</Typography>
+        </MenuItem>
+        <MenuItem className={classes.dropdownMenu} onClick={handleClose}>
+          <LinkIcon /> <Typography ml={1} className={classes.link}>Copy</Typography>
+        </MenuItem>
       </Menu>
     </div>
   );

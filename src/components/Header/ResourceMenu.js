@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link, Typography, Button, Menu, MenuItem, MenuList } from '@mui/material';
+import { Link, Typography, Button, Menu, MenuItem } from '@mui/material';
 import useStyles from '../../styles/styles';
 
 export default function PagesMenu() {
@@ -33,23 +33,21 @@ export default function PagesMenu() {
           'aria-labelledby': 'pages-button',
         }}
       >
-        <MenuList className={classes.dropdownMenu}>
-          <MenuItem onClick={handleClose}>
-            <Link href="/blog" underline="none" key="1">
-              <Typography className={classes.link}>Blog</Typography>
-            </Link>
-          </MenuItem>
-          <MenuItem onClick={handleClose}>
-            <Link href="/singlepost" underline="none" key="2">
-              <Typography className={classes.link}>Single Post</Typography>
-            </Link>
-          </MenuItem>
-          <MenuItem onClick={handleClose}>
-            <Link href="/newsletter" underline="none" key="4">
-              <Typography className={classes.link}>Newsletter</Typography>
-            </Link>
-          </MenuItem>
-        </MenuList>
+        <MenuItem className={classes.dropdownMenu} onClick={handleClose}>
+          <Link href="/blog" underline="none" key="1">
+            <Typography className={classes.link}>Blog</Typography>
+          </Link>
+        </MenuItem>
+        <MenuItem className={classes.dropdownMenu} onClick={handleClose}>
+          <Link href="/singlepost" underline="none" key="2">
+            <Typography className={classes.link}>Single Post</Typography>
+          </Link>
+        </MenuItem>
+        <MenuItem className={classes.dropdownMenu} onClick={handleClose}>
+          <Link href="/newsletter" underline="none" key="4">
+            <Typography className={classes.link}>Newsletter</Typography>
+          </Link>
+        </MenuItem>
       </Menu>
     </div>
   );
