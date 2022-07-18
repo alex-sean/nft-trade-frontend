@@ -9,7 +9,7 @@ import {
 import CloseIcon from '@mui/icons-material/Close';
 import PrimaryButton from '../Button/PrimaryButton';
 import useStyles from '../../styles/styles';
-import { ASSETS } from '../../common/const';
+import { ASSETS, BASE_CURRENCY_TYPE } from '../../common/const';
 import { useWalletContext } from '../../hooks/useWalletContext';
 import { useLoadingContext } from '../../hooks/useLoadingContext';
 import BEP20Price from '../../contracts/BEP20Price.json';
@@ -17,6 +17,7 @@ import { toast } from 'react-toastify';
 import BuyCoinProgressDlg from './BuyCoinProgressDlg';
 import BuyTokenProgressDlg from './BuyTokenProgressDlg';
 import { getTokenPrice } from '../../common/CommonUtils';
+import Web3 from 'web3';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
 	return <Slide direction="up" ref={ref} {...props} />;
@@ -67,8 +68,20 @@ export default function BuyFixedPriceTokenDlg(props){
 		setLoading(true);
 
 		try {
-			const rate = await getTokenPrice(web3, asset);
-			setPrice((token.price) * Math.pow(10, 18) / rate);
+			if (token.baseCurrencyType === BASE_CURRENCY_TYPE.AVAX && (asset === 'Native' || asset === ASSETS.AVAX)) {
+				setPrice(Web3.utils.fromWei(token.avaxPrice + ''));
+			} else if (token.baseCurrencyType === BASE_CURRENCY_TYPE.USD && asset === 'USDT') {
+				setPrice(Web3.utils.fromWei(token.usdPrice + ''));
+			} else {
+				if (token.baseCurrencyType === BASE_CURRENCY_TYPE.AVAX) {
+					const usdPrice = token.avaxPrice * (await getTokenPrice(web3, 'Native')) / Math.pow(10, 18);
+					const rate = await getTokenPrice(web3, asset);
+					setPrice(usdPrice / rate);
+				} else {
+					const rate = await getTokenPrice(web3, asset);
+					setPrice(token.usdPrice / rate);
+				}
+			}
 		} catch (err) {
 			console.log(err);
 			toast('Getting rate failed!');
@@ -99,6 +112,17 @@ export default function BuyFixedPriceTokenDlg(props){
 		}
 	}
 
+	const getUITokenPrice = () => {
+		if (!token || !token.listed) {
+			return 0;
+		}
+
+		if (token.baseCurrencyType === BASE_CURRENCY_TYPE.AVAX) {
+			return `${Web3.utils.fromWei(token.avaxPrice + '')} AVAX`;
+		}
+		return `${Web3.utils.fromWei(token.usdPrice + '')} USD`;
+	}
+
 	return ([
 		<Dialog
 			borderRadius={5}
@@ -122,12 +146,12 @@ export default function BuyFixedPriceTokenDlg(props){
 							</Box>
 							<Box display="flex" justifyContent='space-between' alignItems='center'>
 								<Typography p={1} variant="h6">Price:</Typography>
-								<Typography p={1} variant="body1">{token? `${token.price} USD`: '0 USD'}</Typography>
+								<Typography p={1} variant="body1">{getUITokenPrice()}</Typography>
 							</Box>
 							<Box display="flex" justifyContent='space-between' alignItems='center'>
 								<Box display="flex" justifyContent='space-between' alignItems='center'>
 									<Typography p={2} variant="h6">Amount:</Typography>
-									<Input p={1} sx="width: 50px" inputProps={{min: 0, style: { textAlign: 'center' }}} value={price.toFixed(4)} disabled/>
+									<Input p={1} sx="width: 50px" inputProps={{min: 0, style: { textAlign: 'center' }}} value={parseFloat(price).toFixed(4)} disabled/>
 								</Box>
 								<Select sx={{paddingRight: '16px'}} value={asset} onChange={e => {setAsset(e.target.value)}}>
 									{
@@ -147,7 +171,7 @@ export default function BuyFixedPriceTokenDlg(props){
 				<PrimaryButton text='Buy' onClick={handleOpenProgressDlg}/>
 			</DialogActions>
 		</Dialog>,
-		<BuyCoinProgressDlg open={showCoinDlg} handleOpenDialog={setShowCoinDlg} token={token} amount={price.toFixed(4)}/>,
-		<BuyTokenProgressDlg open={showTokenDlg} handleOpenDialog={setShowTokenDlg} token={token} asset={asset} amount={price.toFixed(4)} />
+		<BuyCoinProgressDlg open={showCoinDlg} handleOpenDialog={setShowCoinDlg} token={token} amount={parseFloat(price).toFixed(4)}/>,
+		<BuyTokenProgressDlg open={showTokenDlg} handleOpenDialog={setShowTokenDlg} token={token} asset={asset} amount={parseFloat(price).toFixed(4)} />
 	])
 }

@@ -12,6 +12,8 @@ import useStyles from '../../styles/styles';
 import { getAssetName, getUSDPrice } from '../../common/CommonUtils';
 import { toast } from 'react-toastify';
 import BidProgressDlg from './BidProgressDlg';
+import { BASE_CURRENCY_TYPE } from '../../common/const';
+import Web3 from 'web3';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
 	return <Slide direction="up" ref={ref} {...props} />;
@@ -74,6 +76,16 @@ export default function BidDialog(props){
 		setShowBidProgressDlg(true);
 	}
 
+	const getMiniumPrice = () => {
+		if (!token) return;
+		
+		if (token.baseCurrencyType === BASE_CURRENCY_TYPE.AVAX) {
+			return `$ ${getUSDPrice(rates, parseFloat(Web3.utils.fromWei(token.avaxPrice + '')), 'Native')}`;
+		} else {
+			return `$ ${Web3.utils.fromWei(token.usdPrice + '')}`;
+		}
+	}
+
 	return (
 		[
 			<Dialog
@@ -121,7 +133,7 @@ export default function BidDialog(props){
 						<Box display="flex" justifyContent='space-between' alignItems='center'>
 							<Box display="flex" justifyContent='space-between' alignItems='center'>
 								<Typography p={2} variant="h6">Minium Price:</Typography>
-								<Typography p={1} variant="body1">$ {token? token.price: 0}</Typography>
+								<Typography p={1} variant="body1">{getMiniumPrice()}</Typography>
 							</Box>
 							<Box />
 						</Box>

@@ -13,8 +13,12 @@ export async function snooze(ms) {
 export function getAssetName(asset) {
     const assetNames = Object.keys(ASSETS);
 
+    if (!asset) {
+        return asset;
+    }
+
     for (let i in assetNames) {
-        if (ASSETS[assetNames[i]] === asset) {
+        if (ASSETS[assetNames[i]] === asset.toLowerCase()) {
             return assetNames[i];
         }
     }
