@@ -117,3 +117,7 @@ code {
   align-items: unset;
   font-size: large;
 }
+
+ul.MuiList-padding {
+  padding: 0 !important;
+}

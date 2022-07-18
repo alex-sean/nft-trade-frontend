@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button } from '@mui/material';
+import { Button, MenuList } from '@mui/material';
 import useStyles from '../styles/styles';
 import Menu, { MenuProps } from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -92,15 +92,17 @@ function CollectionMenu(props) {
         open={open}
         onClose={() => handleClose()}
       >
-        <MenuItem onClick={() => handleClose(getPastTimeStamp(1), 'Last 24 hours')} disableRipple className={classes.collectionMenuItem}>
-          Last 24 hours
-        </MenuItem>
-        <MenuItem onClick={() => handleClose(getPastTimeStamp(7), 'Last 7 days')} disableRipple className={classes.collectionMenuItem}>
-          Last 7 days
-        </MenuItem>
-        <MenuItem onClick={() => handleClose(getPastTimeStamp(30), 'Last 30 days')} disableRipple className={classes.collectionMenuItem}>
-          Last 30 days
-        </MenuItem>
+        <MenuList className={classes.dropdownMenu}>
+          <MenuItem onClick={() => handleClose(getPastTimeStamp(1), 'Last 24 hours')} disableRipple className={classes.collectionMenuItem}>
+            Last 24 hours
+          </MenuItem>
+          <MenuItem onClick={() => handleClose(getPastTimeStamp(7), 'Last 7 days')} disableRipple className={classes.collectionMenuItem}>
+            Last 7 days
+          </MenuItem>
+          <MenuItem onClick={() => handleClose(getPastTimeStamp(30), 'Last 30 days')} disableRipple className={classes.collectionMenuItem}>
+            Last 30 days
+          </MenuItem>
+        </MenuList>
       </StyledMenu>
     </div>
   );

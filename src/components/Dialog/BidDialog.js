@@ -105,7 +105,7 @@ export default function BidDialog(props){
 								{
 									Object.keys(assets).map((name, index) => {
 										return (
-											<MenuItem value={assets[name]} key={index}>{name}</MenuItem>
+											<MenuItem className={classes.dropdownMenu} value={assets[name]} key={index}>{name}</MenuItem>
 										)
 									})
 								}

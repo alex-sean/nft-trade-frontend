@@ -72,7 +72,7 @@ export default function OfferDialog(props){
 							{
 								Object.keys(ASSETS).map((asset, index) => {
 									return (
-										<MenuItem value={ASSETS[asset]} index={index}>{asset}</MenuItem>
+										<MenuItem className={classes.dropdownMenu} value={ASSETS[asset]} index={index}>{asset}</MenuItem>
 									)	
 								})
 							}

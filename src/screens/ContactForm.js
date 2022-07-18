@@ -128,13 +128,13 @@ const ContactForm = () => {
                   onChange={e => setType(e.target.value)}
                   inputProps={{ 'aria-label': 'Without label' }}
                 >
-                <MenuItem value="">
-                  <em>None</em>
+                <MenuItem className={classes.dropdownMenu} value="">
+                  None
                 </MenuItem>
-                <MenuItem value={1}>Create</MenuItem>
-                <MenuItem value={2}>Verify</MenuItem>
-                <MenuItem value={3}>List/Bid</MenuItem>
-                <MenuItem value={4}>Offer</MenuItem>
+                <MenuItem className={classes.dropdownMenu} value={1}>Create</MenuItem>
+                <MenuItem className={classes.dropdownMenu} value={2}>Verify</MenuItem>
+                <MenuItem className={classes.dropdownMenu} value={3}>List/Bid</MenuItem>
+                <MenuItem className={classes.dropdownMenu} value={4}>Offer</MenuItem>
               </Select>
 
               <InputLabel htmlFor="message" sx={{marginTop: '20px', fontWeight: '700'}}>

@@ -321,11 +321,11 @@ export default function AccountPage(){
               inputProps={{ 'aria-label': 'Without label' }}
               sx={{width: '180px', padding: "0"}}
             >
-              <MenuItem value="">
-                <em>Recently Added</em>
+              <MenuItem className={classes.dropdownMenu} value="">
+                Recently Added
               </MenuItem>
-              <MenuItem value={10}>Top</MenuItem>
-              <MenuItem value={20}>Recent</MenuItem>
+              <MenuItem className={classes.dropdownMenu} value={10}>Top</MenuItem>
+              <MenuItem className={classes.dropdownMenu} value={20}>Recent</MenuItem>
             </Select>
           </Grid>
         </Grid>
@@ -357,11 +357,11 @@ export default function AccountPage(){
               inputProps={{ 'aria-label': 'Without label' }}
               sx={{width: '180px', padding: "0"}}
             >
-              <MenuItem value="">
-                <em>Recently Added</em>
+              <MenuItem className={classes.dropdownMenu} value="">
+                Recently Added
               </MenuItem>
-              <MenuItem value={10}>Top</MenuItem>
-              <MenuItem value={20}>Recent</MenuItem>
+              <MenuItem className={classes.dropdownMenu} value={10}>Top</MenuItem>
+              <MenuItem className={classes.dropdownMenu} value={20}>Recent</MenuItem>
             </Select>
           </Grid>
         </Grid>
@@ -392,11 +392,11 @@ export default function AccountPage(){
               inputProps={{ 'aria-label': 'Without label' }}
               sx={{width: '180px', padding: "0"}}
             >
-              <MenuItem value="">
-                <em>Recently Added</em>
+              <MenuItem className={classes.dropdownMenu} value="">
+                Recently Added
               </MenuItem>
-              <MenuItem value={10}>Top</MenuItem>
-              <MenuItem value={20}>Recent</MenuItem>
+              <MenuItem className={classes.dropdownMenu} value={10}>Top</MenuItem>
+              <MenuItem className={classes.dropdownMenu} value={20}>Recent</MenuItem>
             </Select>
           </Grid>
         </Grid>

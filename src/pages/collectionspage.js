@@ -85,9 +85,9 @@ export default function CollectionsPage(){
               inputProps={{ 'aria-label': 'Without label' }}
               sx={{width: '180px', padding: "0"}}
             >
-              <MenuItem value={1}>Verified</MenuItem>
-              <MenuItem value={2}>Recent</MenuItem>
-              <MenuItem value={3}>Price</MenuItem>
+              <MenuItem className={classes.dropdownMenu} value={1}>Verified</MenuItem>
+              <MenuItem className={classes.dropdownMenu} value={2}>Recent</MenuItem>
+              <MenuItem className={classes.dropdownMenu} value={3}>Price</MenuItem>
             </Select>
           </Grid>
         </Grid>

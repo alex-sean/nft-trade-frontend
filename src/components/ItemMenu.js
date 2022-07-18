@@ -1,10 +1,6 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import { Link, Typography } from '@mui/material';
+import { Typography, Divider, Button, Menu, MenuItem, MenuList } from '@mui/material';
 import useStyles from '../styles/styles';
-import Divider from '@mui/material/Divider';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 export default function ItemMenu() {
@@ -39,19 +35,21 @@ export default function ItemMenu() {
           'aria-labelledby': 'pages-button',
         }}
       >
-        <MenuItem onClick={handleClose}>
-          <Typography className={classes.link}>New bid</Typography>
-        </MenuItem>
-        <Divider />
-        <MenuItem onClick={handleClose}>
-          <Typography className={classes.link}>Refresh Metadata</Typography>
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <Typography className={classes.link}>Share</Typography>
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <Typography className={classes.link}>Report</Typography>
-        </MenuItem>
+        <MenuList className={classes.dropdownMenu}>
+          <MenuItem onClick={handleClose}>
+            <Typography className={classes.link}>New bid</Typography>
+          </MenuItem>
+          <Divider />
+          <MenuItem onClick={handleClose}>
+            <Typography className={classes.link}>Refresh Metadata</Typography>
+          </MenuItem>
+          <MenuItem onClick={handleClose}>
+            <Typography className={classes.link}>Share</Typography>
+          </MenuItem>
+          <MenuItem onClick={handleClose}>
+            <Typography className={classes.link}>Report</Typography>
+          </MenuItem>
+        </MenuList>
       </Menu>
     </div>
   );

@@ -441,6 +441,12 @@ const styles = (theme) => {
     },
     searchInput: {
       width: '100% !important'
+    },
+    dropdownMenu: {
+      background: `${isDark ? 'rgb(16 20 54)' : '#fff'}`,
+      '&:hover': {
+        backgroundColor: 'rgba(130, 88, 255, 0.2)',
+      }
     }
   };
 };
