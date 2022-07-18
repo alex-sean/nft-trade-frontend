@@ -135,7 +135,7 @@ export default function ItemTabs(props) {
   const getActivityPrice = (activity) => {
     if (activity.amount) {
       if (activity.asset === 'USD') {
-        return `$ ${activity.amount.toFixed(2)}`;
+        return `$ ${parseFloat(Web3.utils.fromWei(activity.amount + '')).toFixed(2)}`;
       } else {
         return `${parseFloat(Web3.utils.fromWei(activity.amount + '')).toFixed(4)} ${getAssetName(activity.asset)}`;
       }

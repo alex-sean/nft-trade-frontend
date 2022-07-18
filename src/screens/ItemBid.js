@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Grid, Typography, Box, Divider, Button, Card, CardActions, CardContent } from '@mui/material';
 import useStyles from '../styles/styles';
 import { Icon } from '@iconify/react';
-import { LIST_TYPE } from '../common/const';
+import { BASE_CURRENCY_TYPE, LIST_TYPE } from '../common/const';
 import { useWalletContext } from '../hooks/useWalletContext';
 import SellDialog from '../components/Dialog/SellDialog';
 import OfferDialog from '../components/Dialog/OfferDialog';
@@ -230,7 +230,15 @@ export default function ItemBid(props) {
 
   const getHighestBidUSDAmount = () => {
     if (highestBidIndex === -1) {
-      return `$ ${tokenInfo.token.price}`;
+      if (tokenInfo) {
+        if (tokenInfo.token.listed) {
+          if (tokenInfo.token.baseCurrencyType === BASE_CURRENCY_TYPE.AVAX) {
+            return `$ ${Web3.utils.fromWei(tokenInfo.token.avaxPrice + '')} AVAX`;
+          } else {
+            return `$ ${Web3.utils.fromWei(tokenInfo.token.usdPrice + '')}`;
+          }
+        }
+      }
     } else {
       return `$ ${getUSDPrice(rates, Web3.utils.fromWei(tokenInfo.orders[highestBidIndex].amount + ''), getAssetName(tokenInfo.orders[highestBidIndex].asset))}`
     }
