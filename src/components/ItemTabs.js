@@ -256,7 +256,7 @@ export default function ItemTabs(props) {
             properties.map((property, index) => {
               return (
                 <Grid item xs={6} md={3} key={index}>
-                  <Paper className={classes.hoverShadow} sx={{borderRadius: '15px', background: 'rgb(245, 248, 250)', padding: '16px'}}>
+                  <Paper className={`${classes.hoverShadow} ${classes.dropdownMenu}`} sx={{borderRadius: '15px', padding: '16px'}}>
                     <Typography align='center' color="primary" variant='body1'>{property.name}</Typography>
                     <Typography align='center' variant='h6'>{property.value}</Typography>
                   </Paper>
@@ -356,8 +356,10 @@ export default function ItemTabs(props) {
                   key={activity.objectId}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
-                  <TableCell component="th" scope="row" align="center">
-                    {getActivityIcon(activity.type)}{getActivityEvent(activity.type)}
+                  <TableCell component="th" scope="row" align="center" alignItems="flex-end">
+                    <Box display='flex' alignItems='flex-end' justifyContent='center'>
+                      {getActivityIcon(activity.type)}{getActivityEvent(activity.type)}
+                    </Box>
                   </TableCell>
                   <TableCell align="center">{getActivityPrice(activity)}</TableCell>
                   <TableCell align="center"><Link href={`/account/${activity.operator}`}>{activity.Operator && activity.Operator.length > 0? activity.Operator[0].name: activity.operator.slice(0, 13)}</Link></TableCell>

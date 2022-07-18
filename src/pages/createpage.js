@@ -330,7 +330,7 @@ export default function CreatePage(){
             inputProps={{ 'aria-label': 'Without label' }}
           >
           <MenuItem value="">
-            <em>Ethereum</em>
+            Ethereum
           </MenuItem>
           <MenuItem value={20}>Flow</MenuItem>
           <MenuItem value={30}>FUSD</MenuItem>

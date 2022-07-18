@@ -28,11 +28,11 @@ export default function CollectionsFilter(){
           inputProps={{ 'aria-label': 'Without label' }}
           sx={{width: '120px', padding: "0"}}
         >
-          <MenuItem value="">
-            <em>Trending</em>
+          <MenuItem className={classes.dropdownMenu} value="">
+            Trending
           </MenuItem>
-          <MenuItem value={10}>Top</MenuItem>
-          <MenuItem value={20}>Recent</MenuItem>
+          <MenuItem className={classes.dropdownMenu} value={10}>Top</MenuItem>
+          <MenuItem className={classes.dropdownMenu} value={20}>Recent</MenuItem>
         </Select>
       </Grid>
     </Grid>

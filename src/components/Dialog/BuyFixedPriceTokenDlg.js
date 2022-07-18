@@ -157,7 +157,7 @@ export default function BuyFixedPriceTokenDlg(props){
 									{
 										Object.keys(assets).map((asset, index) => {
 											return (
-												<MenuItem value={assets[asset]} index={index}>{asset}</MenuItem>
+												<MenuItem className={classes.dropdownMenu} value={assets[asset]} index={index}>{asset}</MenuItem>
 											)	
 										})
 									}

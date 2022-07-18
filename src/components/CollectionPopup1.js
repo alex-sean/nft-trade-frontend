@@ -1,10 +1,6 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import { Typography } from '@mui/material';
+import { Button, Menu, MenuItem, Typography, Divider } from '@mui/material';
 import useStyles from '../styles/styles';
-import Divider from '@mui/material/Divider';
 import ShareIcon from '@mui/icons-material/Share';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import RedditIcon from '@mui/icons-material/Reddit';
@@ -46,17 +42,17 @@ export default function CollectionPopup1() {
           'aria-labelledby': 'pages-button',
         }}
       >
-        <MenuItem onClick={handleClose}>
+        <MenuItem className={classes.dropdownMenu} onClick={handleClose}>
           <TwitterIcon /> <Typography ml={1} className={classes.link}>Twitter</Typography>
         </MenuItem>
         <Divider />
-        <MenuItem onClick={handleClose}>
+        <MenuItem className={classes.dropdownMenu} onClick={handleClose}>
           <RedditIcon /> <Typography ml={1} className={classes.link}>Discord</Typography>
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem className={classes.dropdownMenu} onClick={handleClose}>
           <EmailIcon /> <Typography ml={1} className={classes.link}>Email</Typography>
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem className={classes.dropdownMenu} onClick={handleClose}>
           <LinkIcon /> <Typography ml={1} className={classes.link}>Copy</Typography>
         </MenuItem>
       </Menu>

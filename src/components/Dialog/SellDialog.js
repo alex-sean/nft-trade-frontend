@@ -185,8 +185,8 @@ export default function SellDialog(props){
 							<Box display="flex" justifyContent='space-between' alignItems='center'>
 								<Typography p={1} variant="h6">ListType:</Typography>
 								<Select sx={{paddingRight: '16px'}}  defaultValue={LIST_TYPE.FIXED_PRICE} value={listType} onChange={handleListType}>
-              						<MenuItem value={LIST_TYPE.AUCTION}>Auction</MenuItem>
-              						<MenuItem value={LIST_TYPE.FIXED_PRICE}>Fixed Price</MenuItem>
+              						<MenuItem className={classes.dropdownMenu} value={LIST_TYPE.AUCTION}>Auction</MenuItem>
+              						<MenuItem className={classes.dropdownMenu} value={LIST_TYPE.FIXED_PRICE}>Fixed Price</MenuItem>
 								</Select>
 							</Box>
 							

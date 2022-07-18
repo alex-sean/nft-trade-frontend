@@ -112,7 +112,7 @@ export default function ActivityPage(){
                     onChange={handleFilter}
                     aria-label="Filter">
                   <ToggleButton value="5" aria-label="Purchases">
-                    <FavoriteIcon />Like
+                    <FavoriteIcon />&nbsp;&nbsp;Like
                   </ToggleButton>
                 </ToggleButtonGroup>
               </Grid>
