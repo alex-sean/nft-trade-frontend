@@ -356,8 +356,10 @@ export default function ItemTabs(props) {
                   key={activity.objectId}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
-                  <TableCell component="th" scope="row" align="center">
-                    {getActivityIcon(activity.type)}{getActivityEvent(activity.type)}
+                  <TableCell component="th" scope="row" align="center" alignItems="flex-end">
+                    <Box display='flex' alignItems='flex-end' justifyContent='center'>
+                      {getActivityIcon(activity.type)}{getActivityEvent(activity.type)}
+                    </Box>
                   </TableCell>
                   <TableCell align="center">{getActivityPrice(activity)}</TableCell>
                   <TableCell align="center"><Link href={`/account/${activity.operator}`}>{activity.Operator && activity.Operator.length > 0? activity.Operator[0].name: activity.operator.slice(0, 13)}</Link></TableCell>
