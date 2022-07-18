@@ -193,8 +193,8 @@ export default function SellDialog(props){
 							{ listType == LIST_TYPE.AUCTION && (
 								<Box display="flex" justifyContent='space-between' alignItems='center'>
 									<Typography p={1} variant="h6">End date:</Typography>
-									<input type="date"
-										style={{height: '40px', fontSize: 'large', fontWeight: '700', border: '1px solid #bbb', borderRadius: '4px', padding: '4px'}} onChange={(e) => handleAuctionTimeChanged(e.target.value)}/>
+									<input type="date" onChange={(e) => handleAuctionTimeChanged(e.target.value)}
+										style={{height: '40px', fontSize: 'large', fontWeight: '700', border: '1px solid #bbb', borderRadius: '4px', padding: '4px', background: 'transparent', color: `${isDark ? '#fff' : '#000'}`}}/>
 								</Box>
 							)}
 						</Box>
