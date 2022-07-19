@@ -5,6 +5,7 @@ import useStyles from '../styles/styles';
 import { Icon } from '@iconify/react';
 import { getAssetName } from '../common/CommonUtils';
 import Web3 from 'web3';
+import { BASE_CURRENCY_TYPE } from '../common/const';
 
 export default function HotbidItem(props) {
   const { item } = props;
@@ -25,6 +26,16 @@ export default function HotbidItem(props) {
       return 'USD';
     }
   }
+
+  const getItemPrice = () => {
+    if (item.baseCurrencyType === BASE_CURRENCY_TYPE.USD) {
+      return `$ ${Web3.utils.fromWei(item.usdPrice + '')}`;
+    } else if (item.baseCurrencyType === BASE_CURRENCY_TYPE.AVAX) {
+      return `${Web3.utils.fromWei(item.avaxPrice + '')} AVAX`;
+    }
+
+    return '';
+  }
   
   return (
     <Box className={`${classes.hotBidItem} ${classes.hoverShadow}`} onClick={() => document.location.href=`/item/${item.collectionAddress}/${item.tokenID}`}>
@@ -33,7 +44,7 @@ export default function HotbidItem(props) {
         <Typography variant="h6">{`${item.name} #${item.tokenID}`}</Typography>
         <Box sx={{display:'flex', justifyContent: 'space-between', alignItems: 'center', border: "solid 1px rgb(54, 58, 93)", borderRadius: '8px', padding: '4px 8px 4px 8px'}}>
           {/* <Icon icon="logos:ethereum" rotate={2} hFlip={true} vFlip={true} sx={{margin: '2px'}}/> */}
-          <Typography color="rgb(16, 185, 129)" className={classes.hotBidPrice}>{`$ ${item.price}`}</Typography>
+          <Typography color="rgb(16, 185, 129)" className={classes.hotBidPrice}>{getItemPrice()}</Typography>
         </Box>
       </Box>
       <Typography className={classes.hotBidSubtitle}>{`${getBidAmountString()} ${getBidAssetString()}`}</Typography>
