@@ -118,7 +118,7 @@ export default function CollectionHero(props){
               <Box sx={{width: '95px'}}>
                 <Box className={`${classes.displayFlex} ${classes.justifyCenter}`}>
                   {/* <Icon icon="logos:ethereum" rotate={2} hFlip={true} vFlip={true} /> */}
-                  <Typography className={classes.darkText} ml={1} variant="h6">$ {collection? collection.floorPrice: 0}</Typography>
+                  <Typography className={classes.darkText} ml={1} variant="h6">$ {collection? parseFloat(Web3.utils.fromWei(collection.floorPrice + '')).toFixed(2): 0}</Typography>
                 </Box>
                 <Typography variant="body2">Floor Price</Typography>
               </Box>
