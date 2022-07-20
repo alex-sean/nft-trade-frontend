@@ -241,3 +241,9 @@ export const getPartners = async (limit, offset) => {
 export const decodeBase64 = code => {
     return Utf8.stringify(Base64.parse(code))
 }
+
+export const subscribe = async (email) => {
+    let params = new FormData();
+    params.append('email', email);
+    return await post('/subscribe', params);
+}
