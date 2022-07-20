@@ -5,9 +5,32 @@ import CardItem from '../components/CardItem'
 import HomeFilter from './HomeFilter';
 import CollectionItem from '../components/CollectionItem';
 import CollectionsCard from '../components/CollectionsCard';
+import { useLoadingContext } from '../hooks/useLoadingContext';
+import { toast } from 'react-toastify';
+import { getFeaturedCollections } from '../adapters/backend';
 
 const Category = ({ items, setItems }) => {
   const classes = useStyles();
+
+  const { setLoading } = useLoadingContext();
+
+  const getItems = async (category, sort, verify) => {
+    setLoading(true);
+
+    try {
+      let collections = await getFeaturedCollections(category, sort, verify);
+      if (!collections) {
+        throw new Error('Getting collections failed.');
+      }
+
+      setItems(collections.data.collections);
+    } catch (err) {
+      console.log(err);
+      toast('Getting collections failed.');
+    }
+
+    setLoading(false);
+  }
 
   return (
     <Box py={5} sx={{ flexGrow: 1, minHeight: '400px'}}>
@@ -16,7 +39,7 @@ const Category = ({ items, setItems }) => {
         <Typography variant="h4" className={classes.trendingTitle}>Featured Collections</Typography>
       </Box>
       <Container maxWidth="lg">
-        <HomeFilter />
+        <HomeFilter getItems={getItems}/>
         <Grid container className={classes.sectionGridContainer} spacing={4}>
           {items.map((item) => (
             <Grid

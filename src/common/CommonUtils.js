@@ -1,4 +1,4 @@
-import { ACTIVITY_TYPE, ASSETS } from './const';
+import { ACTIVITY_TYPE, ASSETS, SORT_TOKEN } from './const';
 import BEP20Price from '../contracts/BEP20Price.json';
 import DiscountIcon from '@mui/icons-material/Discount';
 import GavelIcon from '@mui/icons-material/Gavel';
@@ -145,4 +145,17 @@ export function formatDate(date) {
         padTo2Digits(date.getSeconds()),
       ].join(':')
     );
-  }
+}
+
+export function getSortString(sort) {
+    switch (sort) {
+        case SORT_TOKEN.RECENT:
+            return 'Recently Added';
+        case SORT_TOKEN.PRICE_HIGH_TO_LOW:
+            return 'Price:High to Low';
+        case SORT_TOKEN.PRICE_LOW_TO_HIGH:
+            return 'Price:Low to High';
+        case SORT_TOKEN.AUCTION:
+            return 'Auction ending soon';
+    }
+}

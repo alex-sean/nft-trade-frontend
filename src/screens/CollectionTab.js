@@ -26,7 +26,7 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { getCollectionPrices } from '../adapters/backend';
 import CategoryFilter from './CategoryFilter';
-import Dropdown from '../components/Dropdown';
+import TokenDropdown from '../components/TokenDropdown';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -120,7 +120,7 @@ export default function CollectionTab(props) {
         <Grid container direction="row" justifyContent="space-between" alignItems="flex-start">
           <CategoryFilter category={filter} setCategory={setFilter}/>
           <Grid item mb={2}>
-            <Dropdown />
+            <TokenDropdown />
           </Grid>
         </Grid>
 

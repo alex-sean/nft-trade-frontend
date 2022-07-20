@@ -76,3 +76,10 @@ export const USER_STATUS = {
     VERIFIED: 1,
     REJECTED: 2
 }
+
+export const SORT_TOKEN = {
+    RECENT: 0,
+    PRICE_LOW_TO_HIGH: 1,
+    PRICE_HIGH_TO_LOW: 2,
+    AUCTION: 3
+}

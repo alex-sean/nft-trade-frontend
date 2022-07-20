@@ -8,7 +8,7 @@ import { useLoadingContext } from '../hooks/useLoadingContext';
 import { getFeaturedCollections, getHotBidItems, getPopularCollections } from "../adapters/backend";
 import { toast } from 'react-toastify';
 import { getPastTimeStamp } from "../common/CommonUtils";
-import { CATEGORIES } from "../common/const";
+import { CATEGORIES, SORT_TOKEN } from "../common/const";
 
 export default function Home(){
   const { setLoading } = useLoadingContext();
@@ -34,7 +34,7 @@ export default function Home(){
       }
       setPopularCollections(popularCollections.data.collections);
 
-      let featuredCollections = await getFeaturedCollections(0);
+      let featuredCollections = await getFeaturedCollections(0, SORT_TOKEN.RECENT, false);
       if (!featuredCollections) {
         throw new Error('Getting featured collections failed.');
       }

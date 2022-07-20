@@ -182,8 +182,8 @@ export const getPopularCollections = async (from) => {
     return await get(`/token/get_popular_collections?from=${from}`);
 }
 
-export const getFeaturedCollections = async (category) => {
-    return await get(`/token/get_featured_collections?category=${category}`);
+export const getFeaturedCollections = async (category, sort, verify) => {
+    return await get(`/token/get_featured_collections?category=${category}&sort=${sort}&verify=${verify}`);
 }
 
 export const getCollectionPrices = async (collectionAddress) => {
