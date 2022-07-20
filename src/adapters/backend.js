@@ -218,8 +218,8 @@ export const getCollectionDetail = async (address) => {
     return await get(`/token/collection_detail?address=${address}`);
 }
 
-export const getTokensByCollection = async (address) => {
-    return await get(`/token/get_by_collection?address=${address}`);
+export const getTokensByCollection = async (address, sort, avaxListed, usdListed) => {
+    return await get(`/token/get_by_collection?address=${address}&sort=${sort}&avaxListed=${avaxListed}&usdListed=${usdListed}`);
 }
 
 export const getTokenDetail = async (collectionAddress, tokenID) => {

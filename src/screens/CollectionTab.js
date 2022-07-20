@@ -1,32 +1,25 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Typography, Box, Container, Tabs, Tab, Button, Select, MenuItem, Grid, Divider } from '@mui/material';
 import useStyles from '../styles/styles';
 import StackedLineChartIcon from '@mui/icons-material/StackedLineChart';
 import QrCodeIcon from '@mui/icons-material/QrCode';
-import PaletteIcon from '@mui/icons-material/Palette';
-import LinkedCameraIcon from '@mui/icons-material/LinkedCamera';
-import MusicNoteIcon from '@mui/icons-material/MusicNote';
-import FormatShapesIcon from '@mui/icons-material/FormatShapes';
-import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import CardItem from '../components/CardItem';
 import ActivityItemList from '../components/ActivityItemList'
-import Search from '../components/Header/Search';
-import SearchIconWrapper from '../components/Header/Search/SearchIconWrapper';
-import StyledInputBase from '../components/Header/Search/StyledInputBase';
-import SearchIcon from '@mui/icons-material/Search';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import DiscountIcon from '@mui/icons-material/Discount';
 import ImportExportIcon from '@mui/icons-material/ImportExport';
 import GavelIcon from '@mui/icons-material/Gavel';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import Graph from '../components/Graph';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import { getCollectionPrices } from '../adapters/backend';
+import { getCollectionPrices, getTokensByCollection } from '../adapters/backend';
 import CategoryFilter from './CategoryFilter';
 import TokenDropdown from '../components/TokenDropdown';
+import { useLoadingContext } from '../hooks/useLoadingContext';
+import { toast } from 'react-toastify';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -85,11 +78,16 @@ const TAB = {
 
 export default function CollectionTab(props) {
   const classes = useStyles();
+
+  const { collectionAddress } = useParams();
+
   const [tab, setTab] = React.useState(TAB.ITEMS);
   const [filter, setFilter] = React.useState(0);
   const [sort, setSort] = React.useState(SORT_TYPE.PRICE);
 
-  const { tokens, prices } = props;
+  const { tokens, setTokens, prices } = props;
+
+  const { setLoading } = useLoadingContext();
 
   const handleFilter = (event, newFilter) => {
     if (!newFilter)
@@ -104,6 +102,24 @@ export default function CollectionTab(props) {
   const handleSort = (event) => {
     setSort(event.target.value);
   };
+
+  const getTokens = async (sort, avaxListed, usdListed) => {
+    setLoading(true);
+
+    try {
+      const result = await getTokensByCollection(collectionAddress, sort, avaxListed, usdListed);
+      if (!result) {
+        throw new Error('Getting tokens failed.');
+      }
+
+      setTokens(result.data.tokens);
+    } catch (err) {
+      console.log(err);
+      toast('Getting tokens failed');
+    }
+
+    setLoading(false);
+  }
 
   return (
     <Container maxWidth="lg">
@@ -120,7 +136,7 @@ export default function CollectionTab(props) {
         <Grid container direction="row" justifyContent="space-between" alignItems="flex-start">
           <CategoryFilter category={filter} setCategory={setFilter}/>
           <Grid item mb={2}>
-            <TokenDropdown />
+            <TokenDropdown getItems={getTokens}/>
           </Grid>
         </Grid>
 

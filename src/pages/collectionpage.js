@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { useLoadingContext } from '../hooks/useLoadingContext';
 import { getCollectionDetail, getCollectionPrices, getTokensByCollection } from '../adapters/backend';
 import { toast } from 'react-toastify';
+import { SORT_TOKEN } from '../common/const';
 
 export default function CollectionPage(){
   const { collectionAddress } = useParams();
@@ -27,7 +28,7 @@ export default function CollectionPage(){
         setCollectionInfo(collectionInfo.data.collection);
       }
 
-      let tokens = await getTokensByCollection(collectionAddress);
+      let tokens = await getTokensByCollection(collectionAddress, SORT_TOKEN.PRICE_HIGH_TO_LOW, false, false);
       if (!tokens) {
         throw new Error('Getting User information failed.');
       }
@@ -59,7 +60,7 @@ export default function CollectionPage(){
   return (
     <>
       <CollectionHero collection={collectionInfo}/>
-      <CollectionTab tokens={tokens} prices={prices}/>
+      <CollectionTab tokens={tokens} setTokens= {setTokens} prices={prices}/>
     </>
   );
 }
