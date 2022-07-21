@@ -18,12 +18,16 @@ const Subscribe = () => {
   const submitForm = (e) => {
     e.preventDefault();
     if (!validate(email)) {
-      toast('Please input valid email addrss.')
+      toast('Please input valid email addrss.', {type: 'warning'})
       return
     }
     subscribe(email).then(res => {
-      toast('Subscribed!');
-      setEmail('')
+      if (res) {
+        toast('Subscribe success!', {type: 'success'});
+        setEmail('')
+      }
+      else
+        toast('Subscribe failed!', {type: 'error'});
     }, err => {
       throw new Error(err);
     })

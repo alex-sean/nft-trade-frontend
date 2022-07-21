@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid, Typography, Box, Button, TextField, useThemeProps } from '@mui/material';
 import useStyles from '../styles/styles';
 import { useTheme } from '@mui/material/styles';
+import Subscribe from '../screens/Subscribe';
 
 export default function NewsletterPage(){
   const classes = useStyles();
@@ -28,11 +29,7 @@ export default function NewsletterPage(){
           <Typography paragraph variant="h6" className={classes.subtitle}>
             Join our mailing list to stay in the loop with our newest feature releases, NFT drops, and tips and tricks for navigating Xhibiter
           </Typography>
-          <TextField  className="inputRounded" 
-                  sx={{ display: 'flex', alignItems: 'center', marginTop: '20px' }}
-            placeholder="Email address"
-            InputProps={{endAdornment: <SubscribeButton />}}
-          />
+          <Subscribe />
         </Grid>
         <Grid item xs={12} md={7} sx={{position:'relative'}}>
           <img src={'images/hero/story_deg.png'} className={`${classes.largeImage}`} />
