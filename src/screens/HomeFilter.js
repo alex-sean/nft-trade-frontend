@@ -15,7 +15,7 @@ export default function HomeFilter({ getItems }){
   
   useNonInitialEffect(() => {
     getItems(filter, sort, verify);
-  }, [filter, sort, verify]);
+  }, [filter, sort, verify], [0, SORT_TOKEN.RECENT, false]);
 
   return (
     <Grid container direction="row" justifyContent="space-between" alignItems="center">
