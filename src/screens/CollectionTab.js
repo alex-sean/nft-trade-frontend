@@ -134,7 +134,7 @@ export default function CollectionTab(props) {
       <Divider />
       <TabPanel value={tab} index={0}>
         <Grid container direction="row" justifyContent="space-between" alignItems="flex-start">
-          <CategoryFilter category={filter} setCategory={setFilter}/>
+          {/* <CategoryFilter category={filter} setCategory={setFilter}/> */}
           <Grid item mb={2}>
             <TokenDropdown getItems={getTokens}/>
           </Grid>
