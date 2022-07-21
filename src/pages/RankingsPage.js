@@ -9,6 +9,7 @@ import { useLoadingContext } from '../hooks/useLoadingContext';
 import { getCollections } from '../adapters/backend';
 import { toast } from 'react-toastify';
 import CategoryFilter from '../screens/CategoryFilter';
+import { useNonInitialEffect } from '../hooks/useNonInitialEffect';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -58,9 +59,9 @@ export default function RankingsPage(props) {
     getCollectionsByCategory(0);
   }, [])
   
-  useEffect(() => {
+  useNonInitialEffect(() => {
     getCollectionsByCategory(category);
-  }, [category])
+  }, [category], [0])
 
   return (
     <Container maxWidth="lg">

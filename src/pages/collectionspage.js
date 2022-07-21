@@ -9,6 +9,7 @@ import { toast } from 'react-toastify';
 import CategoryFilter from '../screens/CategoryFilter';
 import { useParams } from 'react-router-dom';
 import { CATEGORIES } from '../common/const';
+import { useNonInitialEffect } from '../hooks/useNonInitialEffect';
 
 export default function CollectionsPage(){
   const classes = useStyles();
@@ -18,7 +19,7 @@ export default function CollectionsPage(){
   const [collections, setCollections] = useState([]);
   const [category, setCategory] = useState(isNaN(filter)? 0: parseInt(filter));
   const [keyword, setKeyword] = useState(isNaN(filter)? filter: '');
-  const [sort, setSort] = React.useState(1);
+  const [sort, setSort] = React.useState(2);
   const [pageNum, setPageNum] = useState(0);
   const [showLoadBtn, setShowLoadBtn] = useState(true);
 
@@ -55,17 +56,14 @@ export default function CollectionsPage(){
     getCollectionsByCategory(filter);
   }, [])
 
-  useEffect(() => {
-    getCollectionsByCategory();
-  }, [pageNum])
-
-  useEffect(() => {
+  useNonInitialEffect(() => {
     if (pageNum === 0) {
       getCollectionsByCategory();
+      return;
     }
     setPageNum(0);
     getCollectionsByCategory();
-  }, [category, filter, sort])
+  }, [category, filter, sort, pageNum], [isNaN(filter)? 0: parseInt(filter), filter, 2, 0])
 
   const handleSort = (event) => {
     setSort(event.target.value);

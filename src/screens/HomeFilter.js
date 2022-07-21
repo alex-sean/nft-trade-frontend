@@ -5,6 +5,7 @@ import CollectionDropdown from '../components/CollectionDropdown';
 import CategoryFilter from './CategoryFilter';
 import { SORT_TOKEN } from '../common/const';
 import { useEffect } from 'react';
+import { useNonInitialEffect } from '../hooks/useNonInitialEffect';
 
 export default function HomeFilter({ getItems }){
   const classes = useStyles();
@@ -12,7 +13,7 @@ export default function HomeFilter({ getItems }){
   const [sort, setSort] = React.useState(SORT_TOKEN.RECENT);
   const [verify, setVerify] = React.useState(false);
   
-  useEffect(() => {
+  useNonInitialEffect(() => {
     getItems(filter, sort, verify);
   }, [filter, sort, verify]);
 
