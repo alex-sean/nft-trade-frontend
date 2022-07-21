@@ -4,6 +4,7 @@ import useStyles from '../styles/styles';
 import ButtonBase from '@mui/material/ButtonBase';
 import { getActivityIcon, getAssetName, getTimeStr } from '../common/CommonUtils';
 import Web3 from 'web3';
+import { ACTIVITY_TYPE } from '../common/const';
 
 export default function ActivityItem({ activity }) {
   const classes = useStyles();
@@ -70,9 +71,21 @@ export default function ActivityItem({ activity }) {
     }
   }
 
+  const getActivityLink = () => {
+    switch (activity.type) {
+      case ACTIVITY_TYPE.CREATE:
+      case ACTIVITY_TYPE.EXCHANGE:
+      case ACTIVITY_TYPE.LISTING:
+      case ACTIVITY_TYPE.OFFER:
+        return `/item/${activity.collectionAddress}/${activity.tokenID}`;
+      case ACTIVITY_TYPE.LIKE:
+        return `/account/${activity.operator}`;
+    }
+  }
+
   return (
     <>
-      <Paper className={`${`${classes.hoverShadow} ${classes.paperBackground}`} ${classes.paperBackground}`} elevation={1} sx={{p: 2, mb: 3, maxWidth: 740, borderRadius: '20px'}}>
+      <Paper className={`${`${classes.hoverShadow} ${classes.paperBackground}`} ${classes.paperBackground}`} elevation={1} sx={{p: 2, mb: 3, maxWidth: 740, borderRadius: '20px'}} onClick={() => document.location.href = getActivityLink()}>
         <Grid container spacing={2} alignItems="center">
           <Grid item>
             <ButtonBase sx={{ display:'flex', justifyContent: 'center', padding: '32px' }}>
