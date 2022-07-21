@@ -45,7 +45,7 @@ export default function CollectionPopup1() {
         <MenuItem className={classes.dropdownMenu} onClick={handleClose}>
           <TwitterIcon /> <Typography ml={1} className={classes.link}>Twitter</Typography>
         </MenuItem>
-        <Divider />
+        <Divider sx={{margin: '0 !important'}}/>
         <MenuItem className={classes.dropdownMenu} onClick={handleClose}>
           <RedditIcon /> <Typography ml={1} className={classes.link}>Discord</Typography>
         </MenuItem>

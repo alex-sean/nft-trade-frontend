@@ -38,7 +38,7 @@ export default function ItemMenu() {
         <MenuItem className={classes.dropdownMenu} onClick={handleClose}>
           <Typography className={classes.link}>New bid</Typography>
         </MenuItem>
-        <Divider />
+        <Divider  sx={{margin: '0 !important'}}/>
         <MenuItem className={classes.dropdownMenu} onClick={handleClose}>
           <Typography className={classes.link}>Refresh Metadata</Typography>
         </MenuItem>
