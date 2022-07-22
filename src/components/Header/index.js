@@ -192,9 +192,12 @@ const Header = (props) => {
             <ListItemText className={classes.mobileLink} primary='Create' />
           </ListItem>
         </Link>
-        <Box display='flex' justifyContent='center'>
-          <PrimaryButton text="Connect Wallet"></PrimaryButton>
-        </Box>
+        {
+          !account &&
+          <Box display='flex' justifyContent='center'>
+            <PrimaryButton text="Connect Wallet" onClick={() => document.location.href = '/wallet'}></PrimaryButton>
+          </Box>
+        }
         <Divider />
         <Box p={2} display='flex' justifyContent='center' color={'gray'}>
           <FacebookIcon className={classes.mr16}/>
