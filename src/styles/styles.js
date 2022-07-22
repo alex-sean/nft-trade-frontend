@@ -452,7 +452,10 @@ const styles = (theme) => {
       '&:hover': {
         backgroundColor: 'rgba(130, 88, 255, 0.2)',
       }
-    }
+    },
+    mobileNav: {
+      background: `${isDark ? 'rgb(16 20 54)' : '#fff'}`,
+    },
   };
 };
 
