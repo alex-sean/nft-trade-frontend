@@ -172,22 +172,24 @@ export default function ItemTabs(props) {
 
   return (
     <Container maxWidth="lg">
-      <Tabs
-      value={value}
-      onChange={handleChange}
-      aria-label="icon position tabs example"
-      >
-        {
-          (!tokenInfo || !tokenInfo.token.listed) ?
-          <Tab {...a11yProps(0)} icon={<FormatListBulletedIcon />} iconPosition="start" label="Offers" />
-          :
-          <Tab {...a11yProps(0)} icon={<FormatListBulletedIcon />} iconPosition="start" label="Bids" />
-        }
-        <Tab {...a11yProps(1)} icon={<EarbudsIcon />} iconPosition="start" label="Properties" />
-        <Tab {...a11yProps(2)} icon={<ListAltIcon />} iconPosition="start" label="Details" />
-        <Tab {...a11yProps(3)} icon={<StackedLineChartIcon />} iconPosition="start" label="Activity" />
-        <Tab {...a11yProps(4)} icon={<AutoGraphIcon />} iconPosition="start" label="Price History" />
-      </Tabs>
+      <Box display='flex' justifyContent='center'>
+        <Tabs value={value}
+          onChange={handleChange}
+          variant="scrollable"
+          scrollButtons="auto"
+          aria-label="icon position tabs example">
+          {
+            (!tokenInfo || !tokenInfo.token.listed) ?
+            <Tab {...a11yProps(0)} icon={<FormatListBulletedIcon />} iconPosition="start" label="Offers" />
+            :
+            <Tab {...a11yProps(0)} icon={<FormatListBulletedIcon />} iconPosition="start" label="Bids" />
+          }
+          <Tab {...a11yProps(1)} icon={<EarbudsIcon />} iconPosition="start" label="Properties" />
+          <Tab {...a11yProps(2)} icon={<ListAltIcon />} iconPosition="start" label="Details" />
+          <Tab {...a11yProps(3)} icon={<StackedLineChartIcon />} iconPosition="start" label="Activity" />
+          <Tab {...a11yProps(4)} icon={<AutoGraphIcon />} iconPosition="start" label="Price History" />
+        </Tabs>
+      </Box>
       <TabPanel value={value} index={0} className={classes.paperBackground}>
         <TableContainer className={classes.paperBackground} component={Paper}>
           <Table sx={{ minWidth: 650, width:'100%' }} aria-label="simple table">

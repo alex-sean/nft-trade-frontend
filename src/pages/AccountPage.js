@@ -240,22 +240,22 @@ export default function AccountPage(){
         </Box>
       </Box>
     <Container maxWidth="lg">
-      <Tabs centered
-        value={value}
-        onChange={handleChange}
-        aria-label="icon position tabs example"
-        sx={{
-          '& .MuiTabs-flexContainer': {
-            flexWrap: 'wrap',
-          },
-        }}
-        >
-        <Tab {...a11yProps(0)} icon={<LocalAtmIcon />} iconPosition="start" label="On Sale" />
-        <Tab {...a11yProps(1)} icon={<SystemUpdateAltIcon />} iconPosition="start" label="Owned" />
-        <Tab {...a11yProps(2)} icon={<ListAltIcon />} iconPosition="start" label="Created(20)" />
-        <Tab {...a11yProps(3)} icon={<DiscountIcon />} iconPosition="start" label="Collection" />
-        <Tab {...a11yProps(4)} icon={<ImportExportIcon />} iconPosition="start" label="Activity" />
-      </Tabs>
+      <Box display='flex' justifyContent='center'>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label="icon position tabs example"
+          variant="scrollable"
+          scrollButtons="auto"
+          >
+          <Tab {...a11yProps(0)} icon={<LocalAtmIcon />} iconPosition="start" label="On Sale" />
+          <Tab {...a11yProps(1)} icon={<SystemUpdateAltIcon />} iconPosition="start" label="Owned" />
+          <Tab {...a11yProps(2)} icon={<ListAltIcon />} iconPosition="start" label="Created(20)" />
+          <Tab {...a11yProps(3)} icon={<DiscountIcon />} iconPosition="start" label="Collection" />
+          <Tab {...a11yProps(4)} icon={<ImportExportIcon />} iconPosition="start" label="Activity" />
+        </Tabs>
+      </Box>
+      
       <TabPanel value={value} index={0}>
         <Grid container direction="row" justifyContent="space-between" alignItems="flex-start">
           <CategoryFilter />
