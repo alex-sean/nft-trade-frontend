@@ -16,6 +16,13 @@ export default function ActivityItem({ activity }) {
       activity.Operator && activity.Operator.length > 0? activity.Operator[0].name: `${activity.operator.slice(0, 13)}..`
     );
 
+    if (activity.toUser) {
+      ret = ret.replace(
+        '%TO_USER%',
+        activity.ToUser && activity.ToUser.length > 0? activity.ToUser[0].name: `${activity.toUser.slice(0, 13)}..`
+      );
+    }
+
     ret = ret.replace(
       '%ASSET%',
       getAssetName(activity.asset)

@@ -226,6 +226,18 @@ export const getTokenDetail = async (collectionAddress, tokenID) => {
     return await get(`/token/detail?collectionAddress=${collectionAddress}&tokenID=${tokenID}`);
 }
 
+export const getUserLike = async (address, to) => {
+    return await get(`/user/like?address=${address}&to=${to}`);
+}
+
+export const likeUser = async (address, to, like) => {
+    let params = new FormData();
+    params.append('address', address);
+    params.append('to', to);
+    params.append('like', like);
+    return await post(`/user/like`, params);
+}
+
 export const getBlogs = async (limit, offset) => {
     return await get(`/blog/list?limit=${limit}&offset=${offset}`);
 }

@@ -30,7 +30,7 @@ import Checkbox from '@mui/material/Checkbox';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
 import { useWalletContext } from '../hooks/useWalletContext';
-import { getUserInfo, getOwnedTokens, getCreatedTokens, getSaleTokens, getOwnedCollections } from '../adapters/backend';
+import { getUserInfo, getOwnedTokens, getCreatedTokens, getSaleTokens, getOwnedCollections, getUserLike, likeUser } from '../adapters/backend';
 import { useLoadingContext } from '../hooks/useLoadingContext';
 import { toast } from 'react-toastify';
 import { STR_MONTH, USER_STATUS } from '../common/const';
@@ -95,6 +95,7 @@ export default function AccountPage(){
   const [saleTokens, setSaleTokens] = useState([]);
   const [ownedCollections, setOwnedCollections] = useState([]);
   const [filter, setFilter] = React.useState(0);
+  const [like, setLike] = useState(false);
   const { address } = useParams();
   const { account } = useWalletContext();
   const { setLoading } = useLoadingContext();
@@ -159,108 +160,53 @@ export default function AccountPage(){
   useEffect(() => {
     handleInit(address);
   }, [])
-  
-  const items = [
-    {
-      id: 1,
-      src: 'images/products/item_5.jpg',
-      title: 'Flourishing Cat #180',
-      subtitle: 'From 8.49 ETH 2/8',
-      like: '15',
-    },
-    {
-      id: 2,
-      src: 'images/products/item_4.jpg',
-      title: 'Amazing NFT art',
-      subtitle: 'From 5.9 ETH 1/7',
-      like: '188',
-    },
-    {
-      id: 3,
-      src: 'images/products/item_7.jpg',
-      title: 'SwagFox#133',
-      subtitle: '0.078 ETH 1/3',
-      like: '160',
-    },
-    {
-      id: 4,
-      src: 'images/products/item_6.jpg',
-      title: 'Splendid Girl',
-      subtitle: '10 ETH 2/3',
-      like: '159',
-    },
-    {
-      id: 5,
-      src: 'images/products/item_8.jpg',
-      title: 'Monkeyme#155',
-      subtitle: 'From 5 FLOW 1/1',
-      like: '32',
-    },
-    {
-      id: 6,
-      src: 'images/products/item_9.jpg',
-      title: 'Jedidia#149',
-      subtitle: '0.16 ETH 1/1',
-      like: '25',
-    },
-    {
-      id: 7,
-      src: 'images/products/item_10.jpg',
-      title: 'Artof Eve',
-      subtitle: '0.13 FLOW 1/1',
-      like: '55',
-    },
-    {
-      id: 8,
-      src: 'images/products/item_11.gif',
-      title: 'Asuna #1649',
-      subtitle: '0.8 ETH 1/1',
-      like: '70',
-    },
-  ];
 
-  const cardItems = [
-    {
-      id: 1,
-      img1: 'images/collections/collection_1_1.jpg',
-      img2: 'images/collections/collection_1_2.jpg',
-      img3: 'images/collections/collection_1_3.jpg',
-      img4: 'images/collections/collection_1_4.jpg',
-      title: 'Art Me Outside',
-      owner: 'Wow Frens',
-      count: '10K',
-    },
-    {
-      id: 2,
-      img1: 'images/collections/collection_2_1.jpg',
-      img2: 'images/collections/collection_2_2.jpg',
-      img3: 'images/collections/collection_2_3.jpg',
-      img4: 'images/collections/collection_2_4.jpg',
-      title: 'PankySkal',
-      owner: 'NFT stars',
-      count: '2.8K',
-    },
-    {
-      id: 3,
-      img1: 'images/collections/collection_3_1.jpg',
-      img2: 'images/collections/collection_3_2.jpg',
-      img3: 'images/collections/collection_3_3.jpg',
-      img4: 'images/collections/collection_3_4.jpg',
-      title: 'VR Space_287',
-      owner: 'Origin Morish',
-      count: '8K',
-    },
-    {
-      id: 4,
-      img1: 'images/collections/collection_4_1.jpg',
-      img2: 'images/collections/collection_4_2.jpg',
-      img3: 'images/collections/collection_4_3.jpg',
-      img4: 'images/collections/collection_4_4.jpg',
-      title: 'Metasmorf',
-      owner: 'Lazy Panda',
-      count: '1.5K',
-    },
-  ];
+  const getLike = async () => {
+    setLoading(true);
+
+    try {
+      const likeResult = await getUserLike(account, address);
+      if (!likeResult) {
+        throw new Error('Getting like status failed.');
+      }
+
+      setLike(likeResult.data);
+    } catch (err) {
+      console.log(err);
+    }
+
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    if (!account) {
+      return;
+    }
+
+    getLike();
+  }, [account])
+
+  const handleLike = async () => {
+    if (!account) {
+      toast('Please connect the wallet.');
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const likeResult = await likeUser(account, address, !like);
+      if (!likeResult) {
+        throw new Error('Like user faled.');
+      }
+      setLike(!like);
+    } catch (err) {
+      console.log(err);
+      toast('Like user failed.');
+    }
+
+    setLoading(false);
+  }
 
   return (
     <>
@@ -287,7 +233,7 @@ export default function AccountPage(){
 
         <Box mb={2} className={`${classes.displayFlex} ${classes.justifyCenter}`} >
           <Button className={`${classes.displayFlex}`} sx={{border:'solid 1px grey', borderRadius:'10px',  color: '#000'}}>
-            <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{color: 'red'}} />} />
+            <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{color: 'red'}} />} checked={like} onChange={() => handleLike()}/>
           </Button>
           <CollectionPopup1 />
           {/* <CollectionPopup2 /> */}
