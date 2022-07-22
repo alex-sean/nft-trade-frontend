@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Grid, Typography, Box, Paper, Card, CardActions, CardContent, Link, Avatar, Button } from '@mui/material';
+import { Grid, Typography, Box, Paper, Card, CardActions, CardContent, Link, Avatar, Button, useMediaQuery, useTheme } from '@mui/material';
 import useStyles from '../styles/styles';
 import ButtonBase from '@mui/material/ButtonBase';
 import { getActivityIcon, getAssetName, getTimeStr } from '../common/CommonUtils';
@@ -8,6 +8,8 @@ import { ACTIVITY_TYPE } from '../common/const';
 
 export default function ActivityItem({ activity }) {
   const classes = useStyles();
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('sm'));
 
   const getActivityContent = () => {
     let ret = activity.content;
@@ -95,7 +97,7 @@ export default function ActivityItem({ activity }) {
       <Paper className={`${`${classes.hoverShadow} ${classes.paperBackground}`} ${classes.paperBackground}`} elevation={1} sx={{p: 2, mb: 3, maxWidth: 740, borderRadius: '20px'}} onClick={() => document.location.href = getActivityLink()}>
         <Grid container spacing={2} alignItems="center">
           <Grid item>
-            <ButtonBase sx={{ display:'flex', justifyContent: 'center', padding: '32px' }}>
+            <ButtonBase sx={{ display:'flex', justifyContent: 'center', padding: `${matches ? '0' : '32px'}`}}>
               <img style={{borderRadius: '10px', width: '48px'}} src={getActivityAvatarURL()} />
             </ButtonBase>
           </Grid>
