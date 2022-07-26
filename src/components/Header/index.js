@@ -187,7 +187,7 @@ const Header = (props) => {
             </Link>
           </AccordionDetails>
         </Accordion>
-        <Link href="/newsletter" underline='none'>
+        <Link href="/create" underline='none'>
           <ListItem button key={5}>
             <ListItemText className={classes.mobileLink} primary='Create' />
           </ListItem>
@@ -276,6 +276,8 @@ const Header = (props) => {
                   <StyledInputBase
                     placeholder="Search"
                     inputProps={{ 'aria-label': 'search' }}
+                    onChange={(e) => setKeyword(e.target.value)}
+                    onKeyUp={(e) => handlekeyUp(e.keyCode)}
                   />
               </Search>
                 {list('right')}
