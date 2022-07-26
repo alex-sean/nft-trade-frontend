@@ -350,11 +350,11 @@ export default function ItemBid(props) {
             </Grid>
           </CardContent>
         }
-        <CardActions>
+        <Box px={3}>
           {
             showItemButtons()
           }
-        </CardActions>
+        </Box>
       </Card>
       <SellDialog visible={false}/>
       <OfferDialog visible={showOfferDlg} tokenInfo={tokenInfo} setVisibility={setShowOfferDlg}/>

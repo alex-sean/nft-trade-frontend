@@ -172,22 +172,24 @@ export default function ItemTabs(props) {
 
   return (
     <Container maxWidth="lg">
-      <Tabs
-      value={value}
-      onChange={handleChange}
-      aria-label="icon position tabs example"
-      >
-        {
-          (!tokenInfo || !tokenInfo.token.listed) ?
-          <Tab {...a11yProps(0)} icon={<FormatListBulletedIcon />} iconPosition="start" label="Offers" />
-          :
-          <Tab {...a11yProps(0)} icon={<FormatListBulletedIcon />} iconPosition="start" label="Bids" />
-        }
-        <Tab {...a11yProps(1)} icon={<EarbudsIcon />} iconPosition="start" label="Properties" />
-        <Tab {...a11yProps(2)} icon={<ListAltIcon />} iconPosition="start" label="Details" />
-        <Tab {...a11yProps(3)} icon={<StackedLineChartIcon />} iconPosition="start" label="Activity" />
-        <Tab {...a11yProps(4)} icon={<AutoGraphIcon />} iconPosition="start" label="Price History" />
-      </Tabs>
+      <Box display='flex' justifyContent='center'>
+        <Tabs value={value}
+          onChange={handleChange}
+          variant="scrollable"
+          scrollButtons="auto"
+          aria-label="icon position tabs example">
+          {
+            (!tokenInfo || !tokenInfo.token.listed) ?
+            <Tab {...a11yProps(0)} icon={<FormatListBulletedIcon />} iconPosition="start" label="Offers" />
+            :
+            <Tab {...a11yProps(0)} icon={<FormatListBulletedIcon />} iconPosition="start" label="Bids" />
+          }
+          <Tab {...a11yProps(1)} icon={<EarbudsIcon />} iconPosition="start" label="Properties" />
+          <Tab {...a11yProps(2)} icon={<ListAltIcon />} iconPosition="start" label="Details" />
+          <Tab {...a11yProps(3)} icon={<StackedLineChartIcon />} iconPosition="start" label="Activity" />
+          <Tab {...a11yProps(4)} icon={<AutoGraphIcon />} iconPosition="start" label="Price History" />
+        </Tabs>
+      </Box>
       <TabPanel value={value} index={0} className={classes.paperBackground}>
         <TableContainer className={classes.paperBackground} component={Paper}>
           <Table sx={{ minWidth: 650, width:'100%' }} aria-label="simple table">
@@ -267,20 +269,20 @@ export default function ItemTabs(props) {
         </Grid>
       </TabPanel>
       <TabPanel className={classes.paperBackground} value={value} index={2} style={{border: 'solid 1px gainsboro', borderRadius: '8px', padding: '32px'}}>
-        <Grid container spacing={4}>
-          <Grid sx>
+        <Box display='flex' sx={{overflow: 'auto'}}>
+          <Box>
             <Typography p={1} variant='body2'>Contract Address:</Typography>
             <Typography p={1} variant='body2'>Token ID:</Typography>
             <Typography p={1} variant='body2'>Token Standard:</Typography>
             <Typography p={1} variant='body2'>Blockchain:</Typography>
-          </Grid>
-          <Grid sx>
+          </Box>
+          <Box>
             <Typography p={1} color="primary" variant='body2'>{tokenInfo? tokenInfo.token.collectionAddress: '...'}</Typography>
             <Typography p={1} variant='body2'>{tokenInfo? tokenInfo.token.tokenID: '0'}</Typography>
             <Typography p={1} variant='body2'>ERC-721</Typography>
             <Typography p={1} variant='body2'>Avalanche Network</Typography>
-          </Grid>
-        </Grid>
+          </Box>
+        </Box>
       </TabPanel>
       <TabPanel className={classes.paperBackground} value={value} index={3}>
         <TableContainer className={classes.paperBackground} component={Paper}>

@@ -123,14 +123,17 @@ export default function CollectionTab(props) {
 
   return (
     <Container maxWidth="lg">
-      <Tabs centered
-        value={tab}
-        onChange={handleTab}
-        aria-label="icon position tabs example"
-        >
-        <Tab {...a11yProps(0)} icon={<QrCodeIcon />} iconPosition="start" label="Items" />
-        <Tab {...a11yProps(1)} icon={<StackedLineChartIcon />} iconPosition="start" label="Activity" />
-      </Tabs>
+      <Box display='flex' justifyContent='center'>
+        <Tabs
+          value={tab}
+          onChange={handleTab}
+          variant="scrollable"
+          scrollButtons="auto"
+          aria-label="icon position tabs example">
+          <Tab {...a11yProps(0)} icon={<QrCodeIcon />} iconPosition="start" label="Items" />
+          <Tab {...a11yProps(1)} icon={<StackedLineChartIcon />} iconPosition="start" label="Activity" />
+        </Tabs>
+      </Box>
       <Divider />
       <TabPanel value={tab} index={0}>
         <Grid container direction="row" justifyContent="space-between" alignItems="flex-start">
