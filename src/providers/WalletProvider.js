@@ -251,6 +251,10 @@ export const WalletProvider = ({ children }) => {
     }
 
     useEffect(() => {
+        if (!window.ethereum) {
+            return;
+        }
+        
         window.ethereum.on('chainChanged', refreshAccount);
         window.ethereum.on('accountsChanged', refreshAccount);
     }, [window.ethereum])
