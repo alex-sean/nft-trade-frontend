@@ -25,4 +25,5 @@ yarn-error.log*
 package-lock.json
 .vscode/launch.json
 yarn.lock
-.env
+.env.local
+.env.production
