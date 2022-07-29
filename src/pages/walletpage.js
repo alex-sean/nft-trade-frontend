@@ -36,7 +36,7 @@ export default function WalletPage(){
               </Paper>
             </Grid> */}
             <Grid item xs={12} md={4}>
-              <Paper className={`${classes.hoverShadow} ${classes.paperBackground}`} elevation={1} sx={{textAlign: 'center', borderRadius: '15px', position: 'relative', minHeight: '200px'}}>
+              <Paper className={`${classes.hoverShadow} ${classes.paperBackground}`} elevation={1} sx={{textAlign: 'center', borderRadius: '15px', position: 'relative', minHeight: '200px'}} onClick={() => handleConnect(WALLET_TYPE.WALLETCONNECT)}>
                 <Avatar src="images/wallets/wallet_connect.svg" className={classes.paperBackground}
                         sx={{width: '72px', height: 'auto', position: 'absolute', top: '-36px', right: 'calc(50% - 36px)', border: 'solid 1px lightgray'}}></Avatar>
                 <Typography pt={5} variant='h6'>Wallet Connect</Typography>
