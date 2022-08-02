@@ -104,7 +104,7 @@ const Header = (props) => {
             </Link>
           </AccordionDetails>
         </Accordion> */}
-        <Accordion sx={{boxShadow: 'none'}}>
+        <Accordion sx={{boxShadow: 'none'}} className={classes.mobileNav}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
@@ -167,7 +167,7 @@ const Header = (props) => {
             <ListItemText className={classes.mobileLink} primary='Contact' />
           </ListItem>
         </Link>
-        <Accordion sx={{boxShadow: 'none'}}>
+        <Accordion sx={{boxShadow: 'none'}} className={classes.mobileNav}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
@@ -267,6 +267,7 @@ const Header = (props) => {
               <Drawer
                 anchor="right"
                 open={state['right']}
+                classes={{paper: classes.mobileNav}}
                 onClose={toggleDrawer('right', false)}
               >
                 <Search sx={{margin: "4% !important", width: "92%"}}>
@@ -279,7 +280,7 @@ const Header = (props) => {
                     onChange={(e) => setKeyword(e.target.value)}
                     onKeyUp={(e) => handlekeyUp(e.keyCode)}
                   />
-              </Search>
+                </Search>
                 {list('right')}
               </Drawer>
             </Box>

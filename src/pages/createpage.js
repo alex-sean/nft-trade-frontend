@@ -229,7 +229,7 @@ export default function CreatePage(){
           value={subject}
           onChange={(e) => setSubject(e.target.value)}
           style={{width: '100%', borderColor: 'darkgray'}}
-          className={`${classes.inputBorder} ${classes.paperBackground}`}
+          className={`${classes.inputBorder} ${classes.paperBackground} ${classes.darkText}`}
         />
 
         <InputLabel htmlFor="collection" className={classes.createItemTitle}>
