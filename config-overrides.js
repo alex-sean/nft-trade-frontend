@@ -11,5 +11,7 @@ module.exports = function override(config) {
     })
     config.resolve.fallback = fallback;
 
+    config.ignoreWarnings = [/Failed to parse source map/];
+
     return config;
 }
