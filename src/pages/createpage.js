@@ -317,7 +317,7 @@ export default function CreatePage(){
           value={supply}
           className={classes.paperBackground}
           fullWidth 
-          onChange={(e) => setSupply(parseInt(e.target.value))}
+          onChange={(e) => setSupply(parseInt(e.target.value)? parseInt(e.target.value): 0)}
         />
 
         {/* <InputLabel htmlFor="blockchain" sx={{marginTop: '20px', fontWeight: '700'}}>

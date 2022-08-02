@@ -159,9 +159,9 @@ export default function CollectionTab(props) {
           ))}
         </Grid>
         
-        <Box sx={{display: 'flex', justifyContent: 'center'}}>
+        {/* <Box sx={{display: 'flex', justifyContent: 'center'}}>
           <Button className={classes.primaryButton}>Load More</Button>
-        </Box>
+        </Box> */}
       </TabPanel>
       <TabPanel value={tab} index={1}>
         <Graph prices={prices}/>
